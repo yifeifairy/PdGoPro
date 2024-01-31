@@ -1,0 +1,149 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="loading_dialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+    <style name="KeyboardDialogAnimation" parent="android:Animation">
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+    </style>
+
+
+    <style name="NoFrameDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--名字自定义-->
+    <style name="CheckBoxTheme">
+        <item name="colorAccent">#EE82EE</item><!--选中颜色-->
+        <item name="colorControlNormal">@color/white</item><!--未选中颜色-->
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="custom_style_main_tool_bar_item" >
+        <item name="android:textSize">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">42dp</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+
+    <!--
+          当我们从 A1 启动 A2 时，A1 从屏幕上消失，这个动画叫做 android:activityOpenExitAnimation
+          当我们从 A1 启动 A2 时，A2 出现在屏幕上，这个动画叫做 android:activityOpenEnterAnimation
+          当我们从 A2 退出回到 A1 时，A2 从屏幕上消失，这个叫做 android:activityCloseExitAnimation
+          当我们从 A2 退出回到 A1 时，A1 出现在屏幕上，这个叫做 android:activityCloseEnterAnimation
+        -->
+    <style name="AnimationActivity" mce_bogus="1" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_slide_left_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_slide_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_slide_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_slide_right_out</item>
+    </style>
+
+    <style name="dialog_animation_style_left_and_right" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/activity_slide_left_in</item>
+        <item name="android:windowExitAnimation">@anim/activity_slide_right_out</item>
+    </style>
+
+    <style name="mypopwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+
+
+    <style name="CustomDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="android:windowContentOverlay">@android:color/transparent</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--透明activity的style-->
+    <style name="transparent_activity" parent="Base.Theme.AppCompat">
+        <item name="android:background">@android:color/transparent</item>              <!--设置布局背景-->
+        <item name="android:windowBackground">@color/transparent_background</item>     <!--设置背景颜色-->
+        <item name="android:windowContentOverlay">@android:color/transparent</item>    <!--设置主题-->
+        <item name="android:backgroundDimAmount">1.0</item>                            <!--设置背景模糊的透明度-->
+        <item name="android:windowNoTitle">true</item>                                 <!--设置是否没有标题-->
+        <item name="android:windowIsFloating">true</item>                              <!--设置dialog是否悬浮在activity上-->
+        <item name="android:backgroundDimEnabled">true</item>                          <!--设置弹出的对话框背景是否是暗的-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+    <style name="bottom_activity_bg_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上，如果设置为true则类似于展示成dialog，所以界面左右两边会有空边 -->
+        <item name="android:windowIsFloating">false</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 遮罩层 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+    <style name="tabLayoutTabSize">
+        <item name="android:textSize">@dimen/bind_phone_title_text_size</item>
+    </style>
+
+
+</resources>

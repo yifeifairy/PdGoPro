@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.AlexLiuSheng:CheckVersionLib:2.4.1_androidx@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/eb659991a770b7c876ee7e4a2ccd94dc/transformed/jetified-CheckVersionLib-2.4.1_androidx/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/eb659991a770b7c876ee7e4a2ccd94dc/transformed/jetified-CheckVersionLib-2.4.1_androidx/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/eb659991a770b7c876ee7e4a2ccd94dc/transformed/jetified-CheckVersionLib-2.4.1_androidx/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.AlexLiuSheng/CheckVersionLib/2.4.1_androidx/f976d426454773fb14b2162bcfc02725454026fd/CheckVersionLib-2.4.1_androidx-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

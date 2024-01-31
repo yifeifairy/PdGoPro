@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/layout_body_data_item_1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_marginRight="@dimen/input_box_item_margin_right"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingRight="@dimen/input_box_item_padding_right">
+
+
+            <EditText
+                android:id="@+id/et_body_data_item1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="请设置"
+                android:paddingRight="16dp"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textColorHint="@color/text_default_30"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:text="体重："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_body_data_item_2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingRight="@dimen/input_box_item_padding_right">
+
+            <EditText
+                android:id="@+id/et_body_data_item2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="请设置"
+                android:paddingRight="16dp"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textColorHint="@color/text_default_30"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:text="心率："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/layout_body_data_item_3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_marginRight="@dimen/input_box_item_margin_right"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingRight="@dimen/input_box_item_padding_right">
+
+            <EditText
+                android:id="@+id/et_body_data_item3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="请设置"
+                android:paddingRight="16dp"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textColorHint="@color/text_default_30"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:text="收缩压："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_body_data_item_4"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingRight="@dimen/input_box_item_padding_right">
+
+            <EditText
+                android:id="@+id/et_body_data_item4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="请设置"
+                android:paddingRight="16dp"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textColorHint="@color/text_default_30"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:text="舒张压："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

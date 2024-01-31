@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="@dimen/treatment_countdown_margin"
+    android:layout_marginRight="@dimen/treatment_countdown_margin"
+    android:layout_marginTop="@dimen/dialog_alarm_tv_countdown_margin_top"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/number_board_btn_item_height"
+        android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="?attr/custom_attr_number_board_text_color"
+        android:textSize="@dimen/number_board_input_hint_text_size" />
+
+</RelativeLayout>

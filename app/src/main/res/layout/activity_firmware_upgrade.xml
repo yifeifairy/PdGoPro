@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_app_bg"
+    tools:context="com.emt.pdgo.next.ui.activity.param.FirmwareUpgradeActivity">
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:text="选择升级文件"
+        android:id="@+id/selectFileBtn"
+        android:textColor="@color/blue"
+        android:layout_margin="@dimen/pre_heat_curr_temperature_lable_text_size"
+        android:textSize="@dimen/pipeline_btn_text_size_1"
+        android:padding="@dimen/pre_heat_curr_temperature_lable_text_size"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="match_parent"
+        android:text=""
+        android:textSize="@dimen/pipeline_btn_text_size_1"
+        android:textColor="@color/text_default"
+        android:layout_margin="@dimen/pre_heat_curr_temperature_lable_text_size"
+        android:padding="@dimen/pre_heat_curr_temperature_lable_text_size"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/receiveMsg"
+        android:textSize="@dimen/pipeline_btn_text_size_1"
+        android:textColor="@color/text_default"
+        android:layout_margin="@dimen/pre_heat_curr_temperature_lable_text_size"
+        android:padding="@dimen/pre_heat_curr_temperature_lable_text_size"
+
+        android:layout_height="wrap_content" />
+    <include
+        android:id="@+id/rootView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/navbar_btn_height"
+        layout="@layout/root_view" />
+</LinearLayout>

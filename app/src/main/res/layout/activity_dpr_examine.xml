@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.emt.pdgo.next.ui.activity.dpr.DprExamineActivity"
+    android:baselineAligned="true">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <include
+            layout="@layout/dpr_main_layout" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/viewDataLayout"
+        android:visibility="gone"
+        android:layout_height="match_parent" >
+
+        <include
+            layout="@layout/dpr_view_data_layout" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/modifyLayout"
+        android:visibility="gone"
+        android:layout_height="match_parent" >
+
+        <include
+            layout="@layout/dpr_modify_layout" />
+
+    </LinearLayout>
+
+</FrameLayout>

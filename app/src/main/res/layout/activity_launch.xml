@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_app_bg"
+    android:layout_width="match_parent" >
+
+    <include
+        layout="@layout/view_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/perHeartWeightRl"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="预热重量"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_unit_up_weight"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/unit_g"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tvPerHeartWeight"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_unit_up_weight"
+                android:gravity="center_vertical|right"
+                android:text="0"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="下位称实时重量"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_unit_up_low_weight"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/unit_g"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_unit_up_low_weight"
+                android:gravity="center_vertical|right"
+                android:text="0"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    </RelativeLayout>
+</LinearLayout>

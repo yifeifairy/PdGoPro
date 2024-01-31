@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_engineer"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@color/red"
+        android:text="工程师设置"
+        android:textSize="25sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_logo" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
+            android:background="@color/orange"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="欢迎使用"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="70dp"
+                android:background="@drawable/ic_logo_self_chek" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="自动腹膜透析系统"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_start"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="#1485FF">
+
+            <ImageView
+                android:id="@+id/btn_start"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_start_up"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_start"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:text="点击启动"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#00a100">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/icon_qrcode"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_centerVertical="true"
+                    android:text="腹膜透析服务平台\n二维码扫描"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/red">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/icon_tip"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="设置治疗参数\n（长按进入）"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!-- 显示当前时间 xx年xx月xx日xx时xx分 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_now_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="当前时间：2022 年 06 月 08 日 16 时 44 分"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="(长按此调整时间)"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

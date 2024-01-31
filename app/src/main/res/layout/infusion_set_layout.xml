@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/treatment_countdown_margin"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/infusionTimeIntervalRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="灌注流量测定 时间间隔"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_second"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/infusionTimeIntervalEt"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="5-600"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:id="@+id/infusionThresholdRl"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="灌注流量测定 阈值"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/infusionThresholdEt"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="30-200"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:id="@+id/infusionMaximumAlertRl"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="灌注最大警戒值"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/infusionMaximumAlertEt"
+                    android:layout_width="200dp"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="1000-5000"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:text="是否允许最末灌注减去留腹量"-->
+<!--                    android:textColor="?attr/custom_attr_common_text_color"-->
+<!--                    android:textSize="@dimen/input_box_tv_text_size" />-->
+
+
+<!--                <com.emt.pdgo.next.ui.widget.LabeledSwitch-->
+<!--                    android:id="@+id/infusionIsAllowedSwitch"-->
+<!--                    android:layout_width="@dimen/layout_input_box_labeledswitch_width"-->
+<!--                    android:layout_height="@dimen/layout_input_box_labeledswitch_height"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_marginLeft="11dp"-->
+<!--                    android:textSize="@dimen/layout_input_box_labeledswitch_text_size"-->
+<!--                    labeled_switch:colorBorder="#ff0089ff"-->
+<!--                    labeled_switch:colorOn="#ff0089ff"-->
+<!--                    labeled_switch:on="true"-->
+<!--                    labeled_switch:textOff="@string/switch_text_off2"-->
+<!--                    labeled_switch:textOn="@string/switch_text_on2" />-->
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:id="@+id/infusionMinimumRl"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="加热袋最低重量允许"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/infusionMinimumEt"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="100-1000"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

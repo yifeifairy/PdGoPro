@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.pdp.rmmit.pdp">
+    <!-- <uses-sdk -->
+    <!-- android:minSdkVersion="21" -->
+    <!-- android:targetSdkVersion="34" /> -->
+    <uses-permission
+        android:name="android.permission.INJECT_EVENTS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.USES_POLICY_FORCE_LOCK" />
+    <uses-permission
+        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+    <uses-permission
+        android:name="android.permission.MANAGE_USB"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="true" />
+
+    <permission
+        android:name="android.permission.DEVICE_POWER "
+        tools:ignore="ReservedSystemPermission" />
+
+    <uses-permission android:name="android.hardware.usb.accessory" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.VIBRATE" /> -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" /> <!-- 往SDCard写入数据权限 -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
+    <!-- <uses-permission android:name="android.permission.BLUETOOTH" /> -->
+    <!-- <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_PRIVILEGED"
+        tools:ignore="ProtectedPermissions" /> <!-- <uses-permission android:name="android.permission.REAL_GET_TASKS"  tools:ignore="ProtectedPermissions" /> -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission
+        android:name="android.permission.INSTALL_LOCATION_PROVIDER"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.INSTALL_SHORTCUT" />
+    <uses-permission
+        android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.MODIFY_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
+    <application
+        android:name="com.emt.pdgo.next.MyApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:sharedUserId="android.uid.system"
+        android:supportsRtl="true"
+        android:theme="@style/MarioTheme.Day"
+        tools:replace="android:allowBackup"
+        tools:targetApi="s">
+        <activity
+            android:name=".RemoteExpertActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RemoteChildActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RemoteAapdActivity"
+            android:exported="false"
+            android:label="@string/title_activity_remote_aapd"
+            android:theme="@style/MarioTheme.Day.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RemoteCcpdActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RemoteTpdActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RemoteIpdActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <receiver
+            android:name="com.emt.pdgo.next.receiver.NetBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name="com.emt.pdgo.next.service.MyIntentService"
+            android:exported="false" />
+
+        <receiver
+            android:name="com.emt.pdgo.next.receiver.MyWakefulReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.Manifest.permission.WAKE_LOCK" />
+
+        <activity
+            android:name="com.emt.pdgo.next.ui.mode.activity.ipd.IpdActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.mode.activity.cfpd.CfpdActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.mode.activity.ccpd.CcpdActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- <activity -->
+        <!-- android:name="com.emt.pdgo.next.ui.mode.activity.ModeActivity" -->
+        <!--
+            android:exported="false"
+            android:configChanges="mcc|mnc|orientation">
+        -->
+        <!-- <meta-data -->
+        <!-- android:name="android.app.lib_name" -->
+        <!-- android:value="" /> -->
+        <!-- </activity> -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.wifi.WifiActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.ExpertActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- <activity -->
+        <!-- android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.ApdActivity" -->
+        <!--
+ android:exported="false"
+            android:configChanges="mcc|mnc|orientation">
+        -->
+        <!-- <meta-data -->
+        <!-- android:name="android.app.lib_name" -->
+        <!-- android:value="" /> -->
+        <!-- </activity> -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.TpdActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.KidActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.AapdActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.ApdNorActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- <activity -->
+        <!-- android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.ApdActivity" -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.prescrip.ApdActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- android:name="com.emt.pdgo.next.ui.activity.SelfCheckActivity" -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.mode.activity.ModeActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- android:configChanges="orientation|keyboardHidden" -->
+        <!-- android:launchMode="singleTop" -->
+        <!-- android:screenOrientation="landscape" -->
+        <!-- android:windowSoftInputMode="stateHidden|stateUnchanged" -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.SelfCheckActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME.PEITE" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.SETUP_WIZARD" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- <activity -->
+        <!-- android:name="com.emt.pdgo.next.ui.activity.apd.ApdPrescriptionActivity" -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.apd.ApdPrescriptionActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.dpr.DprParamSetActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.dpr.DprPrescriptionActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.dpr.DprExamineActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <service
+            android:name="com.emt.pdgo.next.service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.OtherParamActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.ParameterSettingActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.FaultCodeActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.ParamDebugActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.MotorDebugActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.LamplightActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.VoiceDebugActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.RemotePrescribingActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.HistoricalPrescriptionActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.HistoricalTreatmentActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.ContactEngineerActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.TreatmentModeActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.ParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.PrescriptionActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <receiver
+            android:name="com.emt.pdgo.next.receiver.ScreenOffAdminReceiver"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.emt.pdgo.next.service.UsbReceiver"
+            android:exported="false">
+            <intent-filter android:priority="200">
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <intent-filter android:priority="200">
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.pdp.rmmit.pdp.fileprovider"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.FirmwareUpgradeActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.MyDreamActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.VolumeActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- <activity -->
+        <!-- android:name="com.emt.pdgo.next.ui.activity.LaunchActivity" -->
+        <!-- android:configChanges="orientation|keyboardHidden" -->
+        <!--  -->
+        <!-- android:screenOrientation="landscape" /> &lt;!&ndash; <intent-filter> &ndash;&gt; -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.HOME.PEITE" /> -->
+        <!-- <category android:name="android.intent.category.HOME" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.RecyclerActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.AnimatorActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape" /> <!-- <service -->
+        <!-- android:name=".MyDream" -->
+        <!-- android:exported="true" -->
+        <!-- android:icon="@drawable/ic_logo" -->
+        <!-- android:label="@string/about_content"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.service.dreams.DreamService" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- &lt;!&ndash; Point to additional information for this dream (optional) &ndash;&gt; -->
+        <!-- <meta-data -->
+        <!-- android:name="android.service.dream" -->
+        <!-- android:resource="@xml/my_dream" /> -->
+        <!-- </service> -->
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.SettingActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.EngineerSettingActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.PerfusionParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.DrainParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.SupplyParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.FirstRinseParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.TemperatureControlParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.WeighParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.UserParameterActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.UrlSetActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.SNSetActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.PreHeatActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.InputTreatmentInfoActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.ScanCodeLoginActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.PreparationActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.PipelineConnectionActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.PipelineConnectionSkipBootActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.PreRinseActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.TreatmentCountdownActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.TreatmentFragmentActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.DataCollectionActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.TreatmentFeedbackActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.TreatmentEvaluationActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.BindPhoneActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.ValveTestActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.AboutActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.USBDiskActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/transparent_activity" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.TtsTestActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.TestLocationActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.UploadDataTestActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.param.TreatmentHistoryActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.PowerMonitorDialogActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="mcc|mnc|orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:theme="@style/bottom_activity_bg_style" /> <!-- <service android:name="com.emt.pdgo.next.service.MainBoardService" /> -->
+        <service android:name="com.emt.pdgo.next.service.SerialPortService" />
+    </application>
+
+</manifest>

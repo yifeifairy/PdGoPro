@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/custom_id_app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/preparation_iv_pipeline_connect_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="上位称实时重量"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_unit_up_weight"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/unit_g"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_up_weight"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_unit_up_weight"
+                android:gravity="center_vertical|right"
+                android:text="0"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/preparation_iv_pipeline_connect_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="下位称实时重量"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_unit_up_low_weight"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/unit_g"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_low_weight"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_unit_up_low_weight"
+                android:gravity="center_vertical|right"
+                android:text="0"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/layout_up_weigh_ratio"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/preparation_iv_pipeline_connect_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="上位称校准值"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_unit_up_weigh_ratio"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/unit_g"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/et_up_weigh_ratio"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_unit_up_weigh_ratio"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textColorHint="@color/text_default_30"
+                android:textSize="@dimen/input_box_tv_text_size"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_low_weigh_ratio"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/preparation_iv_pipeline_connect_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="下位称校准值"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_unit_low_weigh_ratio"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/unit_g"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/et_low_weigh_ratio"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_unit_low_weigh_ratio"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint=""
+                android:inputType="number"
+                android:maxLength="10"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textColorHint="@color/text_default_30"
+                android:textSize="@dimen/input_box_tv_text_size"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="@dimen/layout_input_box_bg_margin"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/input_title_tips_weigh_parameter2"
+            android:textColor="@color/text_warning"
+            android:textSize="@dimen/navbar_btn_text_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rootView"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btn_up_peeled"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_pipeline_connect_height"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:background="@drawable/item_blue_day"
+                android:gravity="center"
+                android:text="上位称标零"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+
+            <Button
+                android:id="@+id/btn_low_peeled"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_pipeline_connect_height"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:background="@drawable/item_blue_day"
+                android:gravity="center"
+                android:text="下位称标零"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+            <Button
+                android:id="@+id/btn_up_low_peeled"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_pipeline_connect_height"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/item_blue_day"
+                android:gravity="center"
+                android:text="上下位称去皮"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+
+        </LinearLayout>
+
+        
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+        
+    </RelativeLayout>
+
+
+</LinearLayout>

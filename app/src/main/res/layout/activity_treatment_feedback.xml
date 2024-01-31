@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/feedbook_layout_treatment_duration_height"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:background="?attr/custom_attr_feedback_treatment_duration_bg">
+
+            <TextView
+                android:id="@+id/tv_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                android:layout_marginRight="@dimen/feedbook_layout_item_padding_left"
+                android:text="治疗时间段：2022/07/12 19:30 ~ 07/13 04:39"
+                android:textColor="@color/white"
+                android:textSize="@dimen/custom_main_title_size_1" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="@dimen/feedbook_layout_item_margin_top_3"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/feedbook_layout_item_height"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_feedback_item_1_bg"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="21dp"
+                    android:text="引流量"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+                <TextView
+                    android:id="@+id/tv_drain_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="5dp"
+                    android:text="20000ml"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/feedbook_layout_item_height"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_feedback_item_2_bg"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="21dp"
+                    android:text="灌注量"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+                <TextView
+                    android:id="@+id/tv_perfusion_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="5dp"
+                    android:text="20000ml"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/feedbook_layout_item_height"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_feedback_item_3_bg"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="21dp"
+                    android:text="超滤量"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+                <TextView
+                    android:id="@+id/tv_ufv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="5dp"
+                    android:text="20000ml"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/feedbook_layout_item_height"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_feedback_item_4_bg"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="21dp"
+                    android:text="治疗时长"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+                <TextView
+                    android:id="@+id/tv_time_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feedbook_layout_item_padding_left"
+                    android:layout_marginTop="5dp"
+                    android:text="09:39"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/custom_main_title_size_3" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="@dimen/feedbook_layout_item_margin_top_2"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:text="请完善以下信息，有助于医师对您的治疗做出更好的评估(多选)"
+            android:textColor="?attr/custom_attr_common_text_color_2"
+            android:textSize="@dimen/custom_main_title_size_1" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="@dimen/feedbook_layout_item_margin_top_1"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:weightSum="12"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="5"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="?attr/custom_attr_input_box_gray_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/feedbook_layout_item_padding_left_2"
+                android:text="日常生活的状况："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+
+            <TextView
+                android:id="@+id/tv_abdominal_pain_item1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="正常"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_abdominal_pain_item2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="有腹痛感"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_abdominal_pain_item3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="出现发烧"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_abdominal_pain_item4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="下肢水肿"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="@dimen/feedbook_layout_item_margin_top_1"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:weightSum="12"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="5"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="?attr/custom_attr_input_box_gray_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/feedbook_layout_item_padding_left_2"
+                android:text="引流液颜色："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+
+            <TextView
+                android:id="@+id/tv_drainage_color_item1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="澄清"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_drainage_color_item2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="乳糜状"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_drainage_color_item3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="有不溶物"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_drainage_color_item4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="颜色异常"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="@dimen/feedbook_layout_item_margin_top_1"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:weightSum="12"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="5"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="?attr/custom_attr_input_box_gray_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/feedbook_layout_item_padding_left_2"
+                android:text="隧道口是否疼痛："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+
+            <TextView
+                android:id="@+id/tv_tunnel_opening_pain_item1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="正常"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_tunnel_opening_pain_item2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:layout_marginRight="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="肿胀/充血"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_tunnel_opening_pain_item3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="疼痛"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+            <TextView
+                android:id="@+id/tv_tunnel_opening_pain_item4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="2"
+                android:layout_marginLeft="@dimen/feedbook_layout_item_margin_left_right"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="局部发热"
+                android:textColor="@drawable/radio_text_select"
+                android:textSize="@dimen/custom_main_title_size_3" />
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

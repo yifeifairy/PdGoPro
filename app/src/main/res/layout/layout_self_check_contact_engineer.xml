@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_self_check_bg">
+
+<!--    <include layout="@layout/layout_self_check_bottom" />-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/custom_main_report_margin_1"
+        android:layout_marginTop="@dimen/custom_main_report_margin_1"
+        android:layout_marginRight="@dimen/custom_main_report_margin_1"
+        android:background="?attr/custom_attr_self_check_report_bg">
+
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/custom_main_btn_back_width"
+            android:layout_height="@dimen/custom_main_btn_back_height"
+            android:layout_gravity="center"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="21dp"
+            android:drawableLeft="@mipmap/icon_back"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="返回"
+            android:textSize="@dimen/custom_main_btn_title_size"
+            app:normalBackgroundColor="#ffffff"
+            app:normalStrokeColor="#333333"
+            app:normalStrokeWidth="2dp"
+            app:normalTextColor="@android:color/black"
+            app:pressedBackgroundColor="#000000"
+            app:pressedStrokeColor="#000000"
+            app:pressedStrokeWidth="2dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_back"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="47dp"
+            android:text="联系我们"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/custom_main_tv_contact_engineer_title_size" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_label"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="75dp"
+            android:text="@string/lab_contact_engineer"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/custom_main_tv_contact_engineer_title_size" />
+
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/btn_re_selfcheck2"
+            android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+            android:layout_height="@dimen/custom_main_btn_re_selfcheck_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="28dp"
+            android:drawableLeft="@drawable/icon_refresh"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="重新自检"
+            android:textSize="@dimen/custom_main_btn_title_size"
+            app:normalBackgroundColor="#0073D6"
+            app:normalStrokeColor="#003869"
+            app:normalStrokeWidth="3dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedBackgroundColor="#003869"
+            app:pressedStrokeColor="#003869"
+            app:pressedStrokeWidth="3dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

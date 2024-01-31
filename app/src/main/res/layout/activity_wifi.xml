@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+
+    android:background="?attr/custom_attr_app_bg"
+    tools:context="com.emt.pdgo.next.ui.activity.wifi.WifiActivity">
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/bind_phone_title_text_size"
+            android:text="打开wifi" />
+
+        <Button
+            android:id="@+id/btnGetWifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取wifi列表"
+            android:textSize="@dimen/bind_phone_title_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.emt.pdgo.next.ui.widget.LabeledSwitch
+            android:id="@+id/labeledSwitch"
+            android:layout_width="@dimen/pre_heat_layout_curr_temperature_width"
+            android:layout_height="@dimen/dialog_common_btn_height"
+            android:textSize="@dimen/input_box_tv_text_size"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            labeled_switch:colorBorder="#ff0089ff"
+            labeled_switch:colorOn="#ff0089ff"
+            labeled_switch:textOff="开启移动数据&#160;&#160;"
+            labeled_switch:textOn="&#160;&#160;关闭移动数据" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/tv_wifiState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="wifi状态监听"
+            android:gravity="center"
+            android:layout_margin="@dimen/dp_10"
+            android:textSize="@dimen/bind_phone_title_text_size"
+            android:padding="3dp"/>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_above="@id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+</LinearLayout>

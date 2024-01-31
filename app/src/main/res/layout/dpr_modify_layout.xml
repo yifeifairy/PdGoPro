@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/modifyBackBtn"
+            android:layout_width="@dimen/navbar_btn_width"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:drawableStart="@mipmap/icon_back"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/btn_back"
+            android:textSize="@dimen/navbar_btn_text_size"
+            app:normalBackgroundColor="#ffffff"
+            app:normalStrokeColor="#333333"
+            app:normalStrokeWidth="2dp"
+            app:normalTextColor="@android:color/black"
+            app:pressedBackgroundColor="#000000"
+            app:pressedStrokeColor="#000000"
+            app:pressedStrokeWidth="2dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/modifyConfirmBtn"
+            android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+            android:layout_height="@dimen/custom_main_btn_re_selfcheck_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="end"
+            android:layout_marginRight="@dimen/treatment_countdown_margin"
+            android:text="确定"
+            android:textSize="@dimen/custom_main_btn_title_size"
+            android:visibility="visible"
+            app:normalBackgroundColor="#0073D6"
+            app:normalStrokeColor="#003869"
+            app:normalStrokeWidth="3dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedBackgroundColor="#003869"
+            app:pressedStrokeColor="#003869"
+            app:pressedStrokeWidth="3dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/modifyTabLayout"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+        app:tabBackground="?attr/custom_attr_tab_select"
+        app:tabTextAppearance="@style/tabLayoutTabSize"
+        android:layout_width="match_parent"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/text_title_default"
+        android:layout_height="@dimen/tabLayoutHeight" />
+
+    <com.emt.pdgo.next.ui.view.NoScrollViewPager
+        android:id="@+id/modifyViewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

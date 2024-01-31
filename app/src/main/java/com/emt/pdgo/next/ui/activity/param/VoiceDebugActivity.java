@@ -1,0 +1,144 @@
+package com.emt.pdgo.next.ui.activity.param;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.emt.pdgo.next.MyApplication;
+import com.emt.pdgo.next.common.PdproHelper;
+import com.emt.pdgo.next.common.config.CommandDataHelper;
+import com.emt.pdgo.next.common.config.CommandSendConfig;
+import com.emt.pdgo.next.common.config.RxBusCodeConfig;
+import com.emt.pdgo.next.data.entity.CommandItem;
+import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
+import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
+import com.emt.pdgo.next.ui.adapter.CommandAdapter;
+import com.emt.pdgo.next.ui.base.BaseActivity;
+import com.emt.pdgo.next.util.MarioResourceHelper;
+import com.emt.pdgo.next.util.helper.JsonHelper;
+import com.pdp.rmmit.pdp.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class VoiceDebugActivity extends BaseActivity {
+
+    @BindView(R.id.custom_id_app_background)
+    public LinearLayout mAppBackground;
+
+    @BindView(R.id.rv_set)
+    RecyclerView rvSet;
+
+    private List<CommandItem> mList;
+    private CommandAdapter mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void initAllViews() {
+        setContentView(R.layout.activity_voice_debug);
+        ButterKnife.bind(this);
+        initHeadTitleBar("声音调试");
+    }
+    @BindView(R.id.powerIv)
+    ImageView powerIv;
+    @BindView(R.id.currentPower)
+    TextView currentPower;
+    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
+    public void receiveCmdDeviceInfo(String bean) {
+        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
+        runOnUiThread(() -> {
+            if (mReceiveDeviceBean.isAcPowerIn == 1) {
+                powerIv.setImageResource(R.drawable.charging);
+            } else {
+                if (mReceiveDeviceBean.batteryLevel < 30) {
+                    powerIv.setImageResource(R.drawable.poor_power);
+                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
+                    powerIv.setImageResource(R.drawable.low_power);
+                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
+                    powerIv.setImageResource(R.drawable.mid_power);
+                } else {
+                    powerIv.setImageResource(R.drawable.high_power);
+                }
+            }
+            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
+        });
+    }
+    @Override
+    public void registerEvents() {
+        if (MyApplication.chargeFlag == 1) {
+            powerIv.setImageResource(R.drawable.charging);
+        } else {
+            if (MyApplication.batteryLevel < 30) {
+                powerIv.setImageResource(R.drawable.poor_power);
+            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
+                powerIv.setImageResource(R.drawable.low_power);
+            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
+                powerIv.setImageResource(R.drawable.mid_power);
+            } else {
+                powerIv.setImageResource(R.drawable.high_power);
+            }
+        }
+        currentPower.setText(MyApplication.batteryLevel+"");
+        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+    }
+
+    @Override
+    public void initViewData() {
+        mList = new ArrayList<>();
+        String msg;
+//        if (PdproHelper.getInstance().getTtsSoundOpen()) {
+//            msg = "关闭语音";
+//        } else {
+//            msg = "打开语音";
+//        }
+        mList.add(new CommandItem("打开语音", "tsOpen"));
+        mList.add(new CommandItem("关闭语音", "tsClose"));
+//        mList.add(new CommandItem(msg,"ts"));
+        mList.add(new CommandItem("语音测试", "tsTest"));
+        mList.add(new CommandItem("打开蜂鸣器", "buzzerOpen"));
+        mList.add(new CommandItem("关闭蜂鸣器", "buzzerClose"));
+
+        mAdapter = new CommandAdapter(this, R.layout.item_setting, mList);
+        rvSet.setLayoutManager(new GridLayoutManager(this, 3));
+        rvSet.setAdapter(mAdapter);
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if ("tsOpen".equals(mList.get(position).mCommand)) {
+                PdproHelper.getInstance().updateTtsSoundOpen(true);
+                Log.e("tts","状态："+PdproHelper.getInstance().getTtsSoundOpen());
+            } else if ("tsClose".equals(mList.get(position).mCommand)) {
+                PdproHelper.getInstance().updateTtsSoundOpen(false);
+                Log.e("tts","状态："+PdproHelper.getInstance().getTtsSoundOpen());
+            } else if ("buzzerOpen".equals(mList.get(position).mCommand)) {
+                sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_BEEP_ON));
+            } else if ("buzzerClose".equals(mList.get(position).mCommand)) {
+                sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_BEEP_OFF));
+            } else if ("tsTest".equals(mList.get(position).mCommand)) {
+                speak("语音测试");
+            } else if ("ts".equals(mList.get(position).mCommand)) {
+                PdproHelper.getInstance().updateTtsSoundOpen(!PdproHelper.getInstance().getTtsSoundOpen());
+
+            }
+        });
+    }
+
+    @Override
+    public void notifyByThemeChanged() {
+        MarioResourceHelper helper = MarioResourceHelper.getInstance(getContext());
+        helper.setBackgroundResourceByAttr(mAppBackground, R.attr.custom_attr_app_bg);
+        if (mAdapter != null) mAdapter.notifyDataSetChanged(); //
+
+        helper.setTextColorByAttr(tvTitle, R.attr.custom_attr_common_text_color);
+    }
+}

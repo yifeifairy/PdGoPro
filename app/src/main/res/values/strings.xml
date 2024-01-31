@@ -1,0 +1,375 @@
+<resources>
+
+    <string name="action_settings">设置</string>
+    <string name="aToz">abcdefghijklmnopqrstuvwxyz</string>
+    <string name="zeroToNine">1234567890</string>
+    <string name="title_letter">字母</string>
+    <string name="title_symbol">符号</string>
+    <string name="title_number">数字</string>
+    <string name="exception_invalid_keyboard">无效的键盘类型</string>
+    <string name="text_turn_day">切换日间模式</string>
+    <string name="text_turn_night">切换夜间模式</string>
+    <string name="text_title">标题</string>
+    <string name="description">描述</string>
+    <string name="app_name">自动腹膜透析系统</string>
+
+    <string name="device_name">PD-GO-Pro自动腹膜透析机</string>
+    <string name="company_name">福州东泽医疗器械有限公司</string>
+
+    <string name="btn_back">返回</string>
+    <string name="btn_back2">返&#160;&#160;&#160;&#160;回</string>
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_confirm2">确定完成</string>
+    <string name="btn_entry_complete">完成输入</string>
+    <string name="btn_previous">上一步</string>
+    <string name="btn_next">下一步</string>
+    <string name="btn_modify_phone">修改手机号</string>
+    <string name="btn_sign_in">登录</string>
+    <string name="btn_sign_out">退出登录</string>
+    <string name="btn_save">保存</string>
+    <string name="btn_buzzer_off">关闭蜂鸣器</string>
+    <string name="btn_selfcheck">重新自检</string>
+    <string name="btn_contact_engineer">联系工程师</string>
+
+    <string name="label_report_zn">自检报告</string>
+    <string name="label_report_es">REPORT</string>
+    <!--    <string name="lab_contact_engineer">全国客服热线：400-8632-262 \n附近在线工程师：陈xx，152-9999-0000</string>-->
+    <string name="lab_contact_engineer">全国客服热线：400-8632-262</string>
+    <string name="label_system_alarm">报警系统</string>
+    <string name="label_system_power">动力系统 ： </string>
+    <string name="label_system_balance">平衡系统 ： </string>
+    <string name="label_system_temperature_control">温控系统 ： </string>
+    <string name="label_module_supply">补液模块</string>
+    <string name="label_module_perfusion">灌注模块</string>
+    <string name="label_module_perfusion_last">末次灌注模块</string>
+    <string name="label_module_drain">引流模块</string>
+    <string name="label_module_upper_weight">透析液模块</string><!-- 上位秤自检 -->
+    <string name="label_module_lower_weight">废液模块</string><!-- 下位秤自检 -->
+    <string name="label_module_temperature_heating">加热模块</string>
+    <string name="label_module_temperature_control">控制模块</string>
+
+    <string name="label_server_address">通信地址:</string>
+    <string name="label_sn">请设置SN:</string>
+
+
+    <string name="input_tips">请输入</string>
+    <string name="input_sn_tips">请输入SN参数</string>
+
+    <string name="switch_text_on">&#160;&#160;是</string>
+    <string name="switch_text_off">否&#160;&#160;</string>
+    <string name="switch_text_on2">&#160;&#160;开</string>
+    <string name="switch_text_off2">关&#160;&#160;</string>
+
+    <string name="ccpd_mode">CCPD</string>
+    <string name="version">build: Pro240125</string>
+
+    <string name="error_temp_serial_not_open">温控板串口未打开</string>
+    <string name="error_temp_serial_communication_fault">温控板通信故障</string>
+    <string name="error_main_serial_not_open">主板串口未打开</string>
+    <string name="error_main_serial_communication_fault">主板通信故障</string>
+
+    <string name="connecting_control_panel">正在连接控制板...</string>
+    <string name="connecting_temperature_control_panel">正在连接温控板...</string>
+    <string name="self_checking">自检中...</string>
+
+    <!-- ################### 自检失败 错误项 start ################### -->
+    <string name="error_valve_perfusion">灌注阀故障</string>
+    <string name="error_valve_drain">引流阀故障</string>
+    <string name="error_valve_supply">补液阀故障</string>
+    <string name="error_valve_last">最后灌注阀故障</string>
+    <string name="error_temper_control_bus">温控通信故障</string>
+    <string name="error_temper_control_self">温控板自检未通过</string>
+    <string name="error_upper_weight">上位秤自检未通过</string>
+    <string name="error_lower_weight">下位秤自检未通过</string>
+    <!-- ################### 自检失败 错误项 end ################### -->
+
+    <string name="unit_degree_Celsius">℃</string><!-- 摄氏度 -->
+    <string name="unit_ml">ml</string><!-- 毫升 -->
+    <string name="unit_g">g</string><!-- 克 -->
+    <string name="unit_kg">kg</string><!-- 公斤 -->
+    <string name="unit_min">分</string><!-- 分钟  -->
+    <string name="unit_second">s</string><!-- 秒  -->
+    <string name="unit_mmHg">mmHg</string><!-- 血压单位：毫米汞柱，水银柱的高度  -->
+    <string name="unit_percentage">%</string><!-- 百分比  -->
+    <string name="unit_mmol_l">mmol/L</string><!-- 血糖  -->
+    <string name="unit_number_of_times">次</string><!-- 次  -->
+
+    <string name="input_title_temper_t1">T1最大温差</string><!-- 最大温差(0.5~2) -->
+    <string name="input_title_temper_t2">T2加热目标温度值</string><!-- 目标温度值(35~40) -->
+    <string name="input_title_temper_t3">T3温控上下回差</string><!-- 上下回差(0~1) -->
+    <string name="input_title_temper_t4">T4报警温度</string><!-- 报警温度(41) -->
+    <string name="input_title_temper_t5">T5加热板温度上限</string><!-- 加热板温度上限(40~60) -->
+    <string name="input_title_temper_t6">T6加热板调低值</string><!-- 加热板调低值(1~10) -->
+    <string name="input_title_temper_t7">T7目标温度差</string><!-- 目标温度差(0~5) -->
+    <string name="input_title_temper_tae">TaE温度校正值</string><!-- Ta温度校正值(-1~1) -->
+    <string name="input_title_temper_tbe">TbE温度校正值</string><!-- Tb温度校正值(-1~1) -->
+    <string name="input_title_temper_tce">TcE温度校正值</string><!-- Tc温度校正值(-1~1) -->
+
+    <string name="input_title_phone_number">请输入手机号</string>
+    <string name="input_title_verification_number">请输入手机验证码</string>
+    <string name="btn_title_send_verification_number">发送验证码</string>
+
+    <string name="software_name">自动腹膜透析设备医疗程序</string>
+    <string name="software_copyright_owner">福州东泽医疗器械有限公司</string>
+    <string name="software_model_specifications">PD-G0-NEXT</string>
+    <string name="software_release_version">V1.2</string>
+    <string name="software_full_version">V1.2.1.0</string>
+    <string name="software_release_date">2022年11月08日</string>
+    <string name="software_release_version_2">软件发布版本:V2.0</string>
+    <string name="about_content">
+            软&#160;&#160;件&#160;&#160;名&#160;&#160;称： 自动腹膜透析设备医疗程序
+            \n著&#160;&#160;作&#160;&#160;权&#160;&#160;人： 福州东泽医疗器械有限公司
+            \n软件型号规格： PD-G0-NEXT
+            \n软件发布版本： V1.2
+            \n软件完整版本： V1.2.1.0
+            \n软件发布日期： 2022年11月08日</string>
+
+
+    <string name="tip_parameter_interpretation">
+              &#160;&#160;&#160;&#160;T1： 最大温差，Ta和Tb可接受最大温差，超过该温差T1温控板自检不通过；
+            \n&#160;&#160;&#160;&#160;T2： 加热温度目标值；
+            \n&#160;&#160;&#160;&#160;T3： 温控上下回差，腹透液袋表面温度低于（T2-T3）即启动加热，腹透液袋表面温度高于（T2+T3）即停止加热，但不报警；
+            \n&#160;&#160;&#160;&#160;T4： 报警温度，腹透液袋表面温度上限，超过此温度T4即报警和停止治疗；
+            \n&#160;&#160;&#160;&#160;T5： 加热板温度上限，超过此温度T5即停止加热，但不报警；
+            \n&#160;&#160;&#160;&#160;T6： 加热板调低值，加热温度Td上升到靠近目标温度T2的接近温度差值T6；
+            \n&#160;&#160;&#160;&#160;T7： 目标温度差，动态调低加热板温度上限T5=T2+T7，降低加热板热量；
+            \n&#160;&#160;&#160;&#160;TaE： Ta的温度校正值；
+            \n&#160;&#160;&#160;&#160;TbE： Tb的温度校正值；
+            \n&#160;&#160;&#160;&#160;TcE： Tc的温度校正值。
+    </string>
+
+    <string name="item_temperature_control_parameter_t1">T1 ： 最大温差，Ta和Tb可接受最大温差，超过该温差T1温控板自检不通过；</string>
+    <string name="item_temperature_control_parameter_t2">T2 ： 加热温度目标值；</string>
+    <string name="item_temperature_control_parameter_t3">T3 ： 温控上下回差，腹透液袋表面温度低于（T2-T3）即启动加热，腹透液袋表面温度高于（T2+T3）即停止加热，但不报警；</string>
+    <string name="item_temperature_control_parameter_t4">T4 ： 报警温度，腹透液袋表面温度上限，超过此温度T4即报警和停止治疗；</string>
+    <string name="item_temperature_control_parameter_t5">T5 ： 加热板温度上限，超过此温度T5即停止加热，但不报警；</string>
+    <string name="item_temperature_control_parameter_t6">T6 ： 加热板调低值，加热温度Td上升到靠近目标温度T2的接近温度差值T6；</string>
+    <string name="item_temperature_control_parameter_t7">T7 ： 目标温度差，动态调低加热板温度上限T5=T2+T7，降低加热板热量；</string>
+    <string name="item_temperature_control_parameter_tae">TaE ： Ta的温度校正值；</string>
+    <string name="item_temperature_control_parameter_tbe">TbE ： Tb的温度校正值；</string>
+    <string name="item_temperature_control_parameter_tce">TcE ： Tc的温度校正值。</string>
+
+    <string name="input_title_manual_input"><u>手动输入</u></string>
+
+    <string name="input_title_prescription_item_1">腹透液总量：</string><!-- 腹膜透析液总量 -->
+    <string name="input_title_prescription_item_2">每周期灌注量：</string>
+    <string name="input_title_prescription_item_3">循环治疗周期数：</string>
+    <string name="input_title_prescription_item_4">留腹时间：</string>
+    <string name="input_title_prescription_item_5">末次留腹量：</string>
+    <string name="input_title_prescription_item_6">上次留腹量：</string>
+    <string name="input_title_prescription_item_7">首次灌注量：</string>
+    <string name="input_title_prescription_item_8">预估超滤量：</string>
+    <string name="input_title_prescription_item_9">末袋补液量：</string>
+
+    <string name="input_title_prescription_item_10">通道1-周期灌注量：</string>
+    <string name="input_title_prescription_item_11">通道1-周期数：</string>
+    <string name="input_title_prescription_item_12">通道2-周期灌注量：</string>
+    <string name="input_title_prescription_item_13">通道2-周期数：</string>
+    <string name="input_title_prescription_item_14">末袋补液量：</string>
+
+
+    <string name="parameter_setting_drain">引流参数设置</string>
+    <string name="parameter_setting_perfusion">灌注参数设置</string>
+    <string name="parameter_setting_other">其他</string>
+
+    <string name="input_title_tips_prescription">提示 ： 请反复核对确认与您的透析处方一致</string>
+
+    <string name="input_title_tips_weigh_parameter">
+        提示 ： 请取出一个标准砝码，放置在上位秤或者下位秤上面，调整对应的上位秤系数或者下位秤系数。
+        上位秤系数或者下位秤系数数值调小，上位秤实时重量或者下位秤实时重量对应变大；
+        上位秤系数或者下位秤系数数值调大，上位秤实时重量或者下位秤实时重量对应变小。
+        修改数值以后，请点击"保存"按钮。
+    </string>
+    <string name="input_title_tips_weigh_parameter2">
+        &#160;&#160;&#160;&#160;1、点击上位称或者下位称的标零按钮，上位称或者下位称基准清零；
+        \n&#160;&#160;&#160;&#160;2、在上位称校准值或下位称输入框中填入对应的标准砝码数值；
+        \n&#160;&#160;&#160;&#160;3、放置一个标准砝码到上位称或者下位称输入实际数值按确定后等待3-5秒。
+    </string>
+    <string name="input_title_drain_threshold_zero_cycle">零周期引流阈值</string>
+    <string name="input_title_drain_threshold_other_cycle">其他周期引流阈值</string>
+    <string name="input_title_drain_manual_emptying">最末引流排空等待</string>
+    <string name="input_title_drain_last_delay">末次排空延迟</string>
+    <string name="input_title_negpre_drain">负压引流</string>
+    <string name="input_title_perfusion_warning_value">灌注警戒值</string>
+    <string name="input_title_abdomen_retaining_deduct">留腹扣除</string>
+    <string name="input_title_treatment_completion_alarm_wake_up">治疗结束报警唤醒</string>
+    <string name="input_title_ultrafiltration_calculation_method">只计算超滤</string>
+
+    <string name="input_title_perfusion_value">灌注量</string>
+    <string name="input_title_drain_value">引流量</string>
+    <string name="input_title_beyond_value">超滤量</string>
+
+    <string name="input_title_urine_output">尿量</string>
+    <string name="input_title_water_intake">饮水量</string>
+    <string name="input_title_weight_after_treatment">治疗后体重</string>
+    <string name="input_title_diastolic_blood_pressure_after_treatment">治疗后舒张压</string><!-- DBP -->
+    <string name="input_title_systolic_blood_pressure_after_treatment">治疗后收缩压</string><!-- SBP -->
+    <string name="input_title_fasting_blood_glucose">血糖</string><!-- 空腹血糖 -->
+
+    <string name="connecting_cannula_step_1">请依次将补液用腹透液与管路连接，确保未使用的补液管处于关闭状态。</string>
+    <string name="connecting_cannula_step_2">请将透析液托盘上的腹透液与加热管路连接，确保未使用的管路处于关闭状态。</string>
+    <string name="connecting_cannula_step_3">请将专用废液袋与引流端管路连接，确保未连接的管路处于关闭状态，并平方于透出液托盘上。</string>
+
+    <string name="connecting_cannula_step_content2_1">完成后请点击“下一步”</string>
+    <string name="connecting_cannula_step_content2_2">完成后请点击“确认”</string>
+
+
+    <string name="tip_pipeline_connection_skip">
+              1、补液袋已按要求悬挂在滴杆上；
+            \n2、管匣已插入卡槽内；
+            \n3、补液袋管路连接，确保未使用的补液管路处于关闭状态；
+            \n4、请将透析液托盘上的腹透液与加热管路连接，确保未使用的管路处于关闭状态
+            \n5、专用废液袋与引流端管路连接，确保未连接的管路处于关闭状，并平放于透出液托盘上。
+            \n6、废液端管路已卡进排废阀门中。
+    </string>
+
+    <string name="first_rinse_title">PDGO-NEXT小管家提示您：选择预冲模式 </string>
+    <string name="first_rinse_title_auto">PDGO-NEXT系统正在进行管路自动预冲 </string>
+    <string name="first_rinse_title_manual">PDGO-NEXT系统正在进行管路手动预冲 </string>
+
+    <string name="debug_first_rinse_title_auto">管路自动预冲说明：\n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;第一步，同时打开补液阀和灌注阀；
+            \n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;第二步，关闭灌注阀（补液阀仍然打开)；
+            \n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;第三步，关掉补液阀，开始灌注；
+            \n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;第四步，打开引流阀。</string>
+
+    <string name="item_first_rinse_auto_1">第一步 ： 同时打开补液阀和灌注阀；</string>
+    <string name="item_first_rinse_auto_2">第二步 ： 关闭灌注阀（补液阀仍然打开)；</string>
+    <string name="item_first_rinse_auto_3">第三步 ： 关掉补液阀，开始灌注；</string>
+    <string name="item_first_rinse_auto_4">第四步 ： 打开引流阀，开始引流；</string>
+    <string name="item_first_rinse_auto_end">备&#160;&#160;&#160;&#160;注 ： 自动预冲调用了配置的预冲参数,自动预冲和手动预冲不能同时进行。</string>
+
+    <string name="feedback_perfusion_value_problems">透析过程中我感觉到腹痛</string>
+    <string name="feedback_drain_value_problems">我的引流液浑浊或者是粉红色</string>
+    <string name="feedback_beyond_value_problems">隧道口感觉疼痛或者出现红肿</string>
+    <string name="feedback_hint_1">也可以称重废液后输入引流量</string>
+    <string name="feedback_hint_2">(也可以称重废液后输入引流量)</string>
+
+    <string name="input_title_treatment_before_suggest_weight">医生建议您的理想体重</string>
+    <string name="input_title_treatment_before_weight">治疗前体重 kg</string>
+    <string name="input_title_treatment_before_systolic_blood_pressure">血压 收缩压</string>
+    <string name="input_title_treatment_before_diastolic_blood_pressure">血压 舒张压</string>
+    <string name="input_title_weight">体重</string>
+    <string name="input_title_blood_pressure">血压</string>
+
+    <string name="treatment_completion_title">您的治疗已完成，请输入以下治疗后信息</string>
+    <string name="treatment_completion_hint">您可以每次透析都填写两次透析之间的尿量和饮水量，也可以每天统计次数，然后只填写一次这两个数据</string>
+
+    <!-- ################### 终止治疗 start ################### -->
+    <string name="treatment_stop_title">PDGO-NEXT小管家提示您：认真操作，仔细检查</string>
+    <string name="treatment_stop_notice">请注意</string>
+    <string name="treatment_stop_matters_need_attention_1">请取下腹膜透析导管并盖上碘伏帽</string><!-- 注意事项1 -->
+    <string name="treatment_stop_matters_need_attention_2">请将废液放好在引流托盘上</string><!-- 注意事项2 -->
+    <!-- ################### 终止治疗 end ################### -->
+
+    <string name="shutdown_title">感谢您使用PDGO-NEXT自动腹膜透析系统</string>
+
+    <string name="toast_alarm_temperature">报警温度不可调</string>
+
+    <string name="fragment_title_treatment_before_weight_and_blood_pressure">体重/血压</string>
+    <string name="fragment_title_treatment_before_prescription">处方</string>
+    <string name="fragment_title_treatment_before_parameter">治疗参数</string>
+    <string name="fragment_title_treatment_before_iipd_prescription">IIPD处方</string>
+
+    <string name="fragment_title_treatment_status">治疗状态</string>
+    <string name="fragment_title_treatment_prescription_data">处方修改</string>
+    <string name="fragment_title_treatment_historical_data">回看数据</string>
+    <string name="fragment_title_treatment_detailed_status">详细状态</string>
+
+
+    <string name="treatment_update_temperature"><u>调整</u></string>
+
+    <string name="drain_title">引流阀关闭值(g)</string>
+    <string name="flood_title">灌注阀关闭值(g)</string>
+    <string name="flood_weight_title">灌注速度重量(g)</string>
+    <string name="flood_time_title">灌注时间(s)</string>
+
+    <string name="up_weight_max_title">上位秤上限值</string>
+    <string name="up_weight_min_title">上位秤下限值</string>
+    <string name="down_weight_max_title">下位秤上限值</string>
+    <string name="down_weight_min_title">下位秤下限值</string>
+
+    <string name="recrive_temper_title">接受的加热温度</string>
+    <string name="recrive_drain_speed_title">接受的引流速度</string>
+    <string name="before_heating_time">预加热时间30min-120min</string>
+
+
+    <string name="zxing_app_name">条码扫描器</string>
+    <string name="zxing_button_ok">确定</string>
+    <string name="zxing_msg_camera_framework_bug">抱歉，Android相机出现问题。您可能需要重启设备。</string>
+    <string name="zxing_msg_default_status">请将条码置于取景框内扫描。  </string>
+
+
+    <string name="preheat_tips_title">PDGO-NEXT小管家提示您: 不要触碰液体袋和托盘！</string>
+    <string name="preheat_tips_content">请在透析液加热托盘内放置一袋透析液</string>
+
+
+    <!-- Dialog相关 -->
+    <string name="dialog_title">系统提醒</string>
+    <string name="dialog_btn_confirm">确定</string>
+    <string name="dialog_btn_cancel">取消</string>
+    <string name="dialog_btn_view_data">查看数据</string>
+    <string name="dialog_btn_suspend_treatment">长按暂停治疗</string>
+    <string name="dialog_btn_recovery_treatment">长按恢复治疗</string>
+    <string name="dialog_btn_continue_treatment">继续治疗</string>
+    <string name="dialog_btn_stop_treatment">终止治疗</string>
+    <string name="dialog_btn_skip_drain">长按跳过引流</string>
+    <string name="dialog_btn_skip_perfusion">长按跳过灌注</string>
+    <string name="dialog_btn_skip_supply">长按跳过补液</string>
+    <string name="dialog_btn_force_skip_window">强制跳过</string>
+    <string name="dialog_btn_complete_not_supply">长按跳过补液</string>
+    <string name="dialog_btn_complete_last_drain">长按完成最末引流</string>
+    <string name="dialog_btn_continue_last_drain">长按继续最末引流</string>
+    <string name="dialog_btn_continue_treatment_selfcheck">继续自检</string>
+
+
+    <string name="dialog_status_complete">治疗完成</string>
+    <string name="dialog_status_complete_tip">请夹紧治疗端并分离管路，完成后请按确认</string>
+    <string name="dialog_status_fault_drain">引流不畅，可检查人体和引流管路\n并尝试改变体位后继续治疗</string>
+    <string name="dialog_status_fault_perfusion">灌注不畅，检查人体和加热端管路\n并尝试改变体位后继续治疗</string>
+    <string name="dialog_status_fault_supply">补液不畅，\n请检查补液端管路和补液袋可折柄</string>
+    <string name="dialog_status_fault_temperature">温度异常，请检查设备\n如并不能纠正请结束治疗</string>
+    <string name="dialog_status_fault_temperature_high">温度过高，请检查设备\n如并不能纠正请结束治疗</string>
+    <string name="dialog_status_fault_temperature_low">温度过低，请检查设备\n如并不能纠正请结束治疗</string>
+    <string name="dialog_status_fault_perfusion_max">按照设定进行本次灌注可能会导致腹膜腔内液体总量超过腹膜腔容积，并可能引起不适，系统将自动调整或者终止本次灌注量</string>
+    <string name="dialog_status_fault_drain_last">系统当前将持续“最末次引流”状态，\n您可以继续进行最末次引流，并在比反复更换体位促进引流更彻底一些。当引流足够时，请长按完成最末引流</string>
+    <string name="dialog_status_early">您还有项目还未完成，\n确定提前结束治疗？</string>
+    <string name="dialog_status_fault_drain_selfcheck">引流开始前自检，可继续自检</string>
+    <string name="dialog_status_fault_perfusion_selfcheck">灌注开始前自检，可继续治疗</string>
+    <string name="dialog_status_fault_ac_power_fault">市电断电已经超过30分钟，请结束治疗</string>
+    <string name="dialog_status_fault_ac_power_off">市电断电，切换电池供电，请结束治疗</string>
+
+
+    <!-- apk升级 -->
+    <string name="upgrading">正在升级,请稍候...</string>
+    <string name="cannot_read_file">无法读取文件!</string>
+    <string name="sdcard_not_exist_cannot_upgrad">SDCard不存在，无法下载新版本</string>
+    <string name="sdcard_not_exist_cannot_download_file">SDCard不存在,无法下载文件!</string>
+    <string name="cannot_finish_upgrad">当前无法完成升级</string>
+    <string name="upgrad_failed">升级失败，请稍后重试！</string>
+
+    <!-- 网络请求 -->
+    <string name="http_loading">加载中&#8230;</string>
+
+    <string name="http_unknown_error">请求出错，未知错误</string>
+    <string name="http_token_error">登录失效，请重新登录</string>
+    <string name="http_data_explain_error">数据解析异常，请稍后</string>
+    <string name="http_server_out_time">服务器请求超时，请稍后再试</string>
+    <string name="http_network_error">请求失败，请检查网络设置</string>
+    <string name="http_response_error">服务器响应异常，请稍后再试</string>
+    <string name="http_server_error">服务器连接异常，请稍后再试</string>
+    <string name="http_request_cancel">请求被中断，请重试</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_remote_aapd">RemoteAapdActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+</resources>

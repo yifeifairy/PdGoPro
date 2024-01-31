@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/bg_round_white_top"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvCycle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:gravity="center"
+        android:text="周期"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/tvPre"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="灌注量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/preTime"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="灌注时间min"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/auFv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="辅助冲洗量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/abdAfter"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="灌注留腹量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/abdTime"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="留腹时间min"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/drainTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="引流目标值ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/drainage"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="引流量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/drainTime"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="引流时间min"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/remain"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="腹腔剩余液体"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+</LinearLayout>
+

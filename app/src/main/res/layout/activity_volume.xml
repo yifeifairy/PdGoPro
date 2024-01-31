@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+
+    android:background="?attr/custom_attr_app_bg"
+    tools:context="com.emt.pdgo.next.ui.activity.param.VolumeActivity">
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/treatment_main_margin"
+        android:layout_height="wrap_content" >
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tv_curr_volume"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/seekbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content" />
+
+        <com.emt.pdgo.next.ui.widget.LabeledSwitch
+            android:id="@+id/ttsSwitch"
+            android:layout_marginTop="@dimen/icon_sound_01_width"
+            android:layout_width="@dimen/treatment_evaluation_iphone_width"
+            android:layout_height="@dimen/dialog_common_btn_height"
+            android:textSize="@dimen/input_box_tv_text_size"
+            labeled_switch:colorBorder="#ff0089ff"
+            labeled_switch:colorOn="#ff0089ff"
+            labeled_switch:on="false"
+            labeled_switch:textOff="开启语音&#160;&#160;"
+            labeled_switch:textOn="&#160;&#160;关闭语音" />
+
+        <com.emt.pdgo.next.ui.widget.LabeledSwitch
+            android:id="@+id/labeledSwitch"
+            android:layout_marginTop="@dimen/icon_sound_01_width"
+            android:visibility="gone"
+            android:layout_width="@dimen/treatment_evaluation_iphone_width"
+            android:layout_height="@dimen/dialog_common_btn_height"
+            android:textSize="@dimen/input_box_tv_text_size"
+            labeled_switch:colorBorder="#ff0089ff"
+            labeled_switch:colorOn="#ff0089ff"
+            labeled_switch:textOff="打开按键音&#160;&#160;"
+            labeled_switch:textOn="&#160;&#160;关闭按键音" />
+
+        <SeekBar
+            android:id="@+id/brightnessSeekbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+            android:visibility="gone"
+            android:thumbTintMode="screen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/icon_sound_01_width"
+            android:padding="@dimen/custom_main_progress_bar_height" />
+
+        <TextView
+            android:id="@+id/currBrightness"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/icon_sound_01_width"
+            app:layout_constraintTop_toBottomOf="@id/seekbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    </RelativeLayout>
+</LinearLayout>

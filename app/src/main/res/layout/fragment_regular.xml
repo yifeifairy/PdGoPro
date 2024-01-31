@@ -1,0 +1,477 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_treatment_item_volume_bg"
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+
+    tools:context="com.emt.pdgo.next.ui.fragment.dpr.treat.RegularFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/firstPerVolRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="@drawable/pa8"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="首次灌注量："
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:id="@+id/firstPerVolUnit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/firstPerVolTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/firstPerVolUnit"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/continueAbdVolRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:background="@drawable/pa7"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="持续留腹量："
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:id="@+id/continueAbdVolUnit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/continueAbdVolTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/continueAbdVolUnit"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/emptyingTimeRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:background="@drawable/pa5"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="腹腔排空时间："
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_min"
+                    android:id="@+id/emptyingTimeUnit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/emptyingTimeTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/emptyingTimeUnit"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/treatDurationRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:background="@drawable/pa1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="定时补液时间："
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="h"
+                    android:id="@+id/treatDurationUnit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/treatDurationTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:text="0"
+                    android:layout_toStartOf="@id/treatDurationUnit"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/continuePerRoteRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="@drawable/pa9"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="持续灌注速率："
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="ml/h"
+                    android:id="@+id/continuePerRoteUnit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/continuePerRoteTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:text=""
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/continuePerRoteUnit"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/continueDrainRoteRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="@drawable/pa3"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="持续引流速率："
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="ml/h"
+                    android:id="@+id/continueDrainRoteUnit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/continueDrainRoteTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_toStartOf="@id/continueDrainRoteUnit"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="13dp"
+            android:layout_height="wrap_content" >
+
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:orientation="vertical"-->
+            <!--                    android:layout_height="wrap_content">-->
+
+            <RelativeLayout
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:id="@+id/totalVolRl"
+                android:layout_width="0dp"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:background="@drawable/pa11"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本次治疗总量："
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/totalVolTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_toStartOf="@id/totalVolUnit"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="ml"
+                    android:id="@+id/totalVolUnit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+            <!--                </LinearLayout>-->
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:id="@+id/limitTempRl"
+                android:background="@drawable/pa11"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="下限温度："
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/limitTempTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_toStartOf="@id/limitTempUnit"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/limitTempUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_degree_Celsius"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/treatment_countdown_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="排空使能"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    android:layout_height="wrap_content" />
+
+                <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                    android:id="@+id/emptySwitch"
+                    android:layout_width="@dimen/pre_heat_btn_skip_heat_width"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/input_box_tv_text_size"
+                    android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                    labeled_switch:colorBorder="#ff0089ff"
+                    labeled_switch:colorOn="#ff0089ff"
+                    labeled_switch:on="false"
+                    labeled_switch:textOff="关&#160;&#160;"
+                    labeled_switch:textOn="&#160;&#160;开" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

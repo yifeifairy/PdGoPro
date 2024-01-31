@@ -1,0 +1,63 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_app_bg" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp" >
+
+        <ImageView
+            android:id="@+id/ivPrePage"
+            android:layout_width="88dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/btn_pre_page"
+            android:layout_height="88dp" />
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="88dp"
+            android:layout_toEndOf="@id/ivPrePage"
+            android:layout_toStartOf="@id/ivNextPage"
+            android:background="@drawable/gray_shape"
+            android:gravity="center"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:textSize="28sp"
+                android:text="~"
+                android:id="@+id/tvCurrPage"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/custom_color_btn_bg_normal_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivNextPage"
+            android:layout_width="88dp"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/btn_next_page"
+            android:layout_height="88dp" />
+
+    </RelativeLayout>
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/item_rx_data"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
+        android:layout_marginTop="14dp"
+        android:visibility="visible"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerview"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

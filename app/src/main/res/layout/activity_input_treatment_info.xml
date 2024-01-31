@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_treatment_info_tab_bg_height"
+        android:layout_marginLeft="@dimen/input_treatment_info_tab_bg_margin"
+        android:layout_marginTop="@dimen/input_treatment_info_tab_bg_margin_top"
+        android:layout_marginRight="@dimen/input_treatment_info_tab_bg_margin"
+        android:background="?attr/custom_attr_tab_bg"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_item1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_treatment_info_tab_item_height"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/input_treatment_info_tab_item_margin"
+            android:background="?attr/custom_attr_tab_select"
+            android:text="@string/fragment_title_treatment_before_prescription"
+            android:textColor="?attr/custom_attr_tab_text_select"
+            android:textSize="@dimen/input_treatment_info_tab_item_text_size" />
+
+        <Button
+            android:id="@+id/btn_item2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_treatment_info_tab_item_height"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/input_treatment_info_tab_item_margin"
+            android:background="?attr/custom_attr_tab_select"
+            android:text="@string/fragment_title_treatment_before_parameter"
+            android:textColor="?attr/custom_attr_tab_text_select"
+            android:textSize="@dimen/input_treatment_info_tab_item_text_size" />
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </RelativeLayout>
+</LinearLayout>

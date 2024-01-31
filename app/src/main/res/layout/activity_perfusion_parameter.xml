@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/custom_id_app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/layout_time_interval"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_marginTop="5dp"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="流量测定 时间间隔"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_time_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_second"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_time_interval"
+                    android:layout_width="@dimen/input_box_et_width_2"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="60-600"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_threshold_value"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_marginTop="12dp"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="流量测定 阈值"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_threshold_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_threshold_value"
+                    android:layout_width="@dimen/input_box_et_width_2"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="30-200"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_min_weight"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_marginTop="12dp"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="加热袋最低重量允许"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_min_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_min_weight"
+                    android:layout_width="@dimen/input_box_et_width_2"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="100-1000"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_allow_abdominal_volume"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:visibility="gone"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_marginTop="12dp"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="是否允许最末灌注减去留腹量"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_allow_abdominal_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_allow_abdominal_volume"
+                    android:layout_width="@dimen/input_box_et_width_2"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="1000-3000"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_max_warning_value"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_marginTop="12dp"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="灌注最大警戒值"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_max_warning_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_max_warning_value"
+                    android:layout_width="@dimen/input_box_et_width_2"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="1000-3000"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    </RelativeLayout>
+
+</LinearLayout>

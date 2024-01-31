@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+    android:id="@id/custom_id_app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layout_time_interval"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="流量测定 时间间隔"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_time_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_second"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_time_interval"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="0-60"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_threshold_value"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="流量测定 阈值"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_threshold_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_threshold_value"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="30-200"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layout_zero_cycle_percentage"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="0周期引流比例"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_zero_cycle_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_percentage"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_zero_cycle_percentage"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="50-100"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_other_cycle_percentage"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="其他周期引流比例"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_other_cycle_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_percentage"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_other_cycle_percentage"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="50-100"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layout_timeout_alarm"
+                android:layout_width="0dp"
+                android:visibility="gone"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="引流/灌注超时报警"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_timeout_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_min"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_timeout_alarm"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="0-60"
+                    android:text="45"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_warn_time_interval"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="最末引流提醒间隔"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_warn_time_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_min"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_warn_time_interval"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="0-60"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_rinse_volume"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="引流辅助冲洗量"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_rinse_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_rinse_volume"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="30-200"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layout_rinse_number"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="引流辅助冲洗次数"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_unit_rinse_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_number_of_times"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <EditText
+                    android:id="@+id/et_rinse_number"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:hint="1-3"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_drain_emptying"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:id="@+id/tv_drain_emptying"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_drain_manual_emptying"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp">
+
+                    <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                        android:id="@+id/labeledSwitch_emptying"
+                        android:layout_width="@dimen/layout_input_box_labeledswitch_width"
+                        android:layout_height="@dimen/layout_input_box_labeledswitch_height"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="11dp"
+                        android:textSize="@dimen/layout_input_box_labeledswitch_text_size"
+                        labeled_switch:colorBorder="#ff0089ff"
+                        labeled_switch:colorOn="#ff0089ff"
+                        labeled_switch:on="true"
+                        labeled_switch:textOff="@string/switch_text_off2"
+                        labeled_switch:textOn="@string/switch_text_on2" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/layout_warn_time_interval"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="@dimen/input_box_bg_height"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginRight="@dimen/input_box_item_margin_right"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="?attr/custom_attr_input_box_bg"-->
+<!--                android:paddingLeft="@dimen/input_box_item_padding_left"-->
+<!--                android:paddingRight="@dimen/input_box_item_padding_right">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:text="最末引流提醒间隔"-->
+<!--                    android:textColor="?attr/custom_attr_common_text_color"-->
+<!--                    android:textSize="@dimen/input_box_tv_text_size" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_unit_warn_time_interval"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:text="@string/unit_min"-->
+<!--                    android:textColor="?attr/custom_attr_common_text_color"-->
+<!--                    android:textSize="@dimen/input_box_tv_text_size" />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/et_warn_time_interval"-->
+<!--                    android:layout_width="@dimen/input_box_et_width"-->
+<!--                    android:layout_height="@dimen/input_box_et_height"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="center_vertical|right"-->
+<!--                    android:hint="0-60"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="?attr/custom_attr_common_text_color"-->
+<!--                    android:textColorHint="@color/text_default_30"-->
+<!--                    android:textSize="@dimen/input_box_tv_text_size" />-->
+
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="@dimen/input_box_bg_height"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginLeft="@dimen/input_box_item_margin_left"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="?attr/custom_attr_input_box_bg"-->
+<!--                android:paddingLeft="@dimen/input_box_item_padding_left"-->
+<!--                android:paddingRight="@dimen/input_box_item_padding_right">-->
+
+
+<!--            </RelativeLayout>-->
+
+<!--        </LinearLayout>-->
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/rootView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/navbar_btn_height"
+        android:layout_marginLeft="@dimen/input_box_item_padding_left"
+        layout="@layout/root_view" />
+</LinearLayout>

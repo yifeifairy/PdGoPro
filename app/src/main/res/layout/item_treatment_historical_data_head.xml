@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="66dp"
+    android:layout_gravity="center_vertical"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周期数"
+        android:textColor="@color/text_default"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="灌注量"
+        android:textColor="@color/text_default"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="灌注时间"
+        android:textColor="@color/text_default"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="引流量"
+        android:textColor="@color/text_default"
+        android:textSize="18sp" />
+
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="引流时间"
+        android:textColor="@color/text_default"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="留腹量"
+        android:textColor="@color/text_default"
+        android:textSize="18sp" />
+
+
+
+</LinearLayout>

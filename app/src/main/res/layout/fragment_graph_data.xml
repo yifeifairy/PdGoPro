@@ -1,0 +1,220 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_treatment_item_volume_bg"
+    tools:context="com.emt.pdgo.next.ui.fragment.dpr.treat.GraphDataFragment">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:layout_width="match_parent"
+        android:id="@+id/pidLayout"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_height="?actionBarSize">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/const_p1Ll"
+            android:gravity="center"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="上位阀PID:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/const_p1"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:text="0.3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:id="@+id/const_i1Ll"
+            android:gravity="center"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="灌控微:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/const_i1"
+                android:text="0.3"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:id="@+id/const_d1Ll"
+            android:gravity="center"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="灌控积:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/const_d1"
+                android:text="0.3"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:id="@+id/const_p2Ll"
+            android:gravity="center"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="引控比:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/const_p2"
+                android:text="0.3"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:id="@+id/const_i2Ll"
+            android:gravity="center"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="引控微:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/const_i2"
+                android:text="0.3"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:gravity="center"
+            android:id="@+id/const_d2Ll"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="引控积:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/const_d2"
+                android:text="0.3"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:gravity="center"
+            android:id="@+id/saturate_bwLl"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="速度:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/saturate_bw"
+                android:text="0.3"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:gravity="center"
+            android:id="@+id/saturate_bw2Ll"
+            android:layout_height="match_parent" >
+            <!--            <TextView-->
+            <!--                android:text="速度:"-->
+            <!--                android:textSize="@dimen/input_box_tv_text_size"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/saturate_bw2"
+                android:text="0.3"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/btnConfirm"
+            android:gravity="center"
+            android:textSize="@dimen/input_box_tv_text_size"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:layout_gravity="center"
+            android:text="确定"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent" >
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChat"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/bezierLineChart"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

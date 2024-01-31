@@ -1,0 +1,183 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/perCycleVolRl"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/input_box_bg_height"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/input_box_item_margin_right"
+                    android:layout_weight="1"
+                    android:background="?attr/custom_attr_input_box_bg"
+                    android:paddingLeft="@dimen/input_box_item_padding_left"
+                    android:paddingRight="@dimen/input_box_item_padding_right">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="每周期灌注量"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/input_box_tv_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/unit_ml"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/input_box_tv_text_size" />
+
+                    <EditText
+                        android:id="@+id/perCycleVolEt"
+                        android:layout_width="@dimen/input_box_et_width"
+                        android:layout_height="@dimen/input_box_et_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                        android:background="@null"
+                        android:gravity="center_vertical|right"
+                        android:hint="0-60"
+                        android:text=""
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textColorHint="@color/text_default_30"
+                        android:textSize="@dimen/input_box_tv_text_size" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/cycleNumRl"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/input_box_bg_height"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_round_gray"
+                    android:paddingLeft="@dimen/input_box_item_padding_left"
+                    android:paddingRight="@dimen/input_box_item_padding_right">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="循环周期数"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/input_box_tv_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/unit_number_of_times"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/input_box_tv_text_size" />
+
+                    <EditText
+                        android:id="@+id/cycleNumEt"
+                        android:layout_width="@dimen/input_box_et_width"
+                        android:layout_height="@dimen/input_box_et_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                        android:background="@null"
+                        android:gravity="center_vertical|right"
+                        android:hint="1-13"
+                        android:text=""
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textColorHint="@color/text_default_30"
+                        android:textSize="@dimen/input_box_tv_text_size" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
+                android:text="引流参数设置"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <include
+                layout="@layout/drain_set_layout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
+                android:text="灌注参数设置"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <include
+                layout="@layout/infusion_set_layout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
+                android:text="补液参数设置"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <include
+                layout="@layout/rehydration_set_layout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
+                android:text="留腹参数设置"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <include
+                layout="@layout/abdomen_set_layout" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="確定修改"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/bg_arc_blue"
+                android:id="@+id/btn_submit"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="@dimen/feedbook_layout_treatment_duration_height"
+                android:padding="20dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

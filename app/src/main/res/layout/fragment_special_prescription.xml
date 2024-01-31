@@ -1,0 +1,32 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.emt.pdgo.next.ui.fragment.apd.prescription.SpecialPrescriptionFragment">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+        android:layout_marginRight="@dimen/treatment_countdown_margin"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        app:tabBackground="?attr/custom_attr_tab_select"
+        app:tabTextAppearance="@style/tabLayoutTabSize"
+        android:layout_width="match_parent"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/text_title_default"
+        android:layout_height="@dimen/tabLayoutHeight" />
+
+    <com.emt.pdgo.next.ui.view.NoScrollViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

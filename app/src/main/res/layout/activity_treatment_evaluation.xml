@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/treatment_countdown_margin"
+        android:layout_height="@dimen/navbar_height" >
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/assess"
+            android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:text="治疗评估"
+            android:textSize="@dimen/input_health_info_tv_value_text_size"
+            android:visibility="visible"
+            app:normalBackgroundColor="#0073D6"
+            app:normalStrokeColor="#003869"
+            app:normalStrokeWidth="3dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedBackgroundColor="#003869"
+            app:pressedStrokeColor="#003869"
+            app:pressedStrokeWidth="3dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/powerOff"
+            android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="end"
+            android:text="取出卡匣"
+            android:textSize="@dimen/input_health_info_tv_value_text_size"
+            android:visibility="visible"
+            app:normalBackgroundColor="#0073D6"
+            app:normalStrokeColor="#003869"
+            app:normalStrokeWidth="3dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedBackgroundColor="#003869"
+            app:pressedStrokeColor="#003869"
+            app:pressedStrokeWidth="3dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="13dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/treatment_main_historical_data_item_height"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_gray_bg2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
+                android:text="累计引流量"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+            <ImageView
+                android:layout_width="@dimen/treatment_main_historical_data_item_iv_width"
+                android:layout_height="@dimen/treatment_main_historical_data_item_iv_height"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/icon_8_suidi_h" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_bottom_gray" />
+
+            <TextView
+                android:id="@+id/tv_total_drain_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
+                android:text="0"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
+                android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
+                android:text="ml"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/treatment_main_historical_data_item_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_main_historical_data_item_margin"
+            android:background="?attr/custom_attr_input_box_gray_bg2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
+                android:text="累计灌注量"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+            <ImageView
+                android:layout_width="@dimen/treatment_main_historical_data_item_iv_width"
+                android:layout_height="@dimen/treatment_main_historical_data_item_iv_height"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/icon_8_suidi_l" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_bottom_blue" />
+
+            <TextView
+                android:id="@+id/tv_total_perfusion_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
+                android:text="0"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
+                android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
+                android:text="@string/unit_ml"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
+
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/treatment_main_historical_data_item_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/treatment_main_historical_data_item_margin"
+            android:background="?attr/custom_attr_input_box_gray_bg2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
+                android:text="累计超滤量"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+            <ImageView
+                android:layout_width="@dimen/treatment_main_historical_data_item_iv_width"
+                android:layout_height="@dimen/treatment_main_historical_data_item_iv_height"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/icon_8_suidi_lv" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_bottom_green" />
+
+            <TextView
+                android:id="@+id/tv_curr_ultrafiltration_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
+                android:text="0"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
+                android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
+                android:text="ml"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/item_treatment_historical_data2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
+        android:layout_marginTop="14dp"
+        android:visibility="visible"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_above="@id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

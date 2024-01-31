@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/number_board_layout_width"
+    android:layout_height="@dimen/number_board_layout_height"
+    android:background="?attr/custom_attr_number_dialog_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/number_board_layout_top_height"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="@dimen/number_board_btn_close_width"
+            android:layout_height="@dimen/number_board_btn_close_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/number_board_btn_close_margin_right"
+            android:layout_marginTop="@dimen/number_board_btn_close_margin_top"
+            android:background="@drawable/key_board_selector_blue"
+            android:text="关闭"
+            android:textColor="@color/white"
+            android:textSize="@dimen/number_board_btn_text_size" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/number_board_layout_input_tips_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_input_tips_margin_top">
+
+            <TextView
+                android:id="@+id/tv_item_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="参数名称"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:lines="2"
+                android:maxEms="9"
+                android:textSize="@dimen/number_board_input_tips_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_item_label"
+                android:layout_centerVertical="true"
+                android:text=" :"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_input_tips_text_size" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_board_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/number_board_tv_board_value_margin_top"
+            android:layout_marginRight="@dimen/number_board_tv_board_value_margin_right"
+            android:gravity="center_vertical|right"
+            android:hint="请输入"
+            android:maxLength="6"
+            android:text=""
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textColorHint="#ffc9ccd6"
+            android:textSize="@dimen/number_board_input_tips_text_size" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/number_board_key_board_bg_width"
+        android:layout_height="@dimen/number_board_key_board_bg_height"
+        android:layout_marginBottom="@dimen/number_board_key_board_bg_margin"
+        android:layout_marginLeft="@dimen/number_board_key_board_bg_margin"
+        android:layout_marginRight="@dimen/number_board_key_board_bg_margin"
+        android:background="?attr/custom_attr_number_dialog_key_board_bg"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/key_board_rv"
+            android:layout_width="match_parent"
+            android:layout_height="229dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="107dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layout_item_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/number_board_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_item_margin_top"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item1"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item2"
+                android:layout_width="@dimen/number_board_btn_item2_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item3"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_item_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_item_1"
+            android:layout_marginLeft="@dimen/number_board_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_item_margin_top_2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item4"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item5"
+                android:layout_width="@dimen/number_board_btn_item2_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item6"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="6"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_item_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_item_2"
+            android:layout_marginLeft="@dimen/number_board_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_item_margin_top_2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item7"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="7"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item8"
+                android:layout_width="@dimen/number_board_btn_item2_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item9"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="9"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_item_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_item_3"
+            android:layout_marginLeft="@dimen/number_board_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_item_margin_top_2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item10"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="."
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item11"
+                android:layout_width="@dimen/number_board_btn_item2_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item12"
+                android:layout_width="@dimen/number_board_btn_item1_width"
+                android:layout_height="@dimen/number_board_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_btn_item_text_size" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/key_board_del"
+            android:layout_width="@dimen/number_board_del_item_width"
+            android:layout_height="@dimen/number_board_del_item_height"
+            android:layout_marginLeft="@dimen/number_board_del_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_del_item_margin_top"
+            android:layout_toRightOf="@+id/layout_item_1"
+            android:background="?attr/custom_attr_number_dialog_key_board_item_bg">
+
+            <ImageView
+                android:layout_width="31dp"
+                android:layout_height="13dp"
+                android:layout_centerInParent="true"
+                android:background="?attr/custom_attr_number_board_icon_del" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_sumbit"
+            android:layout_width="@dimen/number_board_btn_sumbit_width"
+            android:layout_height="@dimen/number_board_btn_sumbit_height"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/number_board_btn_sumbit_margin_bottom"
+            android:layout_marginLeft="@dimen/number_board_del_item_margin_left"
+            android:layout_toRightOf="@+id/layout_item_1"
+            android:background="@drawable/key_board_selector_blue"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#fff"
+            android:textSize="@dimen/number_board_btn_text_size" />
+
+
+    </RelativeLayout>
+</LinearLayout>

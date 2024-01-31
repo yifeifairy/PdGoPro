@@ -1,0 +1,248 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 4,
+    "identityHash": "6bc735fc46a3e8a78cf7064cba79568a",
+    "entities": [
+      {
+        "tableName": "RxEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` TEXT, `perVol` INTEGER NOT NULL, `perCycleVol` INTEGER NOT NULL, `treatCycle` INTEGER NOT NULL, `firstPerVol` INTEGER NOT NULL, `abdTime` INTEGER NOT NULL, `endAbdVol` INTEGER NOT NULL, `lastTimeAbdVol` INTEGER NOT NULL, `ult` INTEGER NOT NULL, `ulTreatTime` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "perVol",
+            "columnName": "perVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perCycleVol",
+            "columnName": "perCycleVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "treatCycle",
+            "columnName": "treatCycle",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstPerVol",
+            "columnName": "firstPerVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "abdTime",
+            "columnName": "abdTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endAbdVol",
+            "columnName": "endAbdVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastTimeAbdVol",
+            "columnName": "lastTimeAbdVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ult",
+            "columnName": "ult",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ulTreatTime",
+            "columnName": "ulTreatTime",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PdEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `startTime` TEXT, `endTime` TEXT, `totalDrainVol` INTEGER NOT NULL, `totalPerVol` INTEGER NOT NULL, `totalUltVol` INTEGER NOT NULL, `cycle` INTEGER NOT NULL, `phone` TEXT, `firstTime` INTEGER NOT NULL, `totalVol` INTEGER NOT NULL, `finalAbdTime` INTEGER NOT NULL, `firstPerfusionVolume` INTEGER NOT NULL, `perCyclePerfusionVolume` INTEGER NOT NULL, `abdomenRetainingVolumeFinally` INTEGER NOT NULL, `abdomenRetainingTime` INTEGER NOT NULL, `abdomenRetainingVolumeLastTime` INTEGER NOT NULL, `ultrafiltrationVolume` INTEGER NOT NULL, `pdInfoEntities` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startTime",
+            "columnName": "startTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "endTime",
+            "columnName": "endTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "totalDrainVol",
+            "columnName": "totalDrainVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalPerVol",
+            "columnName": "totalPerVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalUltVol",
+            "columnName": "totalUltVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cycle",
+            "columnName": "cycle",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "firstTime",
+            "columnName": "firstTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalVol",
+            "columnName": "totalVol",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "finalAbdTime",
+            "columnName": "finalAbdTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstPerfusionVolume",
+            "columnName": "firstPerfusionVolume",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "perCyclePerfusionVolume",
+            "columnName": "perCyclePerfusionVolume",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "abdomenRetainingVolumeFinally",
+            "columnName": "abdomenRetainingVolumeFinally",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "abdomenRetainingTime",
+            "columnName": "abdomenRetainingTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "abdomenRetainingVolumeLastTime",
+            "columnName": "abdomenRetainingVolumeLastTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ultrafiltrationVolume",
+            "columnName": "ultrafiltrationVolume",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pdInfoEntities",
+            "columnName": "pdInfoEntities",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "FaultCodeEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` TEXT, `code` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6bc735fc46a3e8a78cf7064cba79568a')"
+    ]
+  }
+}

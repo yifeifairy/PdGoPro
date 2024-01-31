@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_report"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_self_check_bg">
+
+    <TextClock
+        android:id="@+id/tc_time"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/navbar_height"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:format12Hour="yyyy 年 MM 月 dd 日 HH 时 mm 分"
+        android:format24Hour="yyyy 年 MM 月 dd 日 HH 时 mm 分"
+        android:gravity="center_vertical"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/custom_main_title_size_2" />
+
+<!--    <include layout="@layout/layout_self_check_bottom" />-->
+
+    <RelativeLayout
+        android:id="@+id/layout_report"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/custom_main_report_margin_1"
+        android:layout_marginTop="@dimen/navbar_height"
+        android:layout_marginRight="@dimen/custom_main_report_margin_1"
+        android:background="?attr/custom_attr_self_check_report_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="34dp">
+
+            <RelativeLayout
+                android:id="@+id/layout_report_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_report_zh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_report_zn"
+                    android:textColor="?attr/custom_attr_self_check_report_title_color"
+                    android:textSize="@dimen/custom_main_tv_report_zh_size" />
+
+                <TextView
+                    android:id="@+id/tv_report_line"
+                    android:layout_width="@dimen/custom_main_tv_report_line_width"
+                    android:layout_height="@dimen/custom_main_tv_report_line_height"
+                    android:layout_alignBottom="@+id/tv_report_zh"
+                    android:background="?attr/custom_attr_self_check_report_title_line_color" />
+
+                <TextView
+                    android:id="@+id/tv_report_es"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_report_zh"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/label_report_es"
+                    android:textColor="#9B9B9B"
+                    android:textSize="@dimen/custom_main_tv_report_en_size" />
+
+            </RelativeLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@+id/layout_report_title"
+                android:visibility="gone" />
+
+            <include
+                layout="@layout/layout_self_check_report_module"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="65dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/layout_report_title"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/btn_contact_engineer"
+            android:layout_width="@dimen/custom_main_btn_contact_engineer_width"
+            android:layout_height="@dimen/custom_main_btn_contact_engineer_height"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="联系工程师"
+            android:textSize="@dimen/custom_main_btn_title_size"
+            app:normalBackgroundColor="#00B786"
+            app:normalStrokeColor="#007756"
+            app:normalStrokeWidth="3dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedBackgroundColor="#007756"
+            app:pressedStrokeColor="#007756"
+            app:pressedStrokeWidth="3dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/btn_re_selfcheck"
+            android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+            android:layout_height="@dimen/custom_main_btn_re_selfcheck_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableLeft="@drawable/icon_refresh"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="重新自检"
+            android:textSize="@dimen/custom_main_btn_title_size"
+            android:visibility="visible"
+            app:normalBackgroundColor="#0073D6"
+            app:normalStrokeColor="#003869"
+            app:normalStrokeWidth="3dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedBackgroundColor="#003869"
+            app:pressedStrokeColor="#003869"
+            app:pressedStrokeWidth="3dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/btn_ok"
+            android:layout_width="@dimen/custom_main_btn_contact_engineer_width"
+            android:layout_height="@dimen/custom_main_btn_contact_engineer_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="27dp"
+            android:layout_marginBottom="31dp"
+            android:text="自检通过"
+            android:textSize="@dimen/custom_main_btn_title_size"
+            android:visibility="gone"
+            app:normalBackgroundColor="#0089FF"
+            app:normalStrokeColor="#003869"
+            app:normalStrokeWidth="3dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedBackgroundColor="#003869"
+            app:pressedStrokeColor="#003869"
+            app:pressedStrokeWidth="3dp"
+            app:pressedTextColor="@android:color/white"
+            app:radius="5dp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_warn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/layout_warn_margin_left_right"
+        android:layout_marginRight="@dimen/layout_warn_margin_left_right"
+        android:layout_marginBottom="@dimen/layout_warn_margin_bottom"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_round_warn"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_warn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/iv_warn_margin_left"
+            android:background="@drawable/icon_warn" />
+
+        <TextView
+            android:id="@+id/tv_warn_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_warn"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="36sp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

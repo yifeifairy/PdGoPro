@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#00000000">
+
+    <LinearLayout
+        android:layout_width="@dimen/dialog_alarm_layout_width"
+        android:layout_height="@dimen/dialog_alarm_layout_height"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:background="#FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:text="wifi:"
+                android:layout_marginLeft="23dp"
+                android:layout_marginRight="23dp"
+                android:layout_marginTop="15dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="10"
+                android:singleLine="true"
+                android:textColor="#FFFFAA00"
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navbar_btn_height"
+                android:layout_below="@+id/tvName"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:hint="如果wifi没有密码，直接点击确定"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"/>
+<!--            <com.emt.pdgo.next.ui.dialog.SecurityEditText-->
+<!--                android:id="@+id/login_input_password"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:hint="密码"-->
+<!--                android:inputType="textPassword"-->
+<!--                app:chooserBackground="@color/iron"-->
+<!--                app:chooserSelectedColor="#000000"-->
+<!--                app:chooserUnselectedColor="#999999"-->
+<!--                app:keyPreview="true"-->
+<!--                app:keyboardBackground="@drawable/icon_8_logo" />-->
+
+            <TextView
+                android:id="@+id/tvMargin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/et_password"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
+

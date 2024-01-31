@@ -1,0 +1,56 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/loading_dialog_layout_width"
+    android:layout_height="@dimen/loading_dialog_layout_width"
+    android:layout_gravity="center"
+    android:background="?attr/custom_attr_app_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.emt.pdgo.next.ui.dialog.LoadingDialogFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.emt.pdgo.next.ui.view.CircularProgressView
+            android:id="@+id/circularProgressView"
+            android:layout_width="@dimen/loading_dialog_layout_height"
+            android:layout_height="@dimen/loading_dialog_layout_height"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/treatment_countdown_circular_progress_padding"
+            app:backColor="?attr/custom_attr_circular_progress_color"
+            app:backWidth="@dimen/treatment_countdown_circular_progress_backwidth"
+            app:progFinishColor="?attr/custom_attr_circular_progress_finish_color"
+            app:progStartColor="?attr/custom_attr_circular_progress_start_color"
+            app:progWidth="@dimen/treatment_countdown_circular_progress_progwidth"
+            app:progress="0" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="5"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_tv_curr_volume_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tv_time"
+                android:layout_marginBottom="@dimen/treatment_countdown_margin"
+                android:layout_toRightOf="@+id/tv_time"
+                android:text="s"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/item_setting_text_size" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

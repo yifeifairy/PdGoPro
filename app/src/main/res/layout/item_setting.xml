@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        android:id="@+id/btn_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_setting_height"
+        android:layout_marginStart="@dimen/item_setting_margin"
+        android:layout_marginTop="@dimen/item_setting_margin"
+        android:layout_marginEnd="@dimen/item_setting_margin"
+        android:layout_marginBottom="@dimen/item_setting_margin"
+        android:background="?attr/custom_attr_item_btn_bg"
+        android:gravity="center"
+        android:text="指令名称"
+        android:textColor="?attr/custom_attr_item_btn_text_color"
+        android:textSize="@dimen/item_setting_text_size" />
+
+
+</RelativeLayout>

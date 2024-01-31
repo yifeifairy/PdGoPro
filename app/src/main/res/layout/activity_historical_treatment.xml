@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/main_head"
+            layout="@layout/view_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navbar_height" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navbar_height_2" >
+
+            <ImageView
+                android:id="@+id/ivPrePage"
+                android:layout_width="@dimen/navbar_height_2"
+                android:src="@drawable/btn_pre_page"
+                android:layout_height="@dimen/navbar_height_2" />
+            
+            <LinearLayout
+                android:layout_marginLeft="@dimen/dialog_alarm_tv_title_margin_top"
+                android:layout_marginEnd="@dimen/dialog_alarm_tv_title_margin_top"
+                android:layout_width="match_parent"
+                android:layout_toEndOf="@id/ivPrePage"
+                android:layout_toStartOf="@id/ivNextPage"
+                android:background="@drawable/gray_shape"
+                android:gravity="center"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/tvTrTime"
+                    android:layout_width="wrap_content"
+                    android:text="治疗时间:"
+                    android:textSize="28sp"
+                    android:textColor="@color/custom_color_btn_bg_normal_day"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvStartTime"
+                    android:textSize="28sp"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/custom_color_btn_bg_normal_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="28sp"
+                    android:text="~"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/custom_color_btn_bg_normal_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvEndTime"
+                    android:textSize="28sp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/custom_color_btn_bg_normal_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivNextPage"
+                android:layout_width="@dimen/navbar_height_2"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/btn_next_page"
+                android:layout_height="@dimen/navbar_height_2" />
+            
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/treatment_main_historical_data_item_height"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_gray_bg2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                    android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
+                    android:text="累计引流量"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+                <ImageView
+                    android:layout_width="@dimen/treatment_main_historical_data_item_iv_width"
+                    android:layout_height="@dimen/treatment_main_historical_data_item_iv_height"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/icon_8_suidi_h" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_bottom_gray" />
+
+                <TextView
+                    android:id="@+id/tv_total_drain_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
+                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
+                    android:text="ml"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/treatment_main_historical_data_item_height"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_margin"
+                android:background="?attr/custom_attr_input_box_gray_bg2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                    android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
+                    android:text="累计灌注量"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+                <ImageView
+                    android:layout_width="@dimen/treatment_main_historical_data_item_iv_width"
+                    android:layout_height="@dimen/treatment_main_historical_data_item_iv_height"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/icon_8_suidi_l" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_bottom_blue" />
+
+                <TextView
+                    android:id="@+id/tv_total_perfusion_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
+                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
+                    android:text="@string/unit_ml"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
+
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/treatment_main_historical_data_item_height"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/treatment_main_historical_data_item_margin"
+                android:background="?attr/custom_attr_input_box_gray_bg2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                    android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
+                    android:text="累计超滤量"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+                <ImageView
+                    android:layout_width="@dimen/treatment_main_historical_data_item_iv_width"
+                    android:layout_height="@dimen/treatment_main_historical_data_item_iv_height"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/icon_8_suidi_lv" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_bottom_green" />
+
+                <TextView
+                    android:id="@+id/tv_curr_ultrafiltration_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
+                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
+                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
+                    android:text="ml"
+                    android:textColor="?attr/custom_attr_common_text_color_2"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_linechart_gray"
+            android:visibility="gone">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </RelativeLayout>
+
+        <include
+            layout="@layout/item_treatment_historical_data_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
+            android:layout_marginTop="14dp"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+
+
+        </RelativeLayout>
+
+        <include
+
+            layout="@layout/his_pd_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
+            android:layout_marginTop="14dp"
+            android:visibility="visible"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_above="@id/btnUpload"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/dialog_alarm_tv_title_margin_top"/>
+            <com.emt.pdgo.next.ui.view.StateButton
+                android:id="@+id/btnUpload"
+                android:visibility="gone"
+                android:layout_width="@dimen/dialog_alarm_layout_height"
+                android:layout_height="@dimen/custom_main_btn_re_selfcheck_height"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dialog_alarm_tv_title_margin_top"
+                android:layout_marginBottom="@dimen/dialog_alarm_tv_title_margin_top"
+                android:paddingLeft="@dimen/dialog_alarm_tv_title_margin_top"
+                android:paddingRight="@dimen/dialog_alarm_tv_title_margin_top"
+                android:text="重新上传数据"
+                android:textSize="@dimen/custom_main_btn_title_size"
+                app:normalBackgroundColor="#0073D6"
+                app:normalStrokeColor="#003869"
+                app:normalStrokeWidth="3dp"
+                app:normalTextColor="@android:color/white"
+                app:pressedBackgroundColor="#003869"
+                app:pressedStrokeColor="#003869"
+                app:pressedStrokeWidth="3dp"
+                app:pressedTextColor="@android:color/white"
+                app:radius="5dp" />
+
+                <include
+                    android:id="@+id/rootView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/navbar_btn_height"
+                    android:layout_alignParentBottom="true"
+                    layout="@layout/root_view" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,1176 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.emt.pdgo.next.ui.fragment.apd.prescription.special.AapdFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+        android:layout_marginRight="@dimen/treatment_countdown_margin"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/totalVolRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/pa1"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dialog_common_btn_text_size" />
+
+                <TextView
+                    android:id="@+id/totalVolUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dialog_common_btn_text_size" />
+
+                <TextView
+                    android:id="@+id/totalVolTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/totalVolUnit"
+                    android:textSize="@dimen/dialog_common_btn_text_size" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/finalRetainVolRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/preparation_iv_info_height"
+                android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/pa5"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dialog_common_btn_text_size" />
+                <TextView
+                    android:id="@+id/finalRetainVolUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/checkboxLl"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dialog_common_btn_text_size" />
+                <TextView
+                    android:id="@+id/finalRetainVolTv"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/finalRetainVolUnit"
+                    android:textSize="@dimen/dialog_common_btn_text_size" />
+
+                <LinearLayout
+                    android:id="@+id/checkboxLl"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <CheckBox
+                        android:id="@+id/finalSupplyCheck"
+                        android:text="末袋补液"
+                        android:theme="@style/CheckBoxTheme"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="(通道1)"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/preparation_iv_info_height"
+                    android:layout_marginTop="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/tab_shape"
+                    android:padding="@dimen/preparation_tv_info_margin_top_sub"
+                    android:id="@+id/group_1ll"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="第1组"
+                        android:id="@+id/group_1_tv"
+                        android:background="@drawable/pa14"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent" />
+
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:id="@+id/rg1"
+                        android:visibility="gone"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa8"
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/rb1C1"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道1"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+                        <RadioButton
+                            android:id="@+id/rb1C2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道2"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:id="@+id/bag_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa9"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="预热液量:"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="@string/unit_ml"
+                            android:id="@+id/bag_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/bag_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/bag_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/per_01_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa10"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="灌注量："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="@string/unit_ml"
+                            android:id="@+id/per_01_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/per_01_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/per_01_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/retain_01_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa9"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="留腹时间："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="分"
+                            android:id="@+id/retain_01_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/retain_01_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/retain_01_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cycle_01_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa13"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="重复次数："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="次"
+                            android:id="@+id/cycle_01_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/cycle_01_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/cycle_01_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/tab_shape"
+                    android:padding="@dimen/preparation_tv_info_margin_top_sub"
+                    android:id="@+id/group_2ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/preparation_iv_info_height"
+                    android:layout_marginTop="@dimen/treatment_countdown_margin"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="第2组"
+                        android:id="@+id/group_2_tv"
+                        android:background="@drawable/pa14"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent" />
+
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:id="@+id/rg2"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa8"
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/rb2C1"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道1"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+                        <RadioButton
+                            android:id="@+id/rb2C2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道2"
+                            
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:id="@+id/per_02_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa10"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="灌注量："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="@string/unit_ml"
+                            android:id="@+id/per_02_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/per_02_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/per_02_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/retain_02_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa9"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="留腹时间："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="分"
+                            android:id="@+id/retain_02_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/retain_02_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/retain_02_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cycle_02_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa13"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="重复次数："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="次"
+                            android:id="@+id/cycle_02_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/cycle_02_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/cycle_02_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/preparation_iv_info_height"
+                    android:layout_marginTop="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/tab_shape"
+                    android:padding="@dimen/preparation_tv_info_margin_top_sub"
+
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="第3组"
+                        android:id="@+id/group_3_tv"
+                        android:background="@drawable/pa14"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent" />
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:id="@+id/rg3"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa8"
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/rb3C1"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道1"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+                        <RadioButton
+                            android:id="@+id/rb3C2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道2"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:id="@+id/per_03_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa10"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="灌注量："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="@string/unit_ml"
+                            android:id="@+id/per_03_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/per_03_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/per_03_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/retain_03_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa9"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="留腹时间："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="分"
+                            android:id="@+id/retain_03_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/retain_03_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/retain_03_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cycle_03_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa13"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="重复次数："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="次"
+                            android:id="@+id/cycle_03_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/cycle_03_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/cycle_03_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/preparation_iv_info_height"
+                    android:layout_marginTop="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/tab_shape"
+                    android:padding="@dimen/preparation_tv_info_margin_top_sub"
+
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="第4组"
+                        android:id="@+id/group_4_tv"
+                        android:background="@drawable/pa14"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent" />
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:id="@+id/rg4"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa8"
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/rb4C1"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道1"
+                            android:buttonTint="@color/white"
+
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+                        <RadioButton
+                            android:id="@+id/rb4C2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道2"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:id="@+id/per_04_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa10"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="灌注量："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="@string/unit_ml"
+                            android:id="@+id/per_04_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/per_04_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/per_04_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/retain_04_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa9"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="留腹时间："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="分"
+                            android:id="@+id/retain_04_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/retain_04_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/retain_04_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cycle_04_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa13"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="重复次数："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="次"
+                            android:id="@+id/cycle_04_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/cycle_04_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/cycle_04_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/preparation_iv_info_height"
+                    android:layout_marginTop="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/tab_shape"
+                    android:padding="@dimen/preparation_tv_info_margin_top_sub"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="第5组"
+                        android:id="@+id/group_5_tv"
+                        android:background="@drawable/pa14"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent" />
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:id="@+id/rg5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa8"
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/rb5C1"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道1"
+                            android:buttonTint="@color/white"
+
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+                        <RadioButton
+                            android:id="@+id/rb5C2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道2"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:id="@+id/per_05_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa10"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="灌注量："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="@string/unit_ml"
+                            android:id="@+id/per_05_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/per_05_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/per_05_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/retain_05_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa9"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="留腹时间："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="分"
+                            android:id="@+id/retain_05_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/retain_05_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/retain_05_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cycle_05_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa13"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="重复次数："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="次"
+                            android:id="@+id/cycle_05_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/cycle_05_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/cycle_05_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/preparation_iv_info_height"
+                    android:layout_marginTop="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/tab_shape"
+                    android:padding="@dimen/preparation_tv_info_margin_top_sub"
+
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="第6组"
+                        android:id="@+id/group_6_tv"
+                        android:background="@drawable/pa14"
+                        android:textSize="@dimen/dialog_common_btn_text_size"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:layout_weight="0.5"
+                        android:layout_height="match_parent" />
+
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:id="@+id/rg6"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa8"
+                        android:orientation="horizontal"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/rb6C1"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道1"
+                            android:buttonTint="@color/white"
+
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+                        <RadioButton
+                            android:id="@+id/rb6C2"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="通道2"
+                            android:buttonTint="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size"
+                            android:textColor="@color/white"
+                            android:layout_height="match_parent" />
+
+                    </RadioGroup>
+
+                    <RelativeLayout
+                        android:id="@+id/per_06_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa10"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="灌注量："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="@string/unit_ml"
+                            android:id="@+id/per_06_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/per_06_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/per_06_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/retain_06_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa9"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="留腹时间："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="分"
+                            android:id="@+id/retain_06_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/retain_06_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/retain_06_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/cycle_06_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/preparation_iv_info_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:background="@drawable/pa13"
+                        android:paddingLeft="@dimen/input_box_item_padding_left"
+                        android:paddingRight="@dimen/input_box_item_padding_right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="重复次数："
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                            android:text="次"
+                            android:id="@+id/cycle_06_unit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                        <TextView
+                            android:id="@+id/cycle_06_tv"
+                            android:layout_width="@dimen/input_box_et_width"
+                            android:gravity="end|center_vertical"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/white"
+                            android:layout_toStartOf="@id/cycle_06_unit"
+                            android:textSize="@dimen/dialog_common_btn_text_size" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

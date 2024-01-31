@@ -1,0 +1,768 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/treatment_countdown_margin"
+
+    tools:context="com.emt.pdgo.next.ui.fragment.dpr.treat.ViewDataFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="上位称实时重量(g)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/upWeightValueTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="下位称实时重量(g)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/underWeightValueTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="留腹量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/retainVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="引流量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/drainVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="引流目标量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:id="@+id/drainTargetVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="引流通过量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:id="@+id/drainPassVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="灌注量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:id="@+id/perVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="负压引流次数"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/vacDrainCountTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="负压引流时间(秒)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/vacDrainTimeTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="灌注目标量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:id="@+id/perTargetVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="引流实时速率\n(ml/min)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/drainRoteTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="灌注实时速率\n(ml/min)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/perRoteTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="基础液补液目标量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:id="@+id/baseSupplyTargetTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="基础液补液量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/baseSupplyVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="基础液开始补液上位称重量(g)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/baseSupplyUpWeightTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="渗透液补液目标量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:id="@+id/osmSupplyTargetTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="渗透液补液量(ml)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/osmSupplyVolTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="渗透液开始补液上位称重量(g)"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+        <TextView
+            android:id="@+id/osmSupplyUpWeightTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:text="电磁阀工作状态"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        <View
+            android:layout_width="@dimen/treatment_main_detailed_status_divider"
+            android:layout_height="match_parent"
+            android:background="@color/view_bg_color" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <TextView
+                android:id="@+id/tv_valve_perfusion"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/orange"
+                android:text="灌注阀"
+                android:textColor="@color/white"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+            <TextView
+                android:id="@+id/tv_valve_drain"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/orange"
+                android:text="引流阀"
+                android:textColor="@color/white"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+            <TextView
+                android:id="@+id/tv_valve_negpre_drain"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/orange"
+                android:lineSpacingMultiplier="1.2"
+                android:text="负压阀"
+                android:textColor="@color/white"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+            <TextView
+                android:id="@+id/tv_valve_supply"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/orange"
+                android:text="补液阀"
+                android:textColor="@color/white"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+            <TextView
+                android:id="@+id/tv_valve_safe"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/orange"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="安全阀"
+                android:textColor="@color/white"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+            <TextView
+                android:id="@+id/tv_valve_supply2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/orange"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="末袋阀"
+                android:textColor="@color/white"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2.5"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:text="Ta温度(℃)"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:id="@+id/tvT1Temp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Tb温度(℃)"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:id="@+id/tvT2Temp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Tc温度(℃)"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:id="@+id/tvT3Temp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

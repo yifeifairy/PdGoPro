@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_debug"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="50dp"
+    android:background="#b3000000">
+
+    <LinearLayout
+        android:id="@+id/info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#25F0F0F0"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <Button
+                android:id="@+id/btn_clear_log"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/selector_blue"
+                android:gravity="center"
+                android:text="清空指令"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_one"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_blue"
+                    android:gravity="center"
+                    android:text="指令收发日志"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_two"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray"
+                    android:gravity="center"
+                    android:text="设备信息"
+                    android:textColor="@color/text_default"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/selector_blue"
+                android:gravity="center"
+                android:text="关  闭"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/info_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/layout_command"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btn_send"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/selector_blue"
+                        android:gravity="center"
+                        android:text="发送指令"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/btn_clear"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/btn_send"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/selector_blue"
+                        android:gravity="center"
+                        android:text="清空输入"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+
+                    <EditText
+                        android:id="@+id/et_command"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:layout_toLeftOf="@+id/btn_send"
+                        android:background="@drawable/bg_edittext_gray"
+                        android:gravity="left|center_vertical"
+                        android:hint="请输入指令"
+                        android:padding="10dp"
+                        android:textColor="@color/text_default"
+                        android:textColorHint="@color/text_default_30"
+                        android:textSize="17dp" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_tips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="请点击相应指令"
+                    android:textColor="@color/text_warning"
+                    android:textSize="20dp"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_command"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_log"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@color/view_bg_color"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_perfusion_volume"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:text="实时灌注量:0"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_drain_volume"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:text="实时引流量:0"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_waiting_volume"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:text="实时留腹量:0"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/tv_flush_refresh"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:text="当前冲洗量:0 ，冲洗次数:0"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+
+                <ListView
+                    android:id="@+id/message_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:divider="@null"
+                    android:transcriptMode="alwaysScroll"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_command_log"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_device"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_self_check"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg"
+                        android:gravity="center"
+                        android:text="跳转自检界面"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/btn_param"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg"
+                        android:gravity="center"
+                        android:text="跳转参数设置界面"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="上位秤重量"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="0 g"
+                            android:textColor="@color/text_right"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="下位秤重量"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="0 g"
+                            android:textColor="@color/text_right"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="上位秤初始重量"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="0 g"
+                            android:textColor="@color/text_right"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="下位秤初始重量"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="0 g"
+                            android:textColor="@color/text_right"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="液袋温度"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="0 ℃"
+                            android:textColor="@color/text_right"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="负压引流阀"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="打开"
+                            android:textColor="@color/text_warning"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="补液阀"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="打开"
+                            android:textColor="@color/text_warning"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="灌注阀"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="打开"
+                            android:textColor="@color/text_warning"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="引流阀"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="打开"
+                            android:textColor="@color/text_warning"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:text="安全阀"
+                            android:textColor="@color/text_default"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_item_value10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="打开"
+                            android:textColor="@color/text_warning"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/tv_device_infos"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                       android:background="?attr/custom_attr_input_box_gray_bg"
+                        android:gravity="center"
+                        android:text="下位机返回的设备信息指令"
+                        android:textColor="@color/text_default"
+                        android:textSize="20dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/modeRl"
+    android:background="?attr/custom_attr_app_bg"
+    tools:context="com.emt.pdgo.next.ui.mode.activity.ModeActivity">
+
+    <ImageView
+        android:id="@+id/iv_preparation_upper_part_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_iv_preparation_upper_part_bg_height"
+        android:background="?attr/custom_attr_preparation_upper_part_bg" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="@dimen/custom_logo_width"
+        android:layout_height="@dimen/custom_logo_height"
+        android:layout_marginStart="@dimen/custom_icon_margin"
+        android:layout_marginTop="@dimen/custom_icon_margin"
+        android:background="@drawable/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/modelLL"
+        android:layout_marginStart="@dimen/dialog_common_btn_margin"
+        android:layout_marginTop="@dimen/dialog_common_btn_margin"
+        android:text="请选择治疗模式"
+        android:textColor="@color/white"
+        android:textSize="@dimen/input_health_info_tv_value_text_size"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/modelLL"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:id="@+id/ipdMode"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/dialog_common_btn_margin"
+                    android:text="IPD"
+                    android:background="@drawable/gray_shape_stroke"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dialog_common_btn_margin"
+                    android:layout_marginEnd="@dimen/dialog_common_btn_margin"
+                    android:layout_marginBottom="@dimen/dialog_common_btn_margin"
+                    android:text="(间歇腹膜透析)"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/dialog_common_btn_text_size"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:id="@+id/tpdMode"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+                <TextView
+                    android:layout_margin="@dimen/dialog_common_btn_margin"
+                    android:layout_width="match_parent"
+                    android:text="TPD"
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dialog_common_btn_margin"
+                    android:layout_marginEnd="@dimen/dialog_common_btn_margin"
+                    android:layout_marginBottom="@dimen/dialog_common_btn_margin"
+                    android:text="(潮式腹膜透析)"
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/dialog_common_btn_text_size"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/cCpdMode"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:text="CCPD"
+                android:background="@drawable/gray_shape_stroke"
+
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dialog_common_btn_margin"
+                    android:layout_marginEnd="@dimen/dialog_common_btn_margin"
+                    android:layout_marginBottom="@dimen/dialog_common_btn_margin"
+                    android:text="(持续循环腹膜透析)"
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/dialog_common_btn_text_size"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/kidMode"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/dialog_common_btn_margin"
+                    android:text="儿童APD"
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/specialMode"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+                <TextView
+                    android:id="@+id/specialTV"
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/dialog_common_btn_margin"
+                    android:text="特殊模式"
+                    android:background="@drawable/gray_shape_stroke"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/specialLayout"
+            android:visibility="gone"
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:id="@+id/aApdMode"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/dialog_common_btn_margin"
+                    android:text="aAPD"
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dialog_common_btn_margin"
+                    android:layout_marginEnd="@dimen/dialog_common_btn_margin"
+                    android:layout_marginBottom="@dimen/dialog_common_btn_margin"
+                    android:text="(可调式腹膜透析)"
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/dialog_common_btn_text_size"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/cFpdMode"
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:text="CFPD"
+                android:background="@drawable/gray_shape_stroke"
+
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dialog_common_btn_margin"
+                    android:layout_marginEnd="@dimen/dialog_common_btn_margin"
+                    android:layout_marginBottom="@dimen/dialog_common_btn_margin"
+                    android:text="(持续流动腹膜透析)"
+                    android:background="@drawable/gray_shape_stroke"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dialog_common_btn_text_size"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/dprMode"
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:orientation="vertical"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:text="DPR"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/gray_shape_stroke"
+
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/dialog_common_btn_margin"
+                    android:layout_marginEnd="@dimen/dialog_common_btn_margin"
+                    android:layout_marginBottom="@dimen/dialog_common_btn_margin"
+                    android:text="(腹膜微循环疗法)"
+                    android:background="@drawable/gray_shape_stroke"
+
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/dialog_common_btn_text_size"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:id="@+id/expertMode"
+                android:orientation="vertical"
+                android:background="@drawable/radius_blue"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/dialog_common_btn_margin"
+                android:text="专家APD"
+                android:background="@drawable/gray_shape_stroke"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rootViewLL"
+        android:layout_width="match_parent"
+        android:layout_above="@id/rootView"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/custom_dimen_checkbox_thumb_radius"
+            android:id="@+id/dataHisLayout"
+            android:gravity="center"
+            android:layout_height="wrap_content" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/data_his"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="历史治疗数据"
+                android:id="@+id/tvDataHis"
+                android:textSize="@dimen/dialog_alarm_tv_status_text_size"
+                android:layout_marginStart="@dimen/custom_dimen_checkbox_thumb_radius"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/custom_dimen_checkbox_thumb_radius"
+            android:id="@+id/rxHisLayout"
+            android:gravity="center"
+            android:layout_height="wrap_content" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/rx_his"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="历史处方数据"
+                android:id="@+id/tvRxHis"
+                android:textSize="@dimen/dialog_alarm_tv_status_text_size"
+                android:layout_marginStart="@dimen/dp_10"
+                android:textColor="?attr/custom_attr_common_text_color"
+
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/custom_dimen_checkbox_thumb_radius"
+            android:visibility="gone"
+            android:id="@+id/bindLayout"
+            android:gravity="center"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="用户码"
+                android:id="@+id/tv_bind"
+                android:textSize="@dimen/dialog_alarm_tv_status_text_size"
+                android:layout_marginStart="@dimen/custom_dimen_checkbox_thumb_radius"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/custom_dimen_checkbox_thumb_radius"
+            android:id="@+id/settingLayout"
+            android:gravity="center"
+            android:layout_height="wrap_content" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/setting_gray"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="设置"
+                android:id="@+id/tv_setting"
+                android:textSize="@dimen/dialog_alarm_tv_status_text_size"
+                android:layout_marginStart="@dimen/custom_dimen_checkbox_thumb_radius"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+</RelativeLayout>

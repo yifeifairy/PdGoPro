@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/custom_id_app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_time_interval"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingRight="@dimen/input_box_item_padding_right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="服务端地址："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <EditText
+                android:id="@+id/tv_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/btnConfirm"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/treatment_countdown_margin"
+                android:background="@null"
+                android:text="ejc.ckdcloud.com"
+                android:gravity="right|center_vertical"
+                android:hint="例如：ejc.ckdcloud.com"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/btnConfirm"
+                android:text="写入配置"
+                android:textSize="@dimen/input_box_tv_text_size"
+                android:layout_centerVertical="true"
+                android:textColor="@color/blue"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_threshold_value"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="5dp"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingRight="@dimen/input_box_item_padding_right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="本设备编号："
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/tv_sn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/treatment_countdown_margin">
+            <Button
+                android:id="@+id/btnStatus"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/item_blue_day"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:text="状态码发送测试"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+            <Button
+                android:id="@+id/btn_upload"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:background="@drawable/item_blue_day"
+                android:gravity="center"
+                android:text="发送治疗数据测试"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/treatment_countdown_margin">
+
+            <Button
+                android:id="@+id/token"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@drawable/item_blue_day"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:text="获取token"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:background="@drawable/item_blue_day"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:text="发送数据网络测试"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="5dp"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:paddingLeft="@dimen/input_box_item_padding_left"
+        android:paddingRight="@dimen/input_box_item_padding_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/receiveMsg"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/input_box_tv_text_size" />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    </RelativeLayout>
+</LinearLayout>

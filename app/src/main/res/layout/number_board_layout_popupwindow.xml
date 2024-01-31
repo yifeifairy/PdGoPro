@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/number_board_popup_layout_width"
+    android:layout_height="@dimen/number_board_popup_layout_height"
+    android:background="?attr/custom_attr_number_dialog_key_board_bg2"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/layout_item_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/number_board_layout_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_layout_item_margin_top"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item1"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item2"
+                android:layout_width="@dimen/number_board_layout_btn_item2_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item3"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_item_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_item_1"
+            android:layout_marginLeft="@dimen/number_board_layout_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_layout_item_margin_top_2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item4"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item5"
+                android:layout_width="@dimen/number_board_layout_btn_item2_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item6"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="6"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_item_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_item_2"
+            android:layout_marginLeft="@dimen/number_board_layout_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_layout_item_margin_top_2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item7"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="7"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item8"
+                android:layout_width="@dimen/number_board_layout_btn_item2_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item9"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="9"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_item_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_item_3"
+            android:layout_marginLeft="@dimen/number_board_layout_layout_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_layout_item_margin_top_2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_item10"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="."
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item11"
+                android:layout_width="@dimen/number_board_layout_btn_item2_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:layout_marginRight="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+            <Button
+                android:id="@+id/btn_item12"
+                android:layout_width="@dimen/number_board_layout_btn_item1_width"
+                android:layout_height="@dimen/number_board_layout_btn_item_height"
+                android:layout_marginLeft="@dimen/number_board_layout_btn_item_margin"
+                android:background="?attr/custom_attr_number_dialog_key_board_item_bg"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="?attr/custom_attr_number_board_text_color"
+                android:textSize="@dimen/number_board_layout_btn_item_text_size" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/key_board_hide"
+            android:layout_width="@dimen/number_board_layout_key_board_hide_width"
+            android:layout_height="@dimen/number_board_layout_key_board_hide_height"
+            android:layout_marginLeft="@dimen/number_board_layout_key_board_hide_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_layout_item_margin_top"
+            android:layout_toRightOf="@+id/layout_item_1"
+            android:background="?attr/custom_attr_number_dialog_key_board_item_bg">
+
+            <ImageView
+                android:layout_width="@dimen/number_board_icon_arrow_width"
+                android:layout_height="@dimen/number_board_icon_arrow_height"
+                android:layout_centerInParent="true"
+                android:background="?attr/custom_attr_number_board_icon_arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/key_board_del"
+            android:layout_width="@dimen/number_board_layout_del_item_width"
+            android:layout_height="@dimen/number_board_layout_del_item_height"
+            android:layout_below="@+id/key_board_hide"
+            android:layout_marginLeft="@dimen/number_board_layout_del_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_layout_del_item_margin_top"
+            android:layout_toRightOf="@+id/layout_item_1"
+            android:background="?attr/custom_attr_number_dialog_key_board_item_bg">
+
+            <ImageView
+                android:layout_width="@dimen/number_board_layout_del_iv_width"
+                android:layout_height="@dimen/number_board_layout_del_iv_height"
+                android:layout_centerInParent="true"
+                android:background="?attr/custom_attr_number_board_icon_del" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_sumbit"
+            android:layout_width="@dimen/number_board_layout_btn_sumbit_width"
+            android:layout_height="@dimen/number_board_layout_btn_sumbit_height"
+            android:layout_alignBottom="@+id/layout_item_4"
+            android:layout_marginTop="@dimen/number_board_layout_del_item_margin_top"
+            android:layout_marginLeft="@dimen/number_board_layout_del_item_margin_left"
+            android:layout_toRightOf="@+id/layout_item_1"
+            android:background="@drawable/key_board_selector_blue"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#fff"
+            android:textSize="@dimen/number_board_layout_btn_text_size" />
+
+
+    </RelativeLayout>
+</LinearLayout>

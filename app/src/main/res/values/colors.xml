@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+<!--    <color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccent">#0089FF</color>
+    <color name="view_self_check_bg">#0089FF</color>
+    <color name="blue">#0089FF</color>
+
+    <color name="iron">#CCCCCC</color>
+    <color name="white_50">#82FFFFFF</color>
+    <color name="transparent">#00000000</color><!--透明色 -->
+    <color name="transparent_gray">#90000000</color>
+
+    <color name="green">#00FF00</color>
+    <color name="black">#000000</color>
+    <color name="darkblue">#00008B</color><!--暗蓝色 -->
+    <color name="color_blue">#0ca5f4</color>
+    <color name="color_divider">#e9e9eb</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_base_bg">#f7f7fa</color>
+    <color name="view_bg_color">#F3FAFF</color><!--界面的默认背景色 -->
+    <color name="view_bg_color2">#F3FAFF</color><!--界面的默认背景色 -->
+
+    <color name="text_default">#464A6A</color><!--作为默认文字颜色显示 -->
+    <color name="text_default_80">#cc464A6A</color><!--作为正常文字颜色显示 -->
+    <color name="text_default_50">#848c97</color><!--作为较弱文字颜色显示 -->
+    <color name="text_default_30">#b5bac0</color><!--作为备注文字颜色显示 -->
+    <color name="text_warning">#FF4753</color><!--作为警告文字或者错误提示颜色显示 -->
+    <color name="text_right">#00C791</color><!--作为正确提示颜色显示 -->
+    <color name="text_tag">#2196f3</color><!--作为标签的底色显示 -->
+    <color name="btn_gray">#EEEEEE</color><!--作为标签的底色显示 -->
+    <color name="text_tag_gray">#9B9B9B</color><!--作为标签的底色显示 -->
+    <color name="text_title_default">#464A6A</color><!--作为默认标题文字颜色显示 -->
+
+    <color name="dialog_text_default">#333333</color><!--作为默认文字颜色显示 -->
+
+    <color name="gray_cc">#cccccc</color><!--灰色cc -->
+    <color name="gray_8f">#8f8f8f</color><!--灰色8f -->
+    <color name="gray">#808080</color><!--灰色 -->
+    <color name="orange">#FFA500</color><!--橙色 -->
+    <color name="red">#FF0000</color><!--红色 -->
+
+    <color name="color_efaf34">#efaf34</color>
+    <color name="color_274782">#274782</color>
+    <color name="color_a9c6d6">#a9c6d6</color>
+
+    <color name="yellow">#FFFF00</color>
+
+    <color name="default_shadow_color">#88757575</color>
+
+    <color name="divider">#999999</color>
+    <color name="text_hint">#999999</color>
+
+    <color name="transparent_background">#50000000</color>
+
+</resources>

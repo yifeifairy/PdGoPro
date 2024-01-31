@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:text="wifi名称："
+            android:textColor="?attr/custom_attr_preparation_user_text_color"
+
+            android:textSize="@dimen/bind_phone_title_text_size" />
+
+        <TextView
+            android:id="@+id/tv_encrypt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="加密方式："
+            android:textColor="?attr/custom_attr_preparation_user_text_color"
+
+            android:textSize="@dimen/bind_phone_title_text_size" />
+    </LinearLayout>
+<!--    <com.emt.pdgo.next.ui.dialog.SecurityEditText-->
+<!--        android:id="@+id/login_input_password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:hint="密码"-->
+<!--        android:inputType="textPassword"-->
+<!--        app:chooserBackground="@color/iron"-->
+<!--        app:chooserSelectedColor="#000000"-->
+<!--        app:chooserUnselectedColor="#999999"-->
+<!--        app:keyPreview="true"-->
+<!--        app:keyboardBackground="@drawable/icon_8_logo" />-->
+
+    <Button
+        android:id="@+id/btn_link"
+        android:layout_width="@dimen/treatment_countdown_btn_width"
+        android:padding="@dimen/treatment_countdown_margin"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="连接"
+        android:textSize="@dimen/bind_phone_title_text_size"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="28dp"/>
+</RelativeLayout>

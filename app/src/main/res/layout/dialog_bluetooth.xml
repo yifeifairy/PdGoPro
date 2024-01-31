@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_dialog_background"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <RelativeLayout
+            android:id="@+id/layout_scan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:text="正在扫描设备..."
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="25sp" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_connected"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="已连接:"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/layout_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_top"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/device_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_head" />
+
+        <RelativeLayout
+            android:id="@+id/layout_weight"
+            android:layout_width="220dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:background="@drawable/bg_round_blue">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/icon_info_weight_day" />
+
+            <TextView
+                android:id="@+id/tv_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="68dp"
+                android:layout_marginTop="9dp"
+                android:text="当前体重"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_toRightOf="@+id/tv_weight"
+                android:text="（kg）"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_weight_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="68dp"
+                android:text="0.0"
+                android:textColor="@color/white"
+                android:textSize="38sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_blood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:visibility="gone">
+
+
+            <RelativeLayout
+                android:layout_width="220dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/dialog_btn_green">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/icon_info_blood_pressure_day" />
+
+                <TextView
+                    android:id="@+id/tv_blood_pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="68dp"
+                    android:layout_marginTop="9dp"
+                    android:text="当前血压"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:layout_toRightOf="@+id/tv_blood_pressure"
+                    android:text="（mmHg）"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_blood_pressure_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="68dp"
+                    android:text="-/-"
+                    android:textColor="@color/white"
+                    android:textSize="38sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="220dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/bg_round_purple">
+
+                <ImageView
+                    android:layout_width="31dp"
+                    android:layout_height="28dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/icon_info_heart_rate_day" />
+
+                <TextView
+                    android:id="@+id/tv_heart_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="68dp"
+                    android:layout_marginTop="9dp"
+                    android:text="心率"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:layout_toRightOf="@+id/tv_heart_rate"
+                    android:text="（bpm）"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_heart_rate_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="68dp"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="38sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_connecting"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="正在连接设备..."
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="25sp" />
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_sure"
+            android:layout_width="160dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/dialog_btn_blue"
+            android:gravity="center"
+            android:text="@string/dialog_btn_confirm"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="160dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/dialog_btn_gray"
+            android:gravity="center"
+            android:text="关闭"
+            android:textColor="@color/text_default"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

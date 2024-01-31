@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/number_board_layout_width"
+    android:background="?attr/custom_attr_dialog_background"
+    android:orientation="vertical"
+    android:padding="@dimen/custom_main_progress_bar_height"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/custom_main_progress_bar_height"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:text="声音控制"
+            android:textSize="@dimen/dialog_common_title_text_size"
+            android:textStyle="bold"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/btnClose"
+            android:text="关闭"
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/dialog_common_title_text_size"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="音量控制"
+        android:padding="10dp"
+        android:textSize="@dimen/dialog_common_title_text_size"
+        android:layout_marginTop="10dp"
+        android:textColor="?attr/custom_attr_common_text_color"
+
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/minSound"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/sound_off" />
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+            android:layout_centerVertical="true"
+            android:thumbTintMode="screen"
+            android:layout_toEndOf="@id/minSound"
+            android:layout_toStartOf="@id/maxSound"
+            android:padding="@dimen/custom_main_progress_bar_height" />
+
+        <ImageView
+            android:id="@+id/maxSound"
+            android:src="@mipmap/sound_control"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="亮度"
+        android:padding="10dp"
+        android:textSize="@dimen/dialog_common_title_text_size"
+        android:layout_marginTop="10dp"
+        android:textColor="?attr/custom_attr_common_text_color"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+    <SeekBar
+        android:id="@+id/brightnessSeekbar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+        android:layout_centerVertical="true"
+        android:thumbTintMode="screen"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:padding="@dimen/custom_main_progress_bar_height" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="警报"
+        android:padding="@dimen/custom_main_progress_bar_height"
+        android:textColor="?attr/custom_attr_common_text_color"
+        android:textSize="@dimen/dialog_common_title_text_size"
+        android:layout_marginTop="@dimen/custom_main_progress_bar_height"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/ring_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <ImageView
+                android:layout_width="30dp"
+                android:id="@+id/ring_iv"
+                android:src="@mipmap/rining"
+                android:layout_gravity="center_vertical"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="警报消音"
+                android:id="@+id/ring_tv"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/dialog_common_title_text_size"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ts_layout"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content" >
+            <ImageView
+                android:id="@+id/ts_iv"
+                android:layout_width="30dp"
+                android:src="@drawable/sound_control"
+                android:layout_gravity="center_vertical"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/ts_tv"
+                android:layout_width="wrap_content"
+                android:text="开启语音"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/dialog_common_title_text_size"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

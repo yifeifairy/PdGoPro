@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/bg_round_white_top"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/tv_item1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="时间"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/tv_item2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="腹透液\n总量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/tv_item8"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="周期灌注量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/tv_item3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="辅助\n冲洗量"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/tv_item4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="灌注后\n留腹量"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_item9"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="循环治疗周期"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/tv_item5"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="引流\n目标值"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/tv_item6"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="首次灌注量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/tv_item10"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="留腹时间min"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+    <TextView
+        android:id="@+id/tv_item7"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="最末留腹量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/tv_item12"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="上次留腹量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/tv_item13"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="透析超滤量ml"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <TextView
+        android:id="@+id/tv_item14"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="治疗时间min"
+        android:textColor="@color/text_default"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+</LinearLayout>
+

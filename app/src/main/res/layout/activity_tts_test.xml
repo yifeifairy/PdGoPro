@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/custom_id_app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+
+    <TextView
+        android:id="@+id/content_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:textSize="@dimen/pre_heat_state_text_size_2"
+        android:text="我是需要转换为语音的文本" />
+
+
+    <com.emt.pdgo.next.ui.view.StateButton
+        android:id="@+id/btn_speak"
+        android:layout_width="@dimen/pre_heat_btn_skip_heat_width"
+        android:layout_height="@dimen/pre_heat_btn_skip_heat_height"
+        android:layout_marginBottom="10dp"
+        android:text="开始转换"
+        android:textSize="@dimen/pre_heat_btn_text_size"
+        android:visibility="visible"
+        app:normalBackgroundColor="#0089FF"
+        app:normalStrokeColor="#003869"
+        app:normalStrokeWidth="2dp"
+        app:normalTextColor="@android:color/white"
+        app:pressedBackgroundColor="#003869"
+        app:pressedStrokeColor="#003869"
+        app:pressedStrokeWidth="2dp"
+        app:pressedTextColor="@android:color/white"
+        app:radius="5dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    </RelativeLayout>
+
+</LinearLayout>

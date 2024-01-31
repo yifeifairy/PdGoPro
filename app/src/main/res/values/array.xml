@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="treatment_before_fragments">
+        <item>@string/fragment_title_treatment_before_weight_and_blood_pressure</item>
+        <item>@string/fragment_title_treatment_before_prescription</item>
+        <item>@string/fragment_title_treatment_before_parameter</item>
+        <!--<item>@string/fragment_title_treatment_before_iipd_prescription</item>-->
+    </string-array>
+
+    <string-array name="treatment_fragments">
+        <item>@string/fragment_title_treatment_status</item>
+        <item>@string/fragment_title_treatment_prescription_data</item>
+        <item>@string/fragment_title_treatment_historical_data</item>
+        <item>@string/fragment_title_treatment_detailed_status</item>
+    </string-array>
+
+    <string-array name="tip_parameter_interpretations">
+        <item>@string/item_temperature_control_parameter_t1</item>
+        <item>@string/item_temperature_control_parameter_t2</item>
+        <item>@string/item_temperature_control_parameter_t3</item>
+        <item>@string/item_temperature_control_parameter_t4</item>
+        <item>@string/item_temperature_control_parameter_t5</item>
+        <item>@string/item_temperature_control_parameter_t6</item>
+        <item>@string/item_temperature_control_parameter_t7</item>
+        <item>@string/item_temperature_control_parameter_tae</item>
+        <item>@string/item_temperature_control_parameter_tbe</item>
+        <item>@string/item_temperature_control_parameter_tce</item>
+    </string-array>
+
+    <string-array name="tip_first_rinse_auto">
+        <item>@string/item_first_rinse_auto_1</item>
+        <item>@string/item_first_rinse_auto_2</item>
+        <item>@string/item_first_rinse_auto_3</item>
+        <item>@string/item_first_rinse_auto_4</item>
+        <!--<item>@string/item_first_rinse_auto_end</item>-->
+    </string-array>
+
+    <string-array name="labels">
+        <item>50%</item>
+        <item>75%</item>
+        <item>100%</item>
+        <item>120%</item>
+    </string-array>
+
+</resources>

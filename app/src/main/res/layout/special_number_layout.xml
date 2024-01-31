@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/number_board_layout_width"
+    android:layout_height="@dimen/number_board_layout_height"
+
+    android:background="?attr/custom_attr_number_dialog_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/number_board_layout_top_height"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="@dimen/number_board_btn_close_width"
+            android:layout_height="@dimen/number_board_btn_close_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/number_board_btn_close_margin_right"
+            android:layout_marginTop="@dimen/number_board_btn_close_margin_top"
+            android:background="@drawable/key_board_selector_blue"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/number_board_btn_text_size" />
+
+        <TextView
+            android:id="@+id/tv_board_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/treatment_countdown_margin"
+            android:gravity="center_vertical|right"
+            android:text="两周期间未勾选的默认通道1"
+            android:textColor="?attr/custom_attr_number_board_text_color"
+            android:textSize="@dimen/number_board_input_tips_text_size" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="@dimen/number_board_key_board_bg_width"
+        android:layout_height="@dimen/number_board_key_board_bg_height"
+        android:layout_marginBottom="@dimen/number_board_key_board_bg_margin"
+        android:layout_marginLeft="@dimen/number_board_key_board_bg_margin"
+        android:layout_marginRight="@dimen/number_board_key_board_bg_margin"
+        android:background="?attr/custom_attr_number_dialog_key_board_bg"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:layout_toStartOf="@id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:id="@+id/key_board_del"
+            android:visibility="invisible"
+            android:layout_width="@dimen/number_board_del_item_width"
+            android:layout_height="@dimen/number_board_del_item_height"
+            android:layout_marginLeft="@dimen/number_board_del_item_margin_left"
+            android:layout_marginTop="@dimen/number_board_del_item_margin_top"
+            android:layout_toRightOf="@+id/recyclerview"
+            android:background="?attr/custom_attr_number_dialog_key_board_item_bg">
+
+            <ImageView
+                android:layout_width="@dimen/number_board_del_iv_width"
+                android:layout_height="@dimen/number_board_del_iv_height"
+                android:layout_centerInParent="true"
+                android:background="?attr/custom_attr_number_board_icon_del" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="@dimen/number_board_btn_sumbit_width"
+            android:layout_height="@dimen/number_board_btn_sumbit_height"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/number_board_btn_sumbit_margin_bottom"
+            android:layout_marginLeft="@dimen/number_board_del_item_margin_left"
+            android:layout_marginRight="@dimen/number_board_btn_sumbit_margin_bottom"
+            android:background="@drawable/key_board_selector_blue"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#fff"
+            android:textSize="@dimen/number_board_btn_text_size" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

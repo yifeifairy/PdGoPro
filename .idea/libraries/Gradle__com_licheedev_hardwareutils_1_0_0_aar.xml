@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.licheedev:hardwareutils:1.0.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f79e7bc9da60d260bab9e804f0b9817d/transformed/jetified-hardwareutils-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f79e7bc9da60d260bab9e804f0b9817d/transformed/jetified-hardwareutils-1.0.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.licheedev/hardwareutils/1.0.0/611121669c9b562dfd49cf2d7edbba3055f2b729/hardwareutils-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.licheedev/hardwareutils/1.0.0/ea403b34d8f2cffefb16e22f974435bdec28eced/hardwareutils-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

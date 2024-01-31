@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/custom_id_app_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg2">
+
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/custom_icon_margin"
+        android:layout_marginTop="@dimen/custom_icon_margin"
+        android:background="@drawable/logo" />
+
+    <TextView
+        android:layout_width="@dimen/login_qrcode_bg_width_height"
+        android:layout_height="@dimen/login_qrcode_bg_width_height"
+        android:layout_centerInParent="true"
+        android:background="?attr/custom_attr_qrcode_bg"/>
+
+    <ImageView
+        android:id="@+id/iv_login_qrcode"
+        android:layout_width="@dimen/login_qrcode_width_height"
+        android:layout_height="@dimen/login_qrcode_width_height"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/iv_login_qrcode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/login_qrcode_title_margin"
+        android:layout_marginTop="@dimen/login_qrcode_title_margin"
+        android:layout_marginEnd="@dimen/login_qrcode_title_margin"
+        android:layout_marginBottom="@dimen/login_qrcode_title_margin"
+        android:text="扫码登陆"
+        android:textColor="?attr/custom_attr_common_text_color"
+        android:textSize="@dimen/login_qrcode_title_text_size" />
+
+    <Button
+        android:id="@+id/btn_skip"
+        android:layout_width="136dp"
+        android:layout_height="52dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="39dp"
+        android:background="@drawable/btn_bg_right"
+        android:text="跳过"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:visibility="gone"/>
+
+    <com.emt.pdgo.next.ui.view.StateButton
+        android:id="@+id/btn_skip_login"
+        android:layout_width="@dimen/btn_skip_login_width"
+        android:layout_height="@dimen/btn_skip_login_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/custom_setting_margin"
+        android:layout_marginTop="@dimen/custom_setting_margin"
+        android:layout_marginEnd="@dimen/custom_setting_margin"
+        android:layout_marginBottom="@dimen/custom_setting_margin"
+        android:text="跳 过"
+        android:textSize="@dimen/navbar_btn_text_size"
+        android:visibility="gone"
+        app:normalBackgroundColor="#0089FF"
+        app:normalStrokeColor="#003869"
+        app:normalStrokeWidth="2dp"
+        app:normalTextColor="@android:color/white"
+        app:pressedBackgroundColor="#003869"
+        app:pressedStrokeColor="#003869"
+        app:pressedStrokeWidth="2dp"
+        app:pressedTextColor="@android:color/white"
+        app:radius="5dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    <LinearLayout
+        android:id="@+id/layout_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/custom_setting_margin"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="@dimen/iv_setting_width"
+            android:layout_height="@dimen/iv_setting_height"
+            android:layout_gravity="center"
+            android:background="?attr/custom_attr_icon_setting" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:gravity="center"
+            android:text="设置"
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/tv_setting_text_size" />
+
+    </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/iv_login_qrcode"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/btn_engineer"
+                android:padding="10dp"
+                android:background="#0089FF"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:layout_width="@dimen/btn_skip_login_width"
+                android:layout_height="@dimen/btn_skip_login_height"
+                android:text="工程师模式" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/btn_apd"
+                android:padding="10dp"
+                android:textSize="22sp"
+                android:background="#0089FF"
+                android:textColor="@color/white"
+                android:layout_width="@dimen/btn_skip_login_width"
+                android:layout_height="@dimen/btn_skip_login_height"
+                android:text="APD治疗" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/btn_dpr"
+                android:padding="10dp"
+                android:textSize="22sp"
+                android:background="#0089FF"
+                android:textColor="@color/white"
+                android:layout_width="@dimen/btn_skip_login_width"
+                android:layout_height="@dimen/btn_skip_login_height"
+                android:text="DPR治疗" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

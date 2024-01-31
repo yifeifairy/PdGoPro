@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_app_bg"
+    tools:context="com.emt.pdgo.next.ui.activity.dpr.DprParamSetActivity">
+    <include
+        layout="@layout/view_head" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+
+        app:tabBackground="?attr/custom_attr_tab_select"
+        app:tabTextAppearance="@style/tabLayoutTabSize"
+        android:layout_width="match_parent"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/text_title_default"
+        android:layout_height="@dimen/tabLayoutHeight" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+    <com.emt.pdgo.next.ui.view.NoScrollViewPager
+        android:id="@+id/viewpager"
+        android:layout_above="@id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
+</LinearLayout>

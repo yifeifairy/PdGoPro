@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_health_info_item_height"
+        android:layout_marginLeft="@dimen/input_health_info_type_margin_left_right"
+        android:layout_marginRight="@dimen/input_health_info_type_margin_left_right"
+        android:layout_marginTop="@dimen/input_health_info_type_margin_top"
+        android:background="@drawable/bg_round_line">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/layout_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/input_health_info_layout_margin_1"
+            android:layout_marginRight="@dimen/input_health_info_layout_margin_1"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/layout_weight"
+                android:layout_width="@dimen/input_health_info_layout_item_width"
+                android:layout_height="@dimen/input_health_info_layout_item_height"
+                android:layout_marginTop="@dimen/input_health_info_layout_weight_margin_top"
+                android:background="?attr/custom_attr_health_info_item_weight_bg">
+
+                <ImageView
+                    android:layout_width="@dimen/input_health_info_icon_weight_width"
+                    android:layout_height="@dimen/input_health_info_icon_weight_height"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/input_health_info_icon_margin_left"
+                    android:background="?attr/custom_attr_health_info_item_weight_icon" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_health_info_tv_margin_left"
+                    android:layout_marginTop="@dimen/input_health_info_tv_margin_top"
+                    android:text="当前体重"
+                    android:textColor="?attr/custom_attr_health_info_label_color"
+                    android:textSize="@dimen/input_health_info_tv_label_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/input_health_info_tv_unit_margin_top"
+                    android:layout_toRightOf="@+id/tv_weight"
+                    android:text="（kg）"
+                    android:textColor="?attr/custom_attr_health_info_label_color"
+                    android:textSize="@dimen/input_health_info_tv_unit_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_weight_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/input_health_info_tv_value_margin_bottom"
+                    android:layout_marginLeft="@dimen/input_health_info_tv_margin_left"
+                    android:text="0.0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_blood_pressure"
+                android:layout_width="@dimen/input_health_info_layout_item_width"
+                android:layout_height="@dimen/input_health_info_layout_item_height"
+                android:layout_marginTop="@dimen/input_health_info_layout_item_margin_top"
+                android:background="?attr/custom_attr_health_info_item_blood_pressure_bg">
+
+                <ImageView
+                    android:layout_width="@dimen/input_health_info_icon_blood_pressure_width"
+                    android:layout_height="@dimen/input_health_info_icon_blood_pressure_height"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/input_health_info_icon_margin_left"
+                    android:background="?attr/custom_attr_health_info_item_blood_pressure_icon" />
+
+                <TextView
+                    android:id="@+id/tv_blood_pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_health_info_tv_margin_left"
+                    android:layout_marginTop="@dimen/input_health_info_tv_margin_top"
+                    android:text="当前血压"
+                    android:textColor="?attr/custom_attr_health_info_label_color"
+                    android:textSize="@dimen/input_health_info_tv_label_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/input_health_info_tv_unit_margin_top"
+                    android:layout_toRightOf="@+id/tv_blood_pressure"
+                    android:text="（mmHg）"
+                    android:textColor="?attr/custom_attr_health_info_label_color"
+                    android:textSize="@dimen/input_health_info_tv_unit_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_blood_pressure_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/input_health_info_tv_value_margin_bottom"
+                    android:layout_marginLeft="@dimen/input_health_info_tv_margin_left"
+                    android:text="-/-"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_heart_rate"
+                android:layout_width="@dimen/input_health_info_layout_item_width"
+                android:layout_height="@dimen/input_health_info_layout_item_height"
+                android:layout_marginTop="@dimen/input_health_info_layout_item_margin_top"
+                android:background="?attr/custom_attr_health_info_item_heart_rate_bg">
+
+                <ImageView
+                    android:layout_width="@dimen/input_health_info_icon_heart_rate_width"
+                    android:layout_height="@dimen/input_health_info_icon_heart_rate_height"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/input_health_info_icon_margin_left"
+                    android:background="?attr/custom_attr_health_info_item_heart_rate_icon" />
+
+                <TextView
+                    android:id="@+id/tv_heart_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_health_info_tv_margin_left"
+                    android:layout_marginTop="@dimen/input_health_info_tv_margin_top"
+                    android:text="心率"
+                    android:textColor="?attr/custom_attr_health_info_label_color"
+                    android:textSize="@dimen/input_health_info_tv_label_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/input_health_info_tv_unit_margin_top"
+                    android:layout_toRightOf="@+id/tv_heart_rate"
+                    android:text="（bpm）"
+                    android:textColor="?attr/custom_attr_health_info_label_color"
+                    android:textSize="@dimen/input_health_info_tv_unit_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_heart_rate_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/input_health_info_tv_value_margin_bottom"
+                    android:layout_marginLeft="@dimen/input_health_info_tv_margin_left"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_manual_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/input_health_info_tv_manual_input_margin_top"
+                android:text="@string/input_title_manual_input"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_health_info_tv_manual_input_text_size" />
+
+
+        </LinearLayout>
+
+
+        <com.emt.pdgo.next.ui.view.LineChartView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/input_health_info_layout_margin_2"
+            android:layout_marginTop="@dimen/input_health_info_layout_margin_1"
+            android:layout_marginRight="@dimen/input_health_info_layout_margin_2"
+            android:layout_marginBottom="@dimen/input_health_info_layout_margin_1"
+            android:layout_toLeftOf="@+id/layout_right" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

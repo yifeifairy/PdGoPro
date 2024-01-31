@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <style name="MarioTheme" parent="Theme.AppCompat.Light.DarkActionBar" >
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MarioTheme.Day" >
+
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="windowActionBar">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置全屏 -->
+        <item name="android:windowFullscreen">true</item>
+
+        <item name="custom_attr_app_bg">@color/custom_color_app_bg_day</item>
+        <item name="custom_attr_app_bg2">@color/custom_color_app_bg_day</item>
+        <item name="custom_attr_app_title_layout_bg">@color/custom_color_app_title_layout_bg_day</item>
+        <item name="custom_attr_app_content_layout_bg">@color/custom_color_app_content_layout_bg_day</item>
+        <item name="custom_attr_app_content_layout_div_color">@color/custom_color_app_content_layout_div_color_day</item>
+
+        <item name="custom_attr_sub_text_color">@color/custom_color_sub_text_color_day</item>
+        <item name="custom_attr_main_text_color">@color/custom_color_main_text_color_day</item>
+
+        <item name="custom_attr_btn_bg">@drawable/custom_drawable_btn_bg_day</item>
+        <item name="custom_attr_btn_text_color">@color/custom_selector_btn_text_color_day</item>
+
+        <item name="custom_attr_check_box_bg">@drawable/custom_drawable_checkbox_bg_day</item>
+        <item name="custom_attr_main_title_color">@color/custom_color_main_title_color_day</item>
+        <item name="custom_attr_check_box_thumb_bg">@drawable/custom_drawable_checkbox_thumb_bg_day</item>
+        <item name="custom_attr_check_box_thumb_margin_left">@dimen/custom_dimen_thumb_margin_left_day</item>
+
+        <item name="custom_attr_user_photo_alpha">@dimen/custom_float_user_photo_alpha_day</item>
+        <item name="custom_attr_user_photo_place_holder">@drawable/custom_drawable_user_photo_place_holder_day</item>
+
+        <item name="custom_attr_nickname_text_color">@color/custom_color_nickname_text_color_day</item>
+        <item name="custom_attr_remark_text_color">@color/custom_color_remark_text_color_day</item>
+
+
+
+        <item name="custom_attr_self_check_bg">@color/custom_attr_self_check_bg_day</item>
+
+        <item name="custom_attr_self_check_progress_bg">@drawable/progress_day</item>
+        <item name="custom_attr_self_check_progress_text_color">@color/custom_attr_self_check_progress_text_color_day</item>
+
+        <item name="custom_attr_self_check_report_bg">@drawable/custom_attr_self_check_report_bg_day</item>
+        <item name="custom_attr_self_check_report_title_color">@color/custom_attr_self_check_report_title_color_day</item>
+        <item name="custom_attr_self_check_report_title_line_color">@color/custom_attr_self_check_report_title_line_color_day</item>
+        <item name="custom_attr_self_check_report_icon_right">@drawable/icon_right_day</item>
+
+        <item name="custom_attr_item_btn_bg">@drawable/item_bg_selector_day</item>
+        <item name="custom_attr_item_btn_text_color">@color/custom_selector_item_btn_text_color_day</item>
+
+        <item name="custom_attr_input_box_bg">@drawable/bg_round_white</item>
+        <item name="custom_attr_input_box_gray_bg">@drawable/bg_edittext_gray</item>
+        <item name="custom_attr_input_box_gray_bg2">@drawable/bg_edittext_gray</item>
+        <!-- 输入框获取焦点的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_input_box_normal_bg">@drawable/bg_edittext_normal_day</item>
+        <!-- 输入框失去的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_input_box_focused_bg">@drawable/bg_edittext_focused_day</item>
+
+        <item name="custom_attr_common_bg">@drawable/bg_round_white</item>
+        <item name="custom_attr_common_text_color">@color/custom_color_common_text_day</item>
+        <item name="custom_attr_common_text_color_2">@color/custom_color_common_text_2_day</item>
+
+        <item name="custom_attr_icon_setting">@drawable/icon_setting_day</item>
+
+        <item name="custom_attr_qrcode_bg">@drawable/bg_round_qrcode_day</item>
+
+
+        <!-- 数字弹出框的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_bg">@drawable/number_dialog_bg_day</item>
+        <!-- 数字弹出框的数字键盘背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_key_board_bg">@drawable/number_dialog_key_board_bg_day</item>
+        <!-- 数字弹出框的数字键盘背景颜色2 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_key_board_bg2">@color/custom_attr_number_dialog_key_board_bg2_day</item>
+        <!-- 数字弹出框的字体颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_board_text_color">@color/custom_attr_number_board_text_color_day</item>
+        <!-- 数字弹出框的数字键盘item的背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_key_board_item_bg">@drawable/key_board_selector_item_day</item>
+        <!-- 数字弹出框的删除图标 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_board_icon_del">@drawable/key_board_icon_del_day</item>
+        <!-- 数字弹出框的向下箭头图标 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_board_icon_arrow">@drawable/key_board_arrow_down_day</item>
+
+        <item name="custom_attr_preparation_upper_part_bg">@drawable/bg_upper_part_day</item>
+        <item name="custom_attr_preparation_icon_head">@drawable/icon_head_day</item>
+        <item name="custom_attr_preparation_user_text_color">@color/custom_attr_preparation_user_text_color_day</item>
+        <item name="custom_attr_preparation_item_bg">@color/custom_attr_preparation_item_bg_day</item>
+        <item name="custom_attr_preparation_item_icon_01">@drawable/preparation_icon_01_day</item>
+        <item name="custom_attr_preparation_item_icon_02">@drawable/preparation_icon_02_day</item>
+        <item name="custom_attr_preparation_item_icon_03">@drawable/preparation_icon_03_day</item>
+        <item name="custom_attr_preparation_item_icon_04">@drawable/water_green</item>
+        <item name="custom_attr_preparation_item_icon_num_01">@drawable/preparation_num_01_day</item>
+        <item name="custom_attr_preparation_item_icon_num_02">@drawable/preparation_num_02_day</item>
+        <item name="custom_attr_preparation_item_icon_num_03">@drawable/preparation_num_03_day</item>
+
+        <item name="custom_attr_pipeline_connection_button_bg">@color/btn_day_color</item>
+        <item name="custom_attr_pipeline_connection_item_num_01">@drawable/step_01_day</item>
+        <item name="custom_attr_pipeline_connection_item_num_02">@drawable/step_02_day</item>
+        <item name="custom_attr_pipeline_connection_item_num_03">@drawable/step_03_day</item>
+        <item name="custom_attr_pipeline_connection_item_num_04">@drawable/step_04_day</item>
+        <item name="custom_attr_pipeline_connection_item_num_05">@drawable/step_05_day</item>
+        <item name="custom_attr_pipeline_connection_item_num_06">@drawable/step_06_day</item>
+
+        <item name="custom_attr_feedback_treatment_duration_bg">@drawable/bg_round_blue</item>
+        <item name="custom_attr_feedback_item_1_bg">@drawable/feedback_item1_day</item>
+        <item name="custom_attr_feedback_item_2_bg">@drawable/feedback_item2_day</item>
+        <item name="custom_attr_feedback_item_3_bg">@drawable/feedback_item3_day</item>
+        <item name="custom_attr_feedback_item_4_bg">@drawable/feedback_item4_day</item>
+
+        <!-- tab背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_tab_bg">@drawable/bg_tab_day</item>
+        <!-- tab选中和未选中背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_tab_select">@drawable/btn_tab_select_day</item>
+        <!-- tab选中和未选中字体颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_tab_text_select">@drawable/btn_tab_text_select_day</item>
+
+        <!-- 治疗主界面左边背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_main_left_bg">@drawable/bg_left_part_day</item>
+        <!-- 治疗主界面右边背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_main_right_bg">@color/custom_attr_treatment_main_right_bg_day</item>
+        <!-- 治疗主界面 流量的item背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_item_volume_bg">@drawable/bg_round_pale_blue_day</item>
+        <!-- 治疗主界面 时间的item背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_item_time_bg">@drawable/bg_round_pale_pink_day</item>
+        <!-- 治疗主界面流量的icon format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_icon_volume">@drawable/treatment_icon_volume_day</item>
+        <!-- 治疗主界面时间的icon format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_icon_time">@drawable/treatment_icon_time_day</item>
+        <!-- 治疗主界面温度的icon format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_icon_temperature">@drawable/treatment_icon_temperature_day</item>
+        <!-- 治疗主界面 时间的item背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_item_temperature_bg">@drawable/bg_round_pale_green_day</item>
+
+        <!-- 设置引流阈值的背景色 format:颜色值、资源引用 -->
+        <item name="custom_attr_drain_arc_bg" >@drawable/bg_arc_gray</item>
+
+        <!-- 倒计时圆圈的背景色 format:颜色值、资源引用 -->
+        <item name="custom_attr_circular_progress_color">@color/custom_attr_circular_progress_color_day</item>
+        <!-- 倒计时圆圈的进度条开始颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_circular_progress_start_color">@color/custom_attr_circular_progress_start_color_day</item>
+        <!-- 倒计时圆圈的进度条结束颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_circular_progress_finish_color">@color/custom_attr_circular_progress_finish_color_day</item>
+
+        <!-- 治疗前身体信息体重item的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_weight_bg">@drawable/bg_round_blue</item>
+        <!-- 治疗前身体信息血压item的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_blood_pressure_bg">@drawable/dialog_btn_green</item>
+        <!-- 治疗前身体信息心率item的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_heart_rate_bg">@drawable/bg_round_purple</item>
+        <!-- 治疗前身体信息标签的字体颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_label_color">@color/custom_attr_health_info_label_color_day</item>
+        <!-- 治疗前身体信息体重icon format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_weight_icon">@drawable/icon_info_weight_day</item>
+        <!-- 治疗前身体信息血压icon format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_blood_pressure_icon">@drawable/icon_info_blood_pressure_day</item>
+        <!-- 治疗前身体信息心率icon format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_heart_rate_icon">@drawable/icon_info_heart_rate_day</item>
+
+        <!-- 自定义对话框背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_dialog_background">@drawable/dialog_background_day</item>
+
+    </style>
+
+    <style name="MarioTheme.Night" >
+
+        <item name="windowActionBar">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置全屏 -->
+        <item name="android:windowFullscreen">true</item>
+
+        <item name="custom_attr_app_bg">@color/custom_color_app_bg_night</item>
+        <item name="custom_attr_app_bg2">@color/custom_color_app_bg2_night</item>
+        <item name="custom_attr_app_title_layout_bg">@color/custom_color_app_title_layout_bg_night</item>
+        <item name="custom_attr_app_content_layout_bg">@color/custom_color_app_content_layout_bg_night</item>
+        <item name="custom_attr_app_content_layout_div_color">@color/custom_color_app_content_layout_div_color_night</item>
+
+        <item name="custom_attr_sub_text_color">@color/custom_color_sub_text_color_night</item>
+        <item name="custom_attr_main_text_color">@color/custom_color_main_text_color_night</item>
+
+        <item name="custom_attr_btn_bg">@drawable/custom_drawable_btn_bg_night</item>
+        <item name="custom_attr_btn_text_color">@color/custom_selector_btn_text_color_night</item>
+
+        <item name="custom_attr_check_box_bg">@drawable/custom_drawable_checkbox_bg_night</item>
+        <item name="custom_attr_main_title_color">@color/custom_color_main_title_color_night</item>
+        <item name="custom_attr_check_box_thumb_bg">@drawable/custom_drawable_checkbox_thumb_bg_night</item>
+        <item name="custom_attr_check_box_thumb_margin_left">@dimen/custom_dimen_thumb_margin_left_night</item>
+
+        <item name="custom_attr_user_photo_alpha">@dimen/custom_float_user_photo_alpha_night</item>
+        <item name="custom_attr_user_photo_place_holder">@drawable/custom_drawable_user_photo_place_holder_night</item>
+
+        <item name="custom_attr_nickname_text_color">@color/custom_color_nickname_text_color_night</item>
+        <item name="custom_attr_remark_text_color">@color/custom_color_remark_text_color_night</item>
+
+
+        <item name="custom_attr_self_check_bg">@color/custom_attr_self_check_bg_night</item>
+
+        <item name="custom_attr_self_check_progress_bg">@drawable/progress_night</item>
+        <item name="custom_attr_self_check_progress_text_color">@color/custom_attr_self_check_progress_text_color_night</item>
+
+        <item name="custom_attr_self_check_report_bg">@drawable/custom_attr_self_check_report_bg_night</item>
+        <item name="custom_attr_self_check_report_title_color">@color/custom_attr_self_check_report_title_color_night</item>
+        <item name="custom_attr_self_check_report_title_line_color">@color/custom_attr_self_check_report_title_line_color_night</item>
+        <item name="custom_attr_self_check_report_icon_right">@drawable/icon_right_night</item>
+
+        <item name="custom_attr_item_btn_bg">@drawable/item_bg_selector_night</item>
+        <item name="custom_attr_item_btn_text_color">@color/custom_selector_item_btn_text_color_night</item>
+
+        <item name="custom_attr_input_box_bg">@drawable/bg_round_dark</item>
+        <item name="custom_attr_input_box_gray_bg">@drawable/bg_round_dark</item>
+        <item name="custom_attr_input_box_gray_bg2">@drawable/bg_round_dark2</item>
+        <!-- 输入框获取焦点的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_input_box_normal_bg">@drawable/bg_edittext_normal_night</item>
+        <!-- 输入框失去的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_input_box_focused_bg">@drawable/bg_edittext_focused_night</item>
+
+        <item name="custom_attr_common_bg">@drawable/bg_round_dark</item>
+        <item name="custom_attr_common_text_color">@color/custom_color_common_text_night</item>
+        <item name="custom_attr_common_text_color_2">@color/custom_color_common_text_2_night</item>
+        <!-- 设置图标 format:颜色值、资源引用 -->
+        <item name="custom_attr_icon_setting">@drawable/icon_setting_night</item>
+
+        <!-- 设置二维码背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_qrcode_bg">@drawable/bg_round_qrcode_night</item>
+
+        <!-- 数字弹出框的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_bg">@drawable/number_dialog_bg_night</item>
+        <!-- 数字弹出框的数字键盘背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_key_board_bg">@drawable/number_dialog_key_board_bg_night</item>
+        <!-- 数字弹出框的数字键盘背景颜色2 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_key_board_bg2">@color/custom_attr_number_dialog_key_board_bg2_night</item>
+        <!-- 数字弹出框的字体颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_board_text_color">@color/custom_attr_number_board_text_color_night</item>
+        <!-- 数字弹出框的数字键盘item的背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_dialog_key_board_item_bg">@drawable/key_board_selector_item_night</item>
+        <!-- 数字弹出框的删除图标 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_board_icon_del">@drawable/key_board_icon_del_night</item>
+        <!-- 数字弹出框的向下箭头图标 format:颜色值、资源引用 -->
+        <item name="custom_attr_number_board_icon_arrow">@drawable/key_board_arrow_down_night</item>
+
+        <!-- 准备工作上半部分背景图片 format:颜色值、资源引用 -->
+        <item name="custom_attr_preparation_upper_part_bg">@drawable/bg_upper_part_night</item>
+        <item name="custom_attr_preparation_icon_head">@drawable/icon_head_night</item>
+        <item name="custom_attr_preparation_user_text_color">@color/custom_attr_preparation_user_text_color_night</item>
+        <item name="custom_attr_preparation_item_bg">@color/custom_attr_preparation_item_bg_night</item>
+        <!-- 准备工作item上icon format:颜色值、资源引用 -->
+        <item name="custom_attr_preparation_item_icon_01">@drawable/preparation_icon_01_night</item>
+        <item name="custom_attr_preparation_item_icon_02">@drawable/preparation_icon_02_night</item>
+        <item name="custom_attr_preparation_item_icon_03">@drawable/preparation_icon_03_night</item>
+        <item name="custom_attr_preparation_item_icon_04">@drawable/water_green</item>
+        <item name="custom_attr_preparation_item_icon_num_01">@drawable/preparation_num_01_night</item>
+        <item name="custom_attr_preparation_item_icon_num_02">@drawable/preparation_num_02_night</item>
+        <item name="custom_attr_preparation_item_icon_num_03">@drawable/preparation_num_03_night</item>
+
+        <!-- 管路连接item上数字icon format:颜色值、资源引用 -->
+        <item name="custom_attr_pipeline_connection_button_bg">@color/btn_night_color</item>
+        <item name="custom_attr_pipeline_connection_item_num_01">@drawable/step_01_night</item>
+        <item name="custom_attr_pipeline_connection_item_num_02">@drawable/step_02_night</item>
+        <item name="custom_attr_pipeline_connection_item_num_03">@drawable/step_03_night</item>
+        <item name="custom_attr_pipeline_connection_item_num_04">@drawable/step_04_night</item>
+        <item name="custom_attr_pipeline_connection_item_num_05">@drawable/step_05_night</item>
+        <item name="custom_attr_pipeline_connection_item_num_06">@drawable/step_06_night</item>
+
+        <!-- 治疗反馈中治疗量item背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_feedback_treatment_duration_bg">@drawable/bg_round_dark</item>
+        <item name="custom_attr_feedback_item_1_bg">@drawable/feedback_item1_night</item>
+        <item name="custom_attr_feedback_item_2_bg">@drawable/feedback_item2_night</item>
+        <item name="custom_attr_feedback_item_3_bg">@drawable/feedback_item3_night</item>
+        <item name="custom_attr_feedback_item_4_bg">@drawable/feedback_item4_night</item>
+
+        <!-- tab背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_tab_bg">@drawable/bg_tab_night</item>
+        <!-- tab选中和未选中背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_tab_select">@drawable/btn_tab_select_night</item>
+        <!-- tab选中和未选中字体颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_tab_text_select">@drawable/btn_tab_text_select_night</item>
+
+        <!-- 治疗主界面左边背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_main_left_bg">@drawable/bg_left_part_night</item>
+        <!-- 治疗主界面右边背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_main_right_bg">@color/custom_attr_treatment_main_right_bg_night</item>
+        <!-- 治疗主界面 流量的item背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_item_volume_bg">@drawable/bg_round_pale_blue_night</item>
+        <!-- 治疗主界面 时间的item背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_item_time_bg">@drawable/bg_round_pale_pink_night</item>
+        <!-- 治疗主界面流量的icon format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_icon_volume">@drawable/treatment_icon_volume_night</item>
+        <!-- 治疗主界面时间的icon format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_icon_time">@drawable/treatment_icon_time_night</item>
+        <!-- 治疗主界面温度的icon format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_icon_temperature">@drawable/treatment_icon_temperature_night</item>
+        <!-- 治疗主界面 时间的item背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_treatment_item_temperature_bg">@drawable/bg_round_pale_green_night</item>
+
+        <!-- 设置引流阈值的背景色 format:颜色值、资源引用 -->
+        <item name="custom_attr_drain_arc_bg" >@drawable/bg_arc_dark</item>
+
+        <!-- 倒计时圆圈的背景色 format:颜色值、资源引用 -->
+        <item name="custom_attr_circular_progress_color">@color/custom_attr_circular_progress_color_night</item>
+        <!-- 倒计时圆圈的进度条开始颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_circular_progress_start_color">@color/custom_attr_circular_progress_start_color_night</item>
+        <!-- 倒计时圆圈的进度条结束颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_circular_progress_finish_color">@color/custom_attr_circular_progress_finish_color_night</item>
+
+        <!-- 治疗前身体信息体重item的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_weight_bg">@drawable/bg_round_black</item>
+        <!-- 治疗前身体信息血压item的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_blood_pressure_bg">@drawable/bg_round_black</item>
+        <!-- 治疗前身体信息心率item的背景颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_heart_rate_bg">@drawable/bg_round_black</item>
+        <!-- 治疗前身体信息标签的字体颜色 format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_label_color">@color/custom_attr_health_info_label_color_night</item>
+        <!-- 治疗前身体信息体重icon format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_weight_icon">@drawable/icon_info_weight_night</item>
+        <!-- 治疗前身体信息血压icon format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_blood_pressure_icon">@drawable/icon_info_blood_pressure_night</item>
+        <!-- 治疗前身体信息心率icon format:颜色值、资源引用 -->
+        <item name="custom_attr_health_info_item_heart_rate_icon">@drawable/icon_info_heart_rate_night</item>
+
+        <!-- 自定义对话框背景 format:颜色值、资源引用 -->
+        <item name="custom_attr_dialog_background">@drawable/dialog_background_night</item>
+
+    </style>
+
+    <style name="MarioTheme.Day.Preview" />
+
+    <style name="MarioTheme.Night.Preview" />
+
+</resources>

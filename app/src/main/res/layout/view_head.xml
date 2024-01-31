@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_height="@dimen/navbar_height">
+
+    <com.emt.pdgo.next.ui.view.StateButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/treatment_countdown_btn_width"
+        android:layout_height="@dimen/treatment_countdown_btn_height"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:drawableLeft="@mipmap/icon_back"
+        android:paddingLeft="@dimen/input_box_item_padding_left"
+        android:paddingRight="@dimen/input_box_item_padding_left"
+        android:text="@string/btn_back"
+        android:textSize="@dimen/treatment_main_tv_skip_text_size"
+        app:normalBackgroundColor="#ffffff"
+        app:normalStrokeColor="#333333"
+        app:normalStrokeWidth="2dp"
+        app:normalTextColor="@android:color/black"
+        app:pressedBackgroundColor="#000000"
+        app:pressedStrokeColor="#000000"
+        app:pressedStrokeWidth="2dp"
+        app:pressedTextColor="@android:color/white"
+        app:radius="5dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:id="@+id/silencersLayout"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/ringLayout"
+        android:background="@drawable/pink_bg"
+        android:visibility="gone"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/silencers"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="消音中"
+            android:id="@+id/tvSilencers"
+            android:textColor="#FF0000"
+            android:textSize="28sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:id="@+id/ringLayout"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:padding="@dimen/dp_10"
+        android:layout_toStartOf="@id/layout_right_menu"
+        android:background="@drawable/pink_bg"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/rining"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="警报中"
+            android:textColor="#FF0000"
+            android:textSize="28sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:text="WIFI"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:textSize="@dimen/navbar_btn_text_size"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:text="4G"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:textSize="@dimen/navbar_btn_text_size"-->
+<!--        android:layout_height="wrap_content" />-->
+
+    <RelativeLayout
+        android:id="@+id/layout_right_menu"
+        android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+        android:layout_height="@dimen/treatment_countdown_btn_height"
+        android:background="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:visibility="gone">
+
+        <com.emt.pdgo.next.ui.view.StateButton
+            android:id="@+id/btn_submit"
+            android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+            android:layout_height="58dp"
+            android:text="@string/btn_save"
+            android:textSize="@dimen/navbar_title_text_size"
+            android:visibility="gone"
+            app:normalBackgroundColor="#0089FF"
+            app:normalStrokeColor="#0056A0"
+            app:normalStrokeWidth="2dp"
+            app:normalTextColor="@android:color/white"
+            app:pressedStrokeWidth="2dp"
+            app:pressedStrokeColor="#0073D6"
+            app:pressedBackgroundColor="#0073D6"
+            app:pressedTextColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_sound_off"
+            android:layout_width="@dimen/navbar_btn_sound_width"
+            android:layout_height="@dimen/navbar_btn_sound_height"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_sound_off"
+            android:clickable="false"
+            android:visibility="gone" />
+
+
+        <Button
+            android:id="@+id/btn_sound_on"
+            android:layout_width="@dimen/navbar_btn_sound_width"
+            android:layout_height="@dimen/navbar_btn_sound_height"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_sound_on"
+            android:clickable="false"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/btnSound"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:layout_width="@dimen/navbar_btn_sound_height"
+            android:src="@drawable/icon_sound_01"
+            android:layout_height="@dimen/navbar_btn_sound_height" />
+    </RelativeLayout>
+
+    <com.emt.pdgo.next.ui.view.Breathe
+        android:layout_width="@dimen/navbar_height"
+        android:id="@+id/breathe"
+        android:layout_centerInParent="true"
+        android:layout_height="@dimen/navbar_height" />
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="?attr/custom_attr_common_text_color"
+        android:textSize="@dimen/navbar_title_text_size" />
+
+
+</RelativeLayout>

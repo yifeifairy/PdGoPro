@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/view_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rinseLayout"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/preFlushingLayout"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+            android:layout_height="@dimen/number_board_popup_layout_height">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_margin="@dimen/input_box_et_margin_right"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/autoPreLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/btn_prerinse_select"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="@dimen/input_health_info_tv_value_text_size"
+                        android:src="@mipmap/auto_pf" />
+
+                    <TextView
+                        android:id="@+id/tvAutoPre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="开始预冲"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/treatment_main_tv_curr_volume_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ivLayout"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:id="@+id/videoView"
+                android:src="@drawable/rinse"
+                android:scaleType="fitXY"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="@dimen/treatment_main_layout_handle_width"
+        android:text="完成预冲"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rinseLayout"
+        android:layout_marginTop="@dimen/treatment_evaluation_margin"
+        android:background="@drawable/bg_arc_blue"
+        android:id="@+id/btnFinish"
+        android:visibility="gone"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="@dimen/feedbook_layout_treatment_duration_height"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="@dimen/input_treatment_tv_cycle_select_width_120"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_prerinse_select"
+        android:gravity="center"
+        android:layout_margin="@dimen/treatment_countdown_margin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/manualLayout"
+        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dialog_alarm_btn_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navbar_title_text_size"
+                android:layout_height="@dimen/navbar_title_text_size"
+                android:src="@mipmap/pre_flushing" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvManualPre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="手动预冲"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/navbar_title_text_size" />
+
+                <TextView
+                    android:id="@+id/tvManualPreTips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(长按开启)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/navbar_title_text_size_2" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+        <include
+            android:id="@+id/rootView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/navbar_btn_height"
+            android:layout_alignParentBottom="true"
+            layout="@layout/root_view" />
+
+</RelativeLayout>

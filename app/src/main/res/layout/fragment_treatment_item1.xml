@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/layout_input_box_bg_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="@drawable/pa1"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="@drawable/pa2"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_2"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item2"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="@drawable/pa3"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_3"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_number_of_times"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item3"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="@drawable/pa4"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_min"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item4"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="@drawable/pa5"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_5"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item5"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="@drawable/pa6"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_6"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item6"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:background="@drawable/pa3"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layout_height="match_parent" >
+                    <CheckBox
+                        android:id="@+id/finalSupplyCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="末袋补液"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:theme="@style/CheckBoxTheme" />
+
+                    <TextView
+                        android:text="(通道1)"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/layout_prescription_item_7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="@drawable/pa9"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_9"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item7"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:background="@drawable/pa8"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_8"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item8"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="13dp"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/layout_prescription_item_9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="@drawable/gray_shape"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_7"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/unit_ml"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                <TextView
+                    android:id="@+id/et_prescription_item9"
+                    android:layout_width="@dimen/input_box_et_width"
+                    android:layout_height="@dimen/input_box_et_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
+                    android:maxLength="7"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+                <com.emt.pdgo.next.ui.view.StateButton
+                        android:id="@+id/btnNext"
+                        android:layout_width="@dimen/custom_main_btn_re_selfcheck_width"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="end"
+                        android:text="确定"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:visibility="visible"
+                        app:normalBackgroundColor="#0073D6"
+                        app:normalStrokeColor="#003869"
+                        app:normalStrokeWidth="3dp"
+                        app:normalTextColor="@android:color/white"
+                        app:pressedBackgroundColor="#003869"
+                        app:pressedStrokeColor="#003869"
+                        app:pressedStrokeWidth="3dp"
+                        app:pressedTextColor="@android:color/white"
+                        app:radius="5dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

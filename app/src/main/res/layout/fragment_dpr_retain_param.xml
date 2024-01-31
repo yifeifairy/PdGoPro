@@ -1,0 +1,109 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+
+    tools:context="com.emt.pdgo.next.ui.fragment.dpr.param.DprRetainParamFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="留腹扣除"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp">
+
+                    <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                        android:id="@+id/abdSwitch"
+                        android:layout_width="@dimen/layout_input_box_labeledswitch_width"
+                        android:layout_height="@dimen/layout_input_box_labeledswitch_height"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="11dp"
+                        android:textSize="@dimen/layout_input_box_labeledswitch_text_size"
+                        labeled_switch:colorBorder="#ff0089ff"
+                        labeled_switch:colorOn="#ff0089ff"
+                        labeled_switch:on="true"
+                        labeled_switch:textOff="@string/switch_text_off2"
+                        labeled_switch:textOn="@string/switch_text_on2" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="只统计循环周期的超滤量"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp">
+
+                    <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                        android:id="@+id/fitSwitch"
+                        android:layout_width="@dimen/layout_input_box_labeledswitch_width"
+                        android:layout_height="@dimen/layout_input_box_labeledswitch_height"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="11dp"
+                        android:textSize="@dimen/layout_input_box_labeledswitch_text_size"
+                        labeled_switch:colorBorder="#ff0089ff"
+                        labeled_switch:colorOn="#ff0089ff"
+                        labeled_switch:on="true"
+                        labeled_switch:textOff="@string/switch_text_off2"
+                        labeled_switch:textOn="@string/switch_text_on2" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

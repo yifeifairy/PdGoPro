@@ -1,0 +1,2 @@
+rootProject.name = 'PDGO-NEXT-Android-Multiple-Resolutions-2022'
+include ':app'

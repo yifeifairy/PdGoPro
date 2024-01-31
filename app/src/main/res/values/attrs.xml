@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <attr name="chooserSelectedColor" format="reference|color" />-->
+<!--    <attr name="chooserUnselectedColor" format="reference|color" />-->
+<!--    <attr name="chooserBackground" format="reference|color" />-->
+<!--    <attr name="keyboardBackground" format="reference|color" />-->
+<!--    <attr name="keyPreview" format="boolean" />-->
+<!--    <declare-styleable name="SecurityEditText">-->
+<!--        <attr name="chooserSelectedColor" format="reference|color" />-->
+<!--        <attr name="chooserUnselectedColor" format="reference|color"/>-->
+<!--        <attr name="chooserBackground" format="reference|color" />-->
+<!--        <attr name="keyboardBackground" format="reference|color"/>-->
+<!--        <attr name="keyPreview" format="boolean"/>-->
+<!--    </declare-styleable>-->
+    <declare-styleable
+        name="Toggle">
+
+        <attr
+            name="textOn"
+            format="string"/>
+
+        <attr
+            name="textOff"
+            format="string"/>
+
+        <attr
+            name="colorOff"
+            format="color"/>
+
+        <attr
+            name="colorOn"
+            format="color"/>
+
+        <attr
+            name="colorBorder"
+            format="color"/>
+
+        <attr
+            name="colorDisabled"
+            format="color"/>
+
+        <attr name="on"
+            format="boolean"/>
+
+        <attr name="android:textSize"/>
+
+        <attr name="android:enabled"/>
+    </declare-styleable>
+    <declare-styleable name="StateButton">
+
+        <!--text color-->
+        <attr name="normalTextColor" format="color|reference"/>
+        <attr name="pressedTextColor" format="color|reference"/>
+        <attr name="unableTextColor" format="color|reference"/>
+
+        <!--stroke width and color, dash width, dash gap-->
+        <attr name="strokeDashWidth" format="dimension|reference"/>
+        <attr name="strokeDashGap" format="dimension|reference"/>
+        <attr name="normalStrokeWidth" format="dimension|reference"/>
+        <attr name="pressedStrokeWidth" format="dimension|reference"/>
+        <attr name="unableStrokeWidth" format="dimension|reference"/>
+        <attr name="normalStrokeColor" format="color|reference"/>
+        <attr name="pressedStrokeColor" format="color|reference"/>
+        <attr name="unableStrokeColor" format="color|reference"/>
+
+        <!--background color-->
+        <attr name="normalBackgroundColor" format="color|reference"/>
+        <attr name="pressedBackgroundColor" format="color|reference"/>
+        <attr name="unableBackgroundColor" format="color|reference"/>
+
+        <!--background radius-->
+        <attr name="radius" format="dimension|reference"/>
+        <attr name="round" format="boolean|reference"/>
+
+        <!--animation duration-->
+        <attr name="animationDuration" format="integer|reference"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="StateImageView">
+        <attr name="normalBackground" format="color|reference"/>
+        <attr name="pressedBackground" format="color|reference"/>
+        <attr name="unableBackground" format="color|reference"/>
+
+        <!--animation duration-->
+        <attr name="AnimationDuration" format="integer|reference"/>
+    </declare-styleable>
+
+
+
+
+
+
+
+    <declare-styleable name="ShadowView">
+        <attr name="android:foreground" />
+        <attr name="shadowMargin" format="dimension" />
+        <attr name="shadowMarginTop" format="dimension" />
+        <attr name="shadowMarginLeft" format="dimension" />
+        <attr name="shadowMarginRight" format="dimension" />
+        <attr name="shadowMarginBottom" format="dimension" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="cornerRadiusTL" format="dimension" />
+        <attr name="cornerRadiusTR" format="dimension" />
+        <attr name="cornerRadiusBL" format="dimension" />
+        <attr name="cornerRadiusBR" format="dimension" />
+        <attr name="foregroundColor" format="color" />
+        <attr name="shadowColor" format="color" />
+        <attr name="shadowDx" format="float" />
+        <attr name="shadowDy" format="float" />
+        <attr name="shadowRadius" format="dimension" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowView_Layout">
+        <attr name="layout_gravity" format="integer"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="ShadowLayout">
+        <!--阴影的圆角大小-->
+        <attr name="yc_cornerRadius" format="dimension" />
+        <!--阴影的扩散范围(也可以理解为扩散程度)-->
+        <attr name="yc_shadowLimit" format="dimension" />
+        <!--阴影颜色-->
+        <attr name="yc_shadowColor" format="color" />
+        <!--x轴的偏移量-->
+        <attr name="yc_dx" format="dimension" />
+        <!--y轴的偏移量-->
+        <attr name="yc_dy" format="dimension" />
+        <!--左边是否显示阴影-->
+        <attr name="yc_leftShow" format="boolean" />
+        <!--右边是否显示阴影-->
+        <attr name="yc_rightShow" format="boolean" />
+        <!--上边是否显示阴影-->
+        <attr name="yc_topShow" format="boolean" />
+        <!--下面是否显示阴影-->
+        <attr name="yc_bottomShow" format="boolean" />
+    </declare-styleable>
+
+
+</resources>

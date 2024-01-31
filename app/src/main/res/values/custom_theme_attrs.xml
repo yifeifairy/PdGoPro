@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 控制app背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_app_bg" format="color|reference" />
+    <!-- 控制app背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_app_bg2" format="color|reference" />
+    <!-- 控制app标题栏背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_app_title_layout_bg" format="color|reference" />
+    <!-- 控制app内容区背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_app_content_layout_bg" format="color|reference" />
+    <!-- 控制app内容区分割线颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_app_content_layout_div_color" format="color|reference" />
+
+    <!-- 控制按钮背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_btn_bg" format="color|reference" />
+    <!-- 控制按钮上的字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_btn_text_color" format="color|reference" />
+
+    <!-- 控制副文本字体颜色，如：提示、描述 format:颜色值、资源引用 -->
+    <attr name="custom_attr_sub_text_color" format="color|reference" />
+    <!-- 控制主文本字体颜色，如：标题、标签 format:颜色值、资源引用 -->
+    <attr name="custom_attr_main_text_color" format="color|reference" />
+
+    <!-- CheckBox背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_check_box_bg" format="reference" />
+    <!-- CheckBox指示器颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_check_box_thumb_bg" format="reference" />
+    <!-- 首页大标题颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_main_title_color" format="color|reference" />
+    <!-- CheckBox指示器marginLeft format:尺寸值、资源引用 -->
+    <attr name="custom_attr_check_box_thumb_margin_left" format="dimension|reference" />
+
+    <!-- 用户头像显示的透明度 format:尺寸值、资源引用 -->
+    <attr name="custom_attr_user_photo_alpha" format="dimension|reference" />
+    <!-- 用户头像显示占位Drawable format:颜色值、资源引用 -->
+    <attr name="custom_attr_user_photo_place_holder" format="color|reference" />
+
+    <!-- 用户昵称字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_nickname_text_color" format="color|reference" />
+    <!-- 用户备注字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_remark_text_color" format="color|reference" />
+
+
+
+
+    <!-- 自检界面的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_bg" format="color|reference" />
+    <!-- 自检报告的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_report_bg" format="color|reference" />
+    <!-- 自检报告的标题字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_report_title_color" format="color|reference" />
+    <!-- 自检报告的标题下划线颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_report_title_line_color" format="color|reference" />
+    <!-- 自检报告的标题字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_report_title_sub_color" format="color|reference" />
+
+    <!-- 自检界面的进度条背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_progress_bg" format="color|reference" />
+    <!-- 自检界面的进度条相关字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_progress_text_color" format="color|reference" />
+
+    <!-- 自检报告的打勾图标 format:颜色值、资源引用 -->
+    <attr name="custom_attr_self_check_report_icon_right" format="color|reference" />
+
+    <!-- 通用的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_common_bg" format="color|reference" />
+    <!-- 通用的字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_common_text_color" format="color|reference" />
+    <!-- 通用的字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_common_text_color_2" format="color|reference" />
+
+    <!-- item按钮背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_item_btn_bg" format="color|reference" />
+    <!-- item按钮上的字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_item_btn_text_color" format="color|reference" />
+
+    <!-- 输入框或者标签的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_input_box_bg" format="color|reference" />
+    <!-- 带灰色边框的输入框或者标签的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_input_box_gray_bg" format="color|reference" />
+    <!-- 带灰色边框的输入框或者标签的背景颜色2 format:颜色值、资源引用 -->
+    <attr name="custom_attr_input_box_gray_bg2" format="color|reference" />
+    <!-- 输入框获取焦点的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_input_box_normal_bg" format="color|reference" />
+    <!-- 输入框失去的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_input_box_focused_bg" format="color|reference" />
+
+    <!-- 设置图标 format:颜色值、资源引用 -->
+    <attr name="custom_attr_icon_setting" format="color|reference" />
+
+    <!-- 数字弹出框的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_number_dialog_bg" format="color|reference" />
+    <!-- 数字弹出框的数字键盘背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_number_dialog_key_board_bg" format="color|reference" />
+    <!-- 数字弹出框的数字键盘背景颜色2 format:颜色值、资源引用 -->
+    <attr name="custom_attr_number_dialog_key_board_bg2" format="color|reference" />
+    <!-- 数字弹出框的字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_number_board_text_color" format="color|reference" />
+    <!-- 数字弹出框的数字键盘item的背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_number_dialog_key_board_item_bg" format="color|reference" />
+    <!-- 数字弹出框的删除图标 format:颜色值、资源引用 -->
+    <attr name="custom_attr_number_board_icon_del" format="color|reference" />
+    <!-- 数字弹出框的向下箭头图标 format:颜色值、资源引用 -->
+    <attr name="custom_attr_number_board_icon_arrow" format="color|reference" />
+
+    <!-- 设置二维码背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_qrcode_bg" format="color|reference" />
+
+    <!-- 准备工作上半部分背景图片 format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_upper_part_bg" format="color|reference" />
+    <!-- 准备工作登录用户的字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_user_text_color" format="color|reference" />
+    <!-- 准备工作登录用户的icon图标 format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_icon_head" format="color|reference" />
+    <!-- 准备工作item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_item_bg" format="color|reference" />
+    <!-- 准备工作item上icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_item_icon_01" format="color|reference" />
+    <!-- 准备工作item上icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_item_icon_02" format="color|reference" />
+    <!-- 准备工作item上icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_item_icon_03" format="color|reference" />
+
+    <attr name="custom_attr_preparation_item_icon_04" format="color|reference" />
+    <!-- 准备工作item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_item_icon_num_01" format="color|reference" />
+    <!-- 准备工作item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_item_icon_num_02" format="color|reference" />
+    <!-- 准备工作item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_preparation_item_icon_num_03" format="color|reference" />
+
+    <!-- 管路连接按钮的背景演示 format:颜色值、资源引用 -->
+    <attr name="custom_attr_pipeline_connection_button_bg" format="color|reference" />
+    <!-- 管路连接item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_pipeline_connection_item_num_01" format="color|reference" />
+    <!-- 管路连接item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_pipeline_connection_item_num_02" format="color|reference" />
+    <!-- 管路连接item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_pipeline_connection_item_num_03" format="color|reference" />
+    <!-- 管路连接item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_pipeline_connection_item_num_04" format="color|reference" />
+    <!-- 管路连接item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_pipeline_connection_item_num_05" format="color|reference" />
+    <!-- 管路连接item上数字icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_pipeline_connection_item_num_06" format="color|reference" />
+
+    <!-- 治疗反馈中治疗量item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_feedback_treatment_duration_bg" format="color|reference" />
+    <!-- 治疗反馈中治疗量item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_feedback_item_1_bg" format="color|reference" />
+    <!-- 治疗反馈中治疗量item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_feedback_item_2_bg" format="color|reference" />
+    <!-- 治疗反馈中治疗量item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_feedback_item_3_bg" format="color|reference" />
+    <!-- 治疗反馈中治疗量item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_feedback_item_4_bg" format="color|reference" />
+
+    <!-- tab背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_tab_bg" format="color|reference" />
+    <!-- tab选中和未选中背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_tab_select" format="color|reference" />
+    <!-- tab选中和未选中字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_tab_text_select" format="color|reference" />
+
+    <!-- 治疗主界面左边背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_main_left_bg" format="color|reference" />
+    <!-- 治疗主界面右边背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_main_right_bg" format="color|reference" />
+    <!-- 治疗主界面 流量的item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_item_volume_bg" format="color|reference" />
+    <!-- 治疗主界面 时间的item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_item_time_bg" format="color|reference" />
+    <!-- 治疗主界面流量的icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_icon_volume" format="color|reference" />
+    <!-- 治疗主界面时间的icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_icon_time" format="color|reference" />
+    <!-- 治疗主界面温度的icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_icon_temperature" format="color|reference" />
+    <!-- 治疗主界面 温度的item背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_treatment_item_temperature_bg" format="color|reference" />
+
+    <!-- 设置引流阈值的背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_drain_arc_bg" format="color|reference" />
+
+    <!-- 倒计时圆圈的背景色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_circular_progress_color" format="color|reference" />
+    <!-- 倒计时圆圈的进度条开始颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_circular_progress_start_color" format="color|reference" />
+    <!-- 倒计时圆圈的进度条结束颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_circular_progress_finish_color" format="color|reference" />
+
+    <!-- 治疗前身体信息体重item的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_health_info_item_weight_bg" format="color|reference" />
+    <!-- 治疗前身体信息血压item的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_health_info_item_blood_pressure_bg" format="color|reference" />
+    <!-- 治疗前身体信息心率item的背景颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_health_info_item_heart_rate_bg" format="color|reference" />
+    <!-- 治疗前身体信息标签的字体颜色 format:颜色值、资源引用 -->
+    <attr name="custom_attr_health_info_label_color" format="color|reference" />
+    <!-- 治疗前身体信息体重icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_health_info_item_weight_icon" format="color|reference" />
+    <!-- 治疗前身体信息血压icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_health_info_item_blood_pressure_icon" format="color|reference" />
+    <!-- 治疗前身体信息心率icon format:颜色值、资源引用 -->
+    <attr name="custom_attr_health_info_item_heart_rate_icon" format="color|reference" />
+
+    <!-- 自定义对话框背景 format:颜色值、资源引用 -->
+    <attr name="custom_attr_dialog_background" format="color|reference" />
+
+</resources>

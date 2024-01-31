@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_main_report_item_height"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_alarm_system"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_alarm_system"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_alarm_system"
+                android:text="报警系统"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_module_heating"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_module_heating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_module_heating"
+                android:text="加热模块"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_module_control"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_module_control"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_module_control"
+                android:text="控制模块"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivT0"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvT0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivT0"
+                android:text="T0"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_main_report_item_height"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_module_supply"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_module_supply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_module_supply"
+                android:text="补液模块"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_module_perfusion"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_module_perfusion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_module_perfusion"
+                android:text="灌注模块"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_module_drain"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_module_drain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_module_drain"
+                android:text="引流模块"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_main_report_item_height"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_module_upper_weight"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_module_upper_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_module_upper_weight"
+                android:text="透析液模块"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_module_lower_weight"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tv_module_lower_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iv_module_lower_weight"
+                android:text="废液模块"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivT1"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvT1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivT1"
+                android:text="T1"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_main_report_item_height"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivPerfusion"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvPerfusion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivPerfusion"
+                android:text="灌注阀"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivRehydration"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvRehydration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivRehydration"
+                android:text="补液阀"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivT2"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivT2"
+                android:text="T2"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_main_report_item_height"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivDrainage"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvDrainage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivDrainage"
+                android:text="引流阀"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivPressure"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvPressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivPressure"
+                android:text="负压引流阀"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivSafe"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvSafe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivSafe"
+                android:text="安全阀"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_main_report_item_height"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivRehydration2"
+                android:layout_width="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_height="@dimen/custom_main_iv_check_result_width_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:background="?attr/custom_attr_self_check_report_icon_right" />
+
+            <TextView
+                android:id="@+id/tvRehydration2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivRehydration2"
+                android:text="末袋补液阀"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/custom_main_tv_report_title_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

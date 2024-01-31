@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/custom_attr_app_bg"
+    android:fadeScrollbars="false"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="引流参数设定"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/input_treatment_params_type_text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_params_type_margin_left"
+                android:background="@color/blue" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/input_treatment_layout_params_percentage_margin_left_1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="50%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_treatment_params_percentage_margin_left_1"
+                    android:gravity="center"
+                    android:text="75%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_treatment_params_percentage_margin_left_2"
+                    android:gravity="center"
+                    android:text="100%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_treatment_params_percentage_margin_left_2"
+                    android:gravity="center"
+                    android:text="120%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/input_treatment_layout_params_percentage_margin_left_2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="50%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_treatment_params_percentage_margin_left_1"
+                    android:gravity="center"
+                    android:text="75%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_treatment_params_percentage_margin_left_2"
+                    android:gravity="center"
+                    android:text="100%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_params_percentage_width_2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/input_treatment_params_percentage_margin_left_2"
+                    android:gravity="center"
+                    android:text="120%"
+                    android:textColor="#ff0089ff"
+                    android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/input_treatment_params_item_height"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="零周期引流阈值"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <RelativeLayout
+                android:id="@+id/layout_drain_threshold_zero_cycle"
+                android:layout_width="@dimen/input_treatment_layout_drain_threshold_zero_cycle_width"
+                android:layout_height="@dimen/input_treatment_layout_drain_threshold_zero_cycle_height"
+                android:layout_marginLeft="@dimen/input_treatment_layout_drain_threshold_zero_cycle_margin_left">
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_layout_drain_threshold_zero_cycle_width"
+                    android:layout_height="@dimen/input_treatment_layout_drain_threshold_zero_cycle_height"
+                    android:background="?attr/custom_attr_drain_arc_bg" />
+
+                <TextView
+                    android:id="@+id/tv_zero_cycle_select"
+                    android:layout_width="@dimen/input_treatment_tv_zero_cycle_select_width"
+                    android:layout_height="@dimen/input_treatment_tv_zero_cycle_select_height"
+                    android:background="@drawable/bg_arc_blue" />
+
+                <ImageView
+                    android:layout_width="@dimen/input_treatment_iv_zero_cycle_select_width"
+                    android:layout_height="@dimen/input_treatment_iv_zero_cycle_select_height"
+                    android:layout_alignRight="@+id/tv_zero_cycle_select"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/input_treatment_iv_zero_cycle_select_margin"
+                    android:layout_marginRight="@dimen/input_treatment_iv_zero_cycle_select_margin"
+                    android:background="@drawable/icon_5_zhibiao" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/input_treatment_tv_zero_cycle_select_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_layout_drain_threshold_other_cycle_label_margin_left"
+                android:gravity="center_vertical"
+                android:text="其他周期"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <RelativeLayout
+                android:id="@+id/layout_drain_threshold_other_cycle"
+                android:layout_width="@dimen/input_treatment_layout_drain_threshold_zero_cycle_width"
+                android:layout_height="@dimen/input_treatment_layout_drain_threshold_zero_cycle_height"
+                android:layout_marginLeft="@dimen/input_treatment_layout_drain_threshold_zero_cycle_margin_left">
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_layout_drain_threshold_zero_cycle_width"
+                    android:layout_height="@dimen/input_treatment_layout_drain_threshold_zero_cycle_height"
+                    android:background="?attr/custom_attr_drain_arc_bg" />
+
+                <TextView
+                    android:id="@+id/tv_other_cycle_select"
+                    android:layout_width="@dimen/input_treatment_tv_zero_cycle_select_width"
+                    android:layout_height="@dimen/input_treatment_tv_zero_cycle_select_height"
+                    android:background="@drawable/bg_arc_blue" />
+
+                <ImageView
+                    android:layout_width="@dimen/input_treatment_iv_zero_cycle_select_width"
+                    android:layout_height="@dimen/input_treatment_iv_zero_cycle_select_height"
+                    android:layout_alignRight="@+id/tv_other_cycle_select"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/input_treatment_iv_zero_cycle_select_margin"
+                    android:layout_marginRight="@dimen/input_treatment_iv_zero_cycle_select_margin"
+                    android:background="@drawable/icon_5_zhibiao" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/input_treatment_params_item_height"
+            android:layout_marginTop="@dimen/input_treatment_params_waiting_margin_left"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="最末引流排空等待"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                android:id="@+id/btn_waiting"
+                android:layout_width="@dimen/input_treatment_params_labeled_switch_width"
+                android:layout_height="@dimen/input_treatment_params_labeled_switch_height"
+                android:layout_marginLeft="@dimen/input_treatment_params_labeled_switch_margin_left"
+                android:textSize="@dimen/input_treatment_params_labeled_switch_text_size"
+                labeled_switch:colorBorder="#ff0089ff"
+                labeled_switch:colorOn="#ff0089ff"
+                labeled_switch:on="true"
+                labeled_switch:textOff="@string/switch_text_off"
+                labeled_switch:textOn="@string/switch_text_on" />
+
+            <LinearLayout
+                android:visibility="invisible"
+                android:id="@+id/layout_time_interval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/input_treatment_params_time_interval_label_margin_left"
+                    android:text="等待提醒间隔时间"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_treatment_params_text_size" />
+
+                <TextView
+                    android:id="@+id/et_time_interval"
+                    android:layout_width="@dimen/input_treatment_params_time_interval_width"
+                    android:layout_height="@dimen/input_treatment_params_item_height"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/input_treatment_params_time_interval_margin_left"
+                    android:background="?attr/custom_attr_input_box_gray_bg"
+                    android:cursorVisible="false"
+                    android:gravity="center"
+                    android:hint="请输入"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textColorHint="@color/text_default_30"
+                    android:textSize="@dimen/input_treatment_params_text_size_2"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/input_treatment_params_time_interval_unit_margin_left"
+                    android:text="分"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_treatment_params_text_size" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="负压引流"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                android:id="@+id/btn_negpre_drain"
+                android:layout_width="@dimen/input_treatment_params_labeled_switch_width"
+                android:layout_height="@dimen/input_treatment_params_labeled_switch_height"
+                android:layout_marginLeft="@dimen/input_treatment_params_labeled_switch_margin_left"
+                android:textSize="@dimen/input_treatment_params_labeled_switch_text_size"
+                labeled_switch:colorBorder="#ff0089ff"
+                labeled_switch:colorOn="#ff0089ff"
+                labeled_switch:on="true"
+                labeled_switch:textOff="@string/switch_text_off2"
+                labeled_switch:textOn="@string/switch_text_on2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="灌注参数设定"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/input_treatment_params_type_text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_params_type_margin_left"
+                android:background="@color/blue" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/input_treatment_layout_perfusion_warning_margin_left_1"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/input_treatment_params_perfusion_warning_value_width_1"
+                android:layout_height="wrap_content"
+                android:text="1升"
+                android:textColor="#ff0089ff"
+                android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+
+            <TextView
+                android:layout_width="@dimen/input_treatment_params_perfusion_warning_value_width_1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/input_treatment_params_perfusion_warning_value_margin_left_1"
+                android:text="2升"
+                android:textColor="#ff0089ff"
+                android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+            <TextView
+                android:layout_width="@dimen/input_treatment_params_perfusion_warning_value_width_1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/input_treatment_params_perfusion_warning_value_margin_left_2"
+                android:text="3升"
+                android:textColor="#ff0089ff"
+                android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+            <TextView
+                android:layout_width="@dimen/input_treatment_params_perfusion_warning_value_width_2"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/input_treatment_params_perfusion_warning_value_margin_left_1"
+                android:text="其他"
+                android:textColor="#ff0089ff"
+                android:textSize="@dimen/input_treatment_params_percentage_text_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/input_treatment_params_item_height"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/input_treatment_params_item_height"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="灌注警戒"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <RelativeLayout
+                android:id="@+id/layout_perfusion_warning_value"
+                android:layout_width="@dimen/input_treatment_layout_perfusion_warning_value_width"
+                android:layout_height="@dimen/input_treatment_params_item_height"
+                android:layout_marginLeft="@dimen/input_treatment_layout_perfusion_warning_value_margin_left">
+
+                <TextView
+                    android:layout_width="@dimen/input_treatment_layout_perfusion_warning_value_width"
+                    android:layout_height="@dimen/input_treatment_params_item_height"
+                    android:background="?attr/custom_attr_drain_arc_bg" />
+
+                <TextView
+                    android:id="@+id/tv_perfusion_warning_select"
+                    android:layout_width="@dimen/input_treatment_params_item_height"
+                    android:layout_height="@dimen/input_treatment_params_item_height"
+                    android:background="@drawable/bg_arc_blue" />
+
+                <ImageView
+                    android:layout_width="@dimen/input_treatment_iv_zero_cycle_select_width"
+                    android:layout_height="@dimen/input_treatment_iv_zero_cycle_select_width"
+                    android:layout_alignRight="@+id/tv_perfusion_warning_select"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/input_treatment_iv_zero_cycle_select_margin"
+                    android:layout_marginRight="@dimen/input_treatment_iv_zero_cycle_select_margin"
+                    android:background="@drawable/icon_5_zhibiao" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/et_perfusion_warning_value"
+                android:layout_width="@dimen/input_treatment_et_perfusion_warning_value_width"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_et_perfusion_warning_value_margin_left"
+                android:background="?attr/custom_attr_input_box_gray_bg"
+                android:cursorVisible="false"
+                android:gravity="center"
+                android:hint="请输入"
+                android:text=""
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textColorHint="@color/text_default_30"
+                android:textSize="@dimen/input_treatment_params_text_size_2"
+                android:visibility="invisible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_label_deduct_margin_left"
+                android:text="留腹扣除"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                android:id="@+id/btn_deduct"
+                android:layout_width="@dimen/input_treatment_params_labeled_switch_width"
+                android:layout_height="@dimen/input_treatment_params_labeled_switch_height"
+                android:layout_marginLeft="@dimen/input_treatment_params_labeled_switch_margin_left"
+                android:textSize="@dimen/input_treatment_params_labeled_switch_text_size"
+                labeled_switch:colorBorder="#ff0089ff"
+                labeled_switch:colorOn="#ff0089ff"
+                labeled_switch:on="true"
+                labeled_switch:textOff="@string/switch_text_off"
+                labeled_switch:textOn="@string/switch_text_on" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/input_treatment_params_item_height"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="治疗结束报警唤醒"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                android:visibility="gone"
+                android:id="@+id/btn_wake_up"
+                android:layout_width="@dimen/input_treatment_params_labeled_switch_width"
+                android:layout_height="@dimen/input_treatment_params_labeled_switch_height"
+                android:layout_marginLeft="@dimen/input_treatment_params_labeled_switch_margin_left"
+                android:textSize="@dimen/input_treatment_params_labeled_switch_text_size"
+                labeled_switch:colorBorder="#ff0089ff"
+                labeled_switch:colorOn="#ff0089ff"
+                labeled_switch:on="true"
+                labeled_switch:textOff="@string/switch_text_off2"
+                labeled_switch:textOn="@string/switch_text_on2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_label_ultrafiltration_margin_left"
+                android:text="只计算循环透析治疗期间的超滤"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                android:id="@+id/btn_ultrafiltration"
+                android:layout_width="@dimen/input_treatment_params_labeled_switch_width"
+                android:layout_height="@dimen/input_treatment_params_labeled_switch_height"
+                android:layout_marginLeft="@dimen/input_treatment_params_labeled_switch_margin_left"
+                android:textSize="@dimen/input_treatment_params_labeled_switch_text_size"
+                labeled_switch:colorBorder="#ff0089ff"
+                labeled_switch:colorOn="#ff0089ff"
+                labeled_switch:on="true"
+                labeled_switch:textOff="@string/switch_text_off"
+                labeled_switch:textOn="@string/switch_text_on" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="屏幕参数设定"
+                android:visibility="gone"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/input_treatment_params_type_text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_params_type_margin_left"
+                android:background="@color/blue" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/autoLightLl"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/treatment_countdown_margin">
+
+            <EditText
+                android:id="@+id/autoTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="请输入"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="分钟后自动息屏"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <!--            <com.emt.pdgo.next.ui.view.StateButton-->
+            <!--                android:id="@+id/btnConfirm"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="right|center_vertical"-->
+            <!--                android:layout_marginStart="@dimen/dp_10"-->
+            <!--                android:text="确定"-->
+            <!--                android:textSize="@dimen/treatment_countdown_btn_text_size"-->
+            <!--                android:visibility="visible"-->
+            <!--                app:normalBackgroundColor="#0089FF"-->
+            <!--                app:normalStrokeColor="#003869"-->
+            <!--                app:normalStrokeWidth="2dp"-->
+            <!--                app:normalTextColor="@android:color/white"-->
+            <!--                app:pressedBackgroundColor="#003869"-->
+            <!--                app:pressedStrokeColor="#003869"-->
+            <!--                app:pressedStrokeWidth="2dp"-->
+            <!--                app:pressedTextColor="@android:color/white"-->
+            <!--                app:radius="5dp" />-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/input_treatment_params_item_height"
+            android:layout_marginTop="7dp"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/dormancyLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="休眠"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_treatment_params_text_size" />
+
+                <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                    android:id="@+id/btn_dormancy"
+                    android:layout_width="@dimen/input_treatment_params_labeled_switch_width"
+                    android:layout_height="@dimen/input_treatment_params_labeled_switch_height"
+                    android:layout_marginLeft="@dimen/input_treatment_params_labeled_switch_margin_left"
+                    android:textSize="@dimen/input_treatment_params_labeled_switch_text_size"
+                    labeled_switch:colorBorder="#ff0089ff"
+                    labeled_switch:colorOn="#ff0089ff"
+                    labeled_switch:on="false"
+                    labeled_switch:textOff="@string/switch_text_off2"
+                    labeled_switch:textOn="@string/switch_text_on2" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_treatment_label_touch_tone_margin_left"
+                android:text="触控音"
+                android:visibility="gone"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_treatment_params_text_size" />
+
+            <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                android:id="@+id/btn_touch_tone"
+                android:layout_width="@dimen/input_treatment_params_labeled_switch_width"
+                android:text="触控音"
+                android:layout_height="@dimen/input_treatment_params_labeled_switch_height"
+                android:layout_marginLeft="@dimen/input_treatment_params_labeled_switch_margin_left"
+                android:textSize="@dimen/input_treatment_params_labeled_switch_text_size"
+                android:visibility="gone"
+                labeled_switch:colorBorder="#ff0089ff"
+                labeled_switch:colorOn="#ff0089ff"
+                labeled_switch:on="false"
+                labeled_switch:textOff="@string/switch_text_off2"
+                labeled_switch:textOn="@string/switch_text_on2" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>
