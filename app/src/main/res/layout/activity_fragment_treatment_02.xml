@@ -1,170 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/custom_attr_app_bg"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height_2">
-
-
-        <RelativeLayout
-            android:id="@+id/layoutBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="22dp">
+        android:layout_height="@dimen/navbar_height">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/btnBack"
-                android:layout_width="@dimen/navbar_btn_width"
-                android:layout_height="@dimen/navbar_btn_height"
-                android:background="@drawable/btn_back"
-                android:clickable="false" />
-
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/layout_right_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="22dp"
-            android:visibility="invisible">
-
-            <RelativeLayout
-                android:id="@+id/layout_sumbit"
-                android:layout_width="@dimen/navbar_btn_width"
-                android:layout_height="@dimen/navbar_btn_height"
-                android:layout_centerVertical="true"
-                android:background="@drawable/btn_bg_right"
-                android:visibility="visible">
-
-
-                <TextView
-                    android:id="@+id/tv_right_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="保存"
-                    android:textColor="#ffffffff"
-                    android:textSize="19sp" />
-
-
-            </RelativeLayout>
-
-
-
-
-
-        </RelativeLayout>
-
-
-        <TextView
-            android:id="@+id/his_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:ellipsize="end"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/white_shape"
+                android:text="返回"
+                android:id="@+id/paramBack"
+                android:layout_marginStart="@dimen/dialog_common_title_margin_top"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:singleLine="true"
-            android:text="治疗中"
-            android:textColor="?attr/custom_attr_common_text_color_2"
-            android:textSize="@dimen/navbar_title_text_size" />
-
-
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/input_treatment_info_tab_bg_height"
-        android:layout_marginLeft="@dimen/input_treatment_info_tab_bg_margin"
-        android:layout_marginTop="@dimen/input_treatment_info_tab_bg_margin_top"
-        android:layout_marginRight="@dimen/input_treatment_info_tab_bg_margin"
-        android:background="?attr/custom_attr_tab_bg"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/currentPdBtn"
+            android:layout_height="match_parent" >
+            <TextView
+                android:id="@+id/cycle_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="治疗中"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/navbar_title_text_size" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="0dp"
-            android:visibility="visible"
-            android:layout_height="@dimen/input_treatment_info_tab_item_height"
             android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/input_treatment_info_tab_item_margin"
-            android:background="?attr/custom_attr_tab_select"
-            android:text="本次治疗周次"
-            android:textColor="?attr/custom_attr_tab_text_select"
-            android:textSize="@dimen/input_treatment_info_tab_item_text_size" />
+            android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/currentPdData"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/input_treatment_info_tab_item_height"
-            android:layout_weight="1"
-            android:visibility="visible"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/input_treatment_info_tab_item_margin"
-            android:background="?attr/custom_attr_tab_select"
-            android:text="当前治疗数据"
-            android:textColor="?attr/custom_attr_tab_text_select"
-            android:textSize="@dimen/input_treatment_info_tab_item_text_size" />
+            <Button
+                android:visibility="invisible"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="处方信息"
+                android:id="@+id/btnRx"
+                android:layout_marginEnd="@dimen/treatment_countdown_margin"
+                android:background="@drawable/white_shape"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/btnHisPd"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/input_treatment_info_tab_item_height"
-            android:layout_weight="1"
-            android:visibility="gone"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/input_treatment_info_tab_item_margin"
-            android:background="?attr/custom_attr_tab_select"
-            android:text="历史治疗数据"
-            android:textColor="?attr/custom_attr_tab_text_select"
-            android:textSize="@dimen/input_treatment_info_tab_item_text_size" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="确定"
+                android:id="@+id/paramConfirm"
+                android:layout_marginStart="@dimen/dialog_common_title_margin_top"
+                android:layout_marginEnd="@dimen/dialog_common_title_margin_top"
+                android:background="@drawable/white_shape"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/btnHisRx"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/input_treatment_info_tab_item_height"
-            android:layout_weight="1"
-            android:visibility="gone"
-            android:layout_marginLeft="@dimen/input_treatment_info_tab_item_margin"
-            android:layout_marginRight="@dimen/input_treatment_info_tab_item_margin"
-            android:layout_gravity="center_vertical"
-            android:background="?attr/custom_attr_tab_select"
-            android:text="历史处方数据"
-            android:textColor="?attr/custom_attr_tab_text_select"
-            android:textSize="@dimen/input_treatment_info_tab_item_text_size" />
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_item3"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="@dimen/input_treatment_info_tab_item_height"-->
-<!--            android:layout_weight="1"-->
-<!--            android:visibility="gone"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginRight="@dimen/input_treatment_info_tab_item_margin"-->
-<!--            android:background="?attr/custom_attr_tab_select"-->
-<!--            android:text="@string/fragment_title_treatment_detailed_status"-->
-<!--            android:textColor="?attr/custom_attr_tab_text_select"-->
-<!--            android:textSize="@dimen/input_treatment_info_tab_item_text_size" />-->
-
-
+        </LinearLayout>
     </LinearLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/configTabLayout"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+        android:layout_margin="@dimen/treatment_countdown_margin"
+        app:tabBackground="@drawable/tab_sel"
+        app:tabTextAppearance="@style/tabLayoutTabSize"
+        android:layout_width="match_parent"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/white_50"
+        android:layout_height="@dimen/tabLayoutHeight" />
 
+    <com.emt.pdgo.next.ui.view.NoScrollViewPager
+        android:id="@+id/configViewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

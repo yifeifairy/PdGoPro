@@ -16,31 +16,22 @@ import com.emt.pdgo.next.data.bean.ExpertBean;
 import com.emt.pdgo.next.data.serial.SerialRequestBean;
 import com.emt.pdgo.next.data.serial.SerialRequestMainBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentPrescriptBean;
-import com.emt.pdgo.next.database.EmtDataBase;
-import com.emt.pdgo.next.database.entity.RxEntity;
 import com.emt.pdgo.next.net.APIServiceManage;
 import com.emt.pdgo.next.ui.activity.TreatmentFragmentActivity;
 import com.emt.pdgo.next.ui.base.BaseFragment;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.ui.dialog.SpecialNumberDialog;
 import com.emt.pdgo.next.util.CacheUtils;
-import com.emt.pdgo.next.util.EmtTimeUil;
 import com.emt.pdgo.next.util.helper.MD5Helper;
 import com.google.gson.Gson;
 import com.pdp.rmmit.pdp.R;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class ExpertPrescriptionFragment extends BaseFragment {
 
@@ -291,31 +282,31 @@ public class ExpertPrescriptionFragment extends BaseFragment {
 //                             0,0, entity.finalSupply)
 //                    ,500);
 //        }
-        Disposable mainDisposable = Observable.timer(10, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        RxEntity hisRx = new RxEntity();
-                        hisRx.time = EmtTimeUil.getTime();
-                        hisRx.perVol = entity.total;
-                        hisRx.perCycleVol = entity.cycleVol;
-                        hisRx.treatCycle = entity.cycle;
-                        hisRx.firstPerVol = entity.firstVol;
-                        hisRx.abdTime = entity.retainTime;
-                        hisRx.endAbdVol = entity.finalRetainVol;
-                        hisRx.lastTimeAbdVol = entity.lastRetainVol;
-                        hisRx.ult = entity.ultVol;
-                        hisRx.ulTreatTime = "1小时";
-//                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
-                        EmtDataBase
-                                .getInstance(activity)
-                                .getRxDao()
-                                .insertRx(hisRx);
-                    }
-                });
-        compositeDisposable.add(mainDisposable);
+//        Disposable mainDisposable = Observable.timer(10, TimeUnit.MILLISECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Long>() {
+//                    @Override
+//                    public void accept(Long aLong) throws Exception {
+//                        RxEntity hisRx = new RxEntity();
+//                        hisRx.time = EmtTimeUil.getTime();
+//                        hisRx.perVol = entity.total;
+//                        hisRx.perCycleVol = entity.cycleVol;
+//                        hisRx.treatCycle = entity.cycle;
+//                        hisRx.firstPerVol = entity.firstVol;
+//                        hisRx.abdTime = entity.retainTime;
+//                        hisRx.endAbdVol = entity.finalRetainVol;
+//                        hisRx.lastTimeAbdVol = entity.lastRetainVol;
+//                        hisRx.ult = entity.ultVol;
+//                        hisRx.ulTreatTime = "1小时";
+////                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
+//                        EmtDataBase
+//                                .getInstance(activity)
+//                                .getRxDao()
+//                                .insertRx(hisRx);
+//                    }
+//                });
+//        compositeDisposable.add(mainDisposable);
     }
 
     private void setSupplyTotal(ExpertBean expertBean) {

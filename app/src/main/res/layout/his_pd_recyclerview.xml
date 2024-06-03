@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="灌注量ml"
+        android:text="灌注量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -34,7 +34,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="灌注时间min"
+        android:text="灌注时间"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -45,7 +45,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="辅助冲洗量ml"
+        android:text="辅助冲洗量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -56,7 +56,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="灌注留腹量ml"
+        android:text="灌注留腹量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -66,7 +66,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="留腹时间min"
+        android:text="留腹时间"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -77,7 +77,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="引流目标值ml"
+        android:text="引流目标值"
+        android:visibility="gone"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -88,7 +89,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="引流量ml"
+        android:text="引流量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -98,7 +99,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="引流时间min"
+        android:text="引流时间"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -110,6 +111,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="腹腔剩余液体"
+        android:visibility="gone"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 

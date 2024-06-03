@@ -1,7 +1,6 @@
 package com.emt.pdgo.next.util.task;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -15,7 +14,7 @@ public class LineUpTaskHelp<T extends ConsumptionTask> {
     /**
      *  排队容器, 需要排队的任务才会加入此列表
      */
-    private LinkedList<T> lineUpBeans;
+    private final LinkedList<T> lineUpBeans;
 
     /**
      *  执行下一个任务任务的监听器
@@ -47,7 +46,7 @@ public class LineUpTaskHelp<T extends ConsumptionTask> {
      */
     public void addTask(T task){
         if(lineUpBeans!=null){
-            Log.e("Post","任务加入排队中" + task.taskNo);
+//            Log.e("addTask","任务加入排队中" + task.taskNo);
             if (!checkTask()) {
                 if (onTaskListener != null) onTaskListener.exNextTask(task);
             }
@@ -96,7 +95,6 @@ public class LineUpTaskHelp<T extends ConsumptionTask> {
             }
         }
     }
-
 
     /**
      *  删除对应父id的所有任务

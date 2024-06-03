@@ -2,7 +2,6 @@ package com.emt.pdgo.next.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Build;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,22 +25,21 @@ import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.emt.pdgo.next.util.helper.MD5Helper;
 import com.emt.pdgo.next.util.logger.Logger;
 import com.google.gson.Gson;
+import com.yujing.serialport.SerialPortFinder;
+import com.yujing.yserialport.DataListener;
+import com.yujing.yserialport.YSerialPort;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Locale;
-import java.util.concurrent.locks.ReentrantLock;
 
-import android_serialport_api.SerialPortFinder;
-import tp.xmaihh.serialport.SerialHelper;
-import tp.xmaihh.serialport.bean.ComBean;
-import tp.xmaihh.serialport.utils.ByteUtil;
 
 public class SerialPortService extends Service {
 
     private static final String TAG = "SerialPortService";
 
-    private SerialHelper serialPortPlus;
+//    private SerialHelper serialPortPlus;
+
+    private YSerialPort serialPortPlus;
 
     private final String mSerialName = "/dev/ttyS0";//"/dev/ttyAMA2";
     private final int mSerialBaudrate = 115200;
@@ -50,28 +48,46 @@ public class SerialPortService extends Service {
     public volatile boolean isReadData = false;
 
     public Gson myGson = new Gson();
-
     public String splitData = "";
-    private ReentrantLock reentrantLock;
+
     @Subscribe(code = RxBusCodeConfig.EVENT_SEND_COMMAND)
     public void sendCommand(String sendData) {
         if (!TextUtils.isEmpty(sendData) && serialPortPlus != null) {
             try {
-                if (reentrantLock == null) {
-                    reentrantLock = new ReentrantLock(true);
-                }
-                reentrantLock.lock();
-                try {
-                    serialPortPlus.send(sendData.getBytes());
-                } finally {
-                    reentrantLock.unlock();
-                }
+//                if (!sendData.contains("report")) {
+                    if (EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao().getCodeList().size() >= 1000) {
+                        new Thread(() -> EmtDataBase
+                        .getInstance(MyApplication.getInstance())
+                        .getFaultCodeDao()
+                        .delete()).start();
+                    }
+
+                    if (MyApplication.treatmentRunning) {
+                        if (!sendData.contains("report")) {
+                            FaultCodeEntity entity = new FaultCodeEntity();
+                            entity.time = EmtTimeUil.getTime();
+                            entity.code = "发送:"+sendData;
+                            new Thread(() ->
+                                    EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao()
+                                            .insertFaultCode(entity)).start();
+                        }
+                    } else {
+                        FaultCodeEntity entity = new FaultCodeEntity();
+                        entity.time = EmtTimeUil.getTime();
+                        entity.code = "发送:" + sendData;
+                        new Thread(() ->
+                                EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao()
+                                        .insertFaultCode(entity)).start();
+                    }
+//                }
+                Log.e("portService","发送:"+sendData);
+                serialPortPlus.send(sendData.getBytes());
             } catch (Exception e) {
                 e.printStackTrace();
                 Logger.e("sendData---> mOutputStream error:" + e.getMessage());
             }
-
         }
+
     }
 
     @Override
@@ -92,50 +108,85 @@ public class SerialPortService extends Service {
         try {
 //            serialPortPlus = new SerialPortPlus(mSerialName, mSerialBaudrate);
 
-            if (Build.VERSION.SDK_INT < 21) {
-                serialPortPlus = new SerialHelper(mSerialName, mSerialBaudrate) {
-                    @Override
-                    protected void onDataReceived(ComBean comBean) {
-                        String hex = ByteUtil.ByteArrToHex(comBean.bRec).toUpperCase(Locale.ROOT);
-//        Log.e("hex","hex数据--" + hex);
-                        try {
-                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
-//                            Log.e(TAG, "下位机原始数据:" + mSerialJson);
-                            if (mSerialJson.startsWith("{\"") && mSerialJson.endsWith("\"}")) {//有用{}说明是完整的json字符串
-                                sendSerialData(mSerialJson);
-                            } else {
-                                if (TextUtils.isEmpty(splitData)) {
-                                    splitData = mSerialJson;
-//                    Log.e(TAG, "收到不完整数据,需要下次接收的数据拼接 ：" + splitData);
-                                } else {
-                                    String tempData = splitData + mSerialJson;
-                                    if (tempData.startsWith("{\"") && tempData.endsWith("\"}")) {//有用{"   "}说明是完整的json字符串
-//                        Log.e(TAG, "不完整数据拼接成正常数据 ：" + tempData);
-                                        splitData = "";
-                                        sendSerialData(tempData);
-                                    } else {
-//                        Log.e(TAG, "收到不完整数据2 1：" + splitData);
-                                        splitData = tempData;
-//                        Log.e(TAG, "收到数据以后拼接还是不完整数据 ：" + splitData);
-                                    }
-                                }
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
-                            Log.e(TAG, "收到解析异常数据 ：" + mSerialJson);
-                        }
-                    }
-                };
-            } else {
+//            if (Build.VERSION.SDK_INT < 21) {
+//                serialPortPlus = new SerialHelper(mSerialName, mSerialBaudrate) {
+//                    @Override
+//                    protected void onDataReceived(ComBean comBean) {
+//                        String hex = ByteUtil.ByteArrToHex(comBean.bRec).toUpperCase(Locale.ROOT);
+////        Log.e("hex","hex数据--" + hex);
+//                        try {
+//                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
+////                            Log.e(TAG, "下位机原始数据:" + mSerialJson);
+//                            if (mSerialJson.startsWith("{\"") && mSerialJson.endsWith("\"}")) {//有用{}说明是完整的json字符串
+//                                sendSerialData(mSerialJson);
+//                            } else {
+//                                if (TextUtils.isEmpty(splitData)) {
+//                                    splitData = mSerialJson;
+////                    Log.e(TAG, "收到不完整数据,需要下次接收的数据拼接 ：" + splitData);
+//                                } else {
+//                                    String tempData = splitData + mSerialJson;
+//                                    if (tempData.startsWith("{\"") && tempData.endsWith("\"}")) {//有用{"   "}说明是完整的json字符串
+////                        Log.e(TAG, "不完整数据拼接成正常数据 ：" + tempData);
+//                                        splitData = "";
+//                                        sendSerialData(tempData);
+//                                    } else {
+////                        Log.e(TAG, "收到不完整数据2 1：" + splitData);
+////                                        splitData = tempData;
+////                        Log.e(TAG, "收到数据以后拼接还是不完整数据 ：" + splitData);
+//                                    }
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
+//                            Log.e(TAG, "收到解析异常数据 ：" + mSerialJson);
+//                        }
+//                    }
+//                };
+//            } else {
                 // /dev/ttyS1
-                serialPortPlus = new SerialHelper("/dev/ttyS1", mSerialBaudrate) {
-                    @Override
-                    protected void onDataReceived(ComBean comBean) {
-                        String hex = ByteUtil.ByteArrToHex(comBean.bRec).toUpperCase(Locale.ROOT);
-//        Log.e("hex","hex数据--" + hex);
+//                serialPortPlus = new SerialHelper("/dev/ttyS1", mSerialBaudrate) {
+//                    @Override
+//                    protected void onDataReceived(ComBean comBean) {
+//
+//                        String hex = ByteUtil.ByteArrToHex(comBean.bRec).toUpperCase(Locale.ROOT);
+////        Log.e("hex","hex数据--" + hex);
+//                        try {
+//                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
+////                            Log.e(TAG, "下位机原始数据:" + mSerialJson);
+//                            if (mSerialJson.startsWith("{\"") && mSerialJson.endsWith("\"}")) {//有用{}说明是完整的json字符串
+//                                sendSerialData(mSerialJson);
+//                            } else {
+//                                if (TextUtils.isEmpty(splitData)) {
+//                                    splitData = mSerialJson;
+////                    Log.e(TAG, "收到不完整数据,需要下次接收的数据拼接 ：" + splitData);
+//                                } else {
+//                                    String tempData = splitData + mSerialJson;
+//                                    if (tempData.startsWith("{\"") && tempData.endsWith("\"}")) {//有用{"   "}说明是完整的json字符串
+////                        Log.e(TAG, "不完整数据拼接成正常数据 ：" + tempData);
+//                                        splitData = "";
+//                                        sendSerialData(tempData);
+//                                    } else {
+////                        Log.e(TAG, "收到不完整数据2 1：" + splitData);
+////                                        splitData = tempData;
+////                        Log.e(TAG, "收到数据以后拼接还是不完整数据 ：" + splitData);
+//                                    }
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
+//                            Log.e(TAG, "收到解析异常数据 ：" + mSerialJson);
+//                        }
+//                    }
+//                };
+//            }
+            serialPortPlus = new YSerialPort(this.getApplication(),"/dev/ttyS1","115200");
+            serialPortPlus.addDataListener(new DataListener() {
+                @Override
+                public void value(String hexString, byte[] bytes) {
                         try {
-                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
+                            String mSerialJson = new String(HexHelper.hexStringToBytes(hexString), StandardCharsets.UTF_8);
 //                            Log.e(TAG, "下位机原始数据:" + mSerialJson);
                             if (mSerialJson.startsWith("{\"") && mSerialJson.endsWith("\"}")) {//有用{}说明是完整的json字符串
                                 sendSerialData(mSerialJson);
@@ -151,33 +202,37 @@ public class SerialPortService extends Service {
                                         sendSerialData(tempData);
                                     } else {
 //                        Log.e(TAG, "收到不完整数据2 1：" + splitData);
-                                        splitData = tempData;
+//                                        splitData = tempData;
 //                        Log.e(TAG, "收到数据以后拼接还是不完整数据 ：" + splitData);
                                     }
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            String mSerialJson = new String(HexHelper.hexStringToBytes(hex), StandardCharsets.UTF_8);
+                            String mSerialJson = new String(HexHelper.hexStringToBytes(hexString), StandardCharsets.UTF_8);
                             Log.e(TAG, "收到解析异常数据 ：" + mSerialJson);
                         }
                     }
-                };
-            }
+                });
+
+            serialPortPlus.setToAuto(5);
+            serialPortPlus.start();
 //            serialPortPlus.setReceiveDataListener(this);
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
 //            if (serialPortPlus.getInputStream() != null && serialPortPlus.getOutputStream() != null) {
-            serialPortPlus.open();
-            if (serialPortPlus.isOpen()) {
-                Log.e(TAG, "打开串口成功");
-                isOpen = true;
-                MyApplication.isOpenMainSerial = true;
-                RxBus.get().send(RxBusCodeConfig.EVENT_MAIN_BOARD_OK, "");
-            } else {
-                Log.e(TAG, "打开串口失败");
-                isOpen = false;
-                MyApplication.isOpenMainSerial = false;
-            }
+//            serialPortPlus.setStickPackageHelper(new MyBaseStickPackageHelper());
+//            serialPortPlus.open();
+//            if (serialPortPlus.) {
+//                Log.e(TAG, "打开串口成功");
+//                isOpen = true;
+//                MyApplication.isOpenMainSerial = true;
+//                RxBus.get().send(RxBusCodeConfig.EVENT_MAIN_BOARD_OK, "");
+//            } else {
+//                Log.e(TAG, "打开串口失败");
+//                isOpen = false;
+//                MyApplication.isOpenMainSerial = false;
+//            }
+            RxBus.get().send(RxBusCodeConfig.EVENT_MAIN_BOARD_OK, "");
 
         } catch (Exception e) {
             isOpen = false;
@@ -262,14 +317,32 @@ public class SerialPortService extends Service {
 
     private void handleSerialData(String mSerialJson) {
 //        Log.e(TAG, "接收->下位机数据:" + mSerialJson);
-        if (!mSerialJson.contains("report")) {
-            FaultCodeEntity entity = new FaultCodeEntity();
-            entity.time = EmtTimeUil.getTime();
-            entity.code = "下位机数据："+mSerialJson;
-            EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao()
-                    .insertFaultCode(entity);
-        }
+
+//        }
         try {
+            if (EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao().getCodeList().size() >= 1000) {
+                new Thread(() -> EmtDataBase
+                        .getInstance(MyApplication.getInstance())
+                        .getFaultCodeDao()
+                        .delete()).start();
+            }
+            if (MyApplication.treatmentRunning) {
+                if (!mSerialJson.contains("report")) {
+                    FaultCodeEntity entity = new FaultCodeEntity();
+                    entity.time = EmtTimeUil.getTime();
+                    entity.code = "接受:" + mSerialJson;
+                    new Thread(() ->
+                            EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao()
+                                    .insertFaultCode(entity)).start();
+                }
+            } else {
+                FaultCodeEntity entity = new FaultCodeEntity();
+                entity.time = EmtTimeUil.getTime();
+                entity.code = "接受:" + mSerialJson;
+                new Thread(() ->
+                        EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao()
+                                .insertFaultCode(entity)).start();
+            }
             if (myGson == null) {
                 myGson = new Gson();
             }
@@ -345,7 +418,7 @@ public class SerialPortService extends Service {
                     } else if (mBean.publish.topic.contains(CommandReceiveConfig.TOPIC_AUTO_RINSE)) {//自动预冲返回结果
                         Log.e(TAG, "接收->自动预冲: " + mSerialJson);
                         RxBus.get().send(RxBusCodeConfig.EVENT_RECEIVE_AUTO_RINSE_DATA, myGson.toJson(mBean.publish));
-                    } else if (mBean.publish.topic.contains(CommandReceiveConfig.TOPIC_AUTO_MANUALRINSE_PROCESS)) {//手动预冲返回结果
+                    } else if (mBean.publish.topic.contains(CommandReceiveConfig.TOPIC_MANUAL_RINSE_PROCESS)) {//手动预冲返回结果
                         Log.e(TAG, "接收->手动预冲: "  + mSerialJson);
                         RxBus.get().send(RxBusCodeConfig.EVENT_RECEIVE_Manual_PRE, myGson.toJson(mBean.publish));
                     } else if (mBean.publish.topic.equals(CommandReceiveConfig.TOPIC_TREATMENT)) {//治疗过程的返回指令
@@ -411,7 +484,7 @@ public class SerialPortService extends Service {
 
                 if (md5Sign.equals(mBean.sign)) {//md5校验码一致，数据没问题
 
-                    Log.d(TAG, "应答（下位机->上位机）：接收数据没问题，md5校验码一致: " + mSerialJson);
+//                    Log.d(TAG, "应答（下位机->上位机）：接收数据没问题，md5校验码一致: " + mSerialJson);
                     if (0 == mBean.result.code) {
                         Log.e(TAG, "应答（下位机->上位机）：指令执行" + mSerialJson);
                         if (mBean.result.topic.equals("thermostat/get")) {
@@ -435,7 +508,7 @@ public class SerialPortService extends Service {
 //                        if("weight/tare_all".equals(MyApplication.currCmd)){//开机去皮
 //                            RxBus.get().send(RxBusCodeConfig.EVENT_FIRST_WEIGH_TARE_ALL_OK, "");
 //                        }
-                            Log.d(TAG, "接收->其他数据: " + mSerialJson);
+//                            Log.d(TAG, "接收->其他数据: " + mSerialJson);
 //                        }
                     } else {
                         RxBus.get().send(RxBusCodeConfig.EVENT_CMD_RESULT_ERR, mBean);
@@ -446,13 +519,10 @@ public class SerialPortService extends Service {
 //                        EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao()
 //                                .insertFaultCode(entity);
                     }
-
-
                 } else {
                     Log.e(TAG, "应答（下位机->上位机）：接收数据有问题，md5校验码不一致: " + mSerialJson);
                 }
 //                    System.out.println(new Gson().toJson(mBean));
-
             }
 
 
@@ -474,7 +544,7 @@ public class SerialPortService extends Service {
     @Override
     public void onDestroy() {
         if (serialPortPlus != null) {
-            serialPortPlus.close();
+            serialPortPlus.onDestroy();
         }
         super.onDestroy();
     }

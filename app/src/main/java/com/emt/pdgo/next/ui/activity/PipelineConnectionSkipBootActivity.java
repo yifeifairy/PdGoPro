@@ -1,14 +1,17 @@
 package com.emt.pdgo.next.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.emt.pdgo.next.MyApplication;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.CommandReceiveConfig;
 import com.emt.pdgo.next.common.config.CommandSendConfig;
@@ -16,12 +19,10 @@ import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.serial.ReceivePublicBean;
 import com.emt.pdgo.next.data.serial.ReceiveResultDataBean;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.net.APIServiceManage;
 import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
 import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
-import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.ActivityManager;
 import com.emt.pdgo.next.util.ScreenUtil;
 import com.emt.pdgo.next.util.helper.JsonHelper;
@@ -34,41 +35,23 @@ import butterknife.OnClick;
 public class PipelineConnectionSkipBootActivity extends BaseActivity {
 
     @BindView(R.id.btn_enter_prerinse)
-    StateButton btnEnterPrerinse;
+    Button btnEnterPrerinse;
+
+    @BindView(R.id.iv_1)
+    ImageView iv1;
+    @BindView(R.id.iv_2)
+    ImageView iv2;
+    @BindView(R.id.iv_3)
+    ImageView iv3;
+    @BindView(R.id.iv_4)
+    ImageView iv4;
+    @BindView(R.id.iv_5)
+    ImageView iv5;
+    @BindView(R.id.iv_6)
+    ImageView iv6;
 
     private boolean isSpeak;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        initAllViews();
-//        registerEvents();
-//        initViewData();
-    }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
     @Override
     public void initAllViews() {
         setContentView(R.layout.activity_pipeline_connection_skip_boot);
@@ -81,7 +64,7 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
         if ((480 == width && 800 == height) || (800 == width && 480 == height)) {
 
         } else {
-            Drawable drawable = getResources().getDrawable(R.mipmap.icon_next2); //获取图片
+            @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = getResources().getDrawable(R.mipmap.icon_next2); //获取图片
             int bounds = ScreenUtil.dip2px(this, 40);
             drawable.setBounds(bounds, bounds, bounds, bounds);  //设置图片参数
             btnEnterPrerinse.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
@@ -91,37 +74,26 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
     @Override
     public void registerEvents() {
         RxBus.get().register(this);
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
     }
 
     private String msg = EmtConstant.ACTIVITY_PIPELINE_CONNECTION_SKIP_BOOT;
-    @BindView(R.id.btn_back)
-    StateButton btnBack;
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.title)
+    TextView title;
     private String jumpMsg;
 
     @Override
     public void initViewData() {
-        initHeadTitleBar("请确认已正确 完成以下操作");
-//        speak("请插入卡匣，安装管路,未连接的管路请关闭管夹");
         jumpMsg = getIntent().getStringExtra(EmtConstant.JUMP_WITH_PARAM);
+        title.setText("请确认已正确完成以下操作");
         btnBack.setOnClickListener(v -> {
 //            sendToMainBoard(CommandDataHelper.getInstance().setPipecartCmdJson("pipecart/finish"));
-            if (isSpeak) {
-                toastMessage("正在完成安装卡匣");
+//            if (isSpeak) {
+//                toastMessage("正在完成安装卡匣");
+//            } else {
+            if (jumpMsg == null) {
+                onBackPressed();
             } else {
                 switch (jumpMsg) {
                     case EmtConstant.ACTIVITY_PRE_HEAT:
@@ -137,9 +109,12 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
                         break;
                 }
             }
+//            }
+//            onBackPressed();
 //            doGoCloseTOActivity(PipelineConnectionActivity.class,"");
         });
-
+        btnEnterPrerinse.setEnabled(false);
+        countDownTimer.start();
 //        Handler handler = new Handler();
 //        handler.postDelayed(new Runnable() {
 //            @Override
@@ -148,10 +123,40 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
 //                speak("请插入卡匣，安装管路,未连接的管路请关闭管夹");
 //            }
 //        },EmtConstant.DELAY_TIME);
-//        speak("请插入卡匣，安装管路,未连接的管路请关闭管夹");
-        sendCommandInterval(CommandDataHelper.getInstance().setPipecartCmdJson(CommandSendConfig.METHOD_PIPECART_INSTALL), 1800);//调用装管路
+        toEngAc(title);
+        speak("关闭所有管夹,插入卡匣,安装好所有管路并放置腹透液,废液卡管");
+        Glide.with(this).asGif().skipMemoryCache(true)                      //禁止Glide内存缓存
+                .diskCacheStrategy(DiskCacheStrategy.NONE).load(R.raw.supply).into(iv1);
+        Glide.with(this).asGif().skipMemoryCache(true)                      //禁止Glide内存缓存
+                .diskCacheStrategy(DiskCacheStrategy.NONE).load(R.raw.insert_cass).into(iv2);
+        Glide.with(this).asGif().skipMemoryCache(true)                      //禁止Glide内存缓存
+                .diskCacheStrategy(DiskCacheStrategy.NONE).load(R.raw.conn_supply).into(iv3);
+        Glide.with(this).asGif().skipMemoryCache(true)                      //禁止Glide内存缓存
+                .diskCacheStrategy(DiskCacheStrategy.NONE).load(R.raw.conn_preheart).into(iv4);
+        Glide.with(this).asGif().skipMemoryCache(true)                      //禁止Glide内存缓存
+                .diskCacheStrategy(DiskCacheStrategy.NONE).load(R.raw.conn_final).into(iv5);
+        Glide.with(this).asGif().skipMemoryCache(true)                      //禁止Glide内存缓存
+                .diskCacheStrategy(DiskCacheStrategy.NONE).load(R.raw.stuck).into(iv6);
+        sendToMainBoard(CommandDataHelper.getInstance().stopPreheatCmdJson());
+        sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group1"),1000);
+        sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group2"),1000);
+//                speak("请取出卡匣,关闭所有管夹");
+        sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group3"),1000);
+//        sendCommandInterval(CommandDataHelper.getInstance().setPipecartCmdJson(CommandSendConfig.METHOD_PIPECART_INSTALL), 1800);//调用装管路
     }
 
+    private final CountDownTimer countDownTimer = new CountDownTimer(10 * 1000,1000) {
+        @Override
+        public void onTick(long l) {
+
+        }
+
+        @Override
+        public void onFinish() {
+            btnEnterPrerinse.setEnabled(true);
+            btnEnterPrerinse.setBackgroundResource(R.drawable.bg_round_blue);
+        }
+    };
 
     @Override
     public void notifyByThemeChanged() {
@@ -168,16 +173,18 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_enter_prerinse://完成，进入预冲
 //                speak("安装卡匣完成,请稍等");
-                if (!isSpeak) {
-                    isSpeak = true;
-                    speak("安装卡匣完成,请稍等");
-                } else {
-                    toastMessage("正在安装卡匣,请稍等");
-                }
-                pipecartFinish();
-                break;
-            case R.id.btn_back:
-                ActivityManager.getActivityManager().removeActivity(this);
+//                if (!isSpeak) {
+//                    isSpeak = true;
+//                    speak("安装卡匣完成,请稍等");
+//                } else {
+//                    toastMessage("正在安装卡匣,请稍等");
+//                }
+//                sendToMainBoard(CommandDataHelper.getInstance().isValveOpen(false,"group1"));
+//                sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(false,"group2"),500);
+////                speak("请取出卡匣,关闭所有管夹");
+//                sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(false,"group3"),500);
+//                pipecartFinish();
+                doGoCloseTOActivity(PreRinseActivity.class,msg);
                 break;
         }
     }
@@ -225,6 +232,7 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
 //                                .show();
 //                    }
 //                });
+                sendCommandInterval(CommandDataHelper.getInstance().stopPreheatCmdJson(), 500);
                 if (!isSend && !isSpeak) {
                     isSend = true;
 //                sendCommandInterval(CommandDataHelper.getInstance().stopPreheatCmdJson(), 500);
@@ -253,6 +261,8 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
                 speak("请插入卡匣，安装管路,未连接的管路请关闭管夹");
             }
         } else if (topic.contains(CommandSendConfig.METHOD_PIPECART_FINISH)) {//调用装管路完成
+
+        } else if (topic.contains("valve/open")) {
 
         }
 //        else if (topic.contains("preheat/stop")) {
@@ -310,6 +320,7 @@ public class PipelineConnectionSkipBootActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         RxBus.get().unRegister(this);
+//        Glide.with(this).pauseAllRequests();
     }
 
 }

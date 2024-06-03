@@ -29,7 +29,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
-                    android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
                     android:text="累计引流量"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
@@ -52,7 +51,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
-                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
                     android:text="0"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
@@ -62,7 +60,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
-                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
                     android:text="ml"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
@@ -81,7 +78,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
-                    android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
                     android:text="累计灌注量"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
@@ -104,7 +100,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
-                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
                     android:text="0"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
@@ -114,7 +109,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
-                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
                     android:text="@string/unit_ml"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />
@@ -135,7 +129,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
-                    android:layout_marginTop="@dimen/treatment_main_historical_data_item_tv_margin_top"
                     android:text="累计超滤量"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
@@ -158,7 +151,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_margin_left"
-                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_total_volume_margin_bottom"
                     android:text="0"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_2" />
@@ -168,7 +160,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/treatment_main_historical_data_item_tv_unit_margin_left"
-                    android:layout_marginBottom="@dimen/treatment_main_historical_data_item_tv_unit_margin_bottom"
                     android:text="ml"
                     android:textColor="?attr/custom_attr_common_text_color_2"
                     android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_3" />

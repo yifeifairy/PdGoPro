@@ -11,9 +11,16 @@
 
     <include
         android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
+        android:layout_weight="0.15"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="0.85" >
 
 
     <LinearLayout
@@ -323,9 +330,9 @@
                     android:id="@+id/et_warn_time_interval"
                     android:layout_width="@dimen/input_box_et_width"
                     android:layout_height="@dimen/input_box_et_height"
-                    android:layout_alignParentRight="true"
+
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/input_box_et_margin_right_2"
+                    android:layout_toStartOf="@id/tv_unit_warn_time_interval"
                     android:background="@null"
                     android:gravity="center_vertical|right"
                     android:hint="0-60"
@@ -560,12 +567,6 @@
 
 <!--        </LinearLayout>-->
 
+        </LinearLayout>
     </LinearLayout>
-
-    <include
-        android:id="@+id/rootView"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/navbar_btn_height"
-        android:layout_marginLeft="@dimen/input_box_item_padding_left"
-        layout="@layout/root_view" />
 </LinearLayout>

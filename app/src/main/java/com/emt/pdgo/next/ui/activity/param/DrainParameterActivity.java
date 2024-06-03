@@ -3,25 +3,18 @@ package com.emt.pdgo.next.ui.activity.param;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.data.bean.DrainParameterBean;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
+import com.emt.pdgo.next.ui.widget.LabeledSwitch;
 import com.emt.pdgo.next.util.CacheUtils;
 import com.emt.pdgo.next.util.ToastUtils;
-import com.emt.pdgo.next.ui.widget.LabeledSwitch;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -72,47 +65,15 @@ public class DrainParameterActivity extends BaseActivity {
         ButterKnife.bind(this);
         initHeadTitleBar("引流参数设置", "保存");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        btnSave.setVisibility(View.VISIBLE);
+        btnSave.setText("保存");
+        btnBack.setOnClickListener(view -> onBackPressed());
         setCanNotEditNoClick2(etTimeInterval);
         setCanNotEditNoClick2(etThresholdValue);
         setCanNotEditNoClick2(etZeroCyclePercentage);
@@ -143,13 +104,13 @@ public class DrainParameterActivity extends BaseActivity {
         etWarnTimeInterval.setText(String.valueOf(drainParameterBean.drainWarnTimeInterval));
         labeledSwitchEmptying.setOn(drainParameterBean.isDrainManualEmptying);
     }
-    @OnClick({R.id.btn_submit, R.id.et_time_interval, R.id.et_threshold_value, R.id.et_zero_cycle_percentage,
+    @OnClick({R.id.btnSave, R.id.et_time_interval, R.id.et_threshold_value, R.id.et_zero_cycle_percentage,
             R.id.et_other_cycle_percentage, R.id.et_timeout_alarm, R.id.et_rinse_volume, R.id.et_rinse_number, R.id.et_warn_time_interval,
             R.id.layout_time_interval, R.id.layout_threshold_value, R.id.layout_zero_cycle_percentage, R.id.layout_other_cycle_percentage,
             R.id.layout_timeout_alarm, R.id.layout_rinse_volume, R.id.layout_rinse_number, R.id.layout_warn_time_interval, R.id.layout_drain_emptying})
     public void onViewClicked(View v) {
         switch (v.getId()) {
-            case R.id.btn_submit:
+            case R.id.btnSave:
                 save();
                 break;
             case R.id.layout_time_interval:

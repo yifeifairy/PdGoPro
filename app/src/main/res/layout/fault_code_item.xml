@@ -2,9 +2,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
+    android:layout_height="wrap_content"
     android:id="@+id/faultCodeItem"
-    android:layout_gravity="center_vertical"
+    android:layout_gravity="center"
+    android:padding="@dimen/treatment_countdown_margin"
     android:background="@drawable/bg_round_white_top"
     android:orientation="horizontal">
 
@@ -16,7 +17,7 @@
         android:gravity="center"
         android:text="时间"
         android:textColor="@color/text_default"
-        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+        android:textSize="@dimen/custom_dimen_item_title_text_size" />
 
     <TextView
         android:id="@+id/faultCode"
@@ -26,6 +27,6 @@
         android:gravity="center"
         android:text="故障信息"
         android:textColor="@color/text_default"
-        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+        android:textSize="@dimen/custom_dimen_item_title_text_size" />
 
 </LinearLayout>

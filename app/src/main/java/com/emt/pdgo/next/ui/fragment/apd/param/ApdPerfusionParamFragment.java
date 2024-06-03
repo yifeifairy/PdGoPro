@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.base.BaseFragment;
-import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
+import com.emt.pdgo.next.ui.dialog.NumberDialog;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -53,24 +54,24 @@ public class ApdPerfusionParamFragment extends BaseFragment {
 
             case R.id.infusionTimeIntervalEt:
             case R.id.infusionTimeIntervalRl:
-                alertNumberBoardDialog(infusionTimeIntervalEt.getText().toString(),PdGoConstConfig.CHECK_TYPE_PERFUSION_TIME_INTERVAL);
+                alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PERFUSION_TIME_INTERVAL, EmtConstant.perfTimeIntervalMin, EmtConstant.perfTimeIntervalMax);
                 break;
             case R.id.infusionThresholdRl:
             case R.id.infusionThresholdEt:
-                alertNumberBoardDialog(infusionThresholdEt.getText().toString(),PdGoConstConfig.CHECK_TYPE_PERFUSION_THRESHOLD_VALUE);
+                alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PERFUSION_THRESHOLD_VALUE,EmtConstant.perfThresholdValueMin, EmtConstant.perfThresholdValueMax);
                 break;
             case R.id.infusionMaximumAlertEt:
             case R.id.infusionMaximumAlertRl:
-                alertNumberBoardDialog(infusionMaximumAlertEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_PERFUSION_MAX_WARNING_VALUE);
+                alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PERFUSION_MAX_WARNING_VALUE,EmtConstant.perfMaxWarningValueMin, EmtConstant.perfMaxWarningValueMax);
                 break;
 
         }
     }
 
-    private void alertNumberBoardDialog(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(getActivity(), value, type, false, true);
+    private void alertNumberBoardDialog(String type, int min, int max) {
+        NumberDialog dialog = new NumberDialog(getActivity(), type, min, max);
         dialog.show();
-        dialog.setOnDialogResultListener(new NumberBoardDialog.OnDialogResultListener() {
+        dialog.setOnDialogResultListener(new NumberDialog.OnDialogResultListener() {
             @Override
             public void onResult(String mType, String result) {
                 if (!TextUtils.isEmpty(result)) {

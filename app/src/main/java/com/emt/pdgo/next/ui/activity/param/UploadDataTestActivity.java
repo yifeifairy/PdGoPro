@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,18 +19,16 @@ import androidx.annotation.NonNull;
 
 import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.net.bean.upload.TreatmentDataUploadBean;
 import com.emt.pdgo.next.net.bean.upload.TreatmentPrescriptionUploadBean;
 import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
+import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.util.CacheUtils;
+import com.emt.pdgo.next.util.ClickUtil;
 import com.emt.pdgo.next.util.EmtTimeUil;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.google.gson.Gson;
 import com.pdp.rmmit.pdp.R;
 
@@ -76,6 +73,9 @@ public class UploadDataTestActivity extends BaseActivity {
     @BindView(R.id.btnConfirm)
     Button btnConfirm;
 
+    @BindView(R.id.serverTv)
+    TextView serverTv;
+
     private String token;
     private String url;
 
@@ -98,30 +98,8 @@ public class UploadDataTestActivity extends BaseActivity {
         RxBus.get().register(this);
         initHeadTitleBar("接口测试");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -169,21 +147,32 @@ public class UploadDataTestActivity extends BaseActivity {
 
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
+        btnBack.setOnClickListener(view -> onBackPressed());
+        setCanNotEditNoClick2(tvUrl);
+        btnConfirm.setVisibility(View.INVISIBLE);
+
+        ClickUtil clickUtil = new ClickUtil(serverTv,5000);
+        clickUtil.setResultListener(new ClickUtil.ResultListener() {
+            @Override
+            public void onResult(boolean press) {
+                if (press) {
+                    NumberBoardDialog dialog = new NumberBoardDialog(UploadDataTestActivity.this, "", PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD, false);
+                    dialog.show();
+                    dialog.setOnDialogResultListener((mType, result) -> {
+                        if (!TextUtils.isEmpty(result)) {
+                            if ("303626".equals(result)) {
+                                tvUrl.setFocusable(true);
+                                tvUrl.setFocusableInTouchMode(true);
+                                tvUrl.requestFocus();
+                                btnConfirm.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
+
+                }
             }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        });
+
         btnToken.setOnClickListener(v -> {
             url = tvUrl.getText().toString().equals("") ? "ejc.ckdcloud.com":tvUrl.getText().toString();
             token();
@@ -362,7 +351,7 @@ public class UploadDataTestActivity extends BaseActivity {
         mTreatmentPrescription.lowWeightInitialValue = 3330;
         mTreatmentPrescription.plcId = "20220801";//
         mTreatmentPrescription.buildId = 2;
-        mTreatmentPrescription.buildValue = "2022010201";//1.2.1.1
+        mTreatmentPrescription.buildValue = EmtConstant.version;//1.2.1.1
         mTreatmentDataUpload.machineSN = PdproHelper.getInstance().getMachineSN();
         mTreatmentDataUpload.totalInjectAmount = 8000;
         mTreatmentDataUpload.startTime = EmtTimeUil.getTime();

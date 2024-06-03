@@ -1,22 +1,18 @@
 package com.emt.pdgo.next.ui.activity;
 
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.CommandSendConfig;
 import com.emt.pdgo.next.common.config.RxBusCodeConfig;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
 import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import java.util.concurrent.TimeUnit;
@@ -46,11 +42,6 @@ public class PowerMonitorDialogActivity extends BaseActivity {
     private int currCountdown = 31;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void initAllViews() {
         setContentView(R.layout.activity_power_monitor_dialog);
         ButterKnife.bind(this);
@@ -64,58 +55,19 @@ public class PowerMonitorDialogActivity extends BaseActivity {
 ////        lp.alpha=0.6f;
 //        win.setAttributes(lp);
         //取消倒计时按钮
-    }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
+        if (MyApplication.state != 1) {
+            sendToMainBoard(CommandDataHelper.getInstance().isValveOpen(true,"group1"));
+            sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group2"),500);
+//                speak("请取出卡匣,关闭所有管夹");
+            sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group3"),1000);
+        }
     }
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
     }
 
     @Override
     public void initViewData() {
-
-        sendToMainBoard(CommandDataHelper.getInstance().isValveOpen(true,"group1"));
-        sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group2"),500);
-//                speak("请取出卡匣,关闭所有管夹");
-        sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group3"),1000);
-
         if (!MyApplication.treatmentRunning && mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
             startLoopCountDown();

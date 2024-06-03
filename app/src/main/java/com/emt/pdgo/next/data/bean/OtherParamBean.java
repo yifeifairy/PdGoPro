@@ -8,4 +8,13 @@ public class OtherParamBean extends BaseBean implements Serializable {
 
     public int perHeartWeight = 500;
 
+    public boolean isHospital = false;
+
+    public boolean isDebug = false;
+
+    public int upper = 0;
+    public int lower = 0;
+
+    public int sleep = 10;
+
 }

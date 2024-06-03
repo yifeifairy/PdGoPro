@@ -1,556 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@id/custom_id_app_background"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:background="?attr/custom_attr_app_bg">
 
-
-    <ImageView
-        android:id="@+id/iv_top_bg"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_iv_preparation_upper_part_bg_height_2"
-        android:background="?attr/custom_attr_preparation_upper_part_bg" />
-
-
-    <include
-        android:id="@+id/main_head"
-        layout="@layout/view_head"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
-
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_toEndOf="@id/btn_pre"
-        android:layout_marginStart="@dimen/custom_dimen_checkbox_thumb_radius"
-        android:layout_toStartOf="@id/btn_next"
-        android:layout_marginEnd="@dimen/custom_dimen_checkbox_thumb_radius"
-        android:layout_centerHorizontal="true"
-        android:background="?attr/custom_attr_preparation_item_bg"
-        android:layout_marginTop="@dimen/pipeline_connection_layout_step_margin_top"
-        android:layout_marginBottom="@dimen/custom_dimen_checkbox_thumb_radius"
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
         android:layout_height="match_parent" >
 
-        <LinearLayout
-            android:id="@+id/layout_step_main"
+        <ImageView
+            android:id="@+id/previousIv"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/previous"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:yc_dx="0dp"
-            app:yc_dy="0dp"
-            android:background="?attr/custom_attr_preparation_item_bg"
-            app:yc_shadowColor="#330089ff"
-            app:yc_shadowLimit="8dp"
-            android:orientation="horizontal">
+            android:scaleType="fitXY"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginTop="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+            android:layout_marginBottom="@dimen/treatment_countdown_margin"
+            android:layout_toRightOf="@id/previousIv" />
 
+    </RelativeLayout>
 
-            <LinearLayout
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent" >
+        
+        <ImageView
+            android:id="@+id/nextIv"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/next"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="补液放置"
+            android:id="@+id/tipTv"
+            android:layout_marginTop="@dimen/preparation_tv_margin_top"
+            android:textSize="@dimen/treatment_main_tv_cycle_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="请在滴液杆上悬挂补液用腹透液"
+            android:layout_toStartOf="@id/nextIv"
+            android:layout_below="@id/tipTv"
+            android:id="@+id/detailTv"
+            android:layout_marginTop="@dimen/treatment_countdown_margin"
+            android:textSize="@dimen/input_health_info_tv_value_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/login_qrcode_title_margin"
+            android:layout_marginStart="@dimen/custom_main_title_size_1"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/btnSkip"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="match_parent" >
-
-                <RelativeLayout
-                    android:id="@+id/layout_step_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/custom_attr_preparation_item_bg">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/pipeline_connection_layout_step_margin_left"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/pipeline_connection_num_bg_width"
-                            android:layout_height="@dimen/pipeline_connection_num_bg_height">
-
-
-                            <ImageView
-                                android:layout_width="@dimen/pipeline_connection_num_01_width"
-                                android:layout_height="@dimen/pipeline_connection_num_01_height"
-                                android:layout_centerInParent="true"
-                                android:background="?attr/custom_attr_pipeline_connection_item_num_01"
-                                android:visibility="visible" />
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:text="01"
-                                android:textColor="?attr/custom_attr_common_text_color"
-                                android:textSize="80sp"
-                                android:textStyle="bold"
-                                android:visibility="gone" />
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="补液放置"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_1"
-                            android:textStyle="bold" />
-
-
-                        <!--                    <LinearLayout-->
-                        <!--                        android:layout_width="150dp"-->
-                        <!--                        android:layout_height="wrap_content" >-->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="请在点滴杆上悬挂补液用腹透液"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_2" />
-                        <!--                    </LinearLayout>-->
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/layout_step_2"
-                    android:layout_toStartOf="@id/videoView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:background="?attr/custom_attr_preparation_item_bg"
-                    android:visibility="gone">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/pipeline_connection_layout_step_margin_left"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/pipeline_connection_num_bg_width"
-                            android:layout_height="@dimen/pipeline_connection_num_bg_height">
-
-                            <ImageView
-                                android:layout_width="@dimen/pipeline_connection_num_02_width"
-                                android:layout_height="@dimen/pipeline_connection_num_02_height"
-                                android:layout_centerInParent="true"
-                                android:background="?attr/custom_attr_pipeline_connection_item_num_02"
-                                android:visibility="visible" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:text="02"
-                                android:textColor="?attr/custom_attr_common_text_color"
-                                android:textSize="80sp"
-                                android:textStyle="bold"
-                                android:visibility="gone" />
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="插入卡匣"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_1"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:lineSpacingMultiplier="1.1"
-                            android:text="请取出专用管路，按正确方式插入控制系统。"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_2" />
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/layout_step_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/custom_attr_preparation_item_bg"
-                    android:visibility="gone">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/pipeline_connection_layout_step_margin_left"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/pipeline_connection_num_bg_width"
-                            android:layout_height="@dimen/pipeline_connection_num_bg_height">
-
-                            <ImageView
-                                android:layout_width="@dimen/pipeline_connection_num_03_width"
-                                android:layout_height="@dimen/pipeline_connection_num_03_height"
-                                android:layout_centerInParent="true"
-                                android:background="?attr/custom_attr_pipeline_connection_item_num_03"/>
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="连接补液袋"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_1"
-                            android:textStyle="bold" />
-
-
-                        <!--                <LinearLayout-->
-                        <!--                    android:layout_width="160dp"-->
-                        <!--                    android:layout_height="wrap_content">-->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:lineSpacingMultiplier="1.1"
-                            android:text="请依次将补液用腹透液与管路连接，确保未使用的补液管处于关闭状态."
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_2" />
-                        <!--                </LinearLayout>-->
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/layout_step_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/custom_attr_preparation_item_bg"
-                    android:visibility="gone">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/pipeline_connection_layout_step_margin_left"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/pipeline_connection_num_bg_width"
-                            android:layout_height="@dimen/pipeline_connection_num_bg_height">
-
-                            <ImageView
-                                android:layout_width="@dimen/pipeline_connection_num_04_width"
-                                android:layout_height="@dimen/pipeline_connection_num_04_height"
-                                android:layout_centerInParent="true"
-                                android:background="?attr/custom_attr_pipeline_connection_item_num_04" />
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="连接加热袋"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_1"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:lineSpacingMultiplier="1.1"
-                            android:text="请将透析液托盘上的腹透液与加热管路连接，确保未使用的管路处于关闭状态"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_2" />
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/layout_step_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/custom_attr_preparation_item_bg"
-                    android:visibility="gone">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/pipeline_connection_layout_step_margin_left"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/pipeline_connection_num_bg_width"
-                            android:layout_height="@dimen/pipeline_connection_num_bg_height">
-
-                            <ImageView
-                                android:layout_width="@dimen/pipeline_connection_num_05_width"
-                                android:layout_height="@dimen/pipeline_connection_num_05_height"
-                                android:layout_centerInParent="true"
-                                android:background="?attr/custom_attr_pipeline_connection_item_num_05" />
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="连接废液袋"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_1"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:lineSpacingMultiplier="1.1"
-                            android:text="请将专用废液袋与引流端管路连接确保未连接的管路处于关闭状,并平放于透出液托盘上。"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_2" />
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/layout_step_6"
-                    android:layout_toStartOf="@id/videoView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:background="?attr/custom_attr_preparation_item_bg"
-                    android:visibility="gone">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/pipeline_connection_layout_step_margin_left"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/pipeline_connection_num_bg_width"
-                            android:layout_height="@dimen/pipeline_connection_num_bg_height">
-
-                            <ImageView
-                                android:layout_width="@dimen/pipeline_connection_num_06_width"
-                                android:layout_height="@dimen/pipeline_connection_num_06_height"
-                                android:layout_centerInParent="true"
-                                android:background="?attr/custom_attr_pipeline_connection_item_num_06" />
-
-
-                        </RelativeLayout>
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="废液卡管"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_1"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:lineSpacingMultiplier="1.1"
-                            android:text="请将废液端管路卡进排废阀门中。"
-                            android:textColor="?attr/custom_attr_common_text_color"
-                            android:textSize="@dimen/pipeline_connection_layout_step_text_size_2" />
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-            <FrameLayout
+                android:text="跳过引导"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                android:background="@drawable/white_shape"
+                android:layout_height="@dimen/navbar_btn_sound_width" />
+
+            <View
                 android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_marginLeft="@dimen/treatment_countdown_margin"
-                android:layout_marginRight="@dimen/treatment_countdown_margin"
-                android:layout_marginTop="@dimen/pipeline_btn_skip_boot_height"
-                android:layout_marginBottom="@dimen/pipeline_btn_skip_boot_height"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/videoImage"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/conn_heart"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <LinearLayout
-                        android:id="@+id/useless_ll01"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent" >
-                        <LinearLayout
-                            android:id="@+id/useless_ll02"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-
-                            android:layout_height="0dp"
-                            android:orientation="horizontal">
-
-                        </LinearLayout>
-                        <com.google.android.exoplayer2.ui.StyledPlayerView
-                            android:id="@+id/videoView"
-                            android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="0dp"
-                            app:show_timeout="1000"
-                            app:auto_show="false" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </FrameLayout>
+                android:layout_weight="1"
+                android:layout_height="@dimen/navbar_btn_sound_width"/>
 
         </LinearLayout>
+
     </RelativeLayout>
 
 
-    <com.emt.pdgo.next.ui.view.StateButton
-        android:id="@+id/btn_skip_boot"
-        android:layout_width="@dimen/pipeline_btn_skip_boot_width"
-        android:layout_height="@dimen/pipeline_btn_skip_boot_height"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/pipeline_btn_margin_left"
-        android:layout_marginBottom="@dimen/pipeline_btn_margin_bottom"
-        android:drawableRight="@mipmap/icon_next"
-        android:gravity="center"
-        android:paddingRight="10dp"
-        android:text="跳过引导"
-        android:textSize="@dimen/pipeline_btn_text_size_2"
-        android:visibility="gone"
-        app:normalBackgroundColor="#0089FF"
-        app:normalStrokeColor="#003869"
-        app:normalStrokeWidth="2dp"
-        app:normalTextColor="@android:color/white"
-        app:pressedBackgroundColor="#003869"
-        app:pressedStrokeColor="#003869"
-        app:pressedStrokeWidth="2dp"
-        app:pressedTextColor="@android:color/white"
-        app:radius="5dp" />
-
-    <com.emt.pdgo.next.ui.view.StateButton
-        android:id="@+id/btn_enter_prerinse"
-        android:layout_width="@dimen/pipeline_btn_enter_prerinse_width"
-        android:layout_height="@dimen/pipeline_btn_enter_prerinse_height"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/pipeline_btn_margin_bottom"
-        android:layout_marginRight="@dimen/pipeline_btn_margin_right"
-        android:drawableRight="@mipmap/icon_next"
-        android:gravity="center"
-        android:paddingRight="10dp"
-        android:text="完成，进入预冲"
-        android:textSize="@dimen/pipeline_btn_text_size_2"
-        android:visibility="gone"
-        app:normalBackgroundColor="#0089FF"
-        app:normalStrokeColor="#003869"
-        app:normalStrokeWidth="2dp"
-        app:normalTextColor="@android:color/white"
-        app:pressedBackgroundColor="#003869"
-        app:pressedStrokeColor="#003869"
-        app:pressedStrokeWidth="2dp"
-        app:pressedTextColor="@android:color/white"
-        app:radius="5dp" />
-
-
-    <com.emt.pdgo.next.ui.view.StateButton
-        android:id="@+id/btn_pre"
-        android:layout_width="@dimen/pipeline_btn_pre_width"
-        android:layout_height="@dimen/pipeline_btn_pre_height"
-        android:layout_alignBottom="@+id/iv_top_bg"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/layout_input_box_bg_margin"
-        android:text="上一步"
-        android:visibility="invisible"
-        android:textSize="@dimen/pipeline_btn_text_size_1"
-        app:normalBackgroundColor="?attr/custom_attr_pipeline_connection_button_bg"
-        app:normalStrokeColor="?attr/custom_attr_pipeline_connection_button_bg"
-        app:normalStrokeWidth="2dp"
-        app:normalTextColor="?attr/custom_attr_item_btn_text_color"
-        app:pressedBackgroundColor="@color/gray"
-        app:pressedStrokeColor="@color/gray"
-        app:pressedStrokeWidth="2dp"
-        app:pressedTextColor="?attr/custom_attr_item_btn_text_color" />
-
-    <com.emt.pdgo.next.ui.view.StateButton
-        android:id="@+id/btn_next"
-        android:layout_width="@dimen/pipeline_btn_next_width"
-        android:layout_height="@dimen/pipeline_btn_next_height"
-        android:layout_alignBottom="@+id/iv_top_bg"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/layout_input_box_bg_margin"
-        android:text="下一步"
-        android:textSize="@dimen/pipeline_btn_text_size_1"
-        android:visibility="visible"
-        app:normalBackgroundColor="?attr/custom_attr_pipeline_connection_button_bg"
-        app:normalStrokeColor="?attr/custom_attr_pipeline_connection_button_bg"
-        app:normalStrokeWidth="2dp"
-        app:normalTextColor="?attr/custom_attr_item_btn_text_color"
-        app:pressedBackgroundColor="@color/gray"
-        app:pressedStrokeColor="@color/gray"
-        app:pressedStrokeWidth="2dp"
-        app:pressedTextColor="?attr/custom_attr_item_btn_text_color" />
-
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-
-</RelativeLayout>
+</LinearLayout>

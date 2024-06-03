@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.github.AlexLiuSheng:CheckVersionLib:2.4.1_androidx@aar">
+  <library name="Gradle: com.github.AlexLiuSheng:CheckVersionLib:2.4.1_androidx@aar" external-system-id="GRADLE">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/eb659991a770b7c876ee7e4a2ccd94dc/transformed/jetified-CheckVersionLib-2.4.1_androidx/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/eb659991a770b7c876ee7e4a2ccd94dc/transformed/jetified-CheckVersionLib-2.4.1_androidx/res" />

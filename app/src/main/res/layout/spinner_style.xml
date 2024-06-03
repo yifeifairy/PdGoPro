@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/treatment_countdown_margin"
+    android:background="@drawable/white_shape"
+    android:layout_marginBottom="@dimen/treatment_countdown_margin"
+    android:layout_marginEnd="@dimen/treatment_evaluation_margin"
+    android:layout_marginStart="@dimen/treatment_evaluation_margin"
+    android:layout_marginTop="@dimen/treatment_countdown_margin"
+    android:textSize="@dimen/input_health_info_tv_value_text_size"
+    android:layout_height="match_parent">
+
+</TextView>

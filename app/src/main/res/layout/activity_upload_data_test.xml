@@ -12,14 +12,16 @@
 
     <include
         android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
+        android:layout_weight="0.15"
+        android:layout_height="0dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.45"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="服务端地址："
+                android:id="@+id/serverTv"
                 android:textColor="?attr/custom_attr_common_text_color"
                 android:textSize="@dimen/input_box_tv_text_size" />
 
@@ -179,7 +182,8 @@
         android:paddingLeft="@dimen/input_box_item_padding_left"
         android:paddingRight="@dimen/input_box_item_padding_right"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="0dp"
+        android:layout_weight="0.3" >
 
         <TextView
             android:id="@+id/receiveMsg"
@@ -192,14 +196,5 @@
             android:textSize="@dimen/input_box_tv_text_size" />
 
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-    </RelativeLayout>
+
 </LinearLayout>

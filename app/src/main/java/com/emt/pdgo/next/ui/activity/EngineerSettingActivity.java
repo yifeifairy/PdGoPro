@@ -9,7 +9,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -17,7 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,18 +28,20 @@ import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.CommandSendConfig;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
+import com.emt.pdgo.next.constant.ConfigConst;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.DrainParameterBean;
 import com.emt.pdgo.next.data.bean.FirstRinseParameterBean;
+import com.emt.pdgo.next.data.bean.OtherParamBean;
 import com.emt.pdgo.next.data.bean.PerfusionParameterBean;
 import com.emt.pdgo.next.data.bean.RetainParamBean;
 import com.emt.pdgo.next.data.bean.SupplyParameterBean;
 import com.emt.pdgo.next.data.bean.UserParameterBean;
 import com.emt.pdgo.next.data.entity.CommandItem;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.model.mode.IpdBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
+import com.emt.pdgo.next.ui.activity.dl.TrActivity;
 import com.emt.pdgo.next.ui.activity.dpr.DprExamineActivity;
+import com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity;
 import com.emt.pdgo.next.ui.activity.param.DrainParameterActivity;
 import com.emt.pdgo.next.ui.activity.param.FaultCodeActivity;
 import com.emt.pdgo.next.ui.activity.param.FirmwareUpgradeActivity;
@@ -52,7 +53,6 @@ import com.emt.pdgo.next.ui.activity.param.PerfusionParameterActivity;
 import com.emt.pdgo.next.ui.activity.param.SNSetActivity;
 import com.emt.pdgo.next.ui.activity.param.SupplyParameterActivity;
 import com.emt.pdgo.next.ui.activity.param.TemperatureControlParameterActivity;
-import com.emt.pdgo.next.ui.activity.param.TreatmentHistoryActivity;
 import com.emt.pdgo.next.ui.activity.param.UploadDataTestActivity;
 import com.emt.pdgo.next.ui.activity.param.UrlSetActivity;
 import com.emt.pdgo.next.ui.activity.param.UserParameterActivity;
@@ -64,10 +64,12 @@ import com.emt.pdgo.next.ui.activity.wifi.WifiActivity;
 import com.emt.pdgo.next.ui.adapter.CommandAdapter;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
+import com.emt.pdgo.next.ui.local.LocalPdActivity;
+import com.emt.pdgo.next.ui.local.LocalRxActivity;
 import com.emt.pdgo.next.ui.mode.activity.ModeActivity;
 import com.emt.pdgo.next.util.CacheUtils;
+import com.emt.pdgo.next.util.ClickUtil;
 import com.emt.pdgo.next.util.MarioResourceHelper;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import java.io.IOException;
@@ -81,7 +83,6 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class EngineerSettingActivity extends BaseActivity {
 
@@ -92,13 +93,14 @@ public class EngineerSettingActivity extends BaseActivity {
     @BindView(R.id.rv_set)
     RecyclerView rvSet;
 
+    @BindView(R.id.lowVer)
+    TextView lowVer;
+
+    @BindView(R.id.upVer)
+    TextView upVer;
+
     private List<CommandItem> mList;
     private CommandAdapter mAdapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public void initAllViews() {
@@ -108,47 +110,31 @@ public class EngineerSettingActivity extends BaseActivity {
 //        Log.e("activity","int--"+ ActivityCompat.checkSelfPermission(EngineerSettingActivity.this,
 //                "android.permission.WRITE_EXTERNAL_STORAGE"));
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.btnSave)
+    Button btnSave;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
+        btnBack.setOnClickListener(view -> onBackPressed());
+        btnSave.setVisibility(View.VISIBLE);
+        title.setText("工程师设置");
+        btnSave.setText("关于");
+        btnSave.setOnClickListener(view -> doGoTOActivity(AboutActivity.class));
+        upVer.setText("build:"+EmtConstant.version);
+        ClickUtil clickUtil = new ClickUtil(upVer,5000);
+        clickUtil.setResultListener(new ClickUtil.ResultListener() {
+            @Override
+            public void onResult(boolean press) {
+                if (press) {
+                    alertNumberBoardDialog("",PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD);
+                }
             }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        });
+
     }
 
     @Override
@@ -194,17 +180,20 @@ public class EngineerSettingActivity extends BaseActivity {
 //        mList.add(new CommandItem("治疗开始倒计时", "Countdown"));
 //        mList.add(new CommandItem("开始APD治疗", "TreatmentFragment"));
 //        mList.add(new CommandItem("开始DPR治疗", "dprTeat"));
+//        mList.add(new CommandItem("开启U盘", "U_Disk"));
         mList.add(new CommandItem("数据上报测试", "uploadDataTest"));
 //        mList.add(new CommandItem("数据收集", "DataCollection"));
 //        mList.add(new CommandItem("治疗反馈", "TreatmentFeedback"));
 //        mList.add(new CommandItem("治疗数据评估", "TreatmentEvaluation"));
         mList.add(new CommandItem("电池供电关机", "power_monitor"));
-        mList.add(new CommandItem("无线和网络设置", "wirelessSetting"));
-//        mList.add(new CommandItem("本地治疗数据", "localPd"));
-//        mList.add(new CommandItem("息屏","sleep"));
-        mList.add(new CommandItem("休眠","dormancy"));
+        mList.add(new CommandItem("无线网络设置", "wirelessSetting"));
+        mList.add(new CommandItem("本机治疗数据", "localPd"));
+        mList.add(new CommandItem("本机处方数据", "localRx"));
+//        mList.add(new CommandItem("删除治疗","delPd"));
+//        mList.add(new CommandItem("删除处方","delRx"));
         mList.add(new CommandItem("故障码查看","faultCode"));
 //        mList.add(new CommandItem("其他参数设置","otherParamSet"));
+//        mList.add(new CommandItem("熄屏","dormancy"));
 //        mList.add(new CommandItem("打开灌注灯", "perfuse_led_open"));
 //        mList.add(new CommandItem("关闭灌注灯", "perfuse_led_close"));
 //        mList.add(new CommandItem("打开留腹灯", "retain_led_open"));
@@ -214,10 +203,11 @@ public class EngineerSettingActivity extends BaseActivity {
 //        mList.add(new CommandItem("打开全部灯", "all_led_open"));
 //        mList.add(new CommandItem("关闭全部灯", "all_led_close"));
 //        mList.add(new CommandItem("固件升级","firmwareUpgrade"));
-        mList.add(new CommandItem("系统升级","appUpdate"));
+//        mList.add(new CommandItem("当前治疗运行数据","trActivity"));
+//        mList.add(new CommandItem("系统升级","appUpdate"));
 //        mList.add(new CommandItem("设置页面","setting"));
         mList.add(new CommandItem("声音设置","volume"));
-//        mList.add(new CommandItem("恢复出厂设置", "factoryReset"));
+        mList.add(new CommandItem("恢复出厂设置", "factoryReset"));
         mAdapter = new CommandAdapter(this, R.layout.item_setting, mList);
         rvSet.setLayoutManager(new GridLayoutManager(this, 3));
         rvSet.setAdapter(mAdapter);
@@ -226,6 +216,10 @@ public class EngineerSettingActivity extends BaseActivity {
             int dayFlag = 0;
             if ("SNSet".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(SNSetActivity.class);
+            } if ("U_Disk".equals(mList.get(position).mCommand)) {
+                 Intent intent = new Intent();
+                 intent.setAction("android.intent.action.norco_disk_enable");
+                 sendBroadcast(intent);
             } else if ("tsTest".equals(mList.get(position).mCommand)) {
                 speak("语音测试");
             } else if ("UrlSet".equals(mList.get(position).mCommand)) {
@@ -249,7 +243,7 @@ public class EngineerSettingActivity extends BaseActivity {
             } else if ("appUpdate".equals(mList.get(position).mCommand)) {
                 appUpdate(true);
             } else if ("tdRecord".equals(mList.get(position).mCommand)) {
-                doGoTOActivity(TreatmentHistoryActivity.class);
+
             }else if ("WeighParameter".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(WeighParameterActivity.class);
             } else if ("TemperatureControlParameter".equals(mList.get(position).mCommand)) {
@@ -281,7 +275,7 @@ public class EngineerSettingActivity extends BaseActivity {
             } else if ("PipelineConnection".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(PipelineConnectionActivity.class);
             } else if ("TreatmentFragment".equals(mList.get(position).mCommand)) {
-                MyApplication.apdMode = 4;
+                MyApplication.apdMode = 1;
                 doGoCloseTOActivity(TreatmentFragmentActivity.class,"");
             } else if ("TreatmentFeedback".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(TreatmentFeedbackActivity.class);
@@ -342,13 +336,15 @@ public class EngineerSettingActivity extends BaseActivity {
                 goToSleep();
 //                wakeup(this);
             } else if("localPd".equals(mList.get(position).mCommand)) {
+                doGoTOActivity(LocalPdActivity.class);
+            } else if("localRx".equals(mList.get(position).mCommand)) {
+                doGoTOActivity(LocalRxActivity.class);
+            } else if ("trActivity".equals(mList.get(position).mCommand)) {
+                doGoTOActivity(TrActivity.class);
+            } else if ("delPd".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(MyDreamActivity.class);
-//                try {
-//                    Thread.sleep(10* 1000L);
-//                    wakeup(this);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
+            }   else if ("delRx".equals(mList.get(position).mCommand)) {
+                doGoTOActivity(LocalPrescriptionActivity.class);
             }
         });
 
@@ -412,9 +408,9 @@ public class EngineerSettingActivity extends BaseActivity {
         dialog.setOnDialogResultListener((mType, result) -> {
             if (!TextUtils.isEmpty(result)) {
 //                    Logger.d(result);
-                if (mType.equals(PdGoConstConfig.zeroClear)) {//工程师模式的密码
-                    if ("303626".equals(result)) {
-
+                if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
+                    if ("870825".equals(result)) {
+                        wirelessSetting();
                     }
                 }
             }
@@ -488,15 +484,6 @@ public class EngineerSettingActivity extends BaseActivity {
     }
 
     private void goToSleep() {
-//        DevicePolicyManager policyManager = (DevicePolicyManager)context.getSystemService(Context.DEVICE_POLICY_SERVICE);
-//        ComponentName adminReceiver = new ComponentName(context, ScreenOffAdminReceiver.class);
-//        boolean admin = policyManager.isAdminActive(adminReceiver);
-////        policyManager.lockNow();
-//        if (admin) {
-//            policyManager.lockNow();
-//        }else {
-//            Toast.makeText(context, "没有设备管理权限", Toast.LENGTH_LONG).show();
-//        }
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.System.canWrite(getApplicationContext())) {
                 Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
@@ -516,8 +503,6 @@ public class EngineerSettingActivity extends BaseActivity {
         mWakeLock.acquire(30*1000L /*10 minutes*/);
     }
 
-
-
     private void factoryReset() {
         FirstRinseParameterBean firstRinseParameterBean = PdproHelper.getInstance().getFirstRinseParameterBean();
         PerfusionParameterBean perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
@@ -535,6 +520,7 @@ public class EngineerSettingActivity extends BaseActivity {
         treatmentParameterEniity.abdomenRetainingVolumeFinally = 0;
         treatmentParameterEniity.abdomenRetainingVolumeLastTime = 0;
         treatmentParameterEniity.ultrafiltrationVolume = 0;
+        treatmentParameterEniity.isFinalSupply = ConfigConst.isFinalSupply;
         // 预冲参数重置
         firstRinseParameterBean.firstvolume = 50;
         firstRinseParameterBean.secondvolume = 50;
@@ -542,7 +528,7 @@ public class EngineerSettingActivity extends BaseActivity {
         firstRinseParameterBean.supplyspeed = 30;
         firstRinseParameterBean.supplyselect = 1;
         // 灌注参数重置
-        perfusionParameterBean.perfAllowAbdominalVolume = false;
+        perfusionParameterBean.perfAllowAbdominalVolume = 1;
         perfusionParameterBean.perfMaxWarningValue = 5000;
         perfusionParameterBean.perfTimeInterval = 60;
         perfusionParameterBean.perfThresholdValue = 30;
@@ -575,6 +561,13 @@ public class EngineerSettingActivity extends BaseActivity {
         userParameterBean.underweight1 = 1f;
         userParameterBean.underweight2 = 2f;
         userParameterBean.underweight3 = 3.6f;
+        OtherParamBean otherParamBean = PdproHelper.getInstance().getOtherParamBean();
+        otherParamBean.lower = EmtConstant.lower;
+        otherParamBean.upper = EmtConstant.upper;
+        otherParamBean.isDebug = false;
+        otherParamBean.isHospital = false;
+        otherParamBean.perHeartWeight = 500;
+        CacheUtils.getInstance().getACache().put(PdGoConstConfig.OTHER_PARAMETER, otherParamBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.RETAIN_PARAM, retainParamBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.ttsSoundOpen, "true");
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, treatmentParameterEniity);
@@ -593,7 +586,6 @@ public class EngineerSettingActivity extends BaseActivity {
         helper.setBackgroundResourceByAttr(mAppBackground, R.attr.custom_attr_app_bg);
         if (mAdapter != null) mAdapter.notifyDataSetChanged(); //
 
-        helper.setTextColorByAttr(tvTitle, R.attr.custom_attr_common_text_color);
     }
 
     private void wirelessSetting() {
@@ -607,23 +599,12 @@ public class EngineerSettingActivity extends BaseActivity {
 
 //mobile 3G Data Network
         @SuppressLint("MissingPermission") NetworkInfo.State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
-        Log.e("工程师界面",mobile.toString());
+        Log.e("工程师界面","mobile:"+mobile.toString());
 //wifi
         @SuppressLint("MissingPermission") NetworkInfo.State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
-        Log.e("工程师界面",wifi.toString());
+        Log.e("工程师界面","wifi:"+wifi.toString());
 
         startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
-    }
-
-
-    @OnClick({R.id.btn_submit})
-    public void onViewClicked(View view) {
-
-        switch (view.getId()) {
-            case R.id.btn_submit:
-                doGoTOActivity(AboutActivity.class);
-                break;
-        }
     }
 
     @Override

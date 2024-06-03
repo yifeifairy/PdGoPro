@@ -82,7 +82,10 @@ public class RetrofitUtil {
                     //.cache(new Cache(httpCacheDirectory, 10 * 1024 * 1024))
                     //log请求参数
                     .addInterceptor(new MyLogInterceptor())
-                    .connectTimeout(2, TimeUnit.SECONDS)
+                    .connectTimeout(1000, TimeUnit.SECONDS)
+                .readTimeout(1000, TimeUnit.SECONDS)
+                .writeTimeout(1000, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
                     .addInterceptor(chain -> {
                         Request originalRequest;
                         if (CacheUtils.getInstance().getACache().getAsString(PdGoConstConfig.TOKEN) == null) {
@@ -114,7 +117,7 @@ public class RetrofitUtil {
                     //.cache(new Cache(httpCacheDirectory, 10 * 1024 * 1024))
                     //log请求参数
                     .addInterceptor(new MyLogInterceptor())
-                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(1000, TimeUnit.SECONDS)
                     .addInterceptor(chain -> {
                         Request originalRequest = chain.request().newBuilder()
                                 .addHeader("apiVersion", "1.0.0")

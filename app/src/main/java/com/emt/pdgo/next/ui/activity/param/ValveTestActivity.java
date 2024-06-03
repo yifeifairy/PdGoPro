@@ -3,7 +3,7 @@ package com.emt.pdgo.next.ui.activity.param;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.CommandSendConfig;
 import com.emt.pdgo.next.common.config.RxBusCodeConfig;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.entity.CommandItem;
 import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
@@ -26,9 +26,13 @@ import com.pdp.rmmit.pdp.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
 
 public class ValveTestActivity extends BaseActivity {
 
@@ -37,6 +41,19 @@ public class ValveTestActivity extends BaseActivity {
 
     @BindView(R.id.rv_value)
     RecyclerView rvSet;
+
+    @BindView(R.id.tv_valve_negpre_drain)
+    TextView tvValveNegpreDrain;
+    @BindView(R.id.tv_valve_supply)
+    TextView tvValveSupply;
+    @BindView(R.id.tv_valve_perfusion)
+    TextView tvValvePerfusion;
+    @BindView(R.id.tv_valve_supply2)
+    TextView tvValveSupply2;
+    @BindView(R.id.tv_valve_safe)
+    TextView tvValveSafe;
+    @BindView(R.id.tv_valve_drain)
+    TextView tvValveDrain;
 
     private List<CommandItem> mList;
     private CommandAdapter mAdapter;
@@ -53,53 +70,21 @@ public class ValveTestActivity extends BaseActivity {
         RxBus.get().register(this);
         initHeadTitleBar("阀功能测试");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+//        btnSave.setVisibility(View.VISIBLE);
+//        btnSave.setText("保存");
+        btnBack.setOnClickListener(view -> onBackPressed());
     }
 
     @Override
     public void initViewData() {
+        init();
         mList = new ArrayList<>();
-
 
         mList.add(new CommandItem("开启灌注", CommandSendConfig.PERFUSE_VALVE_OPEN));
         mList.add(new CommandItem("关闭灌注", CommandSendConfig.PERFUSE_VALVE_CLOSE));
@@ -138,14 +123,10 @@ public class ValveTestActivity extends BaseActivity {
         rvSet.setLayoutManager(new GridLayoutManager(this, 4));
         rvSet.setAdapter(mAdapter);
 
-
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-
-
                 String mCommand = mList.get(position).mCommand;
-
                 if (CommandSendConfig.PERFUSE_VALVE_OPEN.equals(mCommand)) {
                     handleValve("perfuse", true);
                 } else if (CommandSendConfig.PERFUSE_VALVE_CLOSE.equals(mCommand)) {
@@ -187,8 +168,172 @@ public class ValveTestActivity extends BaseActivity {
             }
         });
     }
+    private CompositeDisposable compositeDisposable;
+    private void init() {
+        DisposableObserver<Long> disposableObserver = new DisposableObserver<Long>() {
+            @Override
+            public void onNext(Long aLong) {
+                runOnUiThread(() -> {
+                    sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+                });
+            }
 
+            @Override
+            public void onError(Throwable e) {
 
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        Observable.interval(0, EmtConstant.REPORT_DELAY_TIME, TimeUnit.MILLISECONDS).subscribe(disposableObserver);
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposableObserver);
+    }
+
+    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
+    public void receiveCmdDeviceInfo(String bean) {
+        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
+        runOnUiThread(() -> {
+            switch (mReceiveDeviceBean.vaccum) {
+                case "00":
+                case "80":
+//            tvValveNegpreDrain.setTextColor(Color.YELLOW);
+                    tvValveNegpreDrain.setBackgroundResource(R.color.orange);
+                    break;
+                case "01":
+                case "81":
+//            tvValveNegpreDrain.setTextColor(Color.GREEN);
+                    tvValveNegpreDrain.setBackgroundResource(R.color.blue);
+                    break;
+                case "02":
+//            tvValveNegpreDrain.setTextColor(Color.GREEN);
+                    tvValveNegpreDrain.setBackgroundResource(R.color.darkblue);
+                    break;
+                default:
+//            tvValveNegpreDrain.setTextColor(Color.RED);
+                    tvValveNegpreDrain.setBackgroundResource(R.color.red);
+                    break;
+            }
+//        Log.e("详细状态","vaccum--"+mDeviceStatusInfo.vaccum+
+//                "supply"+mDeviceStatusInfo.supply);
+            switch (mReceiveDeviceBean.supply1) {
+                case "00":
+                case "80":
+//            tvValveSupply.setTextColor(Color.YELLOW);
+//            tvValveSupply.setTextColor(Color.YELLOW);
+                    tvValveSupply.setBackgroundResource(R.color.orange);
+                    break;
+                case "01":
+                case "81":
+//            tvValveSupply.setTextColor(Color.GREEN);
+                    tvValveSupply.setBackgroundResource(R.color.blue);
+                    break;
+                case "02":
+//            tvValveSupply.setTextColor(Color.GREEN);
+                    tvValveSupply.setBackgroundResource(R.color.darkblue);
+                    break;
+                default:
+//            tvValveSupply.setTextColor(Color.RED);
+                    tvValveSupply.setBackgroundResource(R.color.red);
+                    break;
+            }
+            switch (mReceiveDeviceBean.perfuse) {
+                case "00":
+                case "80":
+//            tvValvePerfusion.setTextColor(Color.YELLOW);
+                    tvValvePerfusion.setBackgroundResource(R.color.orange);
+                    break;
+                case "01":
+                case "81":
+//            tvValvePerfusion.setTextColor(Color.GREEN);
+                    tvValvePerfusion.setBackgroundResource(R.color.blue);
+                    break;
+                case "02":
+//            tvValvePerfusion.setTextColor(Color.GREEN);
+                    tvValvePerfusion.setBackgroundResource(R.color.darkblue);
+                    break;
+                default:
+//            tvValvePerfusion.setTextColor(Color.RED);
+                    tvValvePerfusion.setBackgroundResource(R.color.red);
+                    break;
+            }
+            switch (mReceiveDeviceBean.drain) {
+                case "00":
+                case "80":
+//            tvValveDrain.setTextColor(Color.YELLOW);
+                    tvValveDrain.setBackgroundResource(R.color.orange);
+                    break;
+                case "01":
+                case "81":
+//            tvValveDrain.setTextColor(Color.GREEN);
+                    tvValveDrain.setBackgroundResource(R.color.blue);
+                    break;
+                case "02":
+//            tvValveDrain.setTextColor(Color.GREEN);
+                    tvValveDrain.setBackgroundResource(R.color.darkblue);
+                    break;
+                default:
+//            tvValveDrain.setTextColor(Color.RED);
+                    tvValveDrain.setBackgroundResource(R.color.red);
+                    break;
+            }
+            switch (mReceiveDeviceBean.safe) {
+                case "00":
+                case "80":
+//            tvValveSafe.setTextColor(Color.YELLOW);
+                    tvValveSafe.setBackgroundResource(R.color.orange);
+                    break;
+                case "01":
+                case "81":
+//            tvValveSafe.setTextColor(Color.GREEN);
+                    tvValveSafe.setBackgroundResource(R.color.blue);
+                    break;
+                case "02":
+//            tvValveSafe.setTextColor(Color.GREEN);
+                    tvValveSafe.setBackgroundResource(R.color.darkblue);
+                    break;
+                default:
+                    tvValveSafe.setBackgroundResource(R.color.red);
+//            tvValveSafe.setTextColor(Color.RED);
+                    break;
+            }
+            switch (mReceiveDeviceBean.supply2) {
+                case "00":
+                case "80":
+//            tvValveSupply2.setTextColor(Color.YELLOW);
+                    tvValveSupply2.setBackgroundResource(R.color.orange);
+                    break;
+                case "01":
+                case "81":
+//            tvValveSupply2.setTextColor(Color.GREEN);
+                    tvValveSupply2.setBackgroundResource(R.color.blue);
+                    break;
+                case "02":
+//            tvValveSupply2.setTextColor(Color.GREEN);
+                    tvValveSupply2.setBackgroundResource(R.color.darkblue);
+                    break;
+                default:
+//            tvValveSupply2.setTextColor(Color.RED);
+                    tvValveSupply2.setBackgroundResource(R.color.red);
+                    break;
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RxBus.get().unRegister(this);
+        if (compositeDisposable != null) {
+            compositeDisposable.dispose();
+            compositeDisposable.clear();
+        }
+    }
     @Override
     public void notifyByThemeChanged() {
 

@@ -10,9 +10,9 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 20242100,
-      "versionName": "2.1.0.0",
-      "outputFile": "PdGoPro_v2.1.0.0_release.apk"
+      "versionCode": 202422001,
+      "versionName": "2.2.0.0.1",
+      "outputFile": "PdGoPro_v2.2.0.0.1_release.apk"
     }
   ]
 }

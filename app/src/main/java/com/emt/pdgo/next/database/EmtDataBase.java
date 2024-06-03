@@ -6,16 +6,21 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.emt.pdgo.next.database.dao.DelPdDao;
+import com.emt.pdgo.next.database.dao.DelRxDao;
 import com.emt.pdgo.next.database.dao.FaultCodeDao;
 import com.emt.pdgo.next.database.dao.PdDao;
 import com.emt.pdgo.next.database.dao.PdInfoDao;
 import com.emt.pdgo.next.database.dao.RxDao;
+import com.emt.pdgo.next.database.entity.DelPdEntity;
+import com.emt.pdgo.next.database.entity.DelRxEntity;
 import com.emt.pdgo.next.database.entity.FaultCodeEntity;
 import com.emt.pdgo.next.database.entity.PdEntity;
 import com.emt.pdgo.next.database.entity.PdInfoEntity;
 import com.emt.pdgo.next.database.entity.RxEntity;
 
-@Database(entities = {RxEntity.class, PdEntity.class, FaultCodeEntity.class, PdInfoEntity.class}, version = 6)
+@Database(entities = {RxEntity.class, PdEntity.class, FaultCodeEntity.class, PdInfoEntity.class
+        , DelRxEntity.class, DelPdEntity.class}, version = 8)
 public abstract class EmtDataBase extends RoomDatabase {
 
     private static final String DB_NAME = "EmtDataBase.db";
@@ -46,6 +51,10 @@ public abstract class EmtDataBase extends RoomDatabase {
     public abstract PdInfoDao getPdInfoDao();
 
     public abstract FaultCodeDao getFaultCodeDao();
+
+    public abstract DelPdDao delPdDao();
+
+    public abstract DelRxDao delRxDao();
 
 //    public abstract FaultMsgDao getFaultMsgDao();
 

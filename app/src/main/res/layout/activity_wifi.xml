@@ -11,13 +11,15 @@
     android:background="?attr/custom_attr_app_bg"
     tools:context="com.emt.pdgo.next.ui.activity.wifi.WifiActivity">
     <include
-        android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
+        android:layout_height="0dp"
+        android:layout_weight="0.15"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical"
         android:layout_marginTop="@dimen/dp_10"
         android:orientation="horizontal">
 
@@ -56,7 +58,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/dp_10"
-        android:layout_height="100dp">
+        android:layout_height="0dp"
+        android:layout_weight="0.15">
         <TextView
             android:id="@+id/tv_wifiState"
             android:layout_width="match_parent"
@@ -68,23 +71,14 @@
             android:padding="3dp"/>
     </ScrollView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_above="@id/rootView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.65"
         android:layout_marginTop="10dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    </RelativeLayout>
 </LinearLayout>

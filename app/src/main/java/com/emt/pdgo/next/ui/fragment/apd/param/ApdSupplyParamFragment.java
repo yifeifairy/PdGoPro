@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.base.BaseFragment;
-import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
+import com.emt.pdgo.next.ui.dialog.NumberDialog;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -55,28 +56,28 @@ public class ApdSupplyParamFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.rehydrationTimeIntervalEt:
             case R.id.rehydrationTimeIntervalRl:
-                alertNumberBoardDialog(rehydrationTimeIntervalEt.getText().toString(),PdGoConstConfig.CHECK_TYPE_SUPPLY_TIME_INTERVAL);
+                alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_SUPPLY_TIME_INTERVAL, EmtConstant.supplyTimeIntervalMin, EmtConstant.supplyTimeIntervalMax);
                 break;
             case R.id.rehydrationThresholdEt:
             case R.id.rehydrationThresholdRl:
-                alertNumberBoardDialog(rehydrationThresholdEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_SUPPLY_THRESHOLD_VALUE);
+                alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_SUPPLY_THRESHOLD_VALUE, EmtConstant.supplyThresholdValueMin, EmtConstant.supplyThresholdValueMax);
                 break;
             case R.id.rehydrationTargetValueEt:
             case R.id.rehydrationTargetValueRl:
-                alertNumberBoardDialog(rehydrationTargetValueEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_SUPPLY_TARGET_PROTECTION_VALUE);
+                alertNumberBoardDialog( PdGoConstConfig.CHECK_TYPE_SUPPLY_TARGET_PROTECTION_VALUE, EmtConstant.supplyTargetProtectionValueMin, EmtConstant.supplyTargetProtectionValueMax);
                 break;
             case R.id.rehydrationMinimumEt:
             case R.id.rehydrationMinimumRl:
-                alertNumberBoardDialog(rehydrationMinimumEt.getText().toString(),PdGoConstConfig.CHECK_TYPE_SUPPLY_MIN_WEIGHT);
+                alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_SUPPLY_MIN_WEIGHT, EmtConstant.supplyTargetProtectionValueMin, EmtConstant.supplyTargetProtectionValueMax);
                 break;
 
         }
     }
 
-    private void alertNumberBoardDialog(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(getActivity(), value, type, false, true);
+    private void alertNumberBoardDialog(String type, int min, int max) {
+        NumberDialog dialog = new NumberDialog(getActivity(), type, min, max);
         dialog.show();
-        dialog.setOnDialogResultListener(new NumberBoardDialog.OnDialogResultListener() {
+        dialog.setOnDialogResultListener(new NumberDialog.OnDialogResultListener() {
             @Override
             public void onResult(String mType, String result) {
                 if (!TextUtils.isEmpty(result)) {

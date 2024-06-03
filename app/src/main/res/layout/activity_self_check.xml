@@ -27,6 +27,14 @@
         android:textColor="#ffffff"
         android:textSize="@dimen/custom_main_title_size_2" />
 
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginRight="30dp"-->
+<!--        android:textSize="@dimen/custom_main_title_size_2"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:text="2023年 08 月 08 日 16 时 51 分"-->
+<!--        android:layout_height="wrap_content" />-->
     <RelativeLayout
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
@@ -141,34 +149,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/root_viewLL"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/preparation_item_margin"
         android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical|left"
-            android:text="@string/device_name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/custom_main_title_size_4" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/software_release_version_2"
-            android:textColor="@color/white"
-            android:textSize="@dimen/custom_main_title_size_4"
-            />
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/tvVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="1.2"
-            android:textSize="@dimen/custom_main_title_size_4"
-            />
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|left"
+                android:text="@string/sn_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/custom_main_title_size_4" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="腹膜透析机"
+                android:gravity="center_vertical|left"
+                android:textColor="@color/white"
+                android:textSize="@dimen/custom_main_title_size_4" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/software_release_version_2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/custom_main_title_size_4"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/push_version"
+                android:textColor="@color/white"
+                android:textSize="@dimen/custom_main_title_size_4"
+                />
+        </LinearLayout>
 
         <TextView
             android:layout_width="0dp"
@@ -184,7 +206,7 @@
     <include
         android:id="@+id/root_viewLL"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/navbar_btn_height"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         layout="@layout/root_view" />
 

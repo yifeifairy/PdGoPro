@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emt.pdgo.next.MyApplication;
@@ -73,47 +72,15 @@ public class WeighParameterActivity extends BaseActivity {
         RxBus.get().register(this);
         initHeadTitleBar("传感器数值校准");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        //        btnSave.setVisibility(View.VISIBLE);
+//        btnSave.setText("保存");
+        btnBack.setOnClickListener(view -> onBackPressed());
         setCanNotEditNoClick2(etUpWeighRatio);
         setCanNotEditNoClick2(etLowWeighRatio);
 
@@ -132,7 +99,7 @@ public class WeighParameterActivity extends BaseActivity {
 //        sendToMainBoard(CommandDataHelper.getInstance().weightTareLowerCmdJson());
     }
 
-    @OnClick({R.id.layout_right_menu, R.id.btn_up_peeled, R.id.btn_low_peeled, R.id.btn_up_low_peeled, R.id.layout_up_weigh_ratio, R.id.layout_low_weigh_ratio, R.id.et_up_weigh_ratio, R.id.et_low_weigh_ratio})
+    @OnClick({R.id.btn_up_peeled, R.id.btn_low_peeled, R.id.btn_up_low_peeled, R.id.layout_up_weigh_ratio, R.id.layout_low_weigh_ratio, R.id.et_up_weigh_ratio, R.id.et_low_weigh_ratio})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_up_peeled:
@@ -167,10 +134,10 @@ public class WeighParameterActivity extends BaseActivity {
 //                    Logger.d(result);
                     if (mType.equals(PdGoConstConfig.CHECK_TYPE_WEIGH_COEFF_UPPER)) {//上位秤 称量系数
                         etUpWeighRatio.setText(result);
-                        sendToMainBoard(CommandDataHelper.getInstance().setUpperWeightCmdJson(Integer.valueOf(result)));
+                        sendToMainBoard(CommandDataHelper.getInstance().setUpperWeightCmdJson(Integer.parseInt(result)));
                     } else if (mType.equals(PdGoConstConfig.CHECK_TYPE_WEIGH_COEFF_LOWER)) {//下位秤 称量系数
                         etLowWeighRatio.setText(result);
-                        sendToMainBoard(CommandDataHelper.getInstance().setLowerWeightCmdJson(Integer.valueOf(result)));
+                        sendToMainBoard(CommandDataHelper.getInstance().setLowerWeightCmdJson(Integer.parseInt(result)));
                     }
                 }
             }
@@ -231,8 +198,9 @@ public class WeighParameterActivity extends BaseActivity {
         runOnUiThread(() -> {
             MyApplication.currCmd = "";
             if (mReceiveDeviceBean != null) {
-                tvUpWeight.setText(mReceiveDeviceBean.upper + "");
-                tvLowWeight.setText(mReceiveDeviceBean.lower + "");
+                tvUpWeight.setText(String.valueOf(mReceiveDeviceBean.upper));
+                tvLowWeight.setText(String.valueOf(mReceiveDeviceBean.lower));
+//                Log.e("皮重","上位称:"+PdproHelper.getInstance().getOtherParamBean().upper);
             }
         });
     }
@@ -243,8 +211,8 @@ public class WeighParameterActivity extends BaseActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                tvUpWeight.setText(mReceiveDeviceBean.upper + "");
-                tvLowWeight.setText(mReceiveDeviceBean.lower + "");
+                tvUpWeight.setText(String.valueOf(mReceiveDeviceBean.upper ));
+                tvLowWeight.setText(String.valueOf(mReceiveDeviceBean.lower ));
             }
         });
     }

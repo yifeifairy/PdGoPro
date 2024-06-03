@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.ui.activity.TreatmentFragmentActivity;
 import com.emt.pdgo.next.ui.base.BaseFragment;
-import com.emt.pdgo.next.ui.dialog.CommonDialog;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.EmtTimeUil;
@@ -112,33 +111,6 @@ public class TreatmentFragmentItem1 extends BaseFragment {
     public void registerEvents() {
        layoutPrescriptionItem9.setOnClickListener(view -> mActivity.toastMessage("首次灌注量不能修改"));
         btnNext.setOnClickListener(view -> {
-            if (mActivity.maxCycle > mActivity.currCycle ) {
-                if (mActivity.currCycle < treatCycle) {
-                    final CommonDialog dialog = new CommonDialog(mActivity);
-                    dialog.setContent("是否修改")
-                            .setBtnFirst("确定")
-                            .setBtnTwo("取消")
-                            .setFirstClickListener(mCommonDialog -> {
-                                mActivity.isConfirm = true;
-                                mActivity.oldVol = mActivity.getVol();
-                                mActivity.revise();
-                                // 单模式
-                                mActivity.modify();
-                                mCommonDialog.dismiss();
-                            })
-                            .setTwoClickListener(mCommonDialog -> {
-                                mActivity.isConfirm = false;
-                                mCommonDialog.dismiss();
-                            });
-                    if (!mActivity.isFinishing()) {
-                        dialog.show();
-                    }
-                } else {
-                    mActivity.toastMessage("治疗周期数要大于当前周期");
-                }
-            } else {
-                mActivity.toastMessage("已是最后一周期,不能修改");
-            }
         });
 
     }
@@ -352,66 +324,12 @@ public class TreatmentFragmentItem1 extends BaseFragment {
     }
 
     private void setCyclePre() {
-//        int perCyclePerfusionVolume =
-////                MyApplication.isKid ?
-////                (mActivity.kidBean.peritonealDialysisFluidTotal
-////                        - mActivity.kidBean.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.getmParameterEniity().abdomenRetainingVolumeLastTime
-////                        - mActivity.kidBean.abdomenRetainingVolumeFinally - 500 ) /
-////                        mActivity.kidBean.cycle :
-//                (mActivity.eniity.peritonealDialysisFluidTotal
-//                - mActivity.eniity.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.getmParameterEniity().abdomenRetainingVolumeLastTime
-//                - mActivity.eniity.abdomenRetainingVolumeFinally - 500 ) /
-//                mActivity.eniity.cycle;
-        perVol =  (total - mActivity.getVol() - finalVol) / treatCycle;
-        etPrescriptionItem2.setText(String.valueOf(perVol));
-        Log.e("getVol","total"+total+"---"
-                +"treatCycle"+treatCycle+"---"
-                +"finalVol"+finalVol+"---"
-                +"perVol"+perVol+"---");
-//        mActivity.eniity.perCyclePerfusionVolume = perCyclePerfusionVolume;
-//        CacheUtils.getInstance().getACache().put(PdGoConstConfig.TREATMENT_PARAMETER, mParameterEniity);
-        setTreatTime();
+
     }
 
     public int treatCycle;
     private void setPeriodicities() {
-        //循环治疗周期数 N=int((腹透液重量-首次灌注量-最末留腹量-消耗扣除500)/每周期灌注量)
-//        int cycle =
-////        MyApplication.isKid ?
-////                (mActivity.kidBean.peritonealDialysisFluidTotal
-////                        - mActivity.kidBean.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.getmParameterEniity().abdomenRetainingVolumeLastTime
-////                        - mActivity.kidBean.abdomenRetainingVolumeFinally - 500 ) /
-////                        mActivity.kidBean.perCyclePerfusionVolume:
-//                (mActivity.eniity.peritonealDialysisFluidTotal
-//                - mActivity.eniity.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.getmParameterEniity().abdomenRetainingVolumeLastTime
-//                - mActivity.eniity.abdomenRetainingVolumeFinally - 500 ) /
-//                        mActivity.eniity.perCyclePerfusionVolume;
-        // 6000  500  9  1000
-        // curr = 2
-        // (2000+1-0-1)
-        // (6000-2000) / 500
-        treatCycle = (total - mActivity.getVol() - finalVol) / perVol;
-//        if(cycle <= 0){
-//            cycle = 1;
-//        }
-        Log.e("cycle---","total"+total+"---"
-                +"treatCycle"+treatCycle+"---"
-                +"finalVol"+finalVol+"---"
-                +"perVol"+perVol+"---");
-        if(treatCycle <= 0){
-            treatCycle = 1;
-        }
-//        if (MyApplication.isKid) {
-//            mActivity.kidBean.cycle = cycle;
-//        } else {
-//            mActivity.eniity.cycle = cycle;
-//        }
-//        if(mActivity.treatmentParameterEniity.abdomenRetainingVolumeFinally>0){//0周期
-//            mActivity.treatmentParameterEniity.cycle =  mActivity.treatmentParameterEniity.cycle + 1;
-//        }
-        etPrescriptionItem3.setText(String.valueOf(treatCycle));
-//        setTreatTime();
-        // mActivity.amend();
+
     }
     // 取消修改或者返回参数恢复
     private int cancelTotal, cancelPer, cancelCycle, cancelAbdTime, cancelFinalVol, cancelLastVol, cancelUlt;

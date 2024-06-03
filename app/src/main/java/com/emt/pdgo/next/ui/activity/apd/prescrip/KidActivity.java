@@ -18,8 +18,6 @@ import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.data.bean.KidBean;
 import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
-import com.emt.pdgo.next.database.EmtDataBase;
-import com.emt.pdgo.next.database.entity.RxEntity;
 import com.emt.pdgo.next.net.APIServiceManage;
 import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.activity.PreHeatActivity;
@@ -271,24 +269,24 @@ public class KidActivity extends BaseActivity {
 
     private void next() {
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.KID_PARAMS, entity);
-        new Thread(() -> {
-            RxEntity hisRx = new RxEntity();
-            hisRx.time = EmtTimeUil.getTime();
-            hisRx.perVol = entity.peritonealDialysisFluidTotal;
-            hisRx.perCycleVol = entity.perCyclePerfusionVolume;
-            hisRx.treatCycle = entity.cycle;
-            hisRx.firstPerVol = entity.firstPerfusionVolume;
-            hisRx.abdTime = entity.abdomenRetainingTime;
-            hisRx.endAbdVol = entity.abdomenRetainingVolumeFinally;
-            hisRx.lastTimeAbdVol = entity.abdomenRetainingVolumeLastTime;
-            hisRx.ult = entity.ultrafiltrationVolume;
-            hisRx.ulTreatTime = "1小时";
-//                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
-            EmtDataBase
-                    .getInstance(KidActivity.this)
-                    .getRxDao()
-                    .insertRx(hisRx);
-        });
+//        new Thread(() -> {
+//            RxEntity hisRx = new RxEntity();
+//            hisRx.time = EmtTimeUil.getTime();
+//            hisRx.perVol = entity.peritonealDialysisFluidTotal;
+//            hisRx.perCycleVol = entity.perCyclePerfusionVolume;
+//            hisRx.treatCycle = entity.cycle;
+//            hisRx.firstPerVol = entity.firstPerfusionVolume;
+//            hisRx.abdTime = entity.abdomenRetainingTime;
+//            hisRx.endAbdVol = entity.abdomenRetainingVolumeFinally;
+//            hisRx.lastTimeAbdVol = entity.abdomenRetainingVolumeLastTime;
+//            hisRx.ult = entity.ultrafiltrationVolume;
+//            hisRx.ulTreatTime = "1小时";
+////                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
+//            EmtDataBase
+//                    .getInstance(KidActivity.this)
+//                    .getRxDao()
+//                    .insertRx(hisRx);
+//        });
         MyApplication.apdMode = 7;
         APIServiceManage.getInstance().postApdCode("Z2031");
         doGoTOActivity(PreHeatActivity.class);

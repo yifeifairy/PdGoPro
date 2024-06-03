@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: H./android/PdGoPro/app/libs/lifesene_ble_v3.3.9.jar">
+  <library name="Gradle: H./android/PdGoPro/app/libs/lifesene_ble_v3.3.9.jar" external-system-id="GRADLE">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/app/libs/lifesene_ble_v3.3.9.jar!/" />
     </CLASSES>

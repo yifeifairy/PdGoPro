@@ -459,10 +459,10 @@ public class CommandDataHelper {
 
     }
 
-    public String valueOpen(boolean open) {
+    public String valueOpen(String value, boolean open) {
         SerialRequestMainBean mRequestBean = new SerialRequestMainBean();
         ValueBean valueBean = new ValueBean();
-        valueBean.id = "all";
+        valueBean.id = value;
         SerialRequestBean mSerialRequestBean = new SerialRequestBean();
         mSerialRequestBean.params = valueBean;
         String md5Json = new Gson().toJson(mSerialRequestBean);
@@ -714,6 +714,24 @@ public class CommandDataHelper {
      * @return
      */
     public String startManualRinseCmd(SerialParamManualRinseBean mParamBean) {
+
+
+        SerialRequestMainBean mRequestBean = new SerialRequestMainBean();
+
+        SerialRequestBean mSerialRequestBean = new SerialRequestBean();
+
+        mSerialRequestBean.method = "manualrinse/start";
+        mSerialRequestBean.params = mParamBean;
+
+        String md5Json = new Gson().toJson(mSerialRequestBean);
+
+        mRequestBean.request = mSerialRequestBean;
+        mRequestBean.sign = MD5Helper.Md5(md5Json);
+        return new Gson().toJson(mRequestBean);
+
+    }
+
+    public String startManualRinseCmd2(SerialParamAutoRinseBean mParamBean) {
 
 
         SerialRequestMainBean mRequestBean = new SerialRequestMainBean();

@@ -6,10 +6,8 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.SwitchCompat;
@@ -17,11 +15,8 @@ import androidx.appcompat.widget.SwitchCompat;
 import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.CommandDataHelper;
-import com.emt.pdgo.next.common.config.CommandReceiveConfig;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.common.config.RxBusCodeConfig;
-import com.emt.pdgo.next.data.PdGoDbManager;
-import com.emt.pdgo.next.data.local.TemperatureControlParameter;
 import com.emt.pdgo.next.data.serial.ReceiveResultDataBean;
 import com.emt.pdgo.next.data.serial.SerialParamThermoStatBean;
 import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
@@ -45,7 +40,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
 
 /**
@@ -58,47 +52,47 @@ public class TemperatureControlParameterActivity extends BaseActivity {
 
 
     @BindView(R.id.et_t1)
-    EditText etT1;
+    TextView etT1;
     @BindView(R.id.et_t2)
-    EditText etT2;
+    TextView etT2;
     @BindView(R.id.et_t3)
-    EditText etT3;
+    TextView etT3;
     @BindView(R.id.et_t4)
-    EditText etT4;
+    TextView etT4;
     @BindView(R.id.et_t5)
-    EditText etT5;
+    TextView etT5;
     @BindView(R.id.et_t6)
-    EditText etT6;
+    TextView etT6;
     @BindView(R.id.et_t7)
-    EditText etT7;
+    TextView etT7;
     @BindView(R.id.et_tae)
-    EditText etTaE;
+    TextView etTaE;
     @BindView(R.id.et_tbe)
-    EditText etTbE;
+    TextView etTbE;
     @BindView(R.id.et_tce)
-    EditText etTcE;
+    TextView etTcE;
 
 
     @BindView(R.id.latyout_t1)
-    RelativeLayout mLayoutT1;
+    LinearLayout mLayoutT1;
     @BindView(R.id.latyout_t2)
-    RelativeLayout mLayoutT2;
+    LinearLayout mLayoutT2;
     @BindView(R.id.latyout_t3)
-    RelativeLayout mLayoutT3;
+    LinearLayout mLayoutT3;
     @BindView(R.id.latyout_t4)
-    RelativeLayout mLayoutT4;
+    LinearLayout mLayoutT4;
     @BindView(R.id.latyout_t5)
-    RelativeLayout mLayoutT5;
+    LinearLayout mLayoutT5;
     @BindView(R.id.latyout_t6)
-    RelativeLayout mLayoutT6;
+    LinearLayout mLayoutT6;
     @BindView(R.id.latyout_t7)
-    RelativeLayout mLayoutT7;
+    LinearLayout mLayoutT7;
     @BindView(R.id.latyout_tae)
-    RelativeLayout mLayoutTaE;
+    LinearLayout mLayoutTaE;
     @BindView(R.id.latyout_tbe)
-    RelativeLayout mLayoutTbE;
+    LinearLayout mLayoutTbE;
     @BindView(R.id.latyout_tce)
-    RelativeLayout mLayoutTcE;
+    LinearLayout mLayoutTcE;
 
     @BindView(R.id.tvT1Temp)
     TextView tvT0Temp;
@@ -137,8 +131,6 @@ public class TemperatureControlParameterActivity extends BaseActivity {
     //Tc温度校正值 TaE TbE TcE -2<=TxE<=2
     private float TcE = 0f;
 
-    private TemperatureControlParameter mTemperatureControlParameter;
-
     private String mParameterInterpretation;
 
     private String[] mParameters;
@@ -157,11 +149,10 @@ public class TemperatureControlParameterActivity extends BaseActivity {
         RxBus.get().register(this);
         initHeadTitleBar("温控参数设置", "获取参数");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
     @BindView(R.id.testLl)
     LinearLayout testLl;
     @BindView(R.id.testNum)
@@ -170,27 +161,33 @@ public class TemperatureControlParameterActivity extends BaseActivity {
     SwitchCompat testSwitch;
     private void click() {
         testSwitch.setChecked(false);
-        tsLl.setVisibility(View.GONE);
-        scLl.setVisibility(View.GONE);
-        testLl.setVisibility(View.GONE);
+        tsLl.setVisibility(View.INVISIBLE);
+        scLl.setVisibility(View.INVISIBLE);
+        testLl.setVisibility(View.INVISIBLE);
         testNum.setText(String.valueOf(PdproHelper.getInstance().valueTest()));
         testSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
             if (b) {
                 sendToMainBoard(CommandDataHelper.getInstance().isValveOpen(isOpen,"group1"));
-                sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(isOpen,"group2"),1000);
+//                sendToMainBoard(CommandDataHelper.getInstance().isValveOpen(isOpen,"group2"));
 //                speak("请取出卡匣,关闭所有管夹");
-                sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(isOpen,"group3"),2000);
+                sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(isOpen,"group3"),1000);
                 tsLl.setVisibility(View.VISIBLE);
                 scLl.setVisibility(View.VISIBLE);
                 testLl.setVisibility(View.VISIBLE);
+                init();
                 if (handler == null) {
                     handler = new Handler();
                 }
                 handler.postDelayed(runnable, PdproHelper.getInstance().valueTest() * 1000L);
             } else {
-                testLl.setVisibility(View.GONE);
-                tsLl.setVisibility(View.GONE);
-                scLl.setVisibility(View.GONE);
+                if (disposableObserver != null) {
+                    if (mCompositeDisposable != null) {
+                        mCompositeDisposable.remove(disposableObserver);
+                    }
+                }
+                testLl.setVisibility(View.INVISIBLE);
+                tsLl.setVisibility(View.INVISIBLE);
+                scLl.setVisibility(View.INVISIBLE);
                 handler.removeCallbacks(runnable);
                 per_s = per_f = safe_f = safe_s = sup_s = sup_f = su_f = su_s = drain_s = drain_f
                         = vac_f = vac_s = 0;
@@ -218,8 +215,14 @@ public class TemperatureControlParameterActivity extends BaseActivity {
                             handler = new Handler();
                         }
                         handler.removeCallbacks(runnable);
+                        if (disposableObserver != null) {
+                            if (mCompositeDisposable != null) {
+                                mCompositeDisposable.remove(disposableObserver);
+                            }
+                        }
                         CacheUtils.getInstance().getACache().put(PdGoConstConfig.VALUE_TEST, result);
                         handler.postDelayed(runnable, PdproHelper.getInstance().valueTest() * 1000L);
+                        init();
                         testNum.setText(String.valueOf(PdproHelper.getInstance().valueTest()));
                     }
                 }
@@ -233,10 +236,10 @@ public class TemperatureControlParameterActivity extends BaseActivity {
          public void run() {
              isOpen = !isOpen;
 //             sendToMainBoard(CommandDataHelper.getInstance().valueOpen(isOpen));
-             sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(isOpen,"group1"),1000);
-             sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(isOpen,"group2"),2000);
+             sendToMainBoard(CommandDataHelper.getInstance().isValveOpen(isOpen,"group1"));
+//             sendToMainBoard(CommandDataHelper.getInstance().isValveOpen(isOpen,"group2"));
 //                speak("请取出卡匣,关闭所有管夹");
-             sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(isOpen,"group3"),3000);
+             sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(isOpen,"group3"),1000);
 
              Log.e("温控界面","runnable---"+isOpen);
              handler.postDelayed(runnable, PdproHelper.getInstance().valueTest() * 1000L);
@@ -247,32 +250,10 @@ public class TemperatureControlParameterActivity extends BaseActivity {
 
     @Override
     public void registerEvents() {
-        setCanNotEditNoClick2(etT1);
-        setCanNotEditNoClick2(etT2);
-        setCanNotEditNoClick2(etT3);
-        setCanNotEditNoClick2(etT4);
-        setCanNotEditNoClick2(etT5);
-        setCanNotEditNoClick2(etT6);
-        setCanNotEditNoClick2(etT7);
-        setCanNotEditNoClick2(etTaE);
-        setCanNotEditNoClick2(etTbE);
-        setCanNotEditNoClick2(etTcE);
         click();
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        btnSave.setVisibility(View.VISIBLE);
+        btnSave.setText("获取");
+        btnBack.setOnClickListener(view -> onBackPressed());
         per_f_num.setText(String.valueOf(per_f));
         per_c_num.setText(String.valueOf(per_s));
         safe_f_num.setText(String.valueOf(safe_f));
@@ -293,14 +274,13 @@ public class TemperatureControlParameterActivity extends BaseActivity {
 //        sendToMainBoard(CommandDataHelper.getInstance().weightTareLowerCmdJson());
 //        RxBus.get().register(this);
         mCompositeDisposable = new CompositeDisposable();
-        init();
+
         mParameterInterpretation = getResources().getString(R.string.tip_parameter_interpretation);
 
         mParameters = getResources().getStringArray(R.array.tip_parameter_interpretations);
 
 //        selectBaseModleSync();
 
-        mTemperatureControlParameter = PdGoDbManager.getInstance().getTemperatureBoardTable();
 
         updateTemperatureData();
 
@@ -309,16 +289,6 @@ public class TemperatureControlParameterActivity extends BaseActivity {
     private Gson myGson = new Gson();
     private void updateTemperatureData(){
         statBean = new SerialParamThermoStatBean();
-        T1 = mTemperatureControlParameter.maxDifference;
-        T2 = mTemperatureControlParameter.targetTemper;
-        T3 = mTemperatureControlParameter.upLowDifference;
-        T4 = mTemperatureControlParameter.alarmTemper;
-        T5 = mTemperatureControlParameter.maxHeatPlate;
-        T6 = mTemperatureControlParameter.targetDifference;
-        T7 = mTemperatureControlParameter.lowHeatPlate;
-        TaE = mTemperatureControlParameter.adjustTemperTA;
-        TbE = mTemperatureControlParameter.adjustTemperTB;
-        TcE = mTemperatureControlParameter.adjustTemperTC;
 
         statBean.p1 = (int) (T1 * 10);
         statBean.p2 = (int)(T2 * 10);
@@ -344,48 +314,11 @@ public class TemperatureControlParameterActivity extends BaseActivity {
         sendToMainBoard(CommandDataHelper.getInstance().getThermostatCmdJson());
     }
 
-    private void refreshUI(TemperatureControlParameter tResult) {
-
-        Observable.just(0L).doOnNext(new Consumer<Long>() {
-
-            @Override
-            public void accept(Long aLong) throws Exception {
-
-                mTemperatureControlParameter = tResult;
-
-                T1 = mTemperatureControlParameter.maxDifference;
-                T2 = mTemperatureControlParameter.targetTemper;
-                T3 = mTemperatureControlParameter.upLowDifference;
-                T4 = mTemperatureControlParameter.alarmTemper;
-                T5 = mTemperatureControlParameter.maxHeatPlate;
-                T6 = mTemperatureControlParameter.targetDifference;
-                T7 = mTemperatureControlParameter.lowHeatPlate;
-                TaE = mTemperatureControlParameter.adjustTemperTA;
-                TbE = mTemperatureControlParameter.adjustTemperTB;
-                TcE = mTemperatureControlParameter.adjustTemperTC;
-
-                etT1.setText(String.valueOf(T1));
-                etT2.setText(String.valueOf(T2));
-                etT3.setText(String.valueOf(T3));
-                etT4.setText(String.valueOf(T4));
-                etT5.setText(String.valueOf(T5));
-                etT6.setText(String.valueOf(T6));
-                etT7.setText(String.valueOf(T7));
-                etTaE.setText(String.valueOf(TaE));
-                etTbE.setText(String.valueOf(TbE));
-                etTcE.setText(String.valueOf(TcE));
-
-            }
-
-        });
-    }
-
-
-    @OnClick({R.id.btn_submit, R.id.et_t1, R.id.et_t2, R.id.et_t3, R.id.et_t4, R.id.et_t5, R.id.et_t6, R.id.et_t7, R.id.et_tae,R.id.et_tbe,R.id.et_tce,
+    @OnClick({R.id.btnSave, R.id.et_t1, R.id.et_t2, R.id.et_t3, R.id.et_t4, R.id.et_t5, R.id.et_t6, R.id.et_t7, R.id.et_tae,R.id.et_tbe,R.id.et_tce,
             R.id.latyout_t1, R.id.latyout_t2, R.id.latyout_t3, R.id.latyout_t4, R.id.latyout_t5, R.id.latyout_t6, R.id.latyout_t7, R.id.latyout_tae,R.id.latyout_tbe,R.id.latyout_tce})
     public void onViewClicked(View v) {
         switch (v.getId()) {
-            case R.id.btn_submit:
+            case R.id.btnSave:
 //                showCommonDialog(mParameterInterpretation);
 //                Intent intent = new Intent(this,CommonDialogActivity.class);
 //                intent.putExtra("title","温控参数说明");
@@ -554,8 +487,9 @@ public class TemperatureControlParameterActivity extends BaseActivity {
             }
         });
     }
+    private DisposableObserver<Long> disposableObserver;
     private void init() {
-        DisposableObserver<Long> disposableObserver = new DisposableObserver<Long>() {
+        disposableObserver = new DisposableObserver<Long>() {
             @Override
             public void onNext(Long aLong) {
                 runOnUiThread(() -> {
@@ -573,7 +507,10 @@ public class TemperatureControlParameterActivity extends BaseActivity {
 
             }
         };
-        Observable.interval(0, 15000, TimeUnit.MILLISECONDS).subscribe(disposableObserver);
+        Observable.interval(0, PdproHelper.getInstance().valueTest() * 1000L, TimeUnit.MILLISECONDS).subscribe(disposableObserver);
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
         mCompositeDisposable.add(disposableObserver);
     }
 
@@ -615,20 +552,6 @@ public class TemperatureControlParameterActivity extends BaseActivity {
         runOnUiThread(() -> {
             MyApplication.currCmd = "";
             if (mReceiveDeviceBean != null) {
-                if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                    powerIv.setImageResource(R.drawable.charging);
-                } else {
-                    if (mReceiveDeviceBean.batteryLevel < 30) {
-                        powerIv.setImageResource(R.drawable.poor_power);
-                    } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                        powerIv.setImageResource(R.drawable.low_power);
-                    } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                        powerIv.setImageResource(R.drawable.mid_power);
-                    } else {
-                        powerIv.setImageResource(R.drawable.high_power);
-                    }
-                }
-                currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
                 tvT0Temp.setText(getTemp(mReceiveDeviceBean.temp) + "℃");
                 tvT1Temp.setText(getTemp(mReceiveDeviceBean.isT1Err) + "℃");
                 tvT2Temp.setText(getTemp(mReceiveDeviceBean.isT2Err) + "℃");
@@ -641,12 +564,14 @@ public class TemperatureControlParameterActivity extends BaseActivity {
                     } else {
                         per_f ++;
                         per_f_num.setText(String.valueOf(per_f));
+                        remo();
                     }
                     if (mReceiveDeviceBean.safe.equals("00") || mReceiveDeviceBean.safe.equals("01")
                             || mReceiveDeviceBean.safe.equals("80") || mReceiveDeviceBean.safe.equals("81")) {
                         safe_s ++;
                         safe_c_num.setText(String.valueOf(safe_s));
                     } else {
+                        remo();
                         safe_f ++;
                         safe_f_num.setText(String.valueOf(safe_f));
                     }
@@ -657,6 +582,7 @@ public class TemperatureControlParameterActivity extends BaseActivity {
                     } else {
                         sup_f ++;
                         supply_f_num.setText(String.valueOf(sup_f));
+                        remo();
                     }
                     if (mReceiveDeviceBean.supply2.equals("00") || mReceiveDeviceBean.supply2.equals("01")
                             || mReceiveDeviceBean.supply2.equals("80") || mReceiveDeviceBean.supply2.equals("81")) {
@@ -665,6 +591,7 @@ public class TemperatureControlParameterActivity extends BaseActivity {
                     } else {
                         su_f ++;
                         su_f_num.setText(String.valueOf(su_f));
+                        remo();
                     }
                     if (mReceiveDeviceBean.drain.equals("00") || mReceiveDeviceBean.drain.equals("01")
                             || mReceiveDeviceBean.drain.equals("80") || mReceiveDeviceBean.drain.equals("81")) {
@@ -673,6 +600,7 @@ public class TemperatureControlParameterActivity extends BaseActivity {
                     } else {
                         drain_f ++;
                         drain_f_num.setText(String.valueOf(drain_f));
+                        remo();
                     }
                     if (mReceiveDeviceBean.vaccum.equals("00") || mReceiveDeviceBean.vaccum.equals("01")
                             || mReceiveDeviceBean.vaccum.equals("80") || mReceiveDeviceBean.vaccum.equals("81")) {
@@ -681,6 +609,7 @@ public class TemperatureControlParameterActivity extends BaseActivity {
                     } else {
                         vac_f ++;
                         vac_f_num.setText(String.valueOf(vac_f));
+                        remo();
                     }
 //                    per_f_num.setText(String.valueOf(per_f));
 //                    per_c_num.setText(String.valueOf(per_s));
@@ -698,6 +627,15 @@ public class TemperatureControlParameterActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void remo() {
+//        handler.removeCallbacks(runnable);
+//        if (disposableObserver != null) {
+//            if (mCompositeDisposable != null) {
+//                mCompositeDisposable.remove(disposableObserver);
+//            }
+//        }
     }
 
     @Subscribe(code = RxBusCodeConfig.EVENT_RECEIVE_DEVICE_INFO)
@@ -740,57 +678,14 @@ public class TemperatureControlParameterActivity extends BaseActivity {
         sendToMainBoard(CommandDataHelper.getInstance().setThermostatCmdJson(statBean));
     }
 
-
-    private void handlCheckReceiveData(String receiveData) {
-
-        if (receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_1_SUCCESS) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_2_SUCCESS)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_3_SUCCESS) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_5_SUCCESS)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_6_SUCCESS) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_7_SUCCESS)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_TAE_SUCCESS) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_TBE_SUCCESS)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_TCE_SUCCESS)
-        ) {//成功
-
-//            hideLoadingDialog();
-            save();
-
-        } else if (receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_1_FAIL) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_2_FAIL)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_3_FAIL) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_5_FAIL)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_6_FAIL) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_7_FAIL)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_TAE_FAIL) || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_TBE_FAIL)
-                || receiveData.contains(CommandReceiveConfig.TEMPERATURE_PARAM_TCE_FAIL)
-        ) {//失败
-
-//            hideLoadingDialog();
-//
-//            showCommonDialog("温控参数指令失败");
-
-        }
-
-    }
-
-
-    private void save() {
-
-        Observable.just(0L).doOnNext(new Consumer<Long>() {
-
-            @Override
-            public void accept(Long aLong) throws Exception {
-
-                mTemperatureControlParameter.update();
-            }
-
-        });
-
-
-    }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         RxBus.get().unRegister(this);
-        mCompositeDisposable.dispose();
-        mCompositeDisposable.clear();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.dispose();
+            mCompositeDisposable.clear();
+        }
         if (handler != null) {
             handler.removeCallbacks(runnable);
         }

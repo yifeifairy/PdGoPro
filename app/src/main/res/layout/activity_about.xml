@@ -2,36 +2,34 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@id/custom_id_app_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/custom_attr_app_bg"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:orientation="vertical">
-
-
+    
     <include
-        android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
+        android:layout_weight="0.15"
+        android:layout_height="0dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/layout_time_interval"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
-            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginLeft="@dimen/dialog_common_title_margin_top"
+            android:layout_marginRight="@dimen/dialog_common_title_margin_top"
             android:background="?attr/custom_attr_input_box_bg"
-            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingLeft="@dimen/dialog_common_btn_margin"
             android:paddingRight="@dimen/input_box_item_padding_right">
 
             <TextView
@@ -40,7 +38,7 @@
                 android:layout_centerVertical="true"
                 android:text="软件名称："
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
             <TextView
                 android:id="@+id/tv_unit_time_interval"
@@ -51,7 +49,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="自动腹膜透析设备医疗程序"
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
 
 
@@ -60,13 +58,14 @@
         <RelativeLayout
             android:id="@+id/layout_threshold_value"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
-            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginLeft="@dimen/dialog_common_title_margin_top"
+            android:layout_marginRight="@dimen/dialog_common_title_margin_top"
             android:layout_marginTop="5dp"
             android:background="?attr/custom_attr_input_box_bg"
-            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingLeft="@dimen/dialog_common_btn_margin"
             android:paddingRight="@dimen/input_box_item_padding_right">
 
 
@@ -76,7 +75,7 @@
                 android:layout_centerVertical="true"
                 android:text="著作权人："
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
             <TextView
                 android:id="@+id/tv_unit_threshold_value"
@@ -87,7 +86,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="福州东泽医疗器械有限公司"
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
 
 
@@ -96,13 +95,14 @@
         <RelativeLayout
             android:id="@+id/layout_min_weight"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
-            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginLeft="@dimen/dialog_common_title_margin_top"
+            android:layout_marginRight="@dimen/dialog_common_title_margin_top"
             android:layout_marginTop="5dp"
             android:background="?attr/custom_attr_input_box_bg"
-            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingLeft="@dimen/dialog_common_btn_margin"
             android:paddingRight="@dimen/input_box_item_padding_right">
 
 
@@ -112,7 +112,7 @@
                 android:layout_centerVertical="true"
                 android:text="软件型号规格："
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
             <TextView
                 android:id="@+id/tv_unit_min_weight"
@@ -121,9 +121,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="PD-GO-Pro"
+                android:text="@string/sn_name"
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
 
         </RelativeLayout>
@@ -131,13 +131,14 @@
         <RelativeLayout
             android:id="@+id/layout_allow_abdominal_volume"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
-            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginLeft="@dimen/dialog_common_title_margin_top"
+            android:layout_marginRight="@dimen/dialog_common_title_margin_top"
             android:layout_marginTop="5dp"
             android:background="?attr/custom_attr_input_box_bg"
-            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingLeft="@dimen/dialog_common_btn_margin"
             android:paddingRight="@dimen/input_box_item_padding_right">
 
             <TextView
@@ -146,7 +147,7 @@
                 android:layout_centerVertical="true"
                 android:text="软件发布版本："
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -154,23 +155,24 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="V2.1"
+                android:text="@string/push_version"
                 android:id="@+id/tvVersion"
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
-            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginLeft="@dimen/dialog_common_title_margin_top"
+            android:layout_marginRight="@dimen/dialog_common_title_margin_top"
             android:layout_marginTop="5dp"
             android:background="?attr/custom_attr_input_box_bg"
-            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingLeft="@dimen/dialog_common_btn_margin"
             android:paddingRight="@dimen/input_box_item_padding_right">
 
             <TextView
@@ -179,7 +181,7 @@
                 android:layout_centerVertical="true"
                 android:text="软件完整版本："
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
             <TextView
                 android:id="@+id/tv_unit_max_warning_value"
@@ -188,23 +190,22 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="V2.1.0.0"
+                android:text="@string/full_version"
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
-
-
-
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
+            
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
-            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginLeft="@dimen/dialog_common_title_margin_top"
+            android:layout_marginRight="@dimen/dialog_common_title_margin_top"
             android:layout_marginTop="5dp"
             android:background="?attr/custom_attr_input_box_bg"
-            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingLeft="@dimen/dialog_common_btn_margin"
             android:paddingRight="@dimen/input_box_item_padding_right">
 
             <TextView
@@ -213,7 +214,7 @@
                 android:layout_centerVertical="true"
                 android:text="软件发布日期："
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -223,7 +224,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="2024年01月10日"
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
 
 
@@ -232,13 +233,14 @@
         <RelativeLayout
             android:id="@+id/useDeviceRl"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/input_box_bg_height_2"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
-            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginLeft="@dimen/dialog_common_title_margin_top"
+            android:layout_marginRight="@dimen/dialog_common_title_margin_top"
             android:layout_marginTop="5dp"
             android:background="?attr/custom_attr_input_box_bg"
-            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingLeft="@dimen/dialog_common_btn_margin"
             android:paddingRight="@dimen/input_box_item_padding_right">
 
             <TextView
@@ -247,7 +249,7 @@
                 android:layout_centerVertical="true"
                 android:text="设备累计使用时间："
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
             <TextView
                 android:id="@+id/useDeviceTv"
@@ -258,21 +260,12 @@
                 android:layout_marginLeft="10dp"
                 android:text="0小时"
                 android:textColor="?attr/custom_attr_common_text_color"
-                android:textSize="@dimen/input_box_tv_text_size" />
+                android:textSize="@dimen/input_health_info_tv_value_text_size" />
 
 
 
         </RelativeLayout>
 
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-    </RelativeLayout>
+    
 </LinearLayout>

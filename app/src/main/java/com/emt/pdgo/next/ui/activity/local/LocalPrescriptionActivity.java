@@ -2,27 +2,27 @@ package com.emt.pdgo.next.ui.activity.local;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.os.Bundle;
-import android.widget.ImageView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.emt.pdgo.next.MyApplication;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
+import com.emt.pdgo.next.common.PdproHelper;
+import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.database.EmtDataBase;
+import com.emt.pdgo.next.database.entity.DelRxEntity;
 import com.emt.pdgo.next.database.entity.RxEntity;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
+import com.emt.pdgo.next.model.mode.IpdBean;
+import com.emt.pdgo.next.ui.activity.PrescriptionActivity;
 import com.emt.pdgo.next.ui.adapter.local.HisRxLocalAdapter;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.dialog.CommonDialog;
-import com.emt.pdgo.next.ui.view.StateButton;
+import com.emt.pdgo.next.util.CacheUtils;
 import com.emt.pdgo.next.util.decoration.SpaceItemDecoration;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import java.util.List;
@@ -35,81 +35,48 @@ public class LocalPrescriptionActivity extends BaseActivity {
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
 
-    @BindView(R.id.clear)
-    StateButton clear;
-
-    @BindView(R.id.tvCurrPage)
-    TextView tvCurrPage;
-
     private HisRxLocalAdapter hisRxLocalAdapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public void initAllViews() {
         setContentView(R.layout.activity_local_prescription);
         ButterKnife.bind(this);
-        initHeadTitleBar("");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
+    @BindView(R.id.title)
+    TextView title;
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
-        clear.setOnClickListener(v -> {
+        btnSave.setText("清空");
+        btnSave.setVisibility(View.VISIBLE);
+        btnBack.setOnClickListener(view -> onBackPressed());
+        btnSave.setOnClickListener(v -> {
             final CommonDialog dialog = new CommonDialog(this);
-            //
-            //                    doGoCloseTOActivity(TreatmentCountdownActivity.class,"");
             dialog.setContent("确认清空？")
                     .setBtnFirst("确定")
                     .setBtnTwo("取消")
                     .setFirstClickListener(mCommonDialog -> {
-                        EmtDataBase
-                                .getInstance(LocalPrescriptionActivity.this)
-                                .getRxDao()
-                                .delete();
-                        hisRxLocalAdapter.setNewData(getLocalRx());
+                        DelRxEntity delRxEntity = new DelRxEntity();
+                        delRxEntity.id = 1;
+                        delRxEntity.num = getLocalRx().size();
+                        Log.e("处方","处方删除--"+getLocalRx().size());
+                        if (EmtDataBase.getInstance(LocalPrescriptionActivity.this).delRxDao().getDelRxById(1) == null) {
+                            EmtDataBase
+                                    .getInstance(LocalPrescriptionActivity.this)
+                                    .delRxDao()
+                                    .insertRx(delRxEntity);
+                        } else {
+                            EmtDataBase
+                                    .getInstance(LocalPrescriptionActivity.this)
+                                    .delRxDao()
+                                    .update(delRxEntity);
+                        }
+                        // 假清空
+                        hisRxLocalAdapter.setNewData(getLocalRxById(EmtDataBase.getInstance(LocalPrescriptionActivity.this).delRxDao().getDelRxById(1).num));
                         hisRxLocalAdapter.notifyDataSetChanged();
                         mCommonDialog.dismiss();
                     })
@@ -125,17 +92,54 @@ public class LocalPrescriptionActivity extends BaseActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void initRecyclerLocal() {
-        tvCurrPage.setText(1+"/"+1 +"页");
         if (hisRxLocalAdapter == null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            hisRxLocalAdapter = new HisRxLocalAdapter(getLocalRx());
+            Log.e("删除前处方","size:"+EmtDataBase.getInstance(LocalPrescriptionActivity.this).delRxDao().delRxList().size());
+            if (EmtDataBase.getInstance(LocalPrescriptionActivity.this).delRxDao().delRxList().size() == 0) {
+                hisRxLocalAdapter = new HisRxLocalAdapter(getLocalRx());
+            } else {
+                hisRxLocalAdapter = new HisRxLocalAdapter(getLocalRxById(EmtDataBase.getInstance(LocalPrescriptionActivity.this).delRxDao().getDelRxById(1).num));
+            }
             recyclerView.addItemDecoration(new SpaceItemDecoration(1, 0, 0));
             //添加Android自带的分割线
             recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
             recyclerView.setAdapter(hisRxLocalAdapter);
+            hisRxLocalAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+                if (view.getId() == R.id.applyBtn) {
+                    final CommonDialog dialog = new CommonDialog(this);
+                    dialog.setContent("是否应用")
+                            .setBtnFirst("确定")
+                            .setBtnTwo("取消")
+                            .setFirstClickListener(mCommonDialog -> {
+                                IpdBean ipdBean = PdproHelper.getInstance().ipdBean();
+                                // 处方
+                                ipdBean.peritonealDialysisFluidTotal = getLocalRx().get(position).perVol;
+                                ipdBean.perCyclePerfusionVolume = getLocalRx().get(position).perCycleVol;
+                                ipdBean.cycle = getLocalRx().get(position).treatCycle;
+                                ipdBean.firstPerfusionVolume = getLocalRx().get(position).firstPerVol;
+                                ipdBean.abdomenRetainingTime = getLocalRx().get(position).abdTime;
+                                ipdBean.abdomenRetainingVolumeFinally = getLocalRx().get(position).endAbdVol;
+                                ipdBean.abdomenRetainingVolumeLastTime = getLocalRx().get(position).lastTimeAbdVol;
+                                ipdBean.ultrafiltrationVolume = getLocalRx().get(position).ult;
+                                ipdBean.isFinalSupply = false;
+                                CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, ipdBean);
+                                doGoTOActivity(PrescriptionActivity.class);
+                                mCommonDialog.dismiss();
+                            })
+                            .setTwoClickListener(Dialog::dismiss)
+                            .show();
+                }
+            });
         } else {
             hisRxLocalAdapter.notifyDataSetChanged();
         }
+    }
+
+    private List<RxEntity> getLocalRxById(int id) {
+        return EmtDataBase
+                .getInstance(LocalPrescriptionActivity.this)
+                .getRxDao()
+                .getRxListById(id);
     }
 
     private List<RxEntity> getLocalRx() {

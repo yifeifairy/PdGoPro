@@ -7,10 +7,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?attr/custom_attr_app_bg"
-    android:padding="@dimen/treatment_countdown_margin"
     tools:context="com.emt.pdgo.next.ui.activity.apd.prescrip.ExpertActivity">
     <include
-        layout="@layout/view_head" />
+        layout="@layout/head_view"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:layout_width="match_parent"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -177,7 +179,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="分"
+                android:text="@string/unit_min"
                 android:textColor="@color/white"
                 android:textSize="@dimen/input_box_tv_text_size" />
             <TextView
@@ -401,7 +403,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="次"
+                android:text="周期"
                 android:textColor="@color/white"
                 android:textSize="@dimen/input_box_tv_text_size" />
             <TextView
@@ -489,7 +491,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="次"
+                android:text="周期"
                 android:textColor="@color/white"
                 android:textSize="@dimen/input_box_tv_text_size" />
             <TextView

@@ -3,6 +3,7 @@ package com.emt.pdgo.next.database.dao;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.emt.pdgo.next.database.entity.PdEntity;
 
@@ -23,5 +24,7 @@ public interface PdDao {
     @Query("DELETE FROM pdentity")
     void delete();
 
+    @Update
+    void update(PdEntity pdEntity);
 
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/white_shape"
+                android:text="返回"
+                android:id="@+id/rxBackBtn"
+                android:layout_marginStart="@dimen/dialog_common_title_margin_top"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="match_parent" >
+            <TextView
+                android:id="@+id/cycle_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="处方查看"
+                android:textColor="?attr/custom_attr_common_text_color_2"
+                android:textSize="@dimen/navbar_title_text_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="长按修改处方"
+                android:id="@+id/btnRevise"
+                android:textColor="@color/white"
+                android:layout_marginEnd="@dimen/treatment_countdown_margin"
+                android:background="@drawable/revise_shape"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="确定"
+                android:id="@+id/reviseConfirm"
+                android:visibility="invisible"
+                android:layout_marginEnd="@dimen/treatment_countdown_margin"
+                android:background="@drawable/white_shape"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        layout="@layout/revise_ipd"
+        android:id="@+id/ipdLayout"
+        android:visibility="visible"
+        android:layout_weight="0.8" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        layout="@layout/revise_aapd"
+        android:id="@+id/aapdLayout"
+        android:visibility="gone"
+        android:layout_weight="0.8" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        layout="@layout/revise_sv"
+        android:id="@+id/svLayout"
+        android:visibility="gone"
+        android:layout_weight="0.8" />
+
+</LinearLayout>

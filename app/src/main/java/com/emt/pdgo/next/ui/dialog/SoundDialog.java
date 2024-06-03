@@ -76,10 +76,10 @@ public class SoundDialog extends Dialog {
         brightnessSeekbar.setProgress(MyApplication.brightness);
         brightnessSeekbar.setMax(255);
         if (PdproHelper.getInstance().getTtsSoundOpen()) {
-            findViewById(R.id.ts_iv).setBackgroundResource(R.drawable.sound_off);
+            findViewById(R.id.ts_iv).setBackgroundResource(R.mipmap.silencers);
             tsTv.setText("关闭语音");
         } else {
-            findViewById(R.id.ts_iv).setBackgroundResource(R.drawable.sound_control);
+            findViewById(R.id.ts_iv).setBackgroundResource(R.mipmap.rining);
             tsTv.setText("开启语音");
         }
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,54 +9,225 @@
 
 
     <include
-        android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
+        android:layout_height="0dp"
+        android:layout_weight="0.15" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_head"
-        android:layout_marginLeft="@dimen/preparation_tv_margin"
-        android:layout_marginTop="@dimen/preparation_tv_margin_top"
-        android:layout_marginRight="@dimen/preparation_tv_margin"
-        android:lineSpacingMultiplier="1.2"
-        android:text="@string/tip_pipeline_connection_skip"
-        android:textColor="?attr/custom_attr_common_text_color"
-        android:textSize="@dimen/preparation_tv_text_size" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="0.7" >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:layout_weight="1" >
 
-    <com.emt.pdgo.next.ui.view.StateButton
-        android:id="@+id/btn_enter_prerinse"
-        android:layout_width="@dimen/preparation_btn_enter_prerinse_width"
-        android:layout_height="@dimen/preparation_btn_enter_prerinse_height"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="@dimen/preparation_btn_enter_prerinse_margin_right"
-        android:layout_marginBottom="@dimen/preparation_btn_enter_prerinse_margin_bottom"
-        android:drawableRight="@mipmap/icon_next"
-        android:gravity="center"
-        android:paddingRight="10dp"
-        android:text="完成，进入预冲"
-        android:textSize="@dimen/preparation_btn_enter_prerinse_text_size"
-        app:normalBackgroundColor="#0089FF"
-        app:normalStrokeColor="#003869"
-        app:normalStrokeWidth="2dp"
-        app:normalTextColor="@android:color/white"
-        app:pressedBackgroundColor="#003869"
-        app:pressedStrokeColor="#003869"
-        app:pressedStrokeWidth="2dp"
-        app:pressedTextColor="@android:color/white"
-        app:radius="5dp" />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/iv_1"
+                    android:layout_width="match_parent"
+                    android:layout_above="@id/ll_1"
+                    android:layout_height="match_parent" />
+                <LinearLayout
+                    android:id="@+id/ll_1"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="1"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="补液放置"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/iv_2"
+                    android:layout_width="match_parent"
+                    android:layout_above="@id/ll_2"
+                    android:layout_height="match_parent" />
+                <LinearLayout
+                    android:id="@+id/ll_2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="2"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="插入卡匣"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
 
-        <include
-            android:id="@+id/rootView"
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/iv_3"
+                    android:layout_width="match_parent"
+                    android:layout_above="@id/ll_3"
+                    android:layout_height="match_parent" />
+                <LinearLayout
+                    android:id="@+id/ll_3"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="3"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="补液管连接"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/iv_4"
+                    android:layout_width="match_parent"
+                    android:layout_above="@id/ll_4"
+                    android:layout_height="match_parent" />
+                <LinearLayout
+                    android:id="@+id/ll_4"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="4"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="加热管连接"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/iv_5"
+                    android:layout_width="match_parent"
+                    android:layout_above="@id/ll_5"
+                    android:layout_height="match_parent" />
+                <LinearLayout
+                    android:id="@+id/ll_5"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="5"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="引流管连接"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/iv_6"
+                    android:layout_above="@id/ll_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <LinearLayout
+                    android:id="@+id/ll_6"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="6"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="废液卡管"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/treatment_countdown_margin"
+        android:layout_weight="0.15" >
+        <Button
+            android:id="@+id/btn_enter_prerinse"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
+            android:layout_height="match_parent"
+            android:text="完成,进入预冲>"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/input_health_info_tv_value_text_size"
+            android:background="@drawable/gray_padding_shape" />
+    </RelativeLayout>
 
-</RelativeLayout>
+
+</LinearLayout>

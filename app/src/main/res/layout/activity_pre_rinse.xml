@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,145 +8,149 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
+        android:layout_height="0dp"
+        android:layout_weight="0.15" >
 
+    </include>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:id="@+id/rinseLayout"
-        android:layout_centerVertical="true"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/input_health_info_icon_heart_rate_height"
+        android:layout_weight="0.8" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="0.7"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:id="@+id/imageview"
+            android:layout_height="match_parent" />
 
         <LinearLayout
-            android:id="@+id/preFlushingLayout"
             android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
-            android:layout_height="@dimen/number_board_popup_layout_height">
+            android:layout_weight="0.3"
+            android:orientation="vertical"
+            android:layout_height="match_parent" >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+            <RelativeLayout
+                android:id="@+id/autoPreLayout"
+                android:layout_width="match_parent"
+                android:background="@drawable/btn_prerinse_select"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="@dimen/dialog_common_btn_height"
+                    android:src="@mipmap/auto_pf"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/dialog_common_btn_height" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_margin="@dimen/input_box_et_margin_right"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/autoPreLayout"
+                <TextView
+                    android:id="@+id/tvAutoPre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="8dp"
+                    android:text="开始预冲"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+            <RelativeLayout
+                android:id="@+id/progressLayout"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5">
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressDrawable="?attr/custom_attr_self_check_progress_bg"
+                    android:layout_toStartOf="@id/progressTv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/btn_prerinse_select"
-                    android:gravity="center">
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/progressTv"
+                    android:text="0%"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/treatment_countdown_margin"
+                    android:textSize="@dimen/navbar_btn_text_size"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/input_health_info_tv_value_text_size"
-                        android:layout_height="@dimen/input_health_info_tv_value_text_size"
-                        android:src="@mipmap/auto_pf" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+            <RelativeLayout
+                android:id="@+id/manualLayout"
+                android:layout_width="match_parent"
+                android:background="@drawable/btn_prerinse_select"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="@dimen/dialog_common_btn_height"
+                    android:src="@mipmap/pre_flushing"
+                    android:layout_centerVertical="true"
+                    android:layout_height="@dimen/dialog_common_btn_height" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvAutoPre"
+                        android:id="@+id/tvManualPre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="开始预冲"
+                        android:text="手动预冲"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/treatment_main_tv_curr_volume_text_size" />
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:id="@+id/tvManualPreTips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(长按开启)"
+                        android:layout_marginTop="@dimen/treatment_countdown_margin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/navbar_title_text_size_2" />
                 </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ivLayout"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_weight="2"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <ImageView
+            </RelativeLayout>
+            <View
                 android:layout_width="match_parent"
-                android:id="@+id/videoView"
-                android:src="@drawable/rinse"
-                android:scaleType="fitXY"
-                android:layout_height="match_parent" />
+                android:layout_height="0dp"
+                android:layout_weight="0.1" />
+            <Button
+                android:id="@+id/btnFinish"
+                android:layout_width="match_parent"
+                android:text="完成,下一步"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                android:background="@drawable/selector_blue"
+                android:layout_weight="1"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                android:layout_height="0dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2" />
+
         </LinearLayout>
+
     </LinearLayout>
-
-    <Button
-        android:layout_width="@dimen/treatment_main_layout_handle_width"
-        android:text="完成预冲"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/rinseLayout"
-        android:layout_marginTop="@dimen/treatment_evaluation_margin"
-        android:background="@drawable/bg_arc_blue"
-        android:id="@+id/btnFinish"
-        android:visibility="gone"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="@dimen/feedbook_layout_treatment_duration_height"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:layout_width="@dimen/input_treatment_tv_cycle_select_width_120"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_prerinse_select"
-        android:gravity="center"
-        android:layout_margin="@dimen/treatment_countdown_margin"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/manualLayout"
-        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/dialog_alarm_btn_margin">
-
-            <ImageView
-                android:layout_width="@dimen/navbar_title_text_size"
-                android:layout_height="@dimen/navbar_title_text_size"
-                android:src="@mipmap/pre_flushing" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvManualPre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="手动预冲"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/navbar_title_text_size" />
-
-                <TextView
-                    android:id="@+id/tvManualPreTips"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="(长按开启)"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/navbar_title_text_size_2" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-
-</RelativeLayout>
+</LinearLayout>

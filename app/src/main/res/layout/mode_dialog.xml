@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_dialog_background"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/input_box_et_margin_right"
+    android:layout_marginBottom="@dimen/input_box_et_margin_right"
+    android:layout_marginStart="@dimen/input_box_et_height"
+    android:layout_marginEnd="@dimen/input_box_et_height"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="处方模式选择"
+            android:textColor="@color/black"
+            android:textSize="@dimen/navbar_btn_text_size" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="@dimen/custom_main_btn_back_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginTop="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+            android:layout_marginBottom="@dimen/treatment_countdown_margin"
+            android:background="@drawable/selector_blue"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/navbar_btn_text_size" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="IPD模式"
+            android:id="@+id/ipdTv"
+            android:gravity="center"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@drawable/radio_text_select"
+            android:background="@drawable/radio_bg_select"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="aApd模式"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:id="@+id/aApdTv"
+            android:gravity="center"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@drawable/radio_text_select"
+            android:background="@drawable/radio_bg_select"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="专家模式"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:id="@+id/spTv"
+            android:gravity="center"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@drawable/radio_text_select"
+            android:background="@drawable/radio_bg_select"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:text="其他模式暂未开放"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:id="@+id/btnConfirm"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:layout_height="match_parent"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:background="@drawable/selector_blue" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

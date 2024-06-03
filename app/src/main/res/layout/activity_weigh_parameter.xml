@@ -12,10 +12,17 @@
 
     <include
         android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
+        android:layout_height="0dp"
+        android:layout_weight="0.15"/>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
+        android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -240,10 +247,6 @@
     </LinearLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -257,6 +260,7 @@
             android:textSize="@dimen/navbar_btn_text_size" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/rootView"
@@ -309,16 +313,7 @@
 
 
         </LinearLayout>
-
-        
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-        
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

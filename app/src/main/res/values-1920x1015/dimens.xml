@@ -1,5 +1,6 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="cycle_sp">108sp</dimen>
     <dimen name="labeled_default_width">72dp</dimen>
     <dimen name="labeled_default_height">32dp</dimen>
     <dimen name="day_night_default_width">84dp</dimen>
@@ -479,7 +480,7 @@
     <dimen name="treatment_main_tv_cycle_text_size">204sp</dimen>
     <dimen name="treatment_main_tv_cycle_label_text_size">36sp</dimen>
     <dimen name="treatment_main_tv_cycle_status_text_size">76sp</dimen>
-
+    <dimen name="treatment_main_tv_max_cycle_text_size">38sp</dimen>
     <dimen name="treatment_main_layout_volume_bg_height">464dp</dimen>
     <dimen name="treatment_main_layout_volume_bg_margin">40dp</dimen>
     <dimen name="treatment_main_layout_volume_bg_margin_bottom">100dp</dimen>

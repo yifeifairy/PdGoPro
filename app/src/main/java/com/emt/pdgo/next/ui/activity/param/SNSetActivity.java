@@ -2,28 +2,21 @@ package com.emt.pdgo.next.ui.activity.param;
 
 
 import android.content.Context;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.util.CacheUtils;
 import com.emt.pdgo.next.util.MarioResourceHelper;
 import com.emt.pdgo.next.util.ToastUtils;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -47,12 +40,9 @@ public class SNSetActivity extends BaseActivity {
     private String machineSN;
     private String tips;
 
-    private MarioResourceHelper helper;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+
+    private MarioResourceHelper helper;
 
     @Override
     public void initAllViews() {
@@ -61,47 +51,17 @@ public class SNSetActivity extends BaseActivity {
         initHeadTitleBar("SN参数设置", "保存");
         helper = MarioResourceHelper.getInstance(getContext());
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
+    @BindView(R.id.title)
+    TextView title;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        btnSave.setText("保存");
+        btnSave.setVisibility(View.VISIBLE);
+        btnBack.setOnClickListener(view -> onBackPressed());
         etMachineSN.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 // 此处为得到焦点时的处理内容
@@ -144,11 +104,11 @@ public class SNSetActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.btn_submit})
+    @OnClick({R.id.btnSave})
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
-            case R.id.btn_submit:
+            case R.id.btnSave:
                 String mSn = etMachineSN.getText().toString();
                 if (TextUtils.isEmpty(mSn)) {
                     tips = "SN不能为空";

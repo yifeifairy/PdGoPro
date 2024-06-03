@@ -11,7 +11,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 public class Breathe extends View {
-    private static final String TAG = "OkView";
+    private static final String TAG = "BreatheView";
     private static final int DEFAULT_DELAY = 15; // 默认每帧播放速度
     private static final int DEFAULT_RADIUS = 20;  // 默认半径
     private static final int DEFAULT_STROKE_WIDTH = 3;  // 默认外圈画笔宽度
@@ -225,7 +225,6 @@ public class Breathe extends View {
         currentFrame = 1;
         removeCallbacks(mRunnable);
         resumeInit();
-
     }
 
     /**

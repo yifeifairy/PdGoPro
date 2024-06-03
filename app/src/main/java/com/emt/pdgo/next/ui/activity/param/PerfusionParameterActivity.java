@@ -3,24 +3,15 @@ package com.emt.pdgo.next.ui.activity.param;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.data.bean.PerfusionParameterBean;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.util.CacheUtils;
-import com.emt.pdgo.next.util.ToastUtils;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -62,47 +53,13 @@ public class PerfusionParameterActivity extends BaseActivity {
         ButterKnife.bind(this);
         initHeadTitleBar("灌注参数设置", "保存");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        btnBack.setOnClickListener(view -> onBackPressed());
+        btnSave.setVisibility(View.VISIBLE);
+        btnSave.setText("保存");
         setCanNotEditNoClick2(etTimeInterval);
         setCanNotEditNoClick2(etThresholdValue);
         setCanNotEditNoClick2(etMinWeight);
@@ -122,11 +79,11 @@ public class PerfusionParameterActivity extends BaseActivity {
         etMaxWarningValue.setText(String.valueOf(perfusionParameterBean.perfMaxWarningValue));
     }
 
-    @OnClick({R.id.btn_submit, R.id.et_time_interval, R.id.et_threshold_value, R.id.et_min_weight, R.id.et_allow_abdominal_volume, R.id.et_max_warning_value
+    @OnClick({R.id.btnSave, R.id.et_time_interval, R.id.et_threshold_value, R.id.et_min_weight, R.id.et_allow_abdominal_volume, R.id.et_max_warning_value
             , R.id.layout_time_interval, R.id.layout_threshold_value, R.id.layout_min_weight, R.id.layout_allow_abdominal_volume, R.id.layout_max_warning_value})
     public void onViewClicked(View v) {
         switch (v.getId()) {
-            case R.id.btn_submit:
+            case R.id.btnSave:
                 save();
                 break;
             case R.id.layout_time_interval:
@@ -178,6 +135,8 @@ public class PerfusionParameterActivity extends BaseActivity {
         });
     }
 
+    @BindView(R.id.btnSave)
+    Button btnSave;
     private void save() {
         perfusionParameterBean.perfTimeInterval = Integer.parseInt(etTimeInterval.getText().toString());
         perfusionParameterBean.perfThresholdValue = Integer.parseInt(etThresholdValue.getText().toString());
@@ -187,7 +146,7 @@ public class PerfusionParameterActivity extends BaseActivity {
 
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.PERFUSION_PARAMETER, perfusionParameterBean);
 
-        ToastUtils.showToast(PerfusionParameterActivity.this, "灌注参数保存成功");
+        toastMessage( "灌注参数保存成功");
 
     }
 

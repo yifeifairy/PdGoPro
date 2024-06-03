@@ -200,11 +200,7 @@ public class ApdPrescriptionActivity extends BaseActivity {
         initHeadTitleBar("APD处方","治疗参数");
         initViewPage();
         init();
-        if (MyApplication.versionMode == 2) {
-            btnBack.setVisibility(View.VISIBLE);
-        } else {
-            btnBack.setVisibility(View.GONE);
-        }
+
         mCheckForLongPress1 = new CheckForLongPress1();
     }
 

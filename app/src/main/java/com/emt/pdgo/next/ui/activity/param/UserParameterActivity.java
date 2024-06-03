@@ -433,7 +433,6 @@ public class UserParameterActivity extends BaseActivity {
         helper.setTextColorByAttr(etPrescriptionItem7, R.attr.custom_attr_common_text_color);
         helper.setTextColorByAttr(etPrescriptionItem8, R.attr.custom_attr_common_text_color);
 
-        helper.setTextColorByAttr(tvTitle, R.attr.custom_attr_common_text_color);
 
     }
 }

@@ -1,17 +1,13 @@
 package com.emt.pdgo.next.ui.activity.apd.param;
 
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.data.bean.DrainParameterBean;
 import com.emt.pdgo.next.data.bean.PerfusionParameterBean;
 import com.emt.pdgo.next.data.bean.RetainParamBean;
@@ -19,23 +15,17 @@ import com.emt.pdgo.next.data.bean.SupplyParameterBean;
 import com.emt.pdgo.next.data.bean.TreatmentParameterEniity;
 import com.emt.pdgo.next.data.serial.SerialRequestBean;
 import com.emt.pdgo.next.data.serial.SerialRequestMainBean;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentDrainBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentParamBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentPerfuseBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentRetainBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentSupplyBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.adapter.dpr.ViewPagerAdapter;
 import com.emt.pdgo.next.ui.base.BaseActivity;
+import com.emt.pdgo.next.ui.fragment.OtherFragment;
 import com.emt.pdgo.next.ui.fragment.apd.param.ApdDrainParamFragment;
-import com.emt.pdgo.next.ui.fragment.apd.param.ApdPerfusionParamFragment;
-import com.emt.pdgo.next.ui.fragment.apd.param.ApdRetainParamFragment;
-import com.emt.pdgo.next.ui.fragment.apd.param.ApdSupplyParamFragment;
 import com.emt.pdgo.next.ui.view.NoScrollViewPager;
-import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.CacheUtils;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.emt.pdgo.next.util.helper.MD5Helper;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -54,8 +44,11 @@ public class ApdParamSetActivity extends BaseActivity {
     @BindView(R.id.viewpager)
     NoScrollViewPager viewpager;
 
-    @BindView(R.id.btn_submit)
-    StateButton btn_submit;
+    @BindView(R.id.btnSave)
+    Button btnSave;
+
+    @BindView(R.id.btnBack)
+    Button btnBack;
 
     public static TreatmentParameterEniity treatmentParameterEniity;//治疗参数
     public static DrainParameterBean drainParameterBean;
@@ -64,64 +57,24 @@ public class ApdParamSetActivity extends BaseActivity {
     public static RetainParamBean retainParamBean;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void initAllViews() {
         setContentView(R.layout.activity_apd_param_set);
         ButterKnife.bind(this);
-        initHeadTitleBar("参数设置","保存");
-    }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
     }
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+
+        btnSave.setVisibility(View.VISIBLE);
         retainParamBean = PdproHelper.getInstance().getRetainParamBean();
         perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
         supplyParameterBean = PdproHelper.getInstance().getSupplyParameterBean();
         drainParameterBean = PdproHelper.getInstance().getDrainParameterBean();
         retainParamBean = PdproHelper.getInstance().getRetainParamBean();
-        btn_submit.setOnClickListener(v -> {
+        btnSave.setOnClickListener(v -> {
             save();
+        });
+        btnBack.setOnClickListener(view -> {
+            onBackPressed();
         });
     }
 
@@ -132,7 +85,7 @@ public class ApdParamSetActivity extends BaseActivity {
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.PERFUSION_PARAMETER, perfusionParameterBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.TREATMENT_PARAMETER, treatmentParameterEniity);
         toastMessage("保存成功");
-        init();
+//        init();
     }
 
     private void init() {
@@ -188,20 +141,21 @@ public class ApdParamSetActivity extends BaseActivity {
     public void initViewData() {
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new ApdDrainParamFragment());
-        fragmentList.add(new ApdPerfusionParamFragment());
-        fragmentList.add(new ApdRetainParamFragment());
-        fragmentList.add(new ApdSupplyParamFragment());
-//        fragmentList.add(new DprOtherParamFragment());
+//        fragmentList.add(new ApdPerfusionParamFragment());
+//        fragmentList.add(new ApdRetainParamFragment());
+//        fragmentList.add(new ApdSupplyParamFragment());
+        fragmentList.add(new OtherFragment());
         List<String> titles = new ArrayList<>();
         titles.add("引流参数");
-        titles.add("灌注参数");
-        titles.add("留腹参数");
-        titles.add("补液参数");
+//        titles.add("灌注参数");
+//        titles.add("留腹参数");
+//        titles.add("补液参数");
+        titles.add("其他参数");
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),
                 FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,fragmentList, titles);
         viewpager.setAdapter(adapter);
         viewpager.setNoScroll(false);
-        viewpager.setOffscreenPageLimit(3);
+        viewpager.setOffscreenPageLimit(titles.size() - 1);
         tabLayout.setupWithViewPager(viewpager);
     }
 

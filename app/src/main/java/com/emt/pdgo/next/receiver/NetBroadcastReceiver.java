@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
 import com.emt.pdgo.next.util.NetworkUtils;
 
@@ -14,9 +15,10 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         RxBus.get().register(this);
 
-        NetworkUtils.getNetWorkState(context);
-        Log.e("NetBroadcastReceiver","net--  "+NetworkUtils.getNetWorkState(context));
-
+//        NetworkUtils.getNetWorkState(context);
+        Log.e("netReceiver","net:"+NetworkUtils.getNetWorkState(context));
+//        Log.e("NetBroadcastReceiver","net--  "+NetworkUtils.getNetWorkState(context));
+        RxBus.get().send(RxBusCodeConfig.NET_STATUS, NetworkUtils.getNetWorkState(context) + "");
 //————————————————
 //        版权声明：本文为CSDN博主「智玲君」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 //        原文链接：https://blog.csdn.net/gpf1320253667/article/details/84553900

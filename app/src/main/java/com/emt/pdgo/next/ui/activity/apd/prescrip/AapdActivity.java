@@ -1,8 +1,8 @@
 package com.emt.pdgo.next.ui.activity.apd.prescrip;
 
 import android.text.TextUtils;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -10,19 +10,16 @@ import android.widget.TextView;
 
 import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.AapdBean;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
+import com.emt.pdgo.next.ui.activity.MyDreamActivity;
 import com.emt.pdgo.next.ui.activity.PreHeatActivity;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
+import com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity;
 import com.emt.pdgo.next.ui.base.BaseActivity;
-import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
-import com.emt.pdgo.next.ui.view.StateButton;
+import com.emt.pdgo.next.ui.dialog.NumberDialog;
 import com.emt.pdgo.next.util.CacheUtils;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -197,132 +194,155 @@ public class AapdActivity extends BaseActivity {
     @BindView(R.id.bag_tv)
     TextView bag_tv;
 
-    @BindView(R.id.btn_submit)
-    StateButton btn_submit;
-
     private AapdBean bean;
+
     @BindView(R.id.btnNext)
-    StateButton btnNext;
+    Button btnNext;
+
+    @BindView(R.id.btnBack)
+    Button btnBack;
+
+    @BindView(R.id.btnRecord)
+    Button btnRecord;
+    @BindView(R.id.btnRx)
+    Button btnRx;
+    @BindView(R.id.btnParam)
+    Button btnParam;
+
     @Override
     public void initAllViews() {
         setContentView(R.layout.activity_aapd);
         ButterKnife.bind(this);
-        initHeadTitleBar("aApd模式","参数设置");
+
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
-        btn_submit.setOnClickListener(v -> {
+        btnBack.setOnClickListener(view -> onBackPressed());
+        btnParam.setOnClickListener(view -> {
             doGoTOActivity(ApdParamSetActivity.class);
         });
+        btnRecord.setOnClickListener(view -> {
+            doGoTOActivity(MyDreamActivity.class);
+        });
+        btnRx.setOnClickListener(view -> {
+            doGoTOActivity(LocalPrescriptionActivity.class);
+        });
         per_01_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(per_01_tv.getText().toString(), PdGoConstConfig.aApd_p1);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_p1, EmtConstant.aapdCycleVolMin,PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
         per_02_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(per_02_tv.getText().toString(), PdGoConstConfig.aApd_p2);
+            alertNumberBoardDialog( PdGoConstConfig.aApd_p2,EmtConstant.aapdCycleVolMin,PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
         per_03_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(per_03_tv.getText().toString(), PdGoConstConfig.aApd_p3);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_p3,EmtConstant.aapdCycleVolMin,PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
         per_04_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(per_04_tv.getText().toString(), PdGoConstConfig.aApd_p4);
-        });
-        per_05_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(per_05_tv.getText().toString(), PdGoConstConfig.aApd_p5);
-        });
-        per_06_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(per_06_tv.getText().toString(), PdGoConstConfig.aApd_p6);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_p4,EmtConstant.aapdCycleVolMin,PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
 
         bag_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(bag_tv.getText().toString(), PdGoConstConfig.aApd_bag);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_bag,EmtConstant.aapdCycleVolMin,PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
 
         retain_01_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(retain_01_tv.getText().toString(), PdGoConstConfig.aApd_r1);
+            alertNumberBoardDialog( PdGoConstConfig.aApd_r1, EmtConstant.aapdAbdTimeMin,EmtConstant.abdTimeMax);
         });
         retain_02_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(retain_02_tv.getText().toString(), PdGoConstConfig.aApd_r2);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_r2, EmtConstant.aapdAbdTimeMin,EmtConstant.abdTimeMax);
         });
         retain_03_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(retain_03_tv.getText().toString(), PdGoConstConfig.aApd_r3);
+            alertNumberBoardDialog( PdGoConstConfig.aApd_r3, EmtConstant.aapdAbdTimeMin,EmtConstant.abdTimeMax);
         });
         retain_04_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(retain_04_tv.getText().toString(), PdGoConstConfig.aApd_r4);
-        });
-        retain_05_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(retain_05_tv.getText().toString(), PdGoConstConfig.aApd_r5);
-        });
-        retain_06_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(retain_06_tv.getText().toString(), PdGoConstConfig.aApd_r6);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_r4, EmtConstant.aapdAbdTimeMin,EmtConstant.abdTimeMax);
         });
 
         cycle_01_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycle_01_tv.getText().toString(), PdGoConstConfig.aApd_c1);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_c1, EmtConstant.aapdCycleNumMin,EmtConstant.cycleNumMax);
         });
         cycle_02_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycle_02_tv.getText().toString(), PdGoConstConfig.aApd_c2);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_c2,EmtConstant.aapdCycleNumMin,EmtConstant.cycleNumMax);
         });
         cycle_03_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycle_03_tv.getText().toString(), PdGoConstConfig.aApd_c3);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_c3, EmtConstant.aapdCycleNumMin,EmtConstant.cycleNumMax);
         });
         cycle_04_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycle_04_tv.getText().toString(), PdGoConstConfig.aApd_c4);
-        });
-        cycle_05_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycle_05_tv.getText().toString(), PdGoConstConfig.aApd_c5);
-        });
-        cycle_06_rl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycle_06_tv.getText().toString(), PdGoConstConfig.aApd_c6);
+            alertNumberBoardDialog(PdGoConstConfig.aApd_c4, EmtConstant.aapdCycleNumMin,EmtConstant.cycleNumMax);
         });
 
         finalRetainVolRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(finalRetainVolTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_FINALLY);
+            alertNumberBoardDialog( PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_FINALLY,EmtConstant.cycleVolMin,PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
 
         btnNext.setOnClickListener(v -> {
-            CacheUtils.getInstance().getACache().put(PdGoConstConfig.aApd_PARAMS, bean);
-            MyApplication.apdMode = 4;
-            doGoTOActivity(PreHeatActivity.class);
+            next();
         });
+    }
+
+    private void next() {
+        if (bean.c2 != 0 && bean.r2 != 0 && bean.p2 != 0) {
+            if (bean.c3 != 0 && bean.r3 != 0 && bean.p3 != 0) {
+                if (bean.c4 != 0 && bean.r4 != 0 && bean.p4 != 0) {
+                    dn();
+                } else if (bean.c4 == 0 && bean.r4 == 0 && bean.p4 == 0) {
+                    dn();
+                } else {
+                    if (bean.c4 == 0 ) {
+                        toastMessage("第4组周期数不能为0");
+                    } else if (bean.r4 == 0) {
+                        toastMessage("第4组留腹时间不能为0");
+                    } else if (bean.p4 == 0) {
+                        toastMessage("第4组灌注量不能为0");
+                    }
+//                            toastMessage("第四组未设置正确");
+                }
+            } else {
+                if (bean.c3 == 0 ) {
+                    toastMessage("第3组周期数不能为0");
+                } else if (bean.r3 == 0) {
+                    toastMessage("第3组留腹时间不能为0");
+                } else if (bean.p3 == 0) {
+                    toastMessage("第3组灌注量不能为0");
+                }
+            }
+        } else if (bean.c2 == 0 && bean.r2 == 0 && bean.p2 == 0) {
+            if (bean.c3 != 0 && bean.r3 != 0 && bean.p3 != 0) {
+                if (bean.c2 == 0 ) {
+                    toastMessage("第2组周期数不能为0");
+                } else if (bean.r2 == 0) {
+                    toastMessage("第2组留腹时间不能为0");
+                } else if (bean.p2 == 0) {
+                    toastMessage("第2组灌注量不能为0");
+                }
+//                        toastMessage("第2组未设置正确");
+            } else if (bean.c4 != 0 && bean.r4 != 0 && bean.p4 != 0) {
+//                        toastMessage("第2组未设置正确");
+                if (bean.c2 == 0 ) {
+                    toastMessage("第2组周期数不能为0");
+                } else if (bean.r2 == 0) {
+                    toastMessage("第2组留腹时间不能为0");
+                } else if (bean.p2 == 0) {
+                    toastMessage("第2组灌注量不能为0");
+                }
+            } else {
+                dn();
+            }
+        } else {
+            if (bean.c2 == 0 ) {
+                toastMessage("第2组周期数不能为0");
+            } else if (bean.r2 == 0) {
+                toastMessage("第2组留腹时间不能为0");
+            } else if (bean.p2 == 0) {
+                toastMessage("第2组灌注量不能为0");
+            }
+        }
+    }
+
+    private void dn() {
+        CacheUtils.getInstance().getACache().put(PdGoConstConfig.aApd_PARAMS, bean);
+        MyApplication.apdMode = 4;
+        doGoTOActivity(PreHeatActivity.class);
     }
 
     @Override
@@ -435,8 +455,8 @@ public class AapdActivity extends BaseActivity {
         });
     }
 
-    private void alertNumberBoardDialog(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, false, true);
+    private void alertNumberBoardDialog(String type, int min, int max) {
+        NumberDialog dialog = new NumberDialog(this,  type, min, max);
         dialog.show();
         dialog.setOnDialogResultListener((mType, result) -> {
             if (!TextUtils.isEmpty(result)) {
@@ -592,9 +612,12 @@ public class AapdActivity extends BaseActivity {
     }
 
     private void setCyclePre() {
-        int perCyclePerfusionVolume = bean.bagVol / bean.c1;
-        per_01_tv.setText(String.valueOf(perCyclePerfusionVolume));
-        bean.p1 = perCyclePerfusionVolume;
+        double total = bean.bagVol / Double.parseDouble(String.valueOf(bean.c1)) / 50.00;
+
+        int perCyclePerfusionVolume = (int) Math.floor(total);
+        int cycleVol = perCyclePerfusionVolume * 50;
+        per_01_tv.setText(String.valueOf(cycleVol));
+        bean.p1 = cycleVol;
     }
 
     private void setTotal() {

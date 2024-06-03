@@ -133,7 +133,7 @@
             <ImageView
                 android:id="@+id/ts_iv"
                 android:layout_width="30dp"
-                android:src="@drawable/sound_control"
+                android:src="@mipmap/rining"
                 android:layout_gravity="center_vertical"
                 android:layout_height="30dp" />
             <TextView

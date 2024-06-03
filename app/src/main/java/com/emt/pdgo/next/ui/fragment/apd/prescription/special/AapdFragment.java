@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.data.bean.AapdBean;
 import com.emt.pdgo.next.ui.activity.TreatmentFragmentActivity;
@@ -310,6 +311,8 @@ public class AapdFragment extends BaseFragment {
                 }
             }
         });
+//        AapdBean aapdBean = PdproHelper.getInstance().aapdBean();
+        setBackground(PdproHelper.getInstance().aapdBean(), fragmentActivity.currCycle);
     }
 
     public void setBackground(AapdBean bean, int cycle) {

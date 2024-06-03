@@ -12,7 +12,7 @@
         android:id="@+id/tv_item1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:text="时间"
         android:textColor="@color/text_default"
@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="腹透液\n总量ml"
+        android:text="腹透液总量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="周期灌注量ml"
+        android:text="周期灌注量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -45,7 +45,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="辅助\n冲洗量"
+        android:text="辅助冲洗量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
         android:visibility="gone" />
@@ -68,7 +68,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="循环治疗周期"
+        android:text="周期数"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -79,7 +79,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="引流\n目标值"
+        android:text="引流目标值"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
         android:visibility="gone" />
@@ -91,7 +91,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="首次灌注量ml"
+        android:text="首次灌注量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -101,7 +101,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="留腹时间min"
+        android:text="留腹时间"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -112,7 +112,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="最末留腹量ml"
+        android:text="最末留腹量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -122,7 +122,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="上次留腹量ml"
+        android:text="上次留腹量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -132,7 +132,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="透析超滤量ml"
+        android:text="超滤量"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
 
@@ -142,9 +142,21 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="治疗时间min"
+        android:visibility="gone"
+        android:text="治疗时间"
         android:textColor="@color/text_default"
         android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/white"
+        android:text="应用"
+        android:id="@+id/applyBtn"
+        android:layout_margin="@dimen/prerinse_btn_margin"
+        android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
+        android:background="@drawable/dialog_btn_blue"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

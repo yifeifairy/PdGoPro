@@ -1,29 +1,20 @@
 package com.emt.pdgo.next.ui.mode.activity.ipd;
 
+import android.app.Dialog;
 import android.text.TextUtils;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
-import com.emt.pdgo.next.database.EmtDataBase;
-import com.emt.pdgo.next.database.entity.RxEntity;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.model.mode.IpdBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.activity.PreHeatActivity;
-import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.base.BaseActivity;
-import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
-import com.emt.pdgo.next.ui.view.StateButton;
+import com.emt.pdgo.next.ui.dialog.CommonDialog;
+import com.emt.pdgo.next.ui.dialog.NumberDialog;
 import com.emt.pdgo.next.util.CacheUtils;
-import com.emt.pdgo.next.util.EmtTimeUil;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -31,200 +22,166 @@ import butterknife.ButterKnife;
 
 public class IpdActivity extends BaseActivity {
 
-    @BindView(R.id.totalVolRl)
-    RelativeLayout totalVolRl;
     @BindView(R.id.totalVolTv)
     TextView totalVolTv;
-
-    @BindView(R.id.cycleVolRl)
-    RelativeLayout cycleVolRl;
+    @BindView(R.id.totalVolLl)
+    LinearLayout totalVolLl;
     @BindView(R.id.cycleVolTv)
     TextView cycleVolTv;
-
-    @BindView(R.id.cycleNumRl)
-    RelativeLayout cycleNumRl;
+    @BindView(R.id.cycleVolLl)
+    LinearLayout cycleVolLl;
     @BindView(R.id.cycleNumTv)
     TextView cycleNumTv;
-
-    @BindView(R.id.retainTimeRl)
-    RelativeLayout retainTimeRl;
-    @BindView(R.id.retainTimeTv)
-    TextView retainTimeTv;
-    @BindView(R.id.finalSupplyCheck)
-    CheckBox finalSupplyCheck;
-    @BindView(R.id.finalRetainVolRl)
-    RelativeLayout finalRetainVolRl;
-    @BindView(R.id.finalRetainVolTv)
-    TextView finalRetainVolTv;
-
-    @BindView(R.id.lastRetainVolRl)
-    RelativeLayout lastRetainVolRl;
-    @BindView(R.id.lastRetainVolTv)
-    TextView lastRetainVolTv;
-
-    @BindView(R.id.finalSupplyRl)
-    RelativeLayout finalSupplyRl;
-    @BindView(R.id.finalSupplyTv)
-    TextView finalSupplyTv;
-
-    @BindView(R.id.ultVolRl)
-    RelativeLayout ultVolRl;
+    @BindView(R.id.cycleNumLl)
+    LinearLayout cycleNumLl;
+    @BindView(R.id.abdTimeTv)
+    TextView abdTimeTv;
+    @BindView(R.id.abdTimeLl)
+    LinearLayout abdTimeLl;
+    @BindView(R.id.finalVolTv)
+    TextView finalVolTv;
+    @BindView(R.id.finalVolLl)
+    LinearLayout finalVolLl;
+    @BindView(R.id.lastVolTv)
+    TextView lastVolTv;
+    @BindView(R.id.lastVolLl)
+    LinearLayout lastVolLl;
     @BindView(R.id.ultVolTv)
     TextView ultVolTv;
+    @BindView(R.id.ultVolLl)
+    LinearLayout ultVolLl;
+    @BindView(R.id.firstVolTv)
+    TextView firstVolTv;
+    @BindView(R.id.firstVolLl)
+    LinearLayout firstVolLl;
 
-    @BindView(R.id.btn_submit)
-    StateButton btn_submit;
+    @BindView(R.id.isFinalBtn)
+    Button isFinalBtn;
+
     @BindView(R.id.btnNext)
-    StateButton btnNext;
-    private IpdBean entity;
+    Button btnNext;
+
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
+    private IpdBean ipdBean;
+
+    @BindView(R.id.ipdBtn)
+    Button ipdBtn;
 
     @Override
     public void initAllViews() {
         setContentView(R.layout.activity_ipd);
         ButterKnife.bind(this);
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
-        btnNext.setOnClickListener(v -> {
-            CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, entity);
-            new Thread(() -> {
-                RxEntity hisRx = new RxEntity();
-                hisRx.time = EmtTimeUil.getTime();
-                hisRx.perVol = entity.peritonealDialysisFluidTotal;
-                hisRx.perCycleVol = entity.perCyclePerfusionVolume;
-                hisRx.treatCycle = entity.cycle;
-                hisRx.firstPerVol = entity.firstPerfusionVolume;
-                hisRx.abdTime = entity.abdomenRetainingTime;
-                hisRx.endAbdVol = entity.abdomenRetainingVolumeFinally;
-                hisRx.lastTimeAbdVol = entity.abdomenRetainingVolumeLastTime;
-                hisRx.ult = entity.ultrafiltrationVolume;
-                hisRx.ulTreatTime = "1小时";
-//                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
-                EmtDataBase
-                        .getInstance(IpdActivity.this)
-                        .getRxDao()
-                        .insertRx(hisRx);
-            });
-            MyApplication.apdMode = 1;
-            doGoTOActivity(PreHeatActivity.class);
-        });
-        btn_submit.setOnClickListener(v -> {
-            doGoTOActivity(ApdParamSetActivity.class);
-        });
-        entity = PdproHelper.getInstance().ipdBean();
-        entity.firstPerfusionVolume = 0;
-//        entity.abdomenRetainingVolumeLastTime = 0;
-//        entity.ultrafiltrationVolume = 0;
-//        entity.peritonealDialysisFluidTotal = 1200;
-        finalSupplyCheck.setChecked(entity.isFinalSupply);
-        finalSupplyCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            entity.isFinalSupply = isChecked;
-        });
-//        finalSupplyTv.setText(String.valueOf(entity.finalSupply));
-        totalVolTv.setText(String.valueOf(entity.peritonealDialysisFluidTotal));
-        cycleVolTv.setText(String.valueOf(entity.perCyclePerfusionVolume));
-        cycleNumTv.setText(String.valueOf(entity.cycle));
-//        firstPerVolTv.setText(String.valueOf(entity.firstPerfusionVolume));
-        ultVolTv.setText(String.valueOf(entity.ultrafiltrationVolume));
-        retainTimeTv.setText(String.valueOf(entity.abdomenRetainingTime));
-        finalRetainVolTv.setText(String.valueOf(entity.abdomenRetainingVolumeFinally));
-        lastRetainVolTv.setText(String.valueOf(entity.abdomenRetainingVolumeLastTime));
 
-        totalVolRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(totalVolTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERITONEAL_DIALYSIS_FLUID_TOTAL);
-        });
-        cycleVolRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycleVolTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PER_CYCLE_PERFUSION_VOLUME);
-
-        });
-        cycleNumRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(cycleNumTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERIODICITIES);
-        });
-        retainTimeRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(retainTimeTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_TIME);
-
-        });
-        finalRetainVolRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(finalRetainVolTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_FINALLY);
-        });
-        lastRetainVolRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(lastRetainVolTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_LAST_TIME);
-
-        });
-//        firstPerVolRl.setOnClickListener(v -> {
-//            alertNumberBoardDialog(firstPerVolTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERFUSION_VOLUME);
-//
+//        btnNext.setOnClickListener(v -> {
+//            CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, ipdBean);
+//            MyApplication.apdMode = 1;
+//            doGoTOActivity(PreHeatActivity.class);
 //        });
-        ultVolRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(ultVolTv.getText().toString(), PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ESTIMATED_ULTRAFILTRATION_VOLUME);
+        btnBack.setOnClickListener(view -> {
+            onBackPressed();
+        });
+
+        if (ipdBean == null) {
+            ipdBean = PdproHelper.getInstance().ipdBean();
+        }
+        isFinalBtn.setText(ipdBean.isFinalSupply? "最末袋(通道1):已开启": "最末袋(通道1):已关闭");
+        totalVolLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERITONEAL_DIALYSIS_FLUID_TOTAL, EmtConstant.totalVolMin, EmtConstant.totalVolMax);
+        });
+        cycleVolLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PER_CYCLE_PERFUSION_VOLUME, EmtConstant.cycleVolMin
+                    ,ipdBean.firstPerfusionVolume == 0 ? PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue: ipdBean.firstPerfusionVolume);
+        });
+        cycleNumLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERIODICITIES, EmtConstant.cycleNumMin, EmtConstant.cycleNumMax);
+        });
+        abdTimeLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_TIME, EmtConstant.abdTimeMin, EmtConstant.abdTimeMax);
+
+        });
+        finalVolLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_FINALLY, EmtConstant.finalVolMin, PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
+        });
+        lastVolLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_LAST_TIME, EmtConstant.lastAbdMin, EmtConstant.lastAbdMax);
 
         });
 
-        finalSupplyRl.setOnClickListener(v -> {
-            alertNumberBoardDialog(finalSupplyTv.getText().toString(), PdGoConstConfig.FINAL_SUPPLY);
+        btnNext.setOnClickListener(view -> {
+            if (ipdBean.firstPerfusionVolume != 0 && ipdBean.perCyclePerfusionVolume > ipdBean.firstPerfusionVolume) {
+                toastMessage("循环灌注量不能大于首次灌注量");
+            } else {
+                CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, ipdBean);
+                doGoTOActivity(PreHeatActivity.class);
+            }
         });
+
+        isFinalBtn.setOnClickListener(view -> {
+            String tips = ipdBean.isFinalSupply ? "是否关闭" : "是否开启";
+            final CommonDialog dialog = new CommonDialog(this);
+            dialog.setContent(tips)
+                    .setBtnFirst("确定")
+                    .setBtnTwo("取消")
+                    .setFirstClickListener(mCommonDialog -> {
+                        ipdBean.isFinalSupply = !ipdBean.isFinalSupply;
+                        isFinalBtn.setText(ipdBean.isFinalSupply? "最末袋(通道1):已开启": "最末袋(通道1):已关闭");
+                        mCommonDialog.dismiss();
+                    })
+                    .setTwoClickListener(Dialog::dismiss)
+                    .show();
+        });
+
+        firstVolLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERFUSION_VOLUME, 0, PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
+        });
+
+        ultVolLl.setOnClickListener(v -> {
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ESTIMATED_ULTRAFILTRATION_VOLUME, EmtConstant.ultVolMin, EmtConstant.ultVolMax);
+        });
+
     }
 
     @Override
     public void initViewData() {
-        initHeadTitleBar("IPD模式","参数设置");
+        initHeadTitleBar("","参数设置");
+        if (ipdBean == null) {
+            ipdBean = PdproHelper.getInstance().ipdBean();
+        }
+        totalVolTv.setText(String.valueOf(ipdBean.peritonealDialysisFluidTotal));//腹透液总量
+        cycleVolTv.setText(String.valueOf(ipdBean.perCyclePerfusionVolume));//每周期灌注量
+        cycleNumTv.setText(String.valueOf(ipdBean.cycle));//循环治疗周期数
+        abdTimeTv.setText(String.valueOf(ipdBean.abdomenRetainingTime));//留腹时间
+        finalVolTv.setText(String.valueOf(ipdBean.abdomenRetainingVolumeFinally));//末次留腹量
+        lastVolTv.setText(String.valueOf(ipdBean.abdomenRetainingVolumeLastTime));//上次留腹量
+        firstVolTv.setText(String.valueOf(ipdBean.firstPerfusionVolume));//首次灌注量
+        ultVolTv.setText(String.valueOf(ipdBean.ultrafiltrationVolume));//预估超滤量
+
+        ipdBtn.setText(ipdBean.firstPerfusionVolume == 0 ?"IPD模式" : "TPD模式");
     }
 
-    private void alertNumberBoardDialog(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, false, true);
+    private void alertNumberBoardDialog(String type, int min, int max) {
+        NumberDialog dialog = new NumberDialog(this, type, min, max);
         dialog.show();
-        dialog.setOnDialogResultListener(new NumberBoardDialog.OnDialogResultListener() {
+        dialog.setOnDialogResultListener(new NumberDialog.OnDialogResultListener() {
             @Override
             public void onResult(String mType, String result) {
                 if (!TextUtils.isEmpty(result)) {
                     switch (mType) {
                         case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERITONEAL_DIALYSIS_FLUID_TOTAL: //腹透液总量
                             totalVolTv.setText(result);
-                            entity.peritonealDialysisFluidTotal = Integer.parseInt(result);
+                            ipdBean.peritonealDialysisFluidTotal = Integer.parseInt(result);
                             setCycleNum();
                             break;
                         case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PER_CYCLE_PERFUSION_VOLUME: //每周期灌注量
                             cycleVolTv.setText(result);
-                            entity.perCyclePerfusionVolume = Integer.parseInt(result);
+                            ipdBean.perCyclePerfusionVolume = Integer.parseInt(result);
                             setCycleNum();
                             break;
 //                        case PdGoConstConfig.FINAL_SUPPLY:
@@ -235,35 +192,35 @@ public class IpdActivity extends BaseActivity {
 //                            break;
                         case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERIODICITIES: //循环治疗周期数
                             cycleNumTv.setText(result);
-                            entity.cycle = Integer.parseInt(result);
+                            ipdBean.cycle = Integer.parseInt(result);
 //                            setTotal();
                             setCyclePre();
                             break;
                         case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_TIME: //留腹时间
-                            retainTimeTv.setText(result);
-                            entity.abdomenRetainingTime = Integer.parseInt(result);
-//                            setPeriodicities();
+                            abdTimeTv.setText(result);
+                            ipdBean.abdomenRetainingTime = Integer.parseInt(result);
                             break;
                         case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_FINALLY: //末次留腹量
-                            finalRetainVolTv.setText(result);
-                            entity.abdomenRetainingVolumeFinally = Integer.parseInt(result);
-//                            setTotal();
+                            finalVolTv.setText(result);
+                            ipdBean.abdomenRetainingVolumeFinally = Integer.parseInt(result);
                             setCycleNum();
+//                            setTotal();
                             break;
                         case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ABDOMEN_RETAINING_VOLUME_LAST_TIME: //上次留腹量
-                            lastRetainVolTv.setText(result);
-                            entity.abdomenRetainingVolumeLastTime = Integer.parseInt(result);
+                            lastVolTv.setText(result);
+                            ipdBean.abdomenRetainingVolumeLastTime = Integer.parseInt(result);
                             setCycleNum();
                             break;
-//                        case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERFUSION_VOLUME: //首次灌注量
-//                            firstPerVolTv.setText(result);
-//                            entity.firstPerfusionVolume = Integer.parseInt(result);
-////                            setTotal();
-//                            setCycleNum();
-//                            break;
+                        case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERFUSION_VOLUME: //首次灌注量
+                            firstVolTv.setText(result);
+                            ipdBean.firstPerfusionVolume = Integer.parseInt(result);
+//                            setTotal();
+                            ipdBtn.setText(ipdBean.firstPerfusionVolume == 0 ?"IPD模式" : "TPD模式");
+                            setCycleNum();
+                            break;
                         case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_ESTIMATED_ULTRAFILTRATION_VOLUME: //预估超滤量
                             ultVolTv.setText(result);
-                            entity.ultrafiltrationVolume = Integer.parseInt(result);
+                            ipdBean.ultrafiltrationVolume = Integer.parseInt(result);
                             setCycleNum();
                             break;
                     }
@@ -272,32 +229,47 @@ public class IpdActivity extends BaseActivity {
         });
     }
 
+    private void setTotal() {
+        int total = ipdBean.cycle * ipdBean.perCyclePerfusionVolume + ipdBean.firstPerfusionVolume +
+                ipdBean.abdomenRetainingVolumeFinally + EmtConstant.dep;
+        totalVolTv.setText(String.valueOf(total));
+        ipdBean.peritonealDialysisFluidTotal = total;
+    }
+
     private void setCyclePre() {
-        int perCyclePerfusionVolume = (entity.peritonealDialysisFluidTotal
-                - entity.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.entity.abdomenRetainingVolumeLastTime
-                - entity.abdomenRetainingVolumeFinally - 500 ) / entity.cycle;
-        cycleVolTv.setText(String.valueOf(perCyclePerfusionVolume));
-        entity.perCyclePerfusionVolume = perCyclePerfusionVolume;
+
+        int cycle = ipdBean.firstPerfusionVolume == 0 ? ipdBean.cycle : ipdBean.cycle - 1;
+        double total = (ipdBean.peritonealDialysisFluidTotal
+                - ipdBean.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.entity.abdomenRetainingVolumeLastTime
+                - ipdBean.abdomenRetainingVolumeFinally - EmtConstant.dep) / Double.parseDouble(String.valueOf(cycle)) / 50.00;
+
+        int perCyclePerfusionVolume = (int) Math.floor(total);
+        int cycleVol = perCyclePerfusionVolume * 50;
+        cycleVolTv.setText(String.valueOf(cycleVol));
+        ipdBean.perCyclePerfusionVolume = cycleVol;
 //        CacheUtils.getInstance().getACache().put(PdGoConstConfig.TREATMENT_PARAMETER, mParameterEniity);
 //        setTreatTime();
-        int time = (entity.abdomenRetainingTime * 60 * entity.cycle) + ((entity.firstPerfusionVolume + entity.abdomenRetainingVolumeFinally +
-                entity.abdomenRetainingVolumeLastTime ) / 125);
-
-        entity.treatTime = EmtTimeUil.getTime(time);
+//        int time = (ipdBean.abdomenRetainingTime * 60 * ipdBean.cycle) + ((ipdBean.firstPerfusionVolume + ipdBean.abdomenRetainingVolumeFinally +
+//                ipdBean.abdomenRetainingVolumeLastTime ) / 125);
+//
+//        ipdBean.treatTime = EmtTimeUil.getTime(time);
     }
 
     /**
      * 设置治疗周期数
      */
     private void setCycleNum() {
-        //循环治疗周期数 N=int((腹透液重量-首次灌注量-最末留腹量-消耗扣除500)/每周期灌注量)
-        int cycle =  (entity.peritonealDialysisFluidTotal
-                - entity.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.entity.abdomenRetainingVolumeLastTime
-                - entity.abdomenRetainingVolumeFinally - 500 ) / entity.perCyclePerfusionVolume;
+        //循环治疗周期数 N=int((腹透液重量-首次灌注量-最末留腹量-消耗扣除250)/每周期灌注量)
+        int cycle =  (ipdBean.peritonealDialysisFluidTotal
+                - ipdBean.firstPerfusionVolume ////不需要扣除上次最末留腹量 - mActivity.entity.abdomenRetainingVolumeLastTime
+                - ipdBean.abdomenRetainingVolumeFinally - EmtConstant.dep ) / ipdBean.perCyclePerfusionVolume;
         if(cycle <= 0){
             cycle = 1;
         }
-        entity.cycle = cycle;
+        if (ipdBean.firstPerfusionVolume != 0) {
+            cycle = cycle + 1;
+        }
+        ipdBean.cycle = cycle;
 //        CacheUtils.getInstance().getACache().put(PdGoConstConfig.TREATMENT_PARAMETER, mParameterEniity);
 //        if(entity.abdomenRetainingVolumeFinally>0){//0周期
 //            entity.cycle =  entity.cycle + 1;
@@ -305,12 +277,12 @@ public class IpdActivity extends BaseActivity {
 //        if (entity.cycle > 13) {
 //            toastMessage("周期不能大于13");
 //        }
-        cycleNumTv.setText(String.valueOf(entity.cycle));
+        cycleNumTv.setText(String.valueOf(ipdBean.cycle));
 //        setTreatTime();
-        int time = (entity.abdomenRetainingTime * 60 * entity.cycle) + ((entity.firstPerfusionVolume + entity.abdomenRetainingVolumeFinally +
-                entity.abdomenRetainingVolumeLastTime ) / 125);
-
-        entity.treatTime = EmtTimeUil.getTime(time);
+//        int time = (ipdBean.abdomenRetainingTime * 60 * ipdBean.cycle) + ((ipdBean.firstPerfusionVolume + ipdBean.abdomenRetainingVolumeFinally +
+//                ipdBean.abdomenRetainingVolumeLastTime ) / 125);
+//
+//        ipdBean.treatTime = EmtTimeUil.getTime(time);
     }
 
     @Override

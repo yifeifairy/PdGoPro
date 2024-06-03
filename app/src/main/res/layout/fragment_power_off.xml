@@ -1,0 +1,47 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.emt.pdgo.next.ui.fragment.PowerOffFragment">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:scaleType="fitXY"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="关机提示\n上抬弹片取出卡匣\n取下液袋及管组"
+            android:gravity="center"
+            android:textSize="@dimen/input_health_info_tv_value_text_size"
+            android:layout_height="0dp"
+            android:layout_weight="3"/>
+
+        <Button
+            android:id="@+id/power"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="立即关机"
+            android:textColor="@color/white"
+            android:textSize="@dimen/input_health_info_tv_value_text_size"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:background="@drawable/btn_next_shape"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

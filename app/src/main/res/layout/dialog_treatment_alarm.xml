@@ -8,17 +8,16 @@
 
     <Button
         android:id="@+id/btn_view_data"
-        android:layout_width="@dimen/dialog_alarm_btn_view_data_width"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/dialog_alarm_btn_view_data_height"
         android:layout_alignParentRight="true"
         android:layout_gravity="center"
         android:layout_margin="@dimen/dialog_alarm_btn_view_data_margin"
         android:background="@drawable/dialog_btn_blue"
         android:gravity="center"
-        android:text="@string/dialog_btn_view_data"
+        android:text="重复播报"
         android:textColor="@color/white"
-        android:textSize="@dimen/dialog_alarm_btn_view_data_text_size"
-        android:visibility="gone" />
+        android:textSize="@dimen/dialog_alarm_btn_view_data_text_size" />
 
     <Button
         android:id="@+id/btnSilencers"

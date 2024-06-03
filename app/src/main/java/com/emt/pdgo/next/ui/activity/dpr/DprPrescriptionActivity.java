@@ -800,6 +800,7 @@ public class DprPrescriptionActivity extends BaseActivity {
         super.onDestroy();
         MyApplication.firstVol = PdproHelper.getInstance().getPrescription().firstpersuse;
     }
+
     @Override
     public void notifyByThemeChanged() {
 

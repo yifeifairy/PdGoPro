@@ -9,38 +9,52 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
-    <RelativeLayout
+        android:layout_weight="0.15"
+        android:layout_height="0dp" />
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_set"
-        android:layout_marginTop="@dimen/treatment_countdown_margin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/custom_main_title_size_4"
-        android:layout_above="@id/version"
-        android:paddingRight="@dimen/custom_main_title_size_4" />
+        android:layout_weight="0.75"
+        android:layout_height="0dp"
+        android:paddingLeft="@dimen/treatment_evaluation_margin"
+        android:paddingRight="@dimen/treatment_evaluation_margin" />
 
-    <TextView
-        android:id="@+id/version"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:text="@string/version"
+        android:layout_weight="0.1"
         android:gravity="center"
-        android:textSize="@dimen/input_health_info_tv_value_text_size"
-        android:layout_height="@dimen/navbar_btn_height" />
-
-    </RelativeLayout>
+        android:layout_height="0dp" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/env"
+            android:gravity="center"
+            android:id="@+id/upVer"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@color/black"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=""
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:gravity="center"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=""
+            android:id="@+id/lowVer"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:gravity="center"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
 
 </LinearLayout>

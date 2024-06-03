@@ -13,7 +13,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -21,14 +20,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,17 +54,13 @@ import com.emt.pdgo.next.ui.activity.AnimatorActivity;
 import com.emt.pdgo.next.ui.activity.EngineerSettingActivity;
 import com.emt.pdgo.next.ui.dialog.CommonDialog;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
-import com.emt.pdgo.next.ui.dialog.SoundDialog;
-import com.emt.pdgo.next.ui.view.Breathe;
-import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.ActivityManager;
 import com.emt.pdgo.next.util.CacheUtils;
+import com.emt.pdgo.next.util.ClickUtil;
 import com.emt.pdgo.next.util.EmtTimeUil;
 import com.emt.pdgo.next.util.GlobalDialogManager;
-import com.emt.pdgo.next.util.NetworkUtils;
 import com.emt.pdgo.next.util.TtsHelper;
 import com.emt.pdgo.next.util.task.ConsumptionTask;
-import com.emt.pdgo.next.util.task.LineUpTaskHelp;
 import com.google.gson.Gson;
 import com.pdp.rmmit.pdp.BuildConfig;
 import com.pdp.rmmit.pdp.R;
@@ -83,14 +74,12 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -119,16 +108,16 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
     private CompositeDisposable cmdDisposable;
 
-    public StateButton btnBack;
-    private StateButton btnSubmit;
-    public RelativeLayout layoutRightMenu;
-
-    public TextView tvTitle;
+//    public StateButton btnBack;
+//    private StateButton btnSubmit;
+//    public RelativeLayout layoutRightMenu;
+//
+//    public TextView tvTitle;
     public CommonDialog mCommonDialog;
 
     private CommonDialog usbDialog;
 
-    private Breathe breatheView;
+//    private Breathe breatheView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +136,7 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 //        RxBus.get().register(this);
 
         initAllViews();
-        setNetStatus();
+
 //        if (NetworkUtils.isNetworkConnected(this)) {
 //            if (NetworkUtils.isMobileConnected(this)) {
 //                netIv.setImageResource(R.drawable.net);
@@ -172,9 +161,8 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 //        isNightOrDay();
 //
 //        lineUpTaskHelp = LineUpTaskHelp.getInstance();
-//        initListener();
-        init();
 //        registerReceiverWifi();
+//        init();
     }
 
     //监听wifi变化
@@ -187,9 +175,6 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 //        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);//监听wifi列表变化（开启一个热点或者关闭一个热点）
 //        registerReceiver(wifiReceiver, filter);
 //    }
-
-    private ImageView wifiIv;
-    private ImageView netIv;
 //    @Subscribe(code = RxBusCodeConfig.NET_STATUS)
 //    public void netStatus(int status) {
 //        if (status == -1) {
@@ -402,49 +387,6 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
         return getThemeTag() == -1;
     }
 
-    public int useDeviceTime = 0; // 设备使用时间
-    private void init() {
-        DisposableObserver<Long> disposableObserver = new DisposableObserver<Long>() {
-            @Override
-            public void onNext(Long aLong) {
-                runOnUiThread(() -> {
-                    useDeviceTime ++;
-                    if (useDeviceTime >= 3600 && (useDeviceTime % (60 * 60) == 0)) {
-//                    if (useDeviceTime > 0 && useDeviceTime % (10) == 0) {
-//                        if (PdproHelper.getInstance().useDeviceTime() == 0) {
-//                            CacheUtils.getInstance().getACache().put(PdGoConstConfig.useDeviceTime, 1);
-//                        } else {
-                            CacheUtils.getInstance().getACache().put(PdGoConstConfig.useDeviceTime, (PdproHelper.getInstance().useDeviceTime() + 1) +"");
-//                        }
-                    }
-                    if (!NetworkUtils.isNetworkConnected(BaseActivity.this)) {
-                        netIv.setImageResource(R.drawable.no_net);
-                        wifiIv.setImageResource(R.drawable.no_wifi);
-                    } else {
-                        if (NetworkUtils.isMobileConnected(BaseActivity.this)) {
-                            netIv.setImageResource(R.drawable.net);
-//                wifiIv.setImageResource(R.drawable.no_wifi);
-                        } else if (NetworkUtils.isWifiConnected(BaseActivity.this)){
-                            wifiIv.setImageResource(R.drawable.wifi);
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
-        Observable.interval(0, 1000, TimeUnit.MILLISECONDS).subscribe(disposableObserver);
-        mCompositeDisposable.add(disposableObserver);
-    }
-
     private void isNightOrDay() {
         Disposable mainDisposable = Observable.timer(500, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
@@ -494,103 +436,103 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
     /*** 准备界面的数据 */
     public abstract void initViewData();
 
-    // 消音
-    LinearLayout silencersLayout;
-    // 警报
-    LinearLayout ringingLayout;
-    TextView tvSilencers;
+//    // 消音
+//    LinearLayout silencersLayout;
+//    // 警报
+//    LinearLayout ringingLayout;
+//    TextView tvSilencers;
 
-    private CheckForLongPress mCheckForLongPress;
-    private volatile boolean isPressed = false;
+//    private CheckForLongPress mCheckForLongPress;
+//    private volatile boolean isPressed = false;
+//
+//    private class CheckForLongPress implements Runnable {
+//
+//        @Override
+//        public void run() {
+//            //5s之后，查看isLongPressed的变量值：
+//            if (isPressed) {//没有做up事件
+//                alertNumberBoard("", PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD);
+//            } else {
+//                tvTitle.removeCallbacks(mCheckForLongPress);
+//            }
+//        }
+//    }
 
-    private class CheckForLongPress implements Runnable {
-
-        @Override
-        public void run() {
-            //5s之后，查看isLongPressed的变量值：
-            if (isPressed) {//没有做up事件
-                alertNumberBoard("", PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD);
-            } else {
-                tvTitle.removeCallbacks(mCheckForLongPress);
-            }
-        }
-    }
-
-    private void alertNumberBoard(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, false);
-        dialog.show();
-        dialog.setOnDialogResultListener((mType, result) -> {
-            if (!TextUtils.isEmpty(result)) {
-//                    Logger.d(result);
-                Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
-
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minute = calendar.get(Calendar.MINUTE);
-                int second = calendar.get(Calendar.SECOND);
-                String mMonth = "";
-
-                if (month >= 10) {
-                    mMonth = "" + month;
-                } else {
-                    mMonth = "0" + month;
-                }
-
-                //123加上月份
-                String tempPwd = "123" + mMonth;
-                Log.e("长按", "tempPwd：" + tempPwd);
-                if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
-                    if (tempPwd.equals(result)) {
-                        doGoTOActivity(EngineerSettingActivity.class);
-                    }
-                }
-            }
-        });
-    }
-    private ImageView btnSound;
+//    private void alertNumberBoard(String value, String type) {
+//        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, false);
+//        dialog.show();
+//        dialog.setOnDialogResultListener((mType, result) -> {
+//            if (!TextUtils.isEmpty(result)) {
+////                    Logger.d(result);
+//                Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
+//
+//                int year = calendar.get(Calendar.YEAR);
+//                int month = calendar.get(Calendar.MONTH) + 1;
+//                int day = calendar.get(Calendar.DAY_OF_MONTH);
+//                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//                int minute = calendar.get(Calendar.MINUTE);
+//                int second = calendar.get(Calendar.SECOND);
+//                String mMonth = "";
+//
+//                if (month >= 10) {
+//                    mMonth = "" + month;
+//                } else {
+//                    mMonth = "0" + month;
+//                }
+//
+//                //123加上月份
+//                String tempPwd = "123" + mMonth;
+//                Log.e("长按", "tempPwd：" + tempPwd);
+//                if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
+//                    if (tempPwd.equals(result)) {
+//                        doGoTOActivity(EngineerSettingActivity.class);
+//                    }
+//                }
+//            }
+//        });
+//    }
+//    private ImageView btnSound;
     @SuppressLint("ClickableViewAccessibility")
     private void initHeadview() {
-        btnBack = findViewById(R.id.btn_back);
-        layoutRightMenu = findViewById(R.id.layout_right_menu);
-        btnSubmit = findViewById(R.id.btn_submit);
-        tvTitle = findViewById(R.id.tv_title);
-        btnSound = findViewById(R.id.btnSound);
-        silencersLayout = findViewById(R.id.silencersLayout);
-        ringingLayout = findViewById(R.id.ringLayout);
-        tvSilencers = findViewById(R.id.tvSilencers);
-        breatheView = findViewById(R.id.breathe);
-        mCheckForLongPress = new CheckForLongPress();
-
-        tvTitle.setOnTouchListener((View.OnTouchListener) (v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-//                Log.d("onTouch", "action down");
-                    isPressed = true;
-//                ivLogo.postDelayed(mCheckForLongPress1, 1000);
-                    tvTitle.postDelayed(mCheckForLongPress, 5000);
-                    break;
-//            case MotionEvent.ACTION_MOVE:
-//                isLongPressed = true;
-//                break;
-                case MotionEvent.ACTION_UP:
-                    isPressed = false;
-//                Log.d("onTouch", "action up");
-                    break;
-
-            }
-
-            return true;
-        });
+//        btnBack = findViewById(R.id.btn_back);
+//        layoutRightMenu = findViewById(R.id.layout_right_menu);
+//        btnSubmit = findViewById(R.id.btn_submit);
+//        tvTitle = findViewById(R.id.tv_title);
+//        btnSound = findViewById(R.id.btnSound);
+//        silencersLayout = findViewById(R.id.silencersLayout);
+//        ringingLayout = findViewById(R.id.ringLayout);
+//        tvSilencers = findViewById(R.id.tvSilencers);
+//        breatheView = findViewById(R.id.breathe);
+//        mCheckForLongPress = new CheckForLongPress();
+//
+//        tvTitle.setOnTouchListener((View.OnTouchListener) (v, event) -> {
+//            switch (event.getAction()) {
+//                case MotionEvent.ACTION_DOWN:
+////                Log.d("onTouch", "action down");
+//                    isPressed = true;
+////                ivLogo.postDelayed(mCheckForLongPress1, 1000);
+//                    tvTitle.postDelayed(mCheckForLongPress, 5000);
+//                    break;
+////            case MotionEvent.ACTION_MOVE:
+////                isLongPressed = true;
+////                break;
+//                case MotionEvent.ACTION_UP:
+//                    isPressed = false;
+////                Log.d("onTouch", "action up");
+//                    break;
+//
+//            }
+//
+//            return true;
+//        });
 
     }
 
-    private final Handler handler = new Handler();
-    private final Runnable runnable = () -> {
-//        sendToMainBoard(CommandDataHelper.getInstance().stopPreheatCmdJson());
-        doGoTOActivity(EngineerSettingActivity.class);
-    };
+//    private final Handler handler = new Handler();
+//    private final Runnable runnable = () -> {
+////        sendToMainBoard(CommandDataHelper.getInstance().stopPreheatCmdJson());
+//        doGoTOActivity(EngineerSettingActivity.class);
+//    };
 
     /****
      * 二级菜单(有左侧按钮和标题。)
@@ -601,15 +543,15 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
         initHeadview();
 
-        tvTitle.setText(title);
-        btnBack.setVisibility(View.INVISIBLE);
-        if (TextUtils.isEmpty(menuRight)) {
-            layoutRightMenu.setVisibility(View.INVISIBLE);
-        } else {
-            btnSubmit.setText(menuRight);
-            btnSubmit.setVisibility(View.VISIBLE);
-            layoutRightMenu.setVisibility(View.VISIBLE);
-        }
+//        tvTitle.setText(title);
+//        btnBack.setVisibility(View.INVISIBLE);
+//        if (TextUtils.isEmpty(menuRight)) {
+//            layoutRightMenu.setVisibility(View.INVISIBLE);
+//        } else {
+//            btnSubmit.setText(menuRight);
+//            btnSubmit.setVisibility(View.VISIBLE);
+//            layoutRightMenu.setVisibility(View.VISIBLE);
+//        }
 
 
     }
@@ -623,15 +565,15 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
         initHeadview();
 
-        tvTitle.setText(title);
-        btnBack.setVisibility(View.VISIBLE);
-        layoutRightMenu.setVisibility(View.INVISIBLE);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
-            }
-        });
+//        tvTitle.setText(title);
+//        btnBack.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setVisibility(View.INVISIBLE);
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
+//            }
+//        });
 
     }
 
@@ -644,54 +586,54 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
     public void initHeadTitleAndSound(String title) {
 
         initHeadview();
-        tvTitle.setText(title);
-        btnBack.setVisibility(View.VISIBLE);
-        layoutRightMenu.setVisibility(View.VISIBLE);
-        btnSubmit.setVisibility(View.GONE);
-        btnSound.setVisibility(View.VISIBLE);
-        layoutRightMenu.setOnClickListener(v -> {
-            SoundDialog soundDialog = new SoundDialog(this);
-            soundDialog.closeClick(Dialog::dismiss)
-                    .tsClick(pdproHelper -> {
-                        PdproHelper.getInstance().updateTtsSoundOpen(!pdproHelper.getTtsSoundOpen());
-                    })
-                    .ringClick(soundDialog12 -> {
-                        if (!MyApplication.isBuzzerOff) {
-                            buzzerOff();
-//                            if (isBuzzerOff) {
-                            silencersLayout.setVisibility(View.VISIBLE);
-                            disposable = Observable.interval(1, TimeUnit.SECONDS)
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .take(maxCountdown - currCountdown)
-                                    .subscribe(aLong -> {
-                                        currCountdown++;
-                                        MyApplication.isBuzzerOff = true;
-                                        tvSilencers.setText("消音中("+(maxCountdown - currCountdown)+"s)");
-                                    }, throwable -> {
-
-                                    }, () -> {
-                                        //complete
-                                        runOnUiThread(()->{
-                                            MyApplication.isBuzzerOff = false;
-                                            currCountdown = 0;
-                                            if (MyApplication.isFailure) {
-                                                buzzerOn();
-                                            }
-                                            silencersLayout.setVisibility(View.INVISIBLE);
-                                        });
-                                    });
-                            mCompositeDisposable.add(disposable);
-//                            }
-                        }
-                    }).show();
-        });
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
-            }
-        });
+//        tvTitle.setText(title);
+//        btnBack.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setVisibility(View.VISIBLE);
+//        btnSubmit.setVisibility(View.GONE);
+//        btnSound.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setOnClickListener(v -> {
+//            SoundDialog soundDialog = new SoundDialog(this);
+//            soundDialog.closeClick(Dialog::dismiss)
+//                    .tsClick(pdproHelper -> {
+//                        PdproHelper.getInstance().updateTtsSoundOpen(!pdproHelper.getTtsSoundOpen());
+//                    })
+//                    .ringClick(soundDialog12 -> {
+//                        if (!MyApplication.isBuzzerOff) {
+//                            buzzerOff();
+////                            if (isBuzzerOff) {
+//                            silencersLayout.setVisibility(View.VISIBLE);
+//                            disposable = Observable.interval(1, TimeUnit.SECONDS)
+//                                    .observeOn(AndroidSchedulers.mainThread())
+//                                    .take(maxCountdown - currCountdown)
+//                                    .subscribe(aLong -> {
+//                                        currCountdown++;
+//                                        MyApplication.isBuzzerOff = true;
+//                                        tvSilencers.setText("消音中("+(maxCountdown - currCountdown)+"s)");
+//                                    }, throwable -> {
+//
+//                                    }, () -> {
+//                                        //complete
+//                                        runOnUiThread(()->{
+//                                            MyApplication.isBuzzerOff = false;
+//                                            currCountdown = 0;
+//                                            if (MyApplication.isFailure) {
+//                                                buzzerOn();
+//                                            }
+//                                            silencersLayout.setVisibility(View.INVISIBLE);
+//                                        });
+//                                    });
+//                            mCompositeDisposable.add(disposable);
+////                            }
+//                        }
+//                    }).show();
+//        });
+//
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
+//            }
+//        });
 
     }
 
@@ -704,10 +646,10 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
         initHeadview();
 
-        tvTitle.setText(title);
-        btnBack.setVisibility(View.VISIBLE);
-        layoutRightMenu.setVisibility(View.INVISIBLE);
-        btnBack.setOnClickListener(backListener);
+//        tvTitle.setText(title);
+//        btnBack.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setVisibility(View.INVISIBLE);
+//        btnBack.setOnClickListener(backListener);
     }
 
 //    @Override
@@ -736,6 +678,8 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
     private void execute(String cmd) {
         try {
             OutputStream os = Runtime.getRuntime().exec("norcofz").getOutputStream();
+//            OutputStream os = Runtime.getRuntime().exec("su").getOutputStream();
+//            OutputStream os = Runtime.getRuntime().exec("/system/bin/sh").getOutputStream();
             os.write(cmd.getBytes());
             os.flush();
 //            os.close();
@@ -790,17 +734,17 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
         initHeadview();
 
-        tvTitle.setText(title);
-        btnSubmit.setText(menuRight);
-        btnBack.setVisibility(View.VISIBLE);
-        btnSubmit.setVisibility(View.VISIBLE);
-        layoutRightMenu.setVisibility(View.VISIBLE);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
-            }
-        });
+//        tvTitle.setText(title);
+//        btnSubmit.setText(menuRight);
+//        btnBack.setVisibility(View.VISIBLE);
+//        btnSubmit.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setVisibility(View.VISIBLE);
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
+//            }
+//        });
     }
 
     /****
@@ -812,18 +756,18 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
         initHeadview();
 
-        tvTitle.setText(title);
-        btnSubmit.setText(menuRight);
-        btnBack.setVisibility(View.VISIBLE);
-        btnSubmit.setVisibility(View.VISIBLE);
-//        layoutRightMenu.setVisibility(View.VISIBLE);
-//        layoutRightMenu.setOnClickListener(menuRightListener);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
-            }
-        });
+//        tvTitle.setText(title);
+//        btnSubmit.setText(menuRight);
+//        btnBack.setVisibility(View.VISIBLE);
+//        btnSubmit.setVisibility(View.VISIBLE);
+////        layoutRightMenu.setVisibility(View.VISIBLE);
+////        layoutRightMenu.setOnClickListener(menuRightListener);
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
+//            }
+//        });
     }
 
     /****
@@ -835,18 +779,18 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
         initHeadview();
 
-        tvTitle.setText(title);
-        btnSubmit.setText(menuRight);
-        btnBack.setVisibility(View.INVISIBLE);
-        btnSubmit.setVisibility(View.VISIBLE);
-        layoutRightMenu.setVisibility(View.VISIBLE);
-        layoutRightMenu.setOnClickListener(menuRightListener);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
-            }
-        });
+//        tvTitle.setText(title);
+//        btnSubmit.setText(menuRight);
+//        btnBack.setVisibility(View.INVISIBLE);
+//        btnSubmit.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setOnClickListener(menuRightListener);
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ActivityManager.getActivityManager().removeActivity(BaseActivity.this);
+//            }
+//        });
     }
 
     /****
@@ -858,18 +802,18 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 
         initHeadview();
 
-        tvTitle.setText(title);
-        btnSubmit.setText(menuRight);
-        btnBack.setVisibility(View.VISIBLE);
-        btnSubmit.setVisibility(View.VISIBLE);
-        layoutRightMenu.setVisibility(View.VISIBLE);
-        layoutRightMenu.setOnClickListener(menuRightListener);
-        btnBack.setOnClickListener(backListener);
+//        tvTitle.setText(title);
+//        btnSubmit.setText(menuRight);
+//        btnBack.setVisibility(View.VISIBLE);
+//        btnSubmit.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setVisibility(View.VISIBLE);
+//        layoutRightMenu.setOnClickListener(menuRightListener);
+//        btnBack.setOnClickListener(backListener);
     }
 
-    public void setRightMenu(String menuRight) {
-        btnSubmit.setText(menuRight);
-    }
+//    public void setRightMenu(String menuRight) {
+//        btnSubmit.setText(menuRight);
+//    }
 
     /**
      * 设置不可编辑且有点击事件
@@ -917,11 +861,6 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
         ((MyApplication) getApplication()).registerObserver(this);
         loadingCurrentTheme();
 //        onNetChange(NetworkUtils.getNetWorkState(BaseActivity.this));
-    }
-
-    private void setNetStatus() {
-        netIv = findViewById(R.id.netIv);
-        wifiIv = findViewById(R.id.wifiIv);
     }
 
 //    private int netStatus;
@@ -1070,66 +1009,63 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
         }
     }
 
+    // 去工程师界面
+    public void toEngAc(View view) {
+        ClickUtil clickUtil = new ClickUtil(view,5000);
+        clickUtil.setResultListener(new ClickUtil.ResultListener() {
+            @Override
+            public void onResult(boolean press) {
+                NumberBoardDialog dialog = new NumberBoardDialog(BaseActivity.this, "", PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD, false);
+                if (!BaseActivity.this.isFinishing()) {
+                    dialog.show();
+                }
+                dialog.setOnDialogResultListener((mType, result) -> {
+                    if (!TextUtils.isEmpty(result)) {
+//                    Logger.d(result);
+                        Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
+
+                        int year = calendar.get(Calendar.YEAR);
+                        int month = calendar.get(Calendar.MONTH) + 1;
+                        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                        int minute = calendar.get(Calendar.MINUTE);
+                        int second = calendar.get(Calendar.SECOND);
+                        String mMonth = "";
+
+                        if (month >= 10) {
+                            mMonth = "" + month;
+                        } else {
+                            mMonth = "0" + month;
+                        }
+
+                        //123加上月份
+                        String tempPwd = "123" + mMonth;
+                        Log.e("长按", "tempPwd：" + tempPwd);
+                        if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
+                            if (tempPwd.equals(result)) {
+                                doGoTOActivity(EngineerSettingActivity.class);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
     /**
      * 文字转语音播放
      *
      * @param content
      */
     public void speak(String content) {
-        if (PdproHelper.getInstance().getTtsSoundOpen()) {
-//            BaiduTtsHelper.getInstance(BaseActivity.this).speak(content);
-            TtsHelper.getInstance(BaseActivity.this).speak(content);
-        }
-    }
-    private LineUpTaskHelp lineUpTaskHelp;
-    /**
-     *  注册任务监听
-     */
-    private void initListener(){
-        if (lineUpTaskHelp == null) {
-            lineUpTaskHelp = LineUpTaskHelp.getInstance();
-        }
-        lineUpTaskHelp.setOnTaskListener(new LineUpTaskHelp.OnTaskListener() {
-            @Override
-            public void exNextTask(ConsumptionTask task) {
-                // 所有任务，会列队调用exNextTask。在这里编写你的任务执行过程
-                exTask(task);
-            }
-
-            @Override
-            public void noTask() {
-                Log.e("task","所有任务执行完成");
-            }
-        });
+//        if (PdproHelper.getInstance().getTtsSoundOpen()) {
+////            BaiduTtsHelper.getInstance(BaseActivity.this).speak(content);
+//            TtsHelper.getInstance(BaseActivity.this).speak(content);
+//        }
+        TtsHelper.getInstance(BaseActivity.this).speak(content);
     }
 
-    /**
-     *  模拟执行任务呢
-     */
-    private void exTask(final ConsumptionTask task){
-        Handler handler = new Handler(); // 如果这个handler是在UI线程中创建的
-        // 开启的runnable也会在这个handler所依附线程中运行，即主线程
-        handler.postDelayed(() -> {
-            Log.e("task","开始执行任务" + task.taskNo);
-//                if(isOdd(System.currentTimeMillis())){
-//                    // 模拟任务执行的结果====失败，如果一个任务失败了会导致整个计划失败，请调用此方法。
-//                    Log.e("Post","任务失败了，结束掉相关联正在排队的任务组");
-//                    lineUpTaskHelp.deletePlanNoAll(task.planNo);
-//                }
-            RxBus.get().send(RxBusCodeConfig.EVENT_SEND_COMMAND, cmd);
-            Log.e("android发送指令到单片机", "mCommand:" + cmd);
-            // 检查列队
-            lineUpTaskHelp.exOk(task);
-            // 可更新UI或做其他事情
-            // 注意这里还在当前线程，没有开启新的线程
-            // new Runnable(){}，只是把Runnable对象以Message形式post到UI线程里的Looper中执行，并没有新开线程。
-        }, 1000); // 延时执行run内代码
-
-    }
-
-    private int index = 1;
-    private String cmd;
-    private ReentrantLock reentrantLock;
     /**
      * 发送数据到主板
      */
@@ -1142,35 +1078,11 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
             if (mCommand == null || "".equals(mCommand)) {
                 return;
             }
-            if (reentrantLock == null) {
-                reentrantLock = new ReentrantLock(true);
-            }
-            reentrantLock.lock();
-            try {
-                RxBus.get().send(RxBusCodeConfig.EVENT_SEND_COMMAND, mCommand);
-                Log.e("android发送指令到单片机", "" + mCommand);
-            } finally {
-                reentrantLock.unlock();
-            }
-            if (!mCommand.contains("report")) {
-                FaultCodeEntity entity = new FaultCodeEntity();
-                entity.time = EmtTimeUil.getTime();
-                entity.code = "发送的指令："+mCommand;
-                EmtDataBase.getInstance(MyApplication.getInstance()).getFaultCodeDao()
-                        .insertFaultCode(entity);
-            }
+            ConsumptionTask task = new ConsumptionTask();
+            task.taskNo = "Task" + (MyApplication.index++); // 确保唯一性
+            task.planNo = mCommand; // 将数据分组， 如果没有该需求的同学，可以不进行设置
+            MyApplication.lineUpTaskHelp.addTask(task); // 添加到排队列表中去， 如果还有任务没完成，
 //            RxBus.get().send(RxBusCodeConfig.EVENT_SEND_COMMAND, mCommand);
-        }
-    }
-
-    public void sendCmd(String mCommand) {
-        if (mCommand == null || "".equals(mCommand)) {
-            return;
-        }
-
-        synchronized (this) {
-                RxBus.get().send(RxBusCodeConfig.EVENT_SEND_COMMAND, mCommand);
-                Log.e("android发送指令到单片机", "mCommand:" + mCommand);
         }
     }
 
@@ -1203,15 +1115,12 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
          * @param mCommand
          * @param delayMillis
          */
+//        if (mainDisposable == null) {
         Disposable mainDisposable = Observable.timer(delayMillis, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        sendToMainBoard(mCommand);
-                    }
-                });
+                .subscribe(aLong -> sendToMainBoard(mCommand));
+//        }
         cmdDisposable.add(mainDisposable);
     }
 
@@ -1222,7 +1131,6 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
      * @param delayMillis
      */
     public void sendLedCommandInterval(String mCommand, long delayMillis) {
-
         Disposable ledDisposable = Observable.timer(delayMillis, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1243,8 +1151,10 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
     public void buzzerOff() {
 //        ringingLayout.setVisibility(View.INVISIBLE);
 //        breatheView.hide();
-        sendCommandInterval(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_BEEP_OFF), 500);
+        if (!MyApplication.isBuzzerOff) {
+            sendCommandInterval(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_BEEP_OFF), 500);
 //        sendCommandInterval(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_BEEP_OFF), 100);
+        }
     }
 
     /**
@@ -1484,5 +1394,43 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
         }
         sendCommandInterval(cmdStr,500);
     }
+
+//    public int useDeviceTime = 0; // 设备使用时间
+//    private void init() {
+//        DisposableObserver<Long> disposableObserver = new DisposableObserver<Long>() {
+//            @Override
+//            public void onNext(Long aLong) {
+//
+//                useDeviceTime ++;
+//                if (useDeviceTime >= 60 * 60 && (useDeviceTime % (60 * 60) == 0)) {
+////                    if (useDeviceTime > 0 && useDeviceTime % (10) == 0) {
+////                        if (PdproHelper.getInstance().useDeviceTime() == 0) {
+////                            CacheUtils.getInstance().getACache().put(PdGoConstConfig.useDeviceTime, 1);
+////                        } else {
+//                    Log.e("MyApplication","useDeviceTime:"+useDeviceTime);
+//                    int time = PdproHelper.getInstance().useDeviceTime();
+//                    CacheUtils.getInstance().getACache().put(PdGoConstConfig.useDeviceTime, String.valueOf(time + 1));
+////                        }
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//
+//            }
+//        };
+//        if (dtCompositeDisposable == null) {
+//            dtCompositeDisposable = new CompositeDisposable();
+//        }
+//        Observable.interval(0, 1000, TimeUnit.MILLISECONDS).subscribe(disposableObserver);
+//        dtCompositeDisposable.add(disposableObserver);
+//    }
+
+    private CompositeDisposable dtCompositeDisposable;
 
 }

@@ -9,100 +9,123 @@
     android:background="?attr/custom_attr_app_bg"
     tools:context="com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" >
-        <include
-            android:id="@+id/main_head"
-            layout="@layout/view_head"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/navbar_height" />
-        <com.emt.pdgo.next.ui.view.StateButton
-            android:id="@+id/clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="清空"
-            android:padding="@dimen/treatment_countdown_margin"
-            android:textSize="28sp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/pageRl"
-            app:normalBackgroundColor="#0089FF"
-            app:normalStrokeColor="#0056A0"
-            app:normalStrokeWidth="2dp"
-            app:normalTextColor="@android:color/white"
-            app:pressedStrokeWidth="2dp"
-            app:pressedStrokeColor="#0073D6"
-            app:pressedBackgroundColor="#0073D6"
-            app:pressedTextColor="@android:color/white"/>
-        <RelativeLayout
-            android:id="@+id/pageRl"
-            android:layout_width="@dimen/dialog_alarm_layout_width"
-            android:layout_marginStart="@dimen/dialog_alarm_tv_msg_margin_left_right"
-            android:layout_marginEnd="@dimen/dialog_alarm_tv_msg_margin_left_right"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_height="@dimen/navbar_height_2" >
-
-            <ImageView
-                android:id="@+id/ivPrePage"
-                android:layout_width="@dimen/navbar_height_2"
-                android:src="@drawable/btn_pre_page"
-                android:layout_height="@dimen/navbar_height_2" />
-
-            <LinearLayout
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginEnd="@dimen/dp_10"
-                android:layout_width="@dimen/navbar_height_2"
-                android:layout_toEndOf="@id/ivPrePage"
-                android:layout_toStartOf="@id/ivNextPage"
-                android:background="@drawable/gray_shape"
-                android:gravity="center"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:textSize="28sp"
-                    android:text="~"
-                    android:id="@+id/tvCurrPage"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:textColor="@color/custom_color_btn_bg_normal_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/ivNextPage"
-                android:layout_width="@dimen/navbar_height_2"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/btn_next_page"
-                android:layout_height="@dimen/navbar_height_2" />
-
-        </RelativeLayout>
-
-    </RelativeLayout>
 
     <include
-        layout="@layout/item_rx_data"
+        android:id="@+id/main_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
-        android:layout_marginTop="14dp"
-        android:visibility="visible"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.15"/>
 
-    <RelativeLayout
+
+    <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:visibility="visible" >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:id="@+id/recyclerview"
-            android:layout_above="@id/rootView"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="时间"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="腹透液总量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="周期灌注量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="周期数"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="首次灌注量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="留腹时间"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="最末留腹量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="上次留腹量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="超滤量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/text_default"
+            android:text="操作"
+            android:gravity="center"
+            android:layout_margin="@dimen/prerinse_btn_margin"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
             android:layout_height="match_parent" />
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-    </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerview"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"/>
+
 </LinearLayout>

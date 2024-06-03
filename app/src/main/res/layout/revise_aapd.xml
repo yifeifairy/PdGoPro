@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/input_box_item_margin_left"
+    android:layout_marginRight="@dimen/input_box_item_margin_left"
+    android:padding="@dimen/input_box_item_margin_left"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/apTotalVolRl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/input_title_prescription_item_1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+            <TextView
+                android:id="@+id/apTotalVolUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="@string/unit_ml"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+            <TextView
+                android:id="@+id/apTotalVolTv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/apTotalVolUnit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/apFinalRetainVolRl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/input_box_item_margin_left"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa5" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/input_title_prescription_item_5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/apFinalRetainVolUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/unit_ml"
+                android:textColor="@color/white"
+                android:textSize="@dimen/treatment_countdown_btn_text_size" />
+            <TextView
+                android:id="@+id/apFinalRetainVolTv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/apFinalRetainVolUnit"
+                android:textSize="@dimen/treatment_countdown_btn_text_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/apCheckboxLl"
+            android:background="@drawable/pa1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left"
+
+            android:layout_marginStart="@dimen/input_box_item_margin_left"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent" >
+            <CheckBox
+                android:id="@+id/apFinalSupplyCheck"
+                android:text="末袋补液"
+                android:theme="@style/CheckBoxTheme"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="(通道1)"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--        <androidx.core.widget.NestedScrollView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" >-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:orientation="vertical"-->
+    <!--                android:layout_height="match_parent" >-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/tab_shape"
+        android:padding="@dimen/preparation_tv_info_margin_top_sub"
+        android:id="@+id/group_1ll"
+        android:layout_marginTop="@dimen/preparation_tv_info_margin_top_sub"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="第1组"
+            android:id="@+id/group_1_tv"
+            android:background="@drawable/pa14"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent" />
+
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:id="@+id/rg1"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa8"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/rb1C1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道1"
+                android:buttonTint="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:id="@+id/rb1C2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道2"
+                android:buttonTint="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/bag_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginStart="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa9"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="预热量:"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="@string/unit_ml"
+                android:id="@+id/bag_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/bag_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/bag_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/per_01_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa10"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="灌注量："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="@string/unit_ml"
+                android:id="@+id/per_01_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/per_01_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/per_01_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/retain_01_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa9"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="留腹时间："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="分"
+                android:id="@+id/retain_01_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/retain_01_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/retain_01_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cycle_01_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa13"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="重复次数："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="次"
+                android:id="@+id/cycle_01_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/cycle_01_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/cycle_01_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/tab_shape"
+        android:padding="@dimen/preparation_tv_info_margin_top_sub"
+        android:id="@+id/group_2ll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/input_box_item_margin_left"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="第2组"
+            android:id="@+id/group_2_tv"
+            android:background="@drawable/pa14"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent" />
+
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:id="@+id/rg2"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa8"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/rb2C1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道1"
+                android:buttonTint="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:id="@+id/rb2C2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道2"
+
+                android:buttonTint="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/per_02_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa10"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="灌注量："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="@string/unit_ml"
+                android:id="@+id/per_02_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/per_02_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/per_02_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/retain_02_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa9"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="留腹时间："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="分"
+                android:id="@+id/retain_02_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/retain_02_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/retain_02_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cycle_02_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa13"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="重复次数："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="次"
+                android:id="@+id/cycle_02_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/cycle_02_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/cycle_02_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/input_box_item_margin_left"
+        android:background="@drawable/tab_shape"
+        android:padding="@dimen/preparation_tv_info_margin_top_sub"
+
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="第3组"
+            android:id="@+id/group_3_tv"
+            android:background="@drawable/pa14"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent" />
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:id="@+id/rg3"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa8"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/rb3C1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道1"
+                android:buttonTint="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:id="@+id/rb3C2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道2"
+                android:buttonTint="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/per_03_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa10"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="灌注量："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="@string/unit_ml"
+                android:id="@+id/per_03_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/per_03_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/per_03_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/retain_03_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa9"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="留腹时间："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="分"
+                android:id="@+id/retain_03_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/retain_03_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/retain_03_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cycle_03_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa13"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="重复次数："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="次"
+                android:id="@+id/cycle_03_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/cycle_03_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/cycle_03_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/input_box_item_margin_left"
+        android:background="@drawable/tab_shape"
+        android:padding="@dimen/preparation_tv_info_margin_top_sub"
+
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="第4组"
+            android:id="@+id/group_4_tv"
+            android:background="@drawable/pa14"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent" />
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:id="@+id/rg4"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa8"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/rb4C1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道1"
+                android:buttonTint="@color/white"
+
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:id="@+id/rb4C2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="通道2"
+                android:buttonTint="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/per_04_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa10"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="灌注量："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="@string/unit_ml"
+                android:id="@+id/per_04_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/per_04_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/per_04_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/retain_04_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa9"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="留腹时间："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="分"
+                android:id="@+id/retain_04_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/retain_04_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/retain_04_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cycle_04_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:background="@drawable/pa13"
+            android:paddingLeft="@dimen/input_box_item_margin_left"
+            android:paddingRight="@dimen/input_box_item_margin_left">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="重复次数："
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:text="次"
+                android:id="@+id/cycle_04_unit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:id="@+id/cycle_04_tv"
+                android:layout_width="@dimen/input_box_et_width"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:layout_toStartOf="@id/cycle_04_unit"
+                android:textSize="@dimen/navbar_btn_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

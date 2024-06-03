@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
 
-def dbflow_version = "4.2.4"
-
 android {
     compileSdkVersion 33
 
@@ -9,10 +7,11 @@ android {
         applicationId "com.pdp.rmmit.pdp"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 20242100
-        versionName "2.1.0.0"
+//        versionCode 202422001
+//        versionName "2.2.0.0.1"
 
-
+        versionCode 2001
+        versionName "2.0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
@@ -68,16 +67,17 @@ android {
         }
         release {
             signingConfig signingConfigs.release
+
+//            shrinkResources true
             // 混淆
 //            minifyEnabled false
 //            zipAlignEnabled true
             // 是否进行混淆
             minifyEnabled false
-            // 开启zipAlign可以让安装包中的资源按4字节对齐，这样可以减少应用在运行时的内存消耗
+//            // 开启zipAlign可以让安装包中的资源按4字节对齐，这样可以减少应用在运行时的内存消耗
             zipAlignEnabled true
             // 移除无用的resource文件
             // 需要注意的是目前资源压缩器目前不会移除values/文件夹中定义的资源（例如字符串、尺寸、样式和颜色）
-            shrinkResources false
             // 移除无用的resource文件
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "serverUrl", '"http://ejc.ckdcloud.com/api/"'
@@ -87,7 +87,7 @@ android {
     //自定义 打包名称
     android.applicationVariants.configureEach { variant ->
         variant.outputs.all {
-            outputFileName = "PdGoPro_v${variant.versionName}_${variant.name}.apk"
+            outputFileName = "PdGoNext_v${variant.versionName}_${variant.name}.apk"
         }
     }
 
@@ -154,11 +154,14 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.9.0") {
         exclude group: "com.android.support"
     }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
 //    implementation  'com.github.addappcn:android-pickers:2.0.0'
     implementation 'androidx.fragment:fragment:1.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     // Json 解析框架：https://github.com/google/gson
     implementation 'com.google.code.gson:gson:2.8.8'
+//    implementation 'com.github.kjt666:Banner:v1.0'
 //    implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
 //    // Gson 解析容错：https://github.com/getActivity/GsonFactory
 //    implementation 'com.github.getActivity:GsonFactory:5.2'
@@ -174,16 +177,17 @@ dependencies {
 //    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
     // Usb
     implementation 'me.jahnen.libaums:core:0.9.1'
-    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:${dbflow_version}"
+//    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+//    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
+//    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+//    implementation "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:${dbflow_version}"
 //    implementation project(path: ':Lib_Toggle')
 //    implementation project(path: ':RxJava')
 //    implementation project(path: ':serialport')
-    implementation("com.google.android.exoplayer:exoplayer:2.18.2")
+//    implementation("com.google.android.exoplayer:exoplayer:2.18.2")
 //    implementation 'com.blankj:utilcodex:1.31.1'
-    implementation("io.github.xmaihh:serialport:2.1.1")
+//    implementation("io.github.xmaihh:serialport:2.1.1")
+    implementation 'com.kotlinx:yserialport:2.2.7'
 // RxJava
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'

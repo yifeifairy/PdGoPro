@@ -16,12 +16,13 @@ public class ExpertBean implements Serializable {
     public boolean isFinalSupply;
     public boolean cycleMyself;
     public int lastRetainVol = 0;
-    public int finalSupply = 0;
     public int ultVol = 0;
+
     public int baseSupplyVol = 50;
     public List<Integer> baseSupplyCycle = new ArrayList<>();
     public int osmSupplyVol = 50;
-
     public List<Integer> osmSupplyCycle = new ArrayList<>();
+
+    public int finalSupply = 0;
 
 }

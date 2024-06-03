@@ -141,13 +141,5 @@
 
     </RelativeLayout>
 
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:visibility="gone"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-
 
 </RelativeLayout>

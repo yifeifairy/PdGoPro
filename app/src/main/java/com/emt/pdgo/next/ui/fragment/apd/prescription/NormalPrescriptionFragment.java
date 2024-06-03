@@ -16,8 +16,6 @@ import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.data.serial.SerialRequestBean;
 import com.emt.pdgo.next.data.serial.SerialRequestMainBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentPrescriptBean;
-import com.emt.pdgo.next.database.EmtDataBase;
-import com.emt.pdgo.next.database.entity.RxEntity;
 import com.emt.pdgo.next.model.mode.IpdBean;
 import com.emt.pdgo.next.net.APIServiceManage;
 import com.emt.pdgo.next.ui.activity.PreHeatActivity;
@@ -31,17 +29,10 @@ import com.emt.pdgo.next.util.helper.MD5Helper;
 import com.google.gson.Gson;
 import com.pdp.rmmit.pdp.R;
 
-import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class NormalPrescriptionFragment extends BaseFragment {
 
@@ -120,7 +111,7 @@ public class NormalPrescriptionFragment extends BaseFragment {
 //        entity.perCyclePerfusionVolume = 200;
 //        entity.abdomenRetainingTime = 60;
 //        entity.abdomenRetainingVolumeFinally = 0;
-        entity = MyApplication.apdTreat ? fragmentActivity.entity :PdproHelper.getInstance().ipdBean();
+        entity = MyApplication.apdTreat ? fragmentActivity.ipdBean :PdproHelper.getInstance().ipdBean();
         entity.firstPerfusionVolume = 0;
 //        entity.abdomenRetainingVolumeLastTime = 0;
 //        entity.ultrafiltrationVolume = 0;
@@ -250,31 +241,31 @@ public class NormalPrescriptionFragment extends BaseFragment {
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.TREATMENT_PARAMETER, entity);
         apdpresci();
         APIServiceManage.getInstance().postApdCode("Z2031");
-        Disposable mainDisposable = Observable.timer(10, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        RxEntity hisRx = new RxEntity();
-                        hisRx.time = EmtTimeUil.getTime();
-                        hisRx.perVol = entity.peritonealDialysisFluidTotal;
-                        hisRx.perCycleVol = entity.perCyclePerfusionVolume;
-                        hisRx.treatCycle = entity.cycle;
-                        hisRx.firstPerVol = entity.firstPerfusionVolume;
-                        hisRx.abdTime = entity.abdomenRetainingTime;
-                        hisRx.endAbdVol = entity.abdomenRetainingVolumeFinally;
-                        hisRx.lastTimeAbdVol = entity.abdomenRetainingVolumeLastTime;
-                        hisRx.ult = entity.ultrafiltrationVolume;
-                        hisRx.ulTreatTime = entity.treatTime;
-//                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
-                        EmtDataBase
-                                .getInstance(activity)
-                                .getRxDao()
-                                .insertRx(hisRx);
-                    }
-                });
-        compositeDisposable.add(mainDisposable);
+//        Disposable mainDisposable = Observable.timer(10, TimeUnit.MILLISECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Long>() {
+//                    @Override
+//                    public void accept(Long aLong) throws Exception {
+//                        RxEntity hisRx = new RxEntity();
+//                        hisRx.time = EmtTimeUil.getTime();
+//                        hisRx.perVol = entity.peritonealDialysisFluidTotal;
+//                        hisRx.perCycleVol = entity.perCyclePerfusionVolume;
+//                        hisRx.treatCycle = entity.cycle;
+//                        hisRx.firstPerVol = entity.firstPerfusionVolume;
+//                        hisRx.abdTime = entity.abdomenRetainingTime;
+//                        hisRx.endAbdVol = entity.abdomenRetainingVolumeFinally;
+//                        hisRx.lastTimeAbdVol = entity.abdomenRetainingVolumeLastTime;
+//                        hisRx.ult = entity.ultrafiltrationVolume;
+//                        hisRx.ulTreatTime = entity.treatTime;
+////                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
+//                        EmtDataBase
+//                                .getInstance(activity)
+//                                .getRxDao()
+//                                .insertRx(hisRx);
+//                    }
+//                });
+//        compositeDisposable.add(mainDisposable);
         activity.doGoTOActivity(PreHeatActivity.class);
     }
     

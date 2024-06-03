@@ -60,7 +60,7 @@ public class CommandReceiveConfig {
     public static final String TOPIC_AUTO_RINSE_PROCESS = "autorinse/process";
 
     /*** 预冲洗指令: 手动预冲 过程 */
-    public static final String TOPIC_AUTO_MANUALRINSE_PROCESS = "manurinse";
+    public static final String TOPIC_MANUAL_RINSE_PROCESS = "manurinse";
 
     public static final String TOPIC_FINISH = "finish";
     public static final String TOPIC_SUCCESS = "success";

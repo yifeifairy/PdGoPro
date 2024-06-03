@@ -121,22 +121,34 @@ public class PdproHelper {
      */
     public int useDeviceTime() {
         try {
+            Log.e("出厂日期","useDeviceTime:"+Integer.parseInt(CacheUtils.getInstance().getACache().getAsString(PdGoConstConfig.useDeviceTime)));
             return Integer.parseInt(CacheUtils.getInstance().getACache().getAsString(PdGoConstConfig.useDeviceTime));
         } catch (Exception e) {
             CacheUtils.getInstance().getACache().put(PdGoConstConfig.useDeviceTime, 1+"");
             e.printStackTrace();
+            Log.e("出厂日期","useDeviceTime异常:"+e.getLocalizedMessage());
         }
         return 0;
+    }
+
+    public float targetTemper() {
+        try {
+            return Float.parseFloat(CacheUtils.getInstance().getACache().getAsString(PdGoConstConfig.targetTemper));
+        } catch (Exception e) {
+            CacheUtils.getInstance().getACache().put(PdGoConstConfig.targetTemper, 37.5f+"");
+            e.printStackTrace();
+        }
+        return 37.5f;
     }
 
     public int autoSleep() {
         try {
             return Integer.parseInt(CacheUtils.getInstance().getACache().getAsString(PdGoConstConfig.AUTO_SLEEP));
         } catch (Exception e) {
-            CacheUtils.getInstance().getACache().put(PdGoConstConfig.AUTO_SLEEP, 2+"");
+            CacheUtils.getInstance().getACache().put(PdGoConstConfig.AUTO_SLEEP, 10+"");
             e.printStackTrace();
         }
-        return 2;
+        return 10;
     }
 
     /**

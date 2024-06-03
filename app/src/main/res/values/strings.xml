@@ -1,5 +1,9 @@
 <resources>
 
+    <string name="sn_name">PD-GO-Next</string>
+    <string name="push_version">V2.0</string>
+    <string name="full_version">V2.0.0.1</string>
+    <string name="env">Ver 240428</string>
     <string name="action_settings">设置</string>
     <string name="aToz">abcdefghijklmnopqrstuvwxyz</string>
     <string name="zeroToNine">1234567890</string>
@@ -13,7 +17,7 @@
     <string name="description">描述</string>
     <string name="app_name">自动腹膜透析系统</string>
 
-    <string name="device_name">PD-GO-Pro自动腹膜透析机</string>
+    <string name="device_name">PD-GO-Next腹膜透析机</string>
     <string name="company_name">福州东泽医疗器械有限公司</string>
 
     <string name="btn_back">返回</string>
@@ -62,7 +66,7 @@
     <string name="switch_text_off2">关&#160;&#160;</string>
 
     <string name="ccpd_mode">CCPD</string>
-    <string name="version">build: Pro240125</string>
+    <string name="version">build: Pro240302</string>
 
     <string name="error_temp_serial_not_open">温控板串口未打开</string>
     <string name="error_temp_serial_communication_fault">温控板通信故障</string>
@@ -88,7 +92,7 @@
     <string name="unit_ml">ml</string><!-- 毫升 -->
     <string name="unit_g">g</string><!-- 克 -->
     <string name="unit_kg">kg</string><!-- 公斤 -->
-    <string name="unit_min">分</string><!-- 分钟  -->
+    <string name="unit_min">min</string><!-- 分钟  -->
     <string name="unit_second">s</string><!-- 秒  -->
     <string name="unit_mmHg">mmHg</string><!-- 血压单位：毫米汞柱，水银柱的高度  -->
     <string name="unit_percentage">%</string><!-- 百分比  -->
@@ -116,7 +120,7 @@
     <string name="software_release_version">V1.2</string>
     <string name="software_full_version">V1.2.1.0</string>
     <string name="software_release_date">2022年11月08日</string>
-    <string name="software_release_version_2">软件发布版本:V2.0</string>
+    <string name="software_release_version_2">软件发布版本</string>
     <string name="about_content">
             软&#160;&#160;件&#160;&#160;名&#160;&#160;称： 自动腹膜透析设备医疗程序
             \n著&#160;&#160;作&#160;&#160;权&#160;&#160;人： 福州东泽医疗器械有限公司
@@ -154,7 +158,7 @@
 
     <string name="input_title_prescription_item_1">腹透液总量：</string><!-- 腹膜透析液总量 -->
     <string name="input_title_prescription_item_2">每周期灌注量：</string>
-    <string name="input_title_prescription_item_3">循环治疗周期数：</string>
+    <string name="input_title_prescription_item_3">循环周期数：</string>
     <string name="input_title_prescription_item_4">留腹时间：</string>
     <string name="input_title_prescription_item_5">末次留腹量：</string>
     <string name="input_title_prescription_item_6">上次留腹量：</string>
@@ -163,9 +167,9 @@
     <string name="input_title_prescription_item_9">末袋补液量：</string>
 
     <string name="input_title_prescription_item_10">通道1-周期灌注量：</string>
-    <string name="input_title_prescription_item_11">通道1-周期数：</string>
+    <string name="input_title_prescription_item_11">通道1：</string>
     <string name="input_title_prescription_item_12">通道2-周期灌注量：</string>
-    <string name="input_title_prescription_item_13">通道2-周期数：</string>
+    <string name="input_title_prescription_item_13">通道2：</string>
     <string name="input_title_prescription_item_14">末袋补液量：</string>
 
 
@@ -182,9 +186,8 @@
         修改数值以后，请点击"保存"按钮。
     </string>
     <string name="input_title_tips_weigh_parameter2">
-        &#160;&#160;&#160;&#160;1、点击上位称或者下位称的标零按钮，上位称或者下位称基准清零；
-        \n&#160;&#160;&#160;&#160;2、在上位称校准值或下位称输入框中填入对应的标准砝码数值；
-        \n&#160;&#160;&#160;&#160;3、放置一个标准砝码到上位称或者下位称输入实际数值按确定后等待3-5秒。
+        &#160;&#160;&#160;&#160;1、在上位称校准值或下位称输入框中填入对应的标准砝码数值加当前秤盘的皮重值；
+        \n&#160;&#160;&#160;&#160;2、在上位称或下位称输入框中显示为当前砝码值加皮重值后
     </string>
     <string name="input_title_drain_threshold_zero_cycle">零周期引流阈值</string>
     <string name="input_title_drain_threshold_other_cycle">其他周期引流阈值</string>
@@ -214,10 +217,9 @@
     <string name="connecting_cannula_step_content2_1">完成后请点击“下一步”</string>
     <string name="connecting_cannula_step_content2_2">完成后请点击“确认”</string>
 
-
     <string name="tip_pipeline_connection_skip">
               1、补液袋已按要求悬挂在滴杆上；
-            \n2、管匣已插入卡槽内；
+            \n2、管匣已插入控制系统；
             \n3、补液袋管路连接，确保未使用的补液管路处于关闭状态；
             \n4、请将透析液托盘上的腹透液与加热管路连接，确保未使用的管路处于关闭状态
             \n5、专用废液袋与引流端管路连接，确保未连接的管路处于关闭状，并平放于透出液托盘上。
@@ -276,7 +278,6 @@
     <string name="fragment_title_treatment_historical_data">回看数据</string>
     <string name="fragment_title_treatment_detailed_status">详细状态</string>
 
-
     <string name="treatment_update_temperature"><u>调整</u></string>
 
     <string name="drain_title">引流阀关闭值(g)</string>
@@ -293,35 +294,31 @@
     <string name="recrive_drain_speed_title">接受的引流速度</string>
     <string name="before_heating_time">预加热时间30min-120min</string>
 
-
     <string name="zxing_app_name">条码扫描器</string>
     <string name="zxing_button_ok">确定</string>
     <string name="zxing_msg_camera_framework_bug">抱歉，Android相机出现问题。您可能需要重启设备。</string>
     <string name="zxing_msg_default_status">请将条码置于取景框内扫描。  </string>
 
-
     <string name="preheat_tips_title">PDGO-NEXT小管家提示您: 不要触碰液体袋和托盘！</string>
     <string name="preheat_tips_content">请在透析液加热托盘内放置一袋透析液</string>
-
 
     <!-- Dialog相关 -->
     <string name="dialog_title">系统提醒</string>
     <string name="dialog_btn_confirm">确定</string>
     <string name="dialog_btn_cancel">取消</string>
     <string name="dialog_btn_view_data">查看数据</string>
-    <string name="dialog_btn_suspend_treatment">长按暂停治疗</string>
-    <string name="dialog_btn_recovery_treatment">长按恢复治疗</string>
+    <string name="dialog_btn_suspend_treatment">长按暂停</string>
+    <string name="dialog_btn_recovery_treatment">长按恢复</string>
     <string name="dialog_btn_continue_treatment">继续治疗</string>
     <string name="dialog_btn_stop_treatment">终止治疗</string>
-    <string name="dialog_btn_skip_drain">长按跳过引流</string>
-    <string name="dialog_btn_skip_perfusion">长按跳过灌注</string>
-    <string name="dialog_btn_skip_supply">长按跳过补液</string>
-    <string name="dialog_btn_force_skip_window">强制跳过</string>
-    <string name="dialog_btn_complete_not_supply">长按跳过补液</string>
-    <string name="dialog_btn_complete_last_drain">长按完成最末引流</string>
-    <string name="dialog_btn_continue_last_drain">长按继续最末引流</string>
+    <string name="dialog_btn_skip_drain">长按跳过</string>
+    <string name="dialog_btn_skip_perfusion">长按跳过</string>
+    <string name="dialog_btn_skip_supply">长按跳过</string>
+    <string name="dialog_btn_force_skip_window">长按跳过</string>
+    <string name="dialog_btn_complete_not_supply">长按跳过</string>
+    <string name="dialog_btn_complete_last_drain">长按完成</string>
+    <string name="dialog_btn_continue_last_drain">长按继续</string>
     <string name="dialog_btn_continue_treatment_selfcheck">继续自检</string>
-
 
     <string name="dialog_status_complete">治疗完成</string>
     <string name="dialog_status_complete_tip">请夹紧治疗端并分离管路，完成后请按确认</string>
@@ -338,7 +335,6 @@
     <string name="dialog_status_fault_perfusion_selfcheck">灌注开始前自检，可继续治疗</string>
     <string name="dialog_status_fault_ac_power_fault">市电断电已经超过30分钟，请结束治疗</string>
     <string name="dialog_status_fault_ac_power_off">市电断电，切换电池供电，请结束治疗</string>
-
 
     <!-- apk升级 -->
     <string name="upgrading">正在升级,请稍候...</string>
@@ -371,5 +367,10 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <string-array name="modeArray">
+        <item>IPD模式</item>
+        <item>aApd模式</item>
+        <item>专家模式</item>
+    </string-array>
 
 </resources>

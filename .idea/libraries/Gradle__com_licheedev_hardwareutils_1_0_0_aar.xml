@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.licheedev:hardwareutils:1.0.0@aar">
+  <library name="Gradle: com.licheedev:hardwareutils:1.0.0@aar" external-system-id="GRADLE">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f79e7bc9da60d260bab9e804f0b9817d/transformed/jetified-hardwareutils-1.0.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f79e7bc9da60d260bab9e804f0b9817d/transformed/jetified-hardwareutils-1.0.0/jars/classes.jar!/" />

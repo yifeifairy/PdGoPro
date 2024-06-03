@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.pdp.rmmit.pdp">
+
     <!-- <uses-sdk -->
     <!-- android:minSdkVersion="21" -->
     <!-- android:targetSdkVersion="34" /> -->
@@ -94,28 +95,76 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:sharedUserId="android.uid.system"
         android:supportsRtl="true"
         android:theme="@style/MarioTheme.Day"
         tools:replace="android:allowBackup"
         tools:targetApi="s">
+
+        <meta-data
+            android:name="com.emt.pdgo.next.util.CustomCachingGlideModule"
+            android:value="AppGlideModule" />
+
         <activity
-            android:name=".RemoteExpertActivity"
+            android:name="com.emt.pdgo.next.ui.local.LocalRxActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RemoteChildActivity"
+            android:name="com.emt.pdgo.next.ui.local.LocalPdActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RemoteAapdActivity"
+            android:name="com.emt.pdgo.next.ui.activity.vo.SpeVolActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.vo.SpecialistActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.vo.VoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.dl.TrActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.remote.RemoteExpertActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.remote.RemoteChildActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.emt.pdgo.next.ui.activity.remote.RemoteAapdActivity"
             android:exported="false"
             android:label="@string/title_activity_remote_aapd"
             android:theme="@style/MarioTheme.Day.NoActionBar">
@@ -124,21 +173,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RemoteCcpdActivity"
+            android:name="com.emt.pdgo.next.ui.activity.remote.RemoteCcpdActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RemoteTpdActivity"
+            android:name="com.emt.pdgo.next.ui.activity.remote.RemoteTpdActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RemoteIpdActivity"
+            android:name="com.emt.pdgo.next.ui.activity.remote.RemoteIpdActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -566,6 +615,10 @@
                 <data android:scheme="file" />
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.norco_disk_enable" />
+                <action android:name="android.intent.action.norco_disk_disable" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MEDIA_EJECT" />
 
                 <data android:scheme="file" />
@@ -830,13 +883,6 @@
             tools:ignore="DuplicateActivity" />
         <activity
             android:name="com.emt.pdgo.next.ui.activity.param.UploadDataTestActivity"
-            android:alwaysRetainTaskState="true"
-            android:configChanges="mcc|mnc|orientation|keyboardHidden"
-            android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            tools:ignore="DuplicateActivity" />
-        <activity
-            android:name="com.emt.pdgo.next.ui.activity.param.TreatmentHistoryActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="mcc|mnc|orientation|keyboardHidden"
             android:launchMode="singleTask"

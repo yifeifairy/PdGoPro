@@ -16,7 +16,6 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,12 +46,13 @@ import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
 import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
-import com.emt.pdgo.next.ui.mode.activity.ModeActivity;
 import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.ActivityManager;
 import com.emt.pdgo.next.util.CacheUtils;
+import com.emt.pdgo.next.util.ClickUtil;
 import com.emt.pdgo.next.util.CmdQueueHelper;
 import com.emt.pdgo.next.util.MarioResourceHelper;
+import com.emt.pdgo.next.util.NetworkUtils;
 import com.emt.pdgo.next.util.ScreenUtil;
 import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
@@ -72,9 +72,9 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.observers.DisposableObserver;
 
 
-public class SelfCheckActivity extends BaseActivity implements View.OnTouchListener {
+public class SelfCheckActivity extends BaseActivity {
 
-    private String TAG = "SelfCheckActivity";
+    private final String TAG = "SelfCheckActivity";
 
     //@SuppressLint("NonConstantResourceId")
     @BindView(R.id.root_view)
@@ -94,9 +94,6 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
 
     @BindView(R.id.layout_progress)
     RelativeLayout layoutProgress;
-
-    @BindView(R.id.tvVersion)
-    TextView tvVersion;
 
     @BindView(R.id.tv_warn_content)
     TextView tvWarnContent;
@@ -265,9 +262,6 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
             "android.permission.WRITE_SETTINGS",
             "android.permission.MANAGE_EXTERNAL_STORAGE"};
 
-    private CheckForLongPress1 mCheckForLongPress1;
-    private volatile boolean isLongPressed = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -289,11 +283,11 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
     ImageView powerIv;
     @BindView(R.id.currentPower)
     TextView currentPower;
+
     @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
     public void receiveCmdDeviceInfo(String bean) {
         ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
         runOnUiThread(() -> {
-
             MyApplication.chargeFlag = mReceiveDeviceBean.isAcPowerIn;
             MyApplication.batteryLevel = mReceiveDeviceBean.batteryLevel;
             if (mReceiveDeviceBean.isAcPowerIn == 1) {
@@ -316,23 +310,99 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
     @Override
     public void registerEvents() {
         APIServiceManage.getInstance().postApdCode("Z0000");
-        ivLogo.setOnTouchListener(this);
-        currentPower.setTextColor(Color.WHITE);
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
+
+        ClickUtil clickUtil = new ClickUtil(ivLogo,5000);
+        clickUtil.setResultListener(new ClickUtil.ResultListener() {
+            @Override
+            public void onResult(boolean press) {
+                NumberBoardDialog dialog = new NumberBoardDialog(SelfCheckActivity.this, "", PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD, false);
+                dialog.show();
+                dialog.setOnDialogResultListener((mType, result) -> {
+                    if (!TextUtils.isEmpty(result)) {
+//                    Logger.d(result);
+                        Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
+
+                        int year = calendar.get(Calendar.YEAR);
+                        int month = calendar.get(Calendar.MONTH) + 1;
+                        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                        int minute = calendar.get(Calendar.MINUTE);
+                        int second = calendar.get(Calendar.SECOND);
+                        String mMonth = "";
+
+                        if (month >= 10) {
+                            mMonth = "" + month;
+                        } else {
+                            mMonth = "0" + month;
+                        }
+
+                        //123加上月份
+                        String tempPwd = "123" + mMonth;
+                        Log.e("长按", "tempPwd：" + tempPwd);
+                        if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
+                            if (tempPwd.equals(result)) {
+                                countDownTimer.cancel();
+                                doGoTOActivity(EngineerSettingActivity.class);
+                            }
+                        }
+                    }
+                });
             }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        });
+        ClickUtil clickUtil1 = new ClickUtil(tcTime,5000);
+        clickUtil1.setResultListener(new ClickUtil.ResultListener() {
+            @Override
+            public void onResult(boolean press) {
+                NumberBoardDialog dialog = new NumberBoardDialog(SelfCheckActivity.this, "", PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD, false);
+                dialog.show();
+                dialog.setOnDialogResultListener((mType, result) -> {
+                    if (!TextUtils.isEmpty(result)) {
+//                    Logger.d(result);
+                        Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
+
+                        int year = calendar.get(Calendar.YEAR);
+                        int month = calendar.get(Calendar.MONTH) + 1;
+                        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                        int minute = calendar.get(Calendar.MINUTE);
+                        int second = calendar.get(Calendar.SECOND);
+                        String mMonth = "";
+
+                        if (month >= 10) {
+                            mMonth = "" + month;
+                        } else {
+                            mMonth = "0" + month;
+                        }
+
+                        //123加上月份
+                        String tempPwd = "123" + mMonth;
+                        Log.e("长按", "tempPwd：" + tempPwd);
+                        if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
+                            if (tempPwd.equals(result)) {
+                                countDownTimer.cancel();
+                                doGoTOActivity(EngineerSettingActivity.class);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+        currentPower.setTextColor(Color.WHITE);
+//        if (MyApplication.chargeFlag == 1) {
+//            powerIv.setImageResource(R.drawable.charging);
+//        } else {
+//            if (MyApplication.batteryLevel < 30) {
+//                powerIv.setImageResource(R.drawable.poor_power);
+//            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
+//                powerIv.setImageResource(R.drawable.low_power);
+//            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
+//                powerIv.setImageResource(R.drawable.mid_power);
+//            } else {
+//                powerIv.setImageResource(R.drawable.high_power);
+//            }
+//        }
+//        currentPower.setText(MyApplication.batteryLevel+"");
+//        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -342,8 +412,8 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         cmdDisposable = new CompositeDisposable();
         mSelfCheckDeviceStatus = new SelfCheckDeviceStatus();
         mSelfCheckDeviceStatus.initModule();
-        mCheckForLongPress1 = new CheckForLongPress1();
-//        doGoCloseTOActivity(TreatmentFragmentActivity.class,"");
+        netTv.setTextColor(NetworkUtils.getNetWorkState(this) == 0 ? Color.WHITE : Color.RED);
+        wifiIv.setVisibility(NetworkUtils.getNetWorkState(this) == 1 ?View.VISIBLE:View.INVISIBLE);
         btnReSelfcheck.setOnClickListener(view -> {
             if (!isAutoCheck) {
                 countDownTimer.cancel();
@@ -598,7 +668,6 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
 
     }
 
-
     private void doSelfCheck() {//发送自检
         errTime += 1;
         Log.e(TAG, " doSelfCheck 发送自检：" + "失败次数--" + errTime);
@@ -606,7 +675,7 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         mSelfCheckDeviceStatus.initModule();
         if (errTime < maxErrTime ) {
             refreshSelfCheckStatus(1);
-            sendCmd(CommandDataHelper.getInstance().selfCheckCmdJson(0, 0));
+            sendToMainBoard(CommandDataHelper.getInstance().selfCheckCmdJson(PdproHelper.getInstance().getOtherParamBean().upper, PdproHelper.getInstance().getOtherParamBean().lower));
         } else {
             showTipsCommonDialog("自检失败次数过多，请联系工程师");
             btnBack.setVisibility(View.GONE);
@@ -671,18 +740,64 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
 //            Log.e(TAG, " runnable: " + MyApplication.currCmd);
             //要做的事情，这里再次调用此Runnable对象，以实现每两秒实现一次的定时器操作
             if (MyApplication.currCmd.equals(CommandSendConfig.METHOD_STATUS_ON)) {
-                sendCmd(CommandDataHelper.getInstance().setStatusOn());
+                sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
                 handler.postDelayed(this, 3000);
                 Log.e("自检界面","currCmd---"+CommandSendConfig.METHOD_STATUS_ON);
             } else if (MyApplication.currCmd.equals(CommandSendConfig.METHOD_SELFCHECK_START)) {
-                sendCmd(CommandDataHelper.getInstance().selfCheckCmdJson(0, 0));
+                sendToMainBoard(CommandDataHelper.getInstance().selfCheckCmdJson(PdproHelper.getInstance().getOtherParamBean().upper, PdproHelper.getInstance().getOtherParamBean().lower));
                 handler.postDelayed(this, 3000);
 //                APIServiceManage.getInstance().postApdCode("Z1000");
                 Log.e("自检界面","currCmd---"+CommandSendConfig.METHOD_SELFCHECK_START);
             }
+//            if (NetworkUtils.isNetworkConnected(SelfCheckActivity.this)) {
+//                if (NetworkUtils.isMobileConnected(SelfCheckActivity.this)) {
+//                    netIv.setImageResource(R.drawable.net);
+//    //                wifiIv.setImageResource(R.drawable.no_wifi);
+//                } else {
+//                    netIv.setImageResource(R.drawable.no_net);
+//                }
+//                Log.e("baseActivity","wifi---"+NetworkUtils.isWifiConnected(SelfCheckActivity.this));
+//                Log.e("baseActivity","mobile---"+NetworkUtils.isMobileConnected(SelfCheckActivity.this));
+//                if (NetworkUtils.isWifiConnected(SelfCheckActivity.this)) {
+//                    wifiIv.setImageResource(R.drawable.wifi);
+//                } else {
+//                    wifiIv.setImageResource(R.drawable.no_wifi);
+//                }
+//            } else {
+//                netIv.setImageResource(R.drawable.no_net);
+//                wifiIv.setImageResource(R.drawable.no_wifi);
+//            }
             Log.e("自检界面","currCmd---"+MyApplication.currCmd);
         }
     };
+
+    @BindView(R.id.netTv)
+    TextView netTv;
+    @BindView(R.id.wifiIv)
+    ImageView wifiIv;
+
+    private int status;
+    @Subscribe(code = RxBusCodeConfig.NET_STATUS)
+    public void receiveNetStatus(String net) {
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                status = Integer.parseInt(net);
+                if (status != -1) {
+                    if (status == 1) {
+                        wifiIv.setVisibility(View.VISIBLE);
+                    } else if (status == 0) {
+                        netTv.setTextColor(Color.WHITE);
+                    }
+                } else {
+                    netTv.setTextColor(Color.RED);
+                    wifiIv.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+    }
 
     /**
      * 打开串口成功，然后进行握手通信
@@ -693,7 +808,7 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
     public void receivemMainBoardOk(String mData) {
         Log.e(TAG, " 打开串口成功 ");
         MyApplication.currCmd = CommandSendConfig.METHOD_STATUS_ON;
-        sendCmd(CommandDataHelper.getInstance().setStatusOn());
+        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
 //        if (getThemeTag() == -1 && PdproHelper.getInstance().getUserParameterBean().isNight) {
 //            sendCommandInterval(CommandDataHelper.getInstance().LedOpen("all",false,1), 500);
 //        }
@@ -730,7 +845,7 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
             handler.removeCallbacks(runnable);
         } else if (topic.contains(CommandSendConfig.METHOD_STATUS_ON)) {
 //            APIServiceManage.getInstance().postApdCode("Z0000");
-//            sendCmd(CommandDataHelper.getInstance().selfCheckCmdJson(0, 0));
+//            sendToMainBoard(CommandDataHelper.getInstance().selfCheckCmdJson(0, 0));
             MyApplication.currCmd = CommandSendConfig.METHOD_SELFCHECK_START;
             runOnUiThread(()-> {
 //                saveFaultCodeLocal("设备开机");
@@ -751,9 +866,14 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         String topic = bean.result.topic;
         if (topic.contains(CommandSendConfig.METHOD_SELFCHECK_START)) {//自检
             if (bean.result.msg.equals("pipecart instatll task is running")) {
-                sendCmd(CommandDataHelper.getInstance().setPipecartCmdJson(CommandSendConfig.METHOD_PIPECART_FINISH));//调用装管路
+                sendToMainBoard(CommandDataHelper.getInstance().setPipecartCmdJson(CommandSendConfig.METHOD_PIPECART_FINISH));//调用装管路
             } else if (bean.result.msg.equals("auto rinse task is running")) {
-                sendCmd(CommandDataHelper.getInstance().abortAutoRinseCmd());
+                sendToMainBoard(CommandDataHelper.getInstance().abortAutoRinseCmd());
+            } else if (bean.result.msg.equals("preheat task is running")) {
+                sendToMainBoard(CommandDataHelper.getInstance().stopPreheatCmdJson());
+            } else if (bean.result.msg.equals("treatment task is running")) {
+                sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_ABORT));
+
             }
             MyApplication.currCmd = "";
             handler.removeCallbacks(runnable);
@@ -772,6 +892,7 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
                         countDownTimer.cancel();
                         layoutContactEngineer.setVisibility(View.VISIBLE);
                     }
+
                     btnContactEngineer.setVisibility(View.VISIBLE);
                     btnReSelfcheck.setVisibility(View.VISIBLE);
                     btnOk.setVisibility(View.GONE);
@@ -784,6 +905,18 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         }
     }
 
+    private final CountDownTimer checkTimer = new CountDownTimer(5 * 1000,1000) {
+        @Override
+        public void onTick(long l) {
+//            Log.e("onTick","checkTimer:"+l/1000);
+        }
+
+        @Override
+        public void onFinish() {
+            btnReSelfcheck.setEnabled(true);
+        }
+    };
+
     /**
      * 打开串口成功，然后进行握手通信
      *
@@ -795,7 +928,7 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
 //        refreshSelfCheckStatus(1);
         selfCheckOK = false;
 //        String msg = "{\"request\":{\"method\":\"selfcheck/start\",\"params\":{\"upper\":600,\"lower\":600}},\"sign\":\"c726651f09fde161da47c41339943a14\"}";
-        sendCmd(CommandDataHelper.getInstance().selfCheckCmdJson(0, 0));
+        sendToMainBoard(CommandDataHelper.getInstance().selfCheckCmdJson(PdproHelper.getInstance().getOtherParamBean().upper, PdproHelper.getInstance().getOtherParamBean().lower));
 //        MyApplication.currCmd = "";
 
 //        sendCommandInterval(CommandSendConfig.GETSTATUS_OFF, 1000);
@@ -881,25 +1014,28 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
             mSelfCheckDeviceStatus.modulePerfusionOK = true;
         } else {
             APIServiceManage.getInstance().postApdCode("Z1015");
+            mSelfCheckDeviceStatus.modulePerfusionOK = false;
             runOnUiThread(()->{
 //                saveFaultCodeLocal("灌注阀异常");
             });
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
         }
         if (CommandReceiveConfig.MSG_OK.equals(mBean.supply)) {//补液阀正常
             mSelfCheckDeviceStatus.moduleSupplyOK = true;
 
         }else {
+            mSelfCheckDeviceStatus.moduleSupplyOK = false;
             APIServiceManage.getInstance().postApdCode("Z1014");
             runOnUiThread(()->{
 //                saveFaultCodeLocal("补液阀异常");
             });
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
         }
         if (CommandReceiveConfig.MSG_OK.equals(mBean.supply2)) {//末袋补液阀正常
             mSelfCheckDeviceStatus.moduleSupply2OK = true;
         }else {
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+            mSelfCheckDeviceStatus.moduleSupply2OK = false;
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
             runOnUiThread(()->{
 //                saveFaultCodeLocal("末袋补液阀异常");
             });
@@ -907,7 +1043,8 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         if (CommandReceiveConfig.MSG_OK.equals(mBean.safe)) {//安全阀正常
             mSelfCheckDeviceStatus.moduleSafeOK = true;
         }else {
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+            mSelfCheckDeviceStatus.moduleSafeOK = false;
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
             runOnUiThread(()->{
 //                saveFaultCodeLocal("安全阀异常");
             });
@@ -915,19 +1052,21 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         if (CommandReceiveConfig.MSG_OK.equals(mBean.drain)) {//引流阀正常
             mSelfCheckDeviceStatus.moduleDrainOK = true;
         }else {
+            mSelfCheckDeviceStatus.moduleDrainOK = false;
             APIServiceManage.getInstance().postApdCode("Z1016");
             runOnUiThread(()->{
 //                saveFaultCodeLocal("引流阀异常");
             });
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
         }
         if (CommandReceiveConfig.MSG_OK.equals(mBean.vaccum)) {//负压引流阀正常
             mSelfCheckDeviceStatus.moduleNegOK = true;
         }else {
+            mSelfCheckDeviceStatus.moduleNegOK = false;
             runOnUiThread(()->{
 //                saveFaultCodeLocal("负压引流阀异常");
             });
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
         }
 
         //阀自检完成
@@ -943,17 +1082,19 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         if (CommandReceiveConfig.MSG_OK.equals(mBean.upper)) {//上位秤自检通过
             mSelfCheckDeviceStatus.moduleUpperWeightOK = true;
         } else {
+            mSelfCheckDeviceStatus.moduleUpperWeightOK = false;
             APIServiceManage.getInstance().postApdCode("Z1017");
             runOnUiThread(()->{
 //                saveFaultCodeLocal("上位秤异常");
             });
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
         }
         if (CommandReceiveConfig.MSG_OK.equals(mBean.lower)) {//下位秤自检通过
             mSelfCheckDeviceStatus.moduleLowerWeightOK = true;
         } else {
+            mSelfCheckDeviceStatus.moduleLowerWeightOK = false;
             APIServiceManage.getInstance().postApdCode("Z1018");
-//            sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
             runOnUiThread(()->{
 //                saveFaultCodeLocal("下位秤异常");
             });
@@ -995,29 +1136,28 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
 //                    postApdCode("Z1012");
                     mSelfCheckDeviceStatus.t0 = true;
                 }else {
-//                    sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                    sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
                     APIServiceManage.getInstance().postApdCode("Z1012");
 //                    saveFaultCodeLocal("t0传感器异常");
                 }
                 if ("ok".equals(mBean.T1)) {
                     mSelfCheckDeviceStatus.t1 = true;
                 }else {
-//                    sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                    sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
 //                    saveFaultCodeLocal("t1传感器异常");
                 }
                 if ("ok".equals(mBean.T2)) {
                     mSelfCheckDeviceStatus.t2 = true;
                 }else {
-//                    sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                    sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
 //                    saveFaultCodeLocal("t2传感器异常");
                 }
                 if ("no".equals(mBean.overtemp)) {//
                     mSelfCheckDeviceStatus.moduleHeatingOK = true;
                 }else {
-//                    sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                    sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
 //                    saveFaultCodeLocal("加热异常");
                 }
-
                 stopLoopSubscription();
                 selfCheckOK = mSelfCheckDeviceStatus.selfCheckResult();
                 if (selfCheckOK) {
@@ -1030,15 +1170,16 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
                     }
                     countDownTimer.cancel();
 //                    MyApplication.isDpr = true;
-                    doGoCloseTOActivity(ModeActivity.class, "");
+                    doGoCloseTOActivity(PrescriptionActivity.class, "");
 //                    }
                 } else {
                     String signup = "";
                     speak("自检失败");
-//                    sendCmd(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                    sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
                     // 自检未通过时 显示重新自检按钮
                     setWarnContent();
                     btnReSelfcheck.setVisibility(View.VISIBLE);
+                    layoutReportInclude.setVisibility(View.VISIBLE);
                     btnOk.setVisibility(View.GONE);
                     errTime +=1;
                     if (errTime < maxErrTime) {
@@ -1047,7 +1188,8 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
                         countDownTimer.cancel();
                         layoutContactEngineer.setVisibility(View.VISIBLE);
                     }
-                    layoutReportInclude.setVisibility(View.VISIBLE);
+                    btnReSelfcheck.setEnabled(false);
+                    checkTimer.start();
 //                    APIServiceManage.getInstance().postApdCode("Z1010");
 //                    saveFaultCodeLocal("自检失败");
                 }
@@ -1214,6 +1356,11 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
                         SelfCheckActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                if (currCountdown == 80) {
+                                    setWarnContent();
+                                    btnReSelfcheck.setVisibility(View.VISIBLE);
+                                    layoutReportInclude.setVisibility(View.VISIBLE);
+                                }
                                 progressBar.setProgress(currCountdown);
                                 tvModeProgress.setText(currCountdown + "%");
                             }
@@ -1263,74 +1410,39 @@ public class SelfCheckActivity extends BaseActivity implements View.OnTouchListe
         super.onStop();
     }
 
-    private void alertNumberBoardDialog(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, false);
-        dialog.show();
-        dialog.setOnDialogResultListener((mType, result) -> {
-            if (!TextUtils.isEmpty(result)) {
-//                    Logger.d(result);
-                Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
-
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minute = calendar.get(Calendar.MINUTE);
-                int second = calendar.get(Calendar.SECOND);
-                String mMonth = "";
-
-                if (month >= 10) {
-                    mMonth = "" + month;
-                } else {
-                    mMonth = "0" + month;
-                }
-
-                //123加上月份
-                String tempPwd = "123" + mMonth;
-                Log.e("长按", "tempPwd：" + tempPwd);
-                if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
-                    if (tempPwd.equals(result)) {
-                        countDownTimer.cancel();
-                        doGoTOActivity(EngineerSettingActivity.class);
-                    }
-                }
-            }
-        });
-    }
-
-    private class CheckForLongPress1 implements Runnable {
-
-        @Override
-        public void run() {
-            //5s之后，查看isLongPressed的变量值：
-            if (isLongPressed) {//没有做up事件
-                Log.e("长按", "5s的事件触发");
-                alertNumberBoardDialog("", PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD);
-            } else {
-                ivLogo.removeCallbacks(mCheckForLongPress1);
-            }
-        }
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-//                Log.d("onTouch", "action down");
-                isLongPressed = true;
-//                ivLogo.postDelayed(mCheckForLongPress1, 1000);
-                ivLogo.postDelayed(mCheckForLongPress1, 5000);
-                break;
-//            case MotionEvent.ACTION_MOVE:
-//                isLongPressed = true;
-//                break;
-            case MotionEvent.ACTION_UP:
-                isLongPressed = false;
-//                Log.d("onTouch", "action up");
-                break;
-
-        }
-        return true;
-    }
+//    private void alertNumberBoardDialog(String value, String type) {
+//        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, false);
+//        dialog.show();
+//        dialog.setOnDialogResultListener((mType, result) -> {
+//            if (!TextUtils.isEmpty(result)) {
+////                    Logger.d(result);
+//                Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
+//
+//                int year = calendar.get(Calendar.YEAR);
+//                int month = calendar.get(Calendar.MONTH) + 1;
+//                int day = calendar.get(Calendar.DAY_OF_MONTH);
+//                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//                int minute = calendar.get(Calendar.MINUTE);
+//                int second = calendar.get(Calendar.SECOND);
+//                String mMonth = "";
+//
+//                if (month >= 10) {
+//                    mMonth = "" + month;
+//                } else {
+//                    mMonth = "0" + month;
+//                }
+//
+//                //123加上月份
+//                String tempPwd = "123" + mMonth;
+//                Log.e("长按", "tempPwd：" + tempPwd);
+//                if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
+//                    if (tempPwd.equals(result)) {
+//                        countDownTimer.cancel();
+//                        doGoTOActivity(EngineerSettingActivity.class);
+//                    }
+//                }
+//            }
+//        });
+//    }
 
 }

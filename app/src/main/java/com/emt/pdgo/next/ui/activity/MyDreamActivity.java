@@ -1,31 +1,28 @@
 package com.emt.pdgo.next.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.data.bean.RBean;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.database.EmtDataBase;
+import com.emt.pdgo.next.database.entity.DelPdEntity;
 import com.emt.pdgo.next.database.entity.PdEntity;
 import com.emt.pdgo.next.net.RetrofitUtil;
 import com.emt.pdgo.next.net.bean.MyResponse;
 import com.emt.pdgo.next.net.bean.upload.TreatmentDataUploadBean;
 import com.emt.pdgo.next.net.bean.upload.TreatmentPrescriptionUploadBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.adapter.LocalPdAdapter;
 import com.emt.pdgo.next.ui.base.BaseActivity;
+import com.emt.pdgo.next.ui.dialog.CommonDialog;
 import com.emt.pdgo.next.util.decoration.SpaceItemDecoration;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.google.gson.Gson;
 import com.pdp.rmmit.pdp.R;
 
@@ -44,10 +41,7 @@ public class MyDreamActivity extends BaseActivity {
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
 
-//    @BindView(R.id.btn_submit)
-//    StateButton btn_submit;
-
-    private int page = EmtDataBase.getInstance(MyDreamActivity.this).getPdDao().getPdList().size();
+    private int page;
 
     private LocalPdAdapter localPdAdapter;
     private List<PdEntity> getPdInfo(int page) {
@@ -60,86 +54,80 @@ public class MyDreamActivity extends BaseActivity {
         setContentView(R.layout.activity_my_dream);
         ButterKnife.bind(this);
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
+
     @Override
     public void registerEvents() {
-//        btn_submit.setOnClickListener(v -> {
-//            final CommonDialog dialog = new CommonDialog(this);
-//            //
-//            //                    doGoCloseTOActivity(TreatmentCountdownActivity.class,"");
-//            dialog.setContent("确认清空？")
-//                    .setBtnFirst("确定")
-//                    .setBtnTwo("取消")
-//                    .setFirstClickListener(mCommonDialog -> {
-//                        EmtDataBase
-//                                .getInstance(MyDreamActivity.this)
-//                                .getPdDao()
-//                                .delete();
-//                        page = 1;
-//                        init(page);
-//                        mCommonDialog.dismiss();
-//                    })
-//                    .setTwoClickListener(Dialog::dismiss)
-//                    .show();
-//        });
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        btnSave.setVisibility(View.VISIBLE);
+        btnSave.setText("清空");
+        btnBack.setOnClickListener(view -> onBackPressed());
+        btnSave.setOnClickListener(view -> {
+            final CommonDialog dialog = new CommonDialog(this);
+            dialog.setContent("确认清空？")
+                    .setBtnFirst("确定")
+                    .setBtnTwo("取消")
+                    .setFirstClickListener(mCommonDialog -> {
+                        DelPdEntity delRxEntity = new DelPdEntity();
+                        delRxEntity.id = 1;
+                        delRxEntity.num = getLocalRx().size() + 1;
+                        Log.e("治疗","治疗删除--"+getLocalRx().size());
+                        if (EmtDataBase.getInstance(MyDreamActivity.this).delPdDao().getDelPdById(1) == null) {
+                            EmtDataBase
+                                    .getInstance(MyDreamActivity.this)
+                                    .delPdDao()
+                                    .insertRx(delRxEntity);
+                            Log.e("治疗","治疗删除--insert");
+                        } else {
+                            EmtDataBase
+                                    .getInstance(MyDreamActivity.this)
+                                    .delPdDao()
+                                    .update(delRxEntity);
+                            Log.e("治疗","治疗删除--update");
+                        }
+                        // 假清空
+                        init(EmtDataBase.getInstance(MyDreamActivity.this).delPdDao().getDelPdById(1).num);
+
+                        mCommonDialog.dismiss();
+                    })
+                    .setTwoClickListener(Dialog::dismiss)
+                    .show();
+        });
     }
+
+    private int maxPage;
+    private int minPage;
 
     @Override
     public void initViewData() {
-        initHeadTitleBar("本地治疗数据");
+
+        if (EmtDataBase.getInstance(MyDreamActivity.this).delPdDao().getDelPdById(1) == null) {
+            minPage = 1;
+        } else {
+            minPage = EmtDataBase.getInstance(MyDreamActivity.this).delPdDao().getDelPdById(1).num;
+        }
+        maxPage = getLocalRx().size();
+        page = maxPage;
+        Log.e("myDream","min:"+minPage+",max:"+maxPage);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        localPdAdapter = new LocalPdAdapter(getPdInfo(page));
+        localPdAdapter = new LocalPdAdapter(getPdInfo(minPage == 1 ? minPage: maxPage));
         recyclerView.addItemDecoration(new SpaceItemDecoration(1, 0, 0));
         //添加Android自带的分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(localPdAdapter);
         localPdAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             if (view.getId() == R.id.ivNextPage) {
-                if (page > 1 && page <= EmtDataBase.getInstance(MyDreamActivity.this).getPdDao().getPdList().size()) {
+                if (page > minPage && page <= maxPage) {
                     page--;
+                    Log.e("myDream","min:"+minPage+",max:"+maxPage+",page:"+page);
                     init(page);
                 }
             } else if (view.getId() == R.id.ivPrePage) {
-                if (page < EmtDataBase.getInstance(MyDreamActivity.this).getPdDao().getPdList().size()) {
+                if ( page < maxPage) {
                     page++;
+                    Log.e("myDream","min:"+minPage+",max:"+maxPage+",page:"+page);
                     init(page);
                 }
             } else if (view.getId() == R.id.btnUpload) {
@@ -152,6 +140,14 @@ public class MyDreamActivity extends BaseActivity {
             }
         });
     }
+
+    private List<PdEntity> getLocalRx() {
+        return EmtDataBase
+                .getInstance(MyDreamActivity.this)
+                .getPdDao()
+                .getPdList();
+    }
+
     private TreatmentDataUploadBean treatmentDataUploadBean;
     private Gson gson = new Gson();
     private void replyUpload(PdEntity pdEntity) {
@@ -204,24 +200,27 @@ public class MyDreamActivity extends BaseActivity {
 
         treatmentDataUploadBean.startTime = pdEntity.startTime;
         treatmentDataUploadBean.endTime = pdEntity.endTime;
-        treatmentDataUploadBean.drainageTime = pdEntity.firstTime;
         treatmentDataUploadBean.ultrafiltration = pdEntity.totalUltVol;
         treatmentDataUploadBean.lastLeave = pdEntity.finalAbdTime;
         treatmentDataUploadBean.times = pdEntity.cycle;
-        treatmentDataUploadBean.lastLeaveTime = 0;
+        treatmentDataUploadBean.lastLeaveTime = pdEntity.finalTime;
         for (int i = 0; i < pdEntity.pdInfoEntities.size(); i++) {
             PdEntity.PdInfoEntity pdInfoEntity = pdEntity.pdInfoEntities.get(i);
             if (i == 0) {
+                drainages.append(pdInfoEntity.drainage);
+                auxiliaryFlushingVolume.append(pdInfoEntity.auFvVol);
+                treatmentDataUploadBean.drainageTime = pdInfoEntity.drainTime;
+            } else if (i == 1) {
                 cycles.append(pdInfoEntity.cycle);
                 inFlows.append(pdInfoEntity.preVol);
                 inFlowTime.append(pdInfoEntity.preTime);
                 leaveWombTime.append(pdInfoEntity.abdTime);
                 exhaustTime.append(pdInfoEntity.drainTime);
-                drainages.append(pdInfoEntity.drainage);
-                auxiliaryFlushingVolume.append(pdInfoEntity.auFvVol);
                 abdominalVolumeAfterInflow.append(pdInfoEntity.abdAfterVol);
                 drainageTargetValue.append(pdInfoEntity.drainTvVol);
                 estimatedResidualAbdominalFluid.append(pdInfoEntity.remain);
+                drainages.append(",").append(pdInfoEntity.drainage);
+                auxiliaryFlushingVolume.append(",").append(pdInfoEntity.auFvVol);
             } else {
                 cycles.append(",").append(pdInfoEntity.cycle);
                 inFlows.append(",").append(pdInfoEntity.preVol);
@@ -252,7 +251,7 @@ public class MyDreamActivity extends BaseActivity {
     private void uploadTreatBean() {
         showLoading("上传中....");
         String content = gson.toJson(treatmentDataUploadBean);
-
+        Log.e("治疗数据上传","json:"+content);
         RequestBody params = RequestBody.create(
                 MediaType.parse("application/json; charset=utf-8"),
                 content);
@@ -262,13 +261,13 @@ public class MyDreamActivity extends BaseActivity {
                 dismissLoading();
                 if (response.body() != null) {
                     if (response.body().getData() != null) {
-                        if (response.body().data.code.equals("10000")) {
+                        if (response.body().status.equals("200")) {
                             Log.e("治疗界面", "治疗数据上传成功");
                             toastMessage("数据上传成功");
                         } else {
-                            Log.e("治疗界面", "治疗数据上传"+response.body().data.msg);
-                            saveFaultCodeLocal("治疗数据上传,"+response.body().data.msg);
-                            toastMessage(response.body().data.msg);
+                            Log.e("治疗界面", "治疗数据上传"+response.body().message);
+                            saveFaultCodeLocal("治疗数据上传,"+response.body().message);
+                            toastMessage(response.body().message);
                         }
                     }
                 }

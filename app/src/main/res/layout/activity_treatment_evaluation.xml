@@ -56,10 +56,10 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
         android:layout_marginRight="@dimen/layout_input_box_bg_margin"
-        android:layout_marginTop="13dp"
         android:orientation="vertical">
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -229,13 +229,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/treatment_main_historical_data_list_item_height"
         android:layout_marginTop="14dp"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <include
             android:id="@+id/rootView"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/navbar_btn_height"
             android:layout_alignParentBottom="true"

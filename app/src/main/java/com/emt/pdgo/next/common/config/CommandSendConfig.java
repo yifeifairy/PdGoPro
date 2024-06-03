@@ -92,6 +92,10 @@ public class CommandSendConfig {
 
     /*** 治疗指令: 跳过当前环节 */
     public static final String METHOD_TREATMENT_SKIP = "treatment/skip";
+    /**
+     *
+     */
+    public static final String SKIP_STATUS = "treatment/skip_status";
     /*** 治疗指令: 终止治疗 */
     public static final String METHOD_TREATMENT_ABORT = "treatment/abort";
 

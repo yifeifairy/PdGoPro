@@ -2,6 +2,13 @@ package com.emt.pdgo.next.constant;
 
 public class EmtConstant {
 
+    public static final int dep = 250;
+
+    public static final int upper = 0; // 1942
+    public static final int lower = 0; // 2966
+
+    public static final String version = "40603";
+
     public static final String JUMP_WITH_PARAM = "JUMP_WITH_PARAM";
 
     public static final String ACTIVITY_TREAT_MODE ="ACTIVITY_TREAT_MODE";
@@ -68,4 +75,90 @@ public class EmtConstant {
     public static final int BASE_SUPPLY = 1; // 基础补液
     public static final int LAST_SUPPLY = 2; // 末袋补液
 
+    // 正常模式
+    public static final int totalVolMin = 1000;
+    public static final int totalVolMax = 500000;
+
+    public static final int cycleVolMin = 10;
+    public static final int cycleVolMax = 5000;
+
+    public static final int cycleNumMin = 1;
+    public static final int cycleNumMax = 100;
+
+    public static final int firstVolMin = 0;
+    public static final int firstVolMax = 5000;
+
+    public static final int abdTimeMin = 1;
+    public static final int abdTimeMax = 600;
+
+    public static final int lastAbdMin = 0;
+    public static final int lastAbdMax = 5000;
+
+    public static final int finalVolMin = 0;
+    public static final int finalVolMax = 5000;
+
+    public static final int ultVolMin = 0;
+    public static final int ultVolMax = 3000;
+
+    public static final int aapdCycleVolMin = 0;
+//    public static final int cycleVolMax = 5000;
+
+    public static final int aapdCycleNumMin = 0;
+
+    public static final int aapdAbdTimeMin = 0;
+//    public static final int abdTimeMax = 600;
+
+    // 预充参数
+    public static int firstVolumeMin = 20;
+    public static int firstVolumeMax = 150;
+    public static int secondVolumeMin = 20;
+    public static int secondVolumeMax = 150;
+    public static int supplyPeriodMin = 60;
+    public static int supplyPeriodMax = 10;
+    public static int supplySpeedMin = 120;
+    public static int supplySpeedMax = 30;
+//    public static int supplySelectMin = 1;
+
+    // 灌注参数
+    public static int perfMaxWarningValueMin = 50;
+    public static int perfTimeIntervalMin = 20;
+    public static int perfThresholdValueMin = 0;
+
+    public static int perfMaxWarningValueMax = 5000;
+    public static int perfTimeIntervalMax = 600;
+    public static int perfThresholdValueMax = 200;
+
+    // 引流参数
+    public static boolean isDrainManualEmptying = true;
+    public static int drainTimeIntervalMin = 20;
+    public static int drainThresholdValueMin = 0;
+    public static int drainZeroCyclePercentageMin = 50;
+    public static int drainOtherCyclePercentageMin = 50;
+    public static int drainTimeoutAlarmMin = 1;
+    public static int drainRinseVolumeMin = 30;
+    public static int drainRinseNumberMin = 1;
+    public static int drainWarnTimeIntervalMin = 1;
+
+    public static int drainTimeIntervalMax= 600;
+    public static int drainThresholdValueMax = 200;
+    public static int drainZeroCyclePercentageMax = 120;
+    public static int drainOtherCyclePercentageMax= 120;
+    public static int drainTimeoutAlarmMax = 60;
+    public static int drainRinseVolumeMax = 200;
+    public static int drainRinseNumberMax = 3;
+    public static int drainWarnTimeIntervalMax = 120;
+
+    // 刘福参数
+    public static boolean isAbdomenRetainingDeduct = false;
+    public static boolean isZeroCycleUltrafiltration = false;
+
+    // 补液参数
+    public static int supplyTimeIntervalMin = 20;
+    public static int supplyThresholdValueMin = 5;
+    public static int supplyTargetProtectionValueMin = 100;
+
+    public static int supplyTimeIntervalMax = 600;
+    public static int supplyThresholdValueMax = 120;
+    public static int supplyTargetProtectionValueMax = 500;
+//    public static int supplyMinWeight = 500;
 }

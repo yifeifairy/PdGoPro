@@ -12,7 +12,18 @@
     tools:context="com.emt.pdgo.next.ui.activity.param.OtherParamActivity">
 
     <include
-        layout="@layout/view_head" />
+        layout="@layout/head_view"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
+        android:orientation="vertical"
+        >
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,17 +124,239 @@
 
         </RelativeLayout>
 
-
     </LinearLayout>
 
-    <RelativeLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/upperRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="20dp"
+                android:paddingRight="13dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上位称皮重值"
+                    android:layout_centerVertical="true"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/upperUnit"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/upperTv"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical|right"
+                    android:text="0"
+                    android:layout_toStartOf="@id/upperUnit"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/lowerRl"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/input_box_item_margin_left"
+                android:layout_marginRight="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="@dimen/input_box_item_padding_left"
+                android:paddingRight="@dimen/input_box_item_padding_right">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="下位称皮重值"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/lowerUnit"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/unit_g"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+                <TextView
+                    android:id="@+id/lowerTv"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical|right"
+                    android:text="0"
+                    android:layout_toStartOf="@id/lowerUnit"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/input_box_tv_text_size" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+        android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/isHospitalRl"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="20dp"
+            android:paddingRight="13dp">
+
+            <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                android:id="@+id/isHospitalSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="11dp"
+                android:textSize="@dimen/input_health_info_tv_value_text_size"
+                labeled_switch:colorBorder="#ff0089ff"
+                labeled_switch:colorOn="#ff0089ff"
+                labeled_switch:on="false"
+                labeled_switch:textOff="当前选择为个人"
+                labeled_switch:textOn="当前选择为医院" />
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/sleepRl"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_box_bg_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/input_box_item_margin_left"
+            android:layout_marginRight="@dimen/input_box_item_margin_right"
+            android:layout_weight="1"
+            android:background="?attr/custom_attr_input_box_bg"
+            android:paddingLeft="@dimen/input_box_item_padding_left"
+            android:paddingRight="@dimen/input_box_item_padding_right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="休眠时间"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/sleepUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/unit_min"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+            <TextView
+                android:id="@+id/sleepTv"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical|right"
+                android:text="0"
+                android:layout_toStartOf="@id/sleepUnit"
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/input_box_tv_text_size" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/layout_input_box_bg_margin"
+            android:layout_marginRight="@dimen/layout_input_box_bg_margin"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content" >
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="20dp"
+                android:paddingRight="13dp">
+
+                <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                    android:id="@+id/usbSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="11dp"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    labeled_switch:colorBorder="#ff0089ff"
+                    labeled_switch:colorOn="#ff0089ff"
+                    labeled_switch:on="false"
+                    labeled_switch:textOff="当前为禁用U盘"
+                    labeled_switch:textOn="当前为U盘使能" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_box_bg_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="?attr/custom_attr_input_box_bg"
+                android:paddingLeft="20dp"
+                android:paddingRight="13dp">
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

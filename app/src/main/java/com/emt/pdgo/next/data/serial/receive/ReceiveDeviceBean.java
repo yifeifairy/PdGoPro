@@ -90,4 +90,6 @@ public class ReceiveDeviceBean {
      */
     public int chargeflag;
 
+
+
 }

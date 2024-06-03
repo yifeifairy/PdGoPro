@@ -11,4 +11,5 @@ public class SerialParamAutoRinseBean {
     public int supplyselect;
     public int firstpervolume;
     public int protectvolume;
+    public int supplychvolume;
 }

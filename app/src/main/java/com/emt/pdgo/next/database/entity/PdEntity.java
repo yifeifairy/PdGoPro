@@ -26,6 +26,9 @@ public class PdEntity {
      * 0周期首次引流时间
      */
     public int firstTime;
+
+    public int finalTime; // 最末灌注时间
+
     public int totalVol;
     public int finalAbdTime;
 

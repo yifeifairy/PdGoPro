@@ -12,13 +12,14 @@ import android.widget.TextView;
 
 import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.DrainParameterBean;
 import com.emt.pdgo.next.data.bean.PerfusionParameterBean;
 import com.emt.pdgo.next.data.bean.RetainParamBean;
 import com.emt.pdgo.next.ui.activity.MyDreamActivity;
 import com.emt.pdgo.next.ui.activity.TreatmentFragmentActivity;
 import com.emt.pdgo.next.ui.base.BaseFragment;
-import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
+import com.emt.pdgo.next.ui.dialog.NumberDialog;
 import com.emt.pdgo.next.ui.widget.LabeledSwitch;
 import com.pdp.rmmit.pdp.R;
 
@@ -172,7 +173,7 @@ public class TrFragment extends BaseFragment {
 //            showTimeInterval();
         });
         autoTime.setOnClickListener(view -> {
-            alertNumberBoardDialog(autoTime.getText().toString(), PdGoConstConfig.CHECK_TYPE_USER_PARAMETER_UNDER_WEIGHT_VALUE_4);
+            alertNumberBoardDialog(PdGoConstConfig.CHECK_TYPE_USER_PARAMETER_UNDER_WEIGHT_VALUE_4, EmtConstant.supplyTimeIntervalMin, EmtConstant.supplyTimeIntervalMax);
         });
         btnNegpreDrain.setOnToggledListener((toggleableView, isOn) -> {
             mActivity.drainParameterBean.isNegpreDrain = isOn;
@@ -249,8 +250,8 @@ public class TrFragment extends BaseFragment {
 //        mActivity.toastMessage("参数保存成功");
     }
 
-    private void alertNumberBoardDialog(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(getActivity(), value, type, false, true);
+    private void alertNumberBoardDialog(String type, int min, int max) {
+        NumberDialog dialog = new NumberDialog(getActivity(),  type, min, max);
         dialog.show();
         dialog.setOnDialogResultListener((mType, result) -> {
             if (!TextUtils.isEmpty(result)) {
@@ -320,10 +321,10 @@ public class TrFragment extends BaseFragment {
                 switchPerfusionWarning(tvPerfusionWarningSelect, currPerfusionWarningSelect);
                 break;
             case R.id.et_time_interval://
-                alertNumberBoardDialog(etTimeInterval.getText().toString(), PdGoConstConfig.CHECK_TYPE_PARAMETER_SETTING_WAITING_INTERVA);
+                alertNumberBoardDialog(etTimeInterval.getText().toString(), EmtConstant.drainTimeoutAlarmMin, EmtConstant.drainTimeoutAlarmMax);
                 break;
             case R.id.et_perfusion_warning_value://
-                alertNumberBoardDialog(etPerfusionWarningValue.getText().toString(), PdGoConstConfig.CHECK_TYPE_PARAMETER_SETTING_PERFUSION_WARNING_VALUE);
+                alertNumberBoardDialog(etPerfusionWarningValue.getText().toString(), EmtConstant.perfMaxWarningValueMin, EmtConstant.perfMaxWarningValueMax);
                 break;
         }
     }

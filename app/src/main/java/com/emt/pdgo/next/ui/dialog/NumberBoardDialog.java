@@ -25,7 +25,6 @@ import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.PerfusionParameterBean;
-import com.emt.pdgo.next.data.bean.TpdBean;
 import com.pdp.rmmit.pdp.R;
 
 import java.util.HashMap;
@@ -141,6 +140,8 @@ public class NumberBoardDialog extends Dialog {
         this.mType = title;
         this.isMinus = false;
         this.isInteger = true;
+        this.min = min;
+        this.max = max;
         View view = View.inflate(context, R.layout.number_board_layout, null);
         Window window = this.getWindow();
         window.setContentView(view);
@@ -162,11 +163,15 @@ public class NumberBoardDialog extends Dialog {
         }
     }
 
+    private int min;
+    private int max;
     private void setTitleAndHint(String title, int min, int max) {
         tvItemLabel.setText(title);
 //        tvBoardValue.setHint(mHint);
         int hintSize = this.context.getResources().getDimensionPixelOffset(R.dimen.number_board_input_hint_text_size);
         String hint = min + "  -  "+max;
+        this.max = max;
+        this.min = min;
 //        Log.e("输入提示","hintSize:"+hintSize);
         SpannableString sHint = new SpannableString(hint);//定义hint的值
         AbsoluteSizeSpan ass = new AbsoluteSizeSpan(hintSize, true);//设置字体大小 true表示单位是sp
@@ -233,8 +238,8 @@ public class NumberBoardDialog extends Dialog {
 //        window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.dialog_animation_style_left_and_right);
         WindowManager.LayoutParams lp = window.getAttributes();
-//        lp.width = ScreenUtil.dip2px(context, 602);
-//        lp.height = ScreenUtil.dip2px(context, 368);
+//        lp.width = ScreenUtil.dip2px(context, 800);
+//        lp.height = ScreenUtil.dip2px(context, 600);
 
 //        lp.width = ScreenUtil.getScreenHeight(context);
 //        lp.height = ScreenUtil.getScreenWidth(context);
@@ -381,8 +386,8 @@ public class NumberBoardDialog extends Dialog {
 
     }
 
-    private TpdBean mParameterEniity;
-    private PerfusionParameterBean perfusionParameterBean;
+//    private TpdBean mParameterEniity;
+    private PerfusionParameterBean perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
 
 //    private TreatmentParameterEniity getmParameterEniity() {
 //        if (mParameterEniity == null) {
@@ -392,9 +397,9 @@ public class NumberBoardDialog extends Dialog {
 //    }
 
     private void setBoardHint() {
-        mParameterEniity = PdproHelper.getInstance().tpdBean();
+//        mParameterEniity = PdproHelper.getInstance().tpdBean();
 //        drainParameterBean = PdproHelper.getInstance().getDrainParameterBean();
-        perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
+//        perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
 
         String title = "";
         String mHint = "";
@@ -515,7 +520,7 @@ public class NumberBoardDialog extends Dialog {
                 break;
             case PdGoConstConfig.CHECK_TYPE_DRAIN_THRESHOLD_VALUE: //流量测速 阈值
                 title = "流量测速 阈值";
-                mHint = "5  -  200";
+                mHint = "0  -  200";
                 break;
             case PdGoConstConfig.CHECK_TYPE_DRAIN_ZERO_CYCLE_PERCENTAGE: //0周期引流比例
                 title = "0周期引流比例";
@@ -715,6 +720,9 @@ public class NumberBoardDialog extends Dialog {
 //                    mHint = "0  -  " +mParameterEniity.firstPerfusionVolume;
 //                }
 //                mHint = "0  -  5000";
+                if (perfusionParameterBean == null) {
+                    perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
+                }
                 int v = MyApplication.FIRST_VOL == 0
                         ?perfusionParameterBean.perfMaxWarningValue:MyApplication.FIRST_VOL;
                 mHint = "0  -  " + v;
@@ -852,7 +860,7 @@ public class NumberBoardDialog extends Dialog {
             case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERITONEAL_DIALYSIS_FLUID_TOTAL_TIMING: //腹透液总量 1000  -  30000  (只能是500的整倍数)
                 title = "腹透液总量";
 //                mHint = "1000  -  "+(13 * getmParameterEniity().perCyclePerfusionVolume + 500);
-                mHint = "1000  -  "+mParameterEniity.peritonealDialysisFluidTotal;
+                mHint = "1000  -  "+5000;
                 break;
             case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PER_CYCLE_PERFUSION_VOLUME_TIMING: //每周期灌注量
                 title = "每周期灌注量";
@@ -1438,7 +1446,7 @@ public class NumberBoardDialog extends Dialog {
                     isShowSure(mValue >= 20 & mValue <= 600);
                     break;
                 case PdGoConstConfig.CHECK_TYPE_DRAIN_THRESHOLD_VALUE: //流量测速 阈值
-                    isShowSure(mValue >= 5 & mValue <= 200);
+                    isShowSure(mValue >= 0 & mValue <= 200);
                     break;
                 case PdGoConstConfig.CHECK_TYPE_DRAIN_UNIT_TIMEOUT_ALARM: //引流/灌注超时报警
                     isShowSure(mValue >= 0 & mValue <= 600);
@@ -1546,6 +1554,9 @@ public class NumberBoardDialog extends Dialog {
 //                    } else {
 //                        isShowSure(mValue >= 0 & mValue <= 5000);
 //                    }
+                    if (perfusionParameterBean == null) {
+                        perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
+                    }
                     int v = MyApplication.FIRST_VOL == 0
                             ?perfusionParameterBean.perfMaxWarningValue:MyApplication.FIRST_VOL;
                     isShowSure(mValue >= 0 & mValue <= v);
@@ -1661,7 +1672,7 @@ public class NumberBoardDialog extends Dialog {
                     // 治疗中输入处方
                 case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERITONEAL_DIALYSIS_FLUID_TOTAL_TIMING: //腹透液总量
 //                    isShowSure(mValue >= 1000 & mValue <= (13 * getmParameterEniity().perCyclePerfusionVolume + 500));
-                    isShowSure(mValue >= 1000 & mValue <= mParameterEniity.peritonealDialysisFluidTotal);
+                    isShowSure(mValue >= 1000 & mValue <= 500000);
                     break;
                 case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PER_CYCLE_PERFUSION_VOLUME_TIMING: //每周期灌注量
                     //mValue >= 0 & mValue <= 3000
@@ -1674,11 +1685,15 @@ public class NumberBoardDialog extends Dialog {
 //                    Log.e("處方界面","首次灌注量--"+getmParameterEniity().firstPerfusionVolume
 //                    +"--max--"+max);
 //                    isShowSure(mValue >= (int)((getmParameterEniity().peritonealDialysisFluidTotal-500) / 13) & mValue <= max);
-                    if (mParameterEniity.firstPerfusionVolume != 0) {
-                        isShowSure(mValue >= 0 & mValue <= mParameterEniity.firstPerfusionVolume);
-                    } else {
-                        isShowSure(mValue >= 0 & mValue <= perfusionParameterBean.perfMaxWarningValue);
+//                    if (mParameterEniity.firstPerfusionVolume != 0) {
+//                        isShowSure(mValue >= 0 & mValue <= mParameterEniity.firstPerfusionVolume);
+//                    } else {
+//                        isShowSure(mValue >= 0 & mValue <= perfusionParameterBean.perfMaxWarningValue);
+//                    }
+                    if (perfusionParameterBean == null) {
+                        perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
                     }
+                    isShowSure(mValue >= 0 & mValue <= perfusionParameterBean.perfMaxWarningValue);
                     break;
                 case PdGoConstConfig.CHECK_TYPE_PRESCRIPTION_PERIODICITIES_TIMING: //循环治疗周期数
                     isShowSure(mValue >= 1 & mValue <= 100);

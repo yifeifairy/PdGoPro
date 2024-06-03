@@ -13,6 +13,7 @@ import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
@@ -22,28 +23,35 @@ import androidx.multidex.BuildConfig;
 import androidx.multidex.MultiDex;
 
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.database.EmtDataBase;
+import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.common.config.RxBusCodeConfig;
+import com.emt.pdgo.next.data.bean.PdData;
 import com.emt.pdgo.next.interfaces.ThemeChangeObserver;
 import com.emt.pdgo.next.receiver.NetBroadcastReceiver;
+import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
 import com.emt.pdgo.next.rxlibrary.rxjava.RxConfig;
 import com.emt.pdgo.next.service.SerialPortService;
 import com.emt.pdgo.next.ui.dialog.MyLoadingDialog;
 import com.emt.pdgo.next.ui.presentation.MyPresentation;
-import com.emt.pdgo.next.util.ActivityLifeCycle;
+import com.emt.pdgo.next.util.CacheUtils;
 import com.emt.pdgo.next.util.EmtAndroidInfoUil;
-import com.emt.pdgo.next.util.EmtFileSdkUtil;
-import com.emt.pdgo.next.util.FileDatabaseContext;
 import com.emt.pdgo.next.util.FileUtils;
 import com.emt.pdgo.next.util.TtsHelper;
 import com.emt.pdgo.next.util.UsbUtil;
 import com.emt.pdgo.next.util.logger.AndroidLogTool;
 import com.emt.pdgo.next.util.logger.LogLevel;
 import com.emt.pdgo.next.util.logger.Logger;
-import com.raizlabs.android.dbflow.config.FlowManager;
+import com.emt.pdgo.next.util.task.ConsumptionTask;
+import com.emt.pdgo.next.util.task.LineUpTaskHelp;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
 
 public class MyApplication extends Application {
 
@@ -59,12 +67,17 @@ public class MyApplication extends Application {
     public static int rinseSupplyVol;
     public static int rinseVol;
 
+    public static boolean fistHeat; // 是否第一次加热
+
     public final String DB_NAME = "pdgo_next";
 
     public static boolean isDebugFinish = false; // 是否故障下机
     public static boolean isBuzzerOff = false; // 是否消音中
     public static boolean isFailure = false;
 
+
+//    public static DetailedBean detailedBean;
+    public static PdData pdData;
     private static MyApplication myApplication;
 
     public static MyApplication getInstance() {
@@ -76,7 +89,7 @@ public class MyApplication extends Application {
     /*** 握手成功 */
     public static boolean hasHello = false;
 
-    public static boolean isOpenMainSerial = false;
+    public static boolean isOpenMainSerial = true;
 
     public static boolean isOpenLedSerial = false;
 
@@ -101,8 +114,10 @@ public class MyApplication extends Application {
 
     public static boolean isKid = false; // 是否儿童模式
 
-    public static int apdMode = 0; // apd治疗模式
+    public static int apdMode = 1; // apd治疗模式
     public static boolean apdTreat = false;
+
+    public static boolean usb = false;
 
     public static boolean dprTreatRunning = false; // dpr治疗中
 
@@ -110,13 +125,13 @@ public class MyApplication extends Application {
 
     public static final boolean DEBUG = false;
 
-    public static int TPD_FIRST_VOL = PdproHelper.getInstance().tpdBean().firstPerfusionVolume;
-    public static int KID_FIRST_VOL = PdproHelper.getInstance().kidBean().firstPerfusionVolume;
-    public static int FIRST_VOL = PdproHelper.getInstance().getTreatmentParameter().firstPerfusionVolume;
+    public static int TPD_FIRST_VOL = 0;
+    public static int KID_FIRST_VOL = 0;
+    public static int FIRST_VOL = 0;
 
     public static String currCmd = "";
-    public static int firstVol = PdproHelper.getInstance().getPrescription().firstpersuse; // DPR首次灌注量
-    public static int cfpdFirstVol = PdproHelper.getInstance().getCfpdBean().firstpersuse; // DPR首次灌注量
+    public static int firstVol = 0; // DPR首次灌注量
+    public static int cfpdFirstVol =0; // DPR首次灌注量
 
     private void registerReceiverWifi() {
         NetBroadcastReceiver wifiReceiver = new NetBroadcastReceiver();
@@ -139,11 +154,6 @@ public class MyApplication extends Application {
 
     public static String phone = "";
 
-    public static int ApdTotalDrainVol; // 总引流量
-    public static int ApdTotalPerVol; // 总灌注量
-    public static int ApdTotalUltVol; // 总超滤量
-    public static String ApdTreatTime;
-
     public static boolean isReset; // 参数恢复出厂设置
 
     public static boolean isDpr = false;
@@ -158,6 +168,8 @@ public class MyApplication extends Application {
 
     public static boolean inTreatment = false;
 
+    public static int state = 1;
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -169,28 +181,17 @@ public class MyApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         initConfig();
-        //初始化DBFLOW
-        initDB();
-        initDao();
-        ActivityLifeCycle lifecycleCallbacks = new ActivityLifeCycle();
-        registerActivityLifecycleCallbacks(lifecycleCallbacks);
+        initListener();
+//        ActivityLifeCycle lifecycleCallbacks = new ActivityLifeCycle();
+//        registerActivityLifecycleCallbacks(lifecycleCallbacks);
 //        startMainBoardService();
 //        startLedBoardService();
         myApplication = this;
+//        detailedBean = new DetailedBean();
+        pdData = new PdData();
+        init();
         registerReceiverWifi();
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    EmtDataBase
-                            .getInstance(myApplication)
-                            .getFaultCodeDao()
-                            .delete();
-                }
-            }).start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 //        DisplayManager mDisplayManager;// 屏幕管理类
 //        mDisplayManager = (DisplayManager) this
 //                .getSystemService(Context.DISPLAY_SERVICE);
@@ -239,58 +240,6 @@ public class MyApplication extends Application {
 
     }
 
-    //初始化数据库
-    public void initDB() {
-        FileDatabaseContext mSdDatabaseContext = new FileDatabaseContext(this, new File(EmtFileSdkUtil.getBaseDirFile() + File.separator + DB_NAME), true);
-        FlowManager.init(mSdDatabaseContext);
-    }
-
-    /**
-     * 初始化数据库
-     */
-    private void initDao() {
-
-//        treatmentInfoTable = new TreatmentInfoTable();
-//        PdGoDbManager.getInstance().initMainBoardTable();
-//        PdGoDbManager.getInstance().initTemperBoardTable();
-//        PdGoDbManager.getInstance().initTreatmentTable();
-
-    }
-
-    public void registerUSBReceiver() {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        filter.addAction("android.hardware.usb.action.USB_STATE");
-        mUsbReceiver = new USBReceiver();
-        registerReceiver(mUsbReceiver, filter);
-        Log.e("MyApplication", "registerUSBReceiver");
-    }
-
-//    /**
-//     * 获取设备参数
-//     *
-//     * @return
-//     */
-//    public static DeviceStatusInfo getDeviceStatusInfo() {
-//
-//        return mDeviceStatusInfo;
-//    }
-//
-//    /**
-//     * 启动主板服务
-//     */
-//    public static void startMainBoardService() {
-//        if (!isServiceRunning(context, MainBoardService.class.getName())) {
-//            Intent intent = new Intent();
-//            intent.setClass(context, MainBoardService.class);
-//            context.startService(intent);
-//        } else {
-//            Log.e("MyApplication", "startMainBoardService has start");
-//        }
-//    }
 
     /**
      * 关闭串口数据处理服务
@@ -567,6 +516,117 @@ public class MyApplication extends Application {
             intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
         }
         startActivity(intent);
+    }
+
+    public static boolean isSupplyRinse = true;
+
+    public static LineUpTaskHelp lineUpTaskHelp;
+    /**
+     *  注册任务监听
+     */
+    private void initListener(){
+        if (lineUpTaskHelp == null) {
+            lineUpTaskHelp = LineUpTaskHelp.getInstance();
+        }
+        lineUpTaskHelp.setOnTaskListener(new LineUpTaskHelp.OnTaskListener() {
+            @Override
+            public void exNextTask(ConsumptionTask task) {
+                // 所有任务，会列队调用exNextTask。在这里编写你的任务执行过程
+                exTask(task);
+            }
+
+            @Override
+            public void noTask() {
+//                Log.e("task","所有任务执行完成");
+            }
+        });
+    }
+
+    public static int index;
+    private Handler handler;
+    /**
+     *  模拟执行任务呢
+     */
+    public void exTask(final ConsumptionTask task){
+//        //                if(isOdd(System.currentTimeMillis())){
+//        //                    // 模拟任务执行的结果====失败，如果一个任务失败了会导致整个计划失败，请调用此方法。
+//        //                    Log.e("Post","任务失败了，结束掉相关联正在排队的任务组");
+//        //                    lineUpTaskHelp.deletePlanNoAll(task.planNo);
+//        //                }
+//        // 检查列队
+//        // 可更新UI或做其他事情
+//        // 注意这里还在当前线程，没有开启新的线程
+//        // new Runnable(){}，只是把Runnable对象以Message形式post到UI线程里的Looper中执行，并没有新开线程。
+//        Disposable taskDisposable = Observable.timer(500, TimeUnit.MILLISECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(a -> {
+//
+//                    RxBus.get().send(RxBusCodeConfig.EVENT_SEND_COMMAND, task.planNo);
+//                    // 检查列队
+//                    lineUpTaskHelp.exOk(task);
+//                    // 可更新UI或做其他事情
+//                    // 注意这里还在当前线程，没有开启新的线程
+//                    // new Runnable(){}，只是把Runnable对象以Message形式post到UI线程里的Looper中执行，并没有新开线程。
+//                }); // 延时执行run内代码
+//        if (taskCompositeDisposable == null) {
+//            taskCompositeDisposable = new CompositeDisposable();
+//        }
+//        taskCompositeDisposable.add(taskDisposable);
+
+//        Handler handler = new Handler(); // 如果这个handler是在UI线程中创建的
+        if (handler == null) {
+            handler = new Handler();
+        }
+        handler.postDelayed(new Runnable() {  // 开启的runnable也会在这个handler所依附线程中运行，即主线程
+            @Override
+            public void run() {
+                RxBus.get().send(RxBusCodeConfig.EVENT_SEND_COMMAND, task.planNo);
+//                    // 检查列队
+                lineUpTaskHelp.exOk(task);
+                // 可更新UI或做其他事情
+                // 注意这里还在当前线程，没有开启新的线程
+                // new Runnable(){}，只是把Runnable对象以Message形式post到UI线程里的Looper中执行，并没有新开线程。
+            }
+        }, 1000); // 延时1s执行run内代码
+
+    }
+
+    public int useDeviceTime = 0; // 设备使用时间
+    private CompositeDisposable dtCompositeDisposable;
+    private void init() {
+        DisposableObserver<Long> disposableObserver = new DisposableObserver<Long>() {
+            @Override
+            public void onNext(Long aLong) {
+
+                useDeviceTime ++;
+                if (useDeviceTime >= 60 * 60 && (useDeviceTime % (60 * 60) == 0)) {
+//                    if (useDeviceTime > 0 && useDeviceTime % (10) == 0) {
+//                        if (PdproHelper.getInstance().useDeviceTime() == 0) {
+//                            CacheUtils.getInstance().getACache().put(PdGoConstConfig.useDeviceTime, 1);
+//                        } else {
+                    Log.e("MyApplication","useDeviceTime:"+useDeviceTime);
+                    int time = PdproHelper.getInstance().useDeviceTime();
+                    CacheUtils.getInstance().getACache().put(PdGoConstConfig.useDeviceTime, String.valueOf(time + 1));
+//                        }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        if (dtCompositeDisposable == null) {
+            dtCompositeDisposable = new CompositeDisposable();
+        }
+        Observable.interval(0, 1000, TimeUnit.MILLISECONDS).subscribe(disposableObserver);
+        dtCompositeDisposable.add(disposableObserver);
     }
 }
 

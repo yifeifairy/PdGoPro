@@ -1,0 +1,1115 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/custom_attr_app_bg">
+    <include
+        android:id="@+id/main_head"
+        layout="@layout/head_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navbar_height" />
+    <TextView
+        android:id="@+id/tipView"
+        android:gravity="center"
+        android:text="请先进入治疗在进入查看吧"
+        android:textSize="@dimen/dialog_common_btn_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/navbar_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/custom_attr_input_box_bg"
+        android:orientation="vertical">
+
+
+        <!-- 第一行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="循环治疗周期数 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_cycle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="当前"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" :"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_curr_cycle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="当前周期灌注量 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_curr_cycle_perfusion_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_detailed_status_divider"
+            android:background="@color/view_bg_color" />
+
+        <!-- 第二行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="上位秤初始值 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_up_weight_initial_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="补液\n目标"
+                            android:textColor="?attr/custom_attr_common_text_color"
+                            android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+                        <!--                        <TextView-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:text="目标"-->
+                        <!--                            android:textColor="?attr/custom_attr_common_text_color"-->
+                        <!--                            android:textSize="@dimen/treatment_main_detailed_status_text_size" />-->
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text=" :"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_supply_target_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="当前引流小冲量 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_curr_rinse_perfusion_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:visibility="visible"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/tv_curr_rinse_num"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_detailed_status_divider"
+            android:background="@color/view_bg_color" />
+
+        <!-- 第三行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="上/下位秤实时值 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_up_weight_real_time_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_low_weight_real_time_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="当前周期引流量 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_curr_cycle_drain_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_detailed_status_divider"
+            android:background="@color/view_bg_color" />
+
+        <!-- 第四行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="下位秤初始值 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_perfusion_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="剩余留腹时间 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_abdomen_retaining_time"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/rinseVol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/custom_dimen_item_title_text_size" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_detailed_status_divider"
+            android:background="@color/view_bg_color" />
+
+        <!-- 第五行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="         补液量：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_abdomen_retaining_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="补液\n保护"
+                            android:textColor="?attr/custom_attr_common_text_color"
+                            android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+                        <!--                        <TextView-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:text="保护"-->
+                        <!--                            android:textColor="?attr/custom_attr_common_text_color"-->
+                        <!--                            android:textSize="@dimen/treatment_main_detailed_status_text_size" />-->
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text=" :"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_supply_target_protection_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="腹腔剩余液体量 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_predicted_residual_liquid_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/rinseSupplyVol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/custom_dimen_item_title_text_size" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_detailed_status_divider"
+            android:background="@color/view_bg_color" />
+
+        <!-- 第六行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="灌注警戒值 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_max_warning_value"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="电磁阀工作状态 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <TextView
+                    android:id="@+id/tv_valve_perfusion"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/orange"
+                    android:text="灌注阀"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+                <TextView
+                    android:id="@+id/tv_valve_drain"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/orange"
+                    android:text="引流阀"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+                <TextView
+                    android:id="@+id/tv_valve_negpre_drain"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/orange"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="负压阀"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+                <TextView
+                    android:id="@+id/tv_valve_supply"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/orange"
+                    android:text="补液阀"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+                <TextView
+                    android:id="@+id/tv_valve_safe"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/orange"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="安全阀"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+                <TextView
+                    android:id="@+id/tv_valve_supply2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/orange"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="末袋阀"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_detailed_status_divider"
+            android:background="@color/view_bg_color" />
+
+
+        <!-- 第七行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="引流目标值 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_drain_target_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="引流\n及格"
+                            android:textColor="?attr/custom_attr_common_text_color"
+                            android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />
+
+                        <!--                        <TextView-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:text="及格"-->
+                        <!--                            android:textColor="?attr/custom_attr_common_text_color"-->
+                        <!--                            android:textSize="@dimen/treatment_main_historical_data_item_tv_text_size_1" />-->
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:text=" :"
+                        android:textColor="?attr/custom_attr_common_text_color"
+                        android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_drain_pass_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="当前周期状态 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_treatment_step"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/treatment_main_detailed_status_divider"
+            android:background="@color/view_bg_color" />
+
+        <!-- 第八行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="灌注目标值 ：   "
+                android:textColor="?attr/custom_attr_common_text_color"
+                android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_perfusion_target_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_bg_color" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:text="Ta温度:"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <View
+                    android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                    android:layout_height="match_parent"
+                    android:background="@color/view_bg_color" />
+
+                <TextView
+                    android:id="@+id/tvT1Temp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <View
+                    android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                    android:layout_height="match_parent"
+                    android:background="@color/view_bg_color" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Tb温度:"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <View
+                    android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                    android:layout_height="match_parent"
+                    android:background="@color/view_bg_color" />
+
+                <TextView
+                    android:id="@+id/tvT2Temp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <View
+                    android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                    android:layout_height="match_parent"
+                    android:background="@color/view_bg_color" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Tc温度:"
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+                <View
+                    android:layout_width="@dimen/treatment_main_detailed_status_divider"
+                    android:layout_height="match_parent"
+                    android:background="@color/view_bg_color" />
+
+                <TextView
+                    android:id="@+id/tvT3Temp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="?attr/custom_attr_common_text_color"
+                    android:textSize="@dimen/treatment_main_detailed_status_text_size" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+            <include
+                android:id="@+id/rootView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/navbar_btn_height"
+                android:layout_alignParentBottom="true"
+                layout="@layout/root_view" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

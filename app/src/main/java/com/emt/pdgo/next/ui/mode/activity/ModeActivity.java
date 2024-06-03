@@ -129,6 +129,7 @@ public class ModeActivity extends BaseActivity {
             currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
         });
     }
+
     @Override
     public void registerEvents() {
         init();

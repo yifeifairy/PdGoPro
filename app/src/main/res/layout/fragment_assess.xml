@@ -1,0 +1,272 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/treatment_countdown_margin"
+    android:background="@drawable/white_shape"
+    tools:context="com.emt.pdgo.next.ui.fragment.AssessFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:text="请完善以下信息，有助于医师对您的治疗做出更好的评估(多选)"
+        android:textColor="?attr/custom_attr_common_text_color_2"
+        android:textSize="@dimen/navbar_btn_text_size" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center"
+            android:text="日常生活的状况："
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/navbar_btn_text_size" />
+
+
+        <TextView
+            android:id="@+id/tv_abdominal_pain_item1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="正常"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_abdominal_pain_item2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="有腹痛感"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_abdominal_pain_item3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="出现发烧"
+
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_abdominal_pain_item4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="下肢水肿"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center"
+            android:text="引流液颜色："
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/navbar_btn_text_size" />
+
+
+        <TextView
+            android:id="@+id/tv_drainage_color_item1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="澄清"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_drainage_color_item2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="乳糜状"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_drainage_color_item3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="有不溶物"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_drainage_color_item4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="颜色异常"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="?attr/custom_attr_input_box_gray_bg"
+            android:gravity="center"
+            android:text="隧道口是否疼痛："
+            android:textColor="?attr/custom_attr_common_text_color"
+            android:textSize="@dimen/navbar_btn_text_size" />
+
+
+        <TextView
+            android:id="@+id/tv_tunnel_opening_pain_item1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="正常"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_tunnel_opening_pain_item2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="肿胀/充血"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_tunnel_opening_pain_item3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="疼痛"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+        <TextView
+            android:id="@+id/tv_tunnel_opening_pain_item4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+
+            android:background="@drawable/radio_bg_select"
+            android:gravity="center"
+            android:text="局部发热"
+            android:textColor="@drawable/radio_text_select"
+            android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/treatment_countdown_margin"
+        android:layout_weight="1" >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent" >
+
+        </LinearLayout>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="保存,下一步"
+            android:id="@+id/btnNext"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/btn_next_shape"
+            android:textSize="@dimen/input_health_info_tv_value_text_size"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>

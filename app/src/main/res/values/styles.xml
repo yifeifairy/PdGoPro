@@ -146,4 +146,8 @@
     </style>
 
 
+    <style name="spinner_style"  parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/input_health_info_tv_value_text_size</item><!--可以按照自己的情况在里面设定-->
+    </style>
+
 </resources>

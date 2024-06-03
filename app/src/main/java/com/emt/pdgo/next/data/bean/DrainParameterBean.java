@@ -34,7 +34,7 @@ public class DrainParameterBean extends BaseBean implements Serializable {
 
 
     /*** 流量测定时间间隔 s **/
-    public int drainTimeInterval = 60;//60
+    public int drainTimeInterval = 30;//60
     /*** 流量测定 阈值 g **/
     public int drainThresholdValue = 30;//30
 

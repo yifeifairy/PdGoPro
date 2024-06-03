@@ -482,7 +482,7 @@
                         android:id="@+id/rinseVol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:textColor="?attr/custom_attr_common_text_color"
                         android:textSize="@dimen/custom_dimen_item_title_text_size" />
 
@@ -633,7 +633,7 @@
                         android:id="@+id/rinseSupplyVol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:textColor="?attr/custom_attr_common_text_color"
                         android:textSize="@dimen/custom_dimen_item_title_text_size" />
 

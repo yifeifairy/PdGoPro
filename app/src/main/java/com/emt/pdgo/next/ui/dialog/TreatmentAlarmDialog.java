@@ -186,13 +186,13 @@ public class TreatmentAlarmDialog extends Dialog {
         }
 
         //设置右上角按钮的文字
-        if (!TextUtils.isEmpty(viewDataTxt)) {
-            btnViewData.setText(viewDataTxt);
-//            updateTextSize(btnViewData, viewDataTxt);
-            btnViewData.setVisibility(View.VISIBLE);
-        } else {
-            btnViewData.setVisibility(View.GONE);
-        }
+//        if (!TextUtils.isEmpty(viewDataTxt)) {
+//            btnViewData.setText(viewDataTxt);
+////            updateTextSize(btnViewData, viewDataTxt);
+//            btnViewData.setVisibility(View.VISIBLE);
+//        } else {
+//            btnViewData.setVisibility(View.GONE);
+//        }
 
         //设置第一个按钮的文字
         if (!TextUtils.isEmpty(firstTxt)) {

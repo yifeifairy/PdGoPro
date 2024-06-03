@@ -8,28 +8,117 @@
 
     <include
         android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/navbar_height" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/rootView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/navbar_btn_height"
-            android:layout_alignParentBottom="true"
-            layout="@layout/root_view" />
+        android:layout_weight="0.15"
+        android:layout_height="0dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_value"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:paddingLeft="17dp"
-        android:layout_above="@id/rootView"
-        android:paddingRight="17dp" />
+        android:layout_height="0dp"
+        android:layout_weight="0.7" />
 
-    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:orientation="horizontal"
+        android:padding="@dimen/treatment_countdown_margin"
+        android:weightSum="6">
+
+        <TextView
+            android:id="@+id/tv_valve_perfusion"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:text="灌注阀"
+            android:textColor="@color/white"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+        <TextView
+            android:id="@+id/tv_valve_drain"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:text="引流阀"
+            android:textColor="@color/white"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+        <TextView
+            android:id="@+id/tv_valve_negpre_drain"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:lineSpacingMultiplier="1.2"
+            android:text="负压阀"
+            android:textColor="@color/white"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+        <TextView
+            android:id="@+id/tv_valve_supply"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/orange"
+            android:text="补液阀"
+            android:textColor="@color/white"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+        <TextView
+            android:id="@+id/tv_valve_safe"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/orange"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="安全阀"
+            android:textColor="@color/white"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+        <TextView
+            android:id="@+id/tv_valve_supply2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/orange"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="末袋阀"
+            android:textColor="@color/white"
+            android:textSize="@dimen/treatment_main_detailed_status_text_size_2"/>
+
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/main_head"
-        layout="@layout/view_head"
+        layout="@layout/head_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/navbar_height" />
 

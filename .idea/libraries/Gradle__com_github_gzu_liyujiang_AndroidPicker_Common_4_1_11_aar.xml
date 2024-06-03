@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.github.gzu-liyujiang.AndroidPicker:Common:4.1.11@aar">
+  <library name="Gradle: com.github.gzu-liyujiang.AndroidPicker:Common:4.1.11@aar" external-system-id="GRADLE">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e9e926c4b8bfaa426dda83796f56b042/transformed/jetified-Common-4.1.11/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e9e926c4b8bfaa426dda83796f56b042/transformed/jetified-Common-4.1.11/jars/classes.jar!/" />

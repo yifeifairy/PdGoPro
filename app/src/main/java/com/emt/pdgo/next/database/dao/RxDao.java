@@ -19,4 +19,7 @@ public interface RxDao {
 
     @Query("DELETE FROM rxentity")
     void delete();
+
+    @Query("select * from rxentity where id > (:id)")
+    List<RxEntity> getRxListById(int id);
 }

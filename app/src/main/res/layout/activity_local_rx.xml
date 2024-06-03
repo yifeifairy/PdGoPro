@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_app_bg"
+    tools:context="com.emt.pdgo.next.ui.local.LocalRxActivity">
+    <include
+        layout="@layout/head_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="时间"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="腹透液总量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="周期灌注量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="周期数"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="首次灌注量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="留腹时间"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="最末留腹量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="上次留腹量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="超滤量"
+            android:textColor="@color/text_default"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/text_default"
+            android:text="操作"
+            android:gravity="center"
+            android:layout_margin="@dimen/prerinse_btn_margin"
+            android:textSize="@dimen/treatment_main_historical_data_list_item_text_size"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerview"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"/>
+
+</LinearLayout>

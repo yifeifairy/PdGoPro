@@ -29,7 +29,7 @@ public class UsbReceiver extends BroadcastReceiver {
                 assert files != null;
                 Log.e("UsbReceiver", "usb插入=files=="+ Arrays.toString(files));
                 for (String s : files) {
-                    if (s.startsWith("PdGoPro") && s.endsWith(".apk")) {
+                    if (s.startsWith("PdGoNext") && s.endsWith(".apk")) {
 //                        MyApplication.getInstance().installApk(usbPath+"/"+s);
                         Intent i = new Intent(MyApplication.mContext, USBDiskActivity.class);
                         i.putExtra("filePath",
@@ -41,11 +41,12 @@ public class UsbReceiver extends BroadcastReceiver {
                     }
                 }
             }
+        } else if (action.equals("android.intent.action.norco_disk_disable")) {
+            Log.e("UsbReceiver", "usb插入disable");
+        } else if (action.equals("android.intent.action.norco_disk_enable")) {
+            Log.e("UsbReceiver", "usb插入:enable");
         }
-        String USB_DEVICE_DETACHED = "android.hardware.usb.action.USB_DEVICE_DETACHED";
-        if (USB_DEVICE_DETACHED.equals(action)) {//usb拔出
-//            Log.e("===", "usb拔出");
-        }
+
 
     }
 

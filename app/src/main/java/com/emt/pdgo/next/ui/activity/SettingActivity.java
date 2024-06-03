@@ -2,35 +2,31 @@ package com.emt.pdgo.next.ui.activity;
 
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
+import com.emt.pdgo.next.constant.ConfigConst;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.DrainParameterBean;
 import com.emt.pdgo.next.data.bean.FirstRinseParameterBean;
+import com.emt.pdgo.next.data.bean.OtherParamBean;
 import com.emt.pdgo.next.data.bean.PerfusionParameterBean;
 import com.emt.pdgo.next.data.bean.RetainParamBean;
 import com.emt.pdgo.next.data.bean.SupplyParameterBean;
-import com.emt.pdgo.next.data.bean.TreatmentParameterEniity;
 import com.emt.pdgo.next.data.bean.UserParameterBean;
 import com.emt.pdgo.next.data.entity.CommandItem;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.database.EmtDataBase;
 import com.emt.pdgo.next.database.entity.PdEntity;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
+import com.emt.pdgo.next.model.mode.IpdBean;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity;
 import com.emt.pdgo.next.ui.activity.param.DrainParameterActivity;
@@ -54,7 +50,6 @@ import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.util.CacheUtils;
 import com.emt.pdgo.next.util.EmtTimeUil;
 import com.emt.pdgo.next.util.MarioResourceHelper;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import java.text.ParseException;
@@ -67,7 +62,6 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SettingActivity extends BaseActivity {
 
@@ -82,58 +76,22 @@ public class SettingActivity extends BaseActivity {
     private List<CommandItem> mList;
     private CommandAdapter mAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public void initAllViews() {
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
-        initHeadTitleBar("用户参数设置", "关于");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        btnSave.setVisibility(View.VISIBLE);
+        btnSave.setText("关于");
+        btnBack.setOnClickListener(view -> onBackPressed());
+        btnSave.setOnClickListener(view -> doGoTOActivity(AboutActivity.class));
     }
 
     @Override
@@ -150,19 +108,11 @@ public class SettingActivity extends BaseActivity {
 //        mList.add(new CommandItem("治疗界面", "TreatmentFragment"));
 
         mList.add(new CommandItem("网络参数设置", "NetSet"));
-//        String msg = "";
-//        if (getMobileDataState(this)) {
-//            msg = "关闭移动数据";
-//        } else {
-//            msg = "打开移动数据";
-//        }
-//        mList.add(new CommandItem("通信地址设置", "UrlSet"));
-//        mList.add(new CommandItem("用户参数设置", "UserParameter"));
         mList.add(new CommandItem("声音设置","volume"));
-        mList.add(new CommandItem("历史治疗数据", "hisPdData"));
-        mList.add(new CommandItem("历史处方数据","hisRxData"));
-        mList.add(new CommandItem("本地治疗数据", "localPdData"));
-        mList.add(new CommandItem("本地处方数据", "localRxData"));
+//        mList.add(new CommandItem("历史治疗数据", "hisPdData"));
+//        mList.add(new CommandItem("历史处方数据","hisRxData"));
+        mList.add(new CommandItem("本机治疗数据", "localPdData"));
+        mList.add(new CommandItem("本机处方数据", "localRxData"));
         mList.add(new CommandItem("恢复出厂设置", "factoryReset"));
 //        mList.add(new CommandItem("添加模拟数据", "addMockData"));
 //        mList.add(new CommandItem(msg,"dataSet"));
@@ -172,7 +122,7 @@ public class SettingActivity extends BaseActivity {
 //        mList.add(new CommandItem("传感器数值校准", "WeighParameter"));
 //        mList.add(new CommandItem("温控参数设置", "TemperatureControlParameter"));
         mList.add(new CommandItem("预冲参数设置", "FirstRinseParameter"));
-        mList.add(new CommandItem("APD治疗参数设置", "apdParamSet"));
+//        mList.add(new CommandItem("APD治疗参数设置", "apdParamSet"));
 //
 //        mList.add(new CommandItem("引流参数设置", "DrainParameter"));
 //        mList.add(new CommandItem("灌注参数设置", "PerfusionParameter"));
@@ -414,8 +364,27 @@ public class SettingActivity extends BaseActivity {
         dialog.setOnDialogResultListener((mType, result) -> {
             if (!TextUtils.isEmpty(result)) {
 //                    Logger.d(result);
+                Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
+
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minute = calendar.get(Calendar.MINUTE);
+                int second = calendar.get(Calendar.SECOND);
+                String mMonth = "";
+
+                if (month >= 10) {
+                    mMonth = "" + month;
+                } else {
+                    mMonth = "0" + month;
+                }
+
+                //123加上月份
+                String tempPwd = "123" + mMonth;
+                Log.e("长按", "tempPwd：" + tempPwd);
                 if (mType.equals(PdGoConstConfig.RESET)) {//工程师模式的密码
-                    if ("1234".equals(result)) {
+                    if (tempPwd.equals(result)) {
                         factoryReset();
                     }
                 }
@@ -424,56 +393,59 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void factoryReset() {
-        MyApplication.isReset = true;
+//        MyApplication.isReset = true;
         FirstRinseParameterBean firstRinseParameterBean = PdproHelper.getInstance().getFirstRinseParameterBean();
         PerfusionParameterBean perfusionParameterBean = PdproHelper.getInstance().getPerfusionParameterBean();
         DrainParameterBean drainParameterBean = PdproHelper.getInstance().getDrainParameterBean();
         SupplyParameterBean supplyParameterBean = PdproHelper.getInstance().getSupplyParameterBean();
         UserParameterBean userParameterBean = PdproHelper.getInstance().getUserParameterBean();
         RetainParamBean retainParamBean = PdproHelper.getInstance().getRetainParamBean();
-        TreatmentParameterEniity treatmentParameterEniity = PdproHelper.getInstance().getTreatmentParameter();
+        IpdBean treatmentParameterEniity = PdproHelper.getInstance().ipdBean();
+
         // 处方
-        treatmentParameterEniity.peritonealDialysisFluidTotal = 2800;
-        treatmentParameterEniity.perCyclePerfusionVolume = 500;
-        treatmentParameterEniity.cycle = 4;
-        treatmentParameterEniity.firstPerfusionVolume = 0;
-        treatmentParameterEniity.abdomenRetainingTime = 15;
-        treatmentParameterEniity.abdomenRetainingVolumeFinally = 0;
-        treatmentParameterEniity.abdomenRetainingVolumeLastTime = 0;
-        treatmentParameterEniity.ultrafiltrationVolume = 0;
+        treatmentParameterEniity.peritonealDialysisFluidTotal = ConfigConst.peritonealDialysisFluidTotal;
+        treatmentParameterEniity.perCyclePerfusionVolume = ConfigConst.perCyclePerfusionVolume;
+        treatmentParameterEniity.cycle = ConfigConst.cycle;
+        treatmentParameterEniity.firstPerfusionVolume = ConfigConst.firstPerfusionVolume;
+        treatmentParameterEniity.abdomenRetainingTime = ConfigConst.abdomenRetainingTime;
+        treatmentParameterEniity.abdomenRetainingVolumeFinally = ConfigConst.abdomenRetainingVolumeFinally;
+        treatmentParameterEniity.abdomenRetainingVolumeLastTime = ConfigConst.abdomenRetainingVolumeLastTime;
+        treatmentParameterEniity.ultrafiltrationVolume = ConfigConst.ultrafiltrationVolume;
+        treatmentParameterEniity.isFinalSupply = ConfigConst.isFinalSupply;
         // 预冲参数重置
-        firstRinseParameterBean.firstvolume = 50;
-        firstRinseParameterBean.secondvolume = 50;
-        firstRinseParameterBean.supplyperiod = 60;
-        firstRinseParameterBean.supplyspeed = 30;
-        firstRinseParameterBean.supplyselect = 1;
+        firstRinseParameterBean.firstvolume = ConfigConst.firstVolume;
+        firstRinseParameterBean.secondvolume = ConfigConst.secondVolume;
+        firstRinseParameterBean.supplyperiod = ConfigConst.supplyPeriod;
+        firstRinseParameterBean.supplyspeed = ConfigConst.supplySpeed;
+        firstRinseParameterBean.supplyselect = ConfigConst.supplySelect;
+        firstRinseParameterBean.supplychvolume = ConfigConst.supplyVol;
         // 灌注参数重置
-        perfusionParameterBean.perfAllowAbdominalVolume = false;
-        perfusionParameterBean.perfMaxWarningValue = 5000;
-        perfusionParameterBean.perfTimeInterval = 60;
-        perfusionParameterBean.perfThresholdValue = 30;
-        perfusionParameterBean.perfMinWeight = 100;
+        perfusionParameterBean.perfAllowAbdominalVolume = ConfigConst.perfAllowAbdominalVolume;
+        perfusionParameterBean.perfMaxWarningValue = ConfigConst.perfMaxWarningValue;
+        perfusionParameterBean.perfTimeInterval = ConfigConst.perfTimeInterval;
+        perfusionParameterBean.perfThresholdValue = ConfigConst.perfThresholdValue;
+        perfusionParameterBean.perfMinWeight = ConfigConst.perfMinWeight;
         // 引流参数重置
-        drainParameterBean.drainTimeInterval = 60;
-        drainParameterBean.drainThresholdValue = 30;
-        drainParameterBean.drainZeroCyclePercentage = 100;
-        drainParameterBean.drainOtherCyclePercentage = 75;
-        drainParameterBean.drainTimeoutAlarm = 45;
-        drainParameterBean.drainRinseVolume = 50;
-        drainParameterBean.drainRinseNumber = 1;
-        drainParameterBean.isDrainManualEmptying = false;
-        drainParameterBean.drainWarnTimeInterval = 30;
+        drainParameterBean.drainTimeInterval = ConfigConst.drainTimeInterval;
+        drainParameterBean.drainThresholdValue = ConfigConst.drainThresholdValue;
+        drainParameterBean.drainZeroCyclePercentage = ConfigConst.drainZeroCyclePercentage;
+        drainParameterBean.drainOtherCyclePercentage = ConfigConst.drainOtherCyclePercentage;
+        drainParameterBean.drainTimeoutAlarm = ConfigConst.drainTimeoutAlarm;
+        drainParameterBean.drainRinseVolume = ConfigConst.drainRinseVolume;
+        drainParameterBean.drainRinseNumber = ConfigConst.drainRinseNumber;
+        drainParameterBean.isDrainManualEmptying = ConfigConst.isDrainManualEmptying;
+        drainParameterBean.drainWarnTimeInterval = ConfigConst.drainWarnTimeInterval;
         // 留腹参数
-        retainParamBean.isAbdomenRetainingDeduct = false;
-        retainParamBean.isZeroCycleUltrafiltration = false;
+        retainParamBean.isAbdomenRetainingDeduct = ConfigConst.isAbdomenRetainingDeduct;
+        retainParamBean.isZeroCycleUltrafiltration = ConfigConst.isZeroCycleUltrafiltration;
         retainParamBean.isAlarmWakeUp = false;
         // 补液参数重置
-        supplyParameterBean.supplyTimeInterval = 60;
-        supplyParameterBean.supplyThresholdValue = 30;
-        supplyParameterBean.supplyTargetProtectionValue = 500;
-        supplyParameterBean.supplyMinWeight = 500;
+        supplyParameterBean.supplyTimeInterval = ConfigConst.supplyTimeInterval;
+        supplyParameterBean.supplyThresholdValue = ConfigConst.supplyThresholdValue;
+        supplyParameterBean.supplyTargetProtectionValue = ConfigConst.supplyTargetProtectionValue;
+        supplyParameterBean.supplyMinWeight = ConfigConst.supplyMinWeight;
         // 开启语音
-        PdproHelper.getInstance().updateTtsSoundOpen(true);
+//        PdproHelper.getInstance().updateTtsSoundOpen(true);
         // 用户参数设置
         userParameterBean.isHospital = false;
         userParameterBean.isNight = false;
@@ -481,9 +453,17 @@ public class SettingActivity extends BaseActivity {
         userParameterBean.underweight1 = 1f;
         userParameterBean.underweight2 = 2f;
         userParameterBean.underweight3 = 3.6f;
+
+        OtherParamBean otherParamBean = PdproHelper.getInstance().getOtherParamBean();
+        otherParamBean.lower = EmtConstant.lower;
+        otherParamBean.upper = EmtConstant.upper;
+//        otherParamBean.isDebug = false;
+//        otherParamBean.isHospital = false;
+//        otherParamBean.perHeartWeight = 500;
+        CacheUtils.getInstance().getACache().put(PdGoConstConfig.OTHER_PARAMETER, otherParamBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.RETAIN_PARAM, retainParamBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.ttsSoundOpen, "true");
-        CacheUtils.getInstance().getACache().put(PdGoConstConfig.TREATMENT_PARAMETER, treatmentParameterEniity);
+        CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, treatmentParameterEniity);
 //        CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, treatmentParameterEniity);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.USER_PARAMETER, userParameterBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.DRAIN_PARAMETER, drainParameterBean);
@@ -498,16 +478,7 @@ public class SettingActivity extends BaseActivity {
         MarioResourceHelper helper = MarioResourceHelper.getInstance(getContext());
         helper.setBackgroundResourceByAttr(mAppBackground, R.attr.custom_attr_app_bg);
         if (mAdapter != null) mAdapter.notifyDataSetChanged(); //
-        helper.setTextColorByAttr(tvTitle, R.attr.custom_attr_common_text_color);
-    }
 
-    @OnClick({R.id.btn_submit})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_submit:
-                doGoTOActivity(AboutActivity.class);
-                break;
-        }
     }
 
 }

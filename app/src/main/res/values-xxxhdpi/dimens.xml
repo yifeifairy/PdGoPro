@@ -1,5 +1,6 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="cycle_sp">108sp</dimen>
     <dimen name="labeled_default_width">72dp</dimen>
     <dimen name="labeled_default_height">32dp</dimen>
     <dimen name="day_night_default_width">84dp</dimen>
@@ -476,15 +477,16 @@
     <dimen name="treatment_main_layout_cycle_margin_right">22dp</dimen>
     <dimen name="treatment_main_tv_cycle_label_margin_top">23dp</dimen>
     <dimen name="treatment_main_tv_cycle_status_margin_top">10dp</dimen>
-    <dimen name="treatment_main_tv_cycle_text_size">102sp</dimen>
+    <dimen name="treatment_main_tv_cycle_text_size">68sp</dimen>
     <dimen name="treatment_main_tv_cycle_label_text_size">24sp</dimen>
     <dimen name="treatment_main_tv_cycle_status_text_size">38sp</dimen>
+    <dimen name="treatment_main_tv_max_cycle_text_size">38sp</dimen>
 
     <dimen name="treatment_main_layout_volume_bg_height">232dp</dimen>
     <dimen name="treatment_main_layout_volume_bg_margin">20dp</dimen>
     <dimen name="treatment_main_layout_volume_bg_margin_bottom">50dp</dimen>
-    <dimen name="treatment_main_iv_volume_width">60dp</dimen>
-    <dimen name="treatment_main_iv_volume_height">60dp</dimen>
+    <dimen name="treatment_main_iv_volume_width">88dp</dimen>
+    <dimen name="treatment_main_iv_volume_height">88dp</dimen>
     <dimen name="treatment_main_layout_volume_item_margin">7dp</dimen>
     <dimen name="treatment_main_iv_volume_margin_left">16dp</dimen>
     <dimen name="treatment_main_iv_volume_margin_top">18dp</dimen>
@@ -493,9 +495,9 @@
     <dimen name="treatment_main_layout_curr_volume_unit_margin_right">33dp</dimen>
     <dimen name="treatment_main_tv_curr_volume_unit_margin_top">30dp</dimen>
 
-    <dimen name="treatment_main_tv_curr_volume_label_text_size">22sp</dimen>
-    <dimen name="treatment_main_tv_curr_volume_unit_text_size">28sp</dimen>
-    <dimen name="treatment_main_tv_curr_volume_text_size">58sp</dimen>
+    <dimen name="treatment_main_tv_curr_volume_label_text_size">32sp</dimen>
+    <dimen name="treatment_main_tv_curr_volume_unit_text_size">38sp</dimen>
+    <dimen name="treatment_main_tv_curr_volume_text_size">68sp</dimen>
     <dimen name="treatment_main_tv_curr_temperature_text_size">48sp</dimen>
 
     <dimen name="treatment_main_layout_handle_width">268dp</dimen>
@@ -528,7 +530,7 @@
     <dimen name="treatment_main_detailed_status_text_size">24sp</dimen>
     <dimen name="treatment_main_detailed_status_text_size_2">14sp</dimen>
     <dimen name="treatment_main_detailed_status_divider">1dp</dimen>
-    <dimen name="treatment_main_historical_data_item_height">80dp</dimen>
+    <dimen name="treatment_main_historical_data_item_height">68dp</dimen>
     <dimen name="treatment_main_historical_data_item_margin">5dp</dimen>
     <dimen name="treatment_main_historical_data_item_tv_margin_left">14dp</dimen>
     <dimen name="treatment_main_historical_data_item_tv_margin_top">8dp</dimen>
@@ -541,7 +543,7 @@
     <dimen name="treatment_main_historical_data_item_tv_text_size_2">30sp</dimen>
     <dimen name="treatment_main_historical_data_item_tv_text_size_3">20sp</dimen>
     <dimen name="treatment_main_historical_data_list_item_text_size">22sp</dimen>
-    <dimen name="treatment_main_historical_data_list_item_height">66dp</dimen>
+    <dimen name="treatment_main_historical_data_list_item_height">48dp</dimen>
 
     <dimen name="icon_sound_01_width">20dp</dimen>
     <dimen name="icon_sound_01_height">16dp</dimen>

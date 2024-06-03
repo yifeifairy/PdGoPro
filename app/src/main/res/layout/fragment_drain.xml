@@ -1,0 +1,353 @@
+<LinearLayout
+    xmlns:labeled_switch="http://schemas.android.com/apk/res-auto"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.emt.pdgo.next.ui.fragment.DrainFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_box_item_margin_left"
+            android:orientation="vertical"
+            android:padding="@dimen/treatment_countdown_margin"
+            android:background="@drawable/white_shape"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="0周期引流比例"
+                android:textStyle="bold"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_height="0dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="25%"
+                    android:id="@+id/label_1"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="50%"
+                    android:id="@+id/label_2"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="75%"
+                    android:id="@+id/label_3"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="100%"
+                    android:id="@+id/label_4"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_box_item_margin_left"
+            android:orientation="vertical"
+            android:padding="@dimen/treatment_countdown_margin"
+            android:background="@drawable/white_shape"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="其他周期引流比例"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_height="0dp" >
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="25%"
+                    android:id="@+id/label_5"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="50%"
+                    android:id="@+id/label_6"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="75%"
+                    android:id="@+id/label_7"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="100%"
+                    android:id="@+id/label_8"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_box_item_margin_left"
+            android:orientation="vertical"
+            android:padding="@dimen/treatment_countdown_margin"
+            android:background="@drawable/white_shape"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="最末引流排空等待"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:text="关"
+                    android:id="@+id/emptyTv"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content" />
+                <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:id="@+id/emptySwitch"
+                    android:layout_height="match_parent"
+                    labeled_switch:colorBorder="#ff0089ff"
+                    labeled_switch:colorOn="#ff0089ff"
+                    labeled_switch:on="true"
+                    labeled_switch:textOff=""
+                    labeled_switch:textOn="" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/treatment_countdown_margin"
+            android:background="@drawable/white_shape"
+            android:layout_margin="@dimen/input_box_item_margin_left"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="负压引流"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:text="关"
+                    android:id="@+id/negTv"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_height="wrap_content" />
+                <com.emt.pdgo.next.ui.widget.LabeledSwitch
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:id="@+id/negSwitch"
+                    android:layout_height="match_parent"
+                    labeled_switch:colorBorder="#ff0089ff"
+                    labeled_switch:colorOn="#ff0089ff"
+                    labeled_switch:on="true"
+                    labeled_switch:textOff=""
+                    labeled_switch:textOn="" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:id="@+id/emptyTimeLl"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_box_item_margin_left"
+            android:orientation="vertical"
+            android:padding="@dimen/treatment_countdown_margin"
+            android:background="@drawable/white_shape"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="最末引流提醒间隔"
+                android:textStyle="bold"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_weight="1"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_height="0dp" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="10min"
+                    android:id="@+id/label_9"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="20min"
+                    android:id="@+id/label_10"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="30min"
+                    android:id="@+id/label_11"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="60min"
+                    android:id="@+id/label_12"
+                    android:layout_marginStart="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/radio_bg_select"
+                    android:gravity="center"
+                    android:textSize="@dimen/input_health_info_tv_value_text_size"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/input_box_item_margin_left"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:padding="@dimen/treatment_countdown_margin"
+            android:background="@drawable/white_shape"
+            android:layout_height="match_parent">
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

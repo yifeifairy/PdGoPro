@@ -17,6 +17,7 @@ public class FirstRinseParameterBean extends BaseBean implements Serializable {
     public int supplyperiod = 60;
     public int supplyspeed = 30;
     public int supplyselect = 1;
+    public int supplychvolume = 50;
 //    /*** 排空时间 5 s  **/
 //    public int emptyingTime = 8;
 //    /*** 预设增量1[上位秤增加重量X1克] g 范围 50-100 **/

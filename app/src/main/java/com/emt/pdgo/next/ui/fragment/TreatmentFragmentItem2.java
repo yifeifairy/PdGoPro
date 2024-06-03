@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.emt.pdgo.next.data.entity.TreatmentHistoryBean;
+import com.emt.pdgo.next.MyApplication;
+import com.emt.pdgo.next.data.bean.PdData;
 import com.emt.pdgo.next.ui.activity.TreatmentFragmentActivity;
 import com.emt.pdgo.next.ui.adapter.TreatmentHistoricalDataAdapter;
 import com.emt.pdgo.next.ui.base.BaseFragment;
@@ -89,15 +90,17 @@ public class TreatmentFragmentItem2 extends BaseFragment {
     private void initViewData() {
         if (null != mActivity) {
 //            mActivity.initTreatmentHistory();
-            setHistoricalData(mActivity.mTreatmentDataList);
+            if (mActivity.pdEntityDataList != null) {
+                setHistoricalData(mActivity.pdEntityDataList);
+            }
         }
     }
 
-    public void setHistoricalData(List<TreatmentHistoryBean> dataList) {
+    public void setHistoricalData(List<PdData.PdEntityData> pdEntityDataList) {
         try {
             if (mAdapter == null) {
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                mAdapter = new TreatmentHistoricalDataAdapter(R.layout.item_treatment_historical_data2, dataList);
+                mAdapter = new TreatmentHistoricalDataAdapter(R.layout.item_treatment_historical_data2, pdEntityDataList);
                 mRecyclerView.addItemDecoration(new SpaceItemDecoration(1, 0, 0));
                 //添加Android自带的分割线
                 mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL));
@@ -107,14 +110,24 @@ public class TreatmentFragmentItem2 extends BaseFragment {
             }
             totalDrainVolume = 0;
             totalPerfusionVolume = 0;
-            for (int i = 0; i < dataList.size(); i++) {
-                TreatmentHistoryBean mBean = dataList.get(i);
-                totalDrainVolume += mBean.drainVolume;
-                totalPerfusionVolume += mBean.perfusionVolume;
+            for (int i = 0; i < pdEntityDataList.size(); i++) {
+                PdData.PdEntityData mBean = pdEntityDataList.get(i);
+                totalDrainVolume += mBean.getDrainage();
+                totalPerfusionVolume += mBean.getPreVol();
+            }
+            if (MyApplication.apdMode == 1) {
+                if (pdEntityDataList.size() > 0) {
+                    if (mActivity.ipdBean.abdomenRetainingVolumeFinally == 0) {
+                        mUltrafiltrationVolume = totalDrainVolume - totalPerfusionVolume - pdEntityDataList.get(0).getDrainage();
+                    } else {
+                        mUltrafiltrationVolume = totalDrainVolume - totalPerfusionVolume - pdEntityDataList.get(0).getDrainage()
+                                + pdEntityDataList.get(mActivity.currCycle).getPreVol();
+                    }
+                }
             }
             tvTotalPerfusionVolume.setText(String.valueOf(totalPerfusionVolume));
             tvTotalDrainVolume.setText(String.valueOf(totalDrainVolume));
-            tvCurrUltrafiltrationVolume.setText(String.valueOf(totalDrainVolume - totalPerfusionVolume));
+            tvCurrUltrafiltrationVolume.setText(String.valueOf(mUltrafiltrationVolume));
             //本次治疗总超滤量= 总引流量 - 总灌注量 - 上次最末留腹量 + 本次最末留腹量（）
         } catch (Exception e) {
             e.printStackTrace();

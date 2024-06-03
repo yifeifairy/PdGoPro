@@ -12,7 +12,7 @@
     <color name="transparent">#00000000</color><!--透明色 -->
     <color name="transparent_gray">#90000000</color>
 
-    <color name="green">#00FF00</color>
+    <color name="green">#008000</color>
     <color name="black">#000000</color>
     <color name="darkblue">#00008B</color><!--暗蓝色 -->
     <color name="color_blue">#0ca5f4</color>

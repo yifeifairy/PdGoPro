@@ -1,0 +1,38 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context="com.emt.pdgo.next.ui.fragment.GuideFragment">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imageview"
+            android:scaleType="fitXY"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent" >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="关闭所有管夹\n分离管路与自己"
+            android:gravity="center"
+            android:textSize="@dimen/treatment_main_tv_cycle_text_size"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,23 +1,17 @@
 package com.emt.pdgo.next.ui.activity.param;
 
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.emt.pdgo.next.MyApplication;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.data.entity.CommandItem;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
+import com.emt.pdgo.next.ui.activity.wifi.WifiActivity;
 import com.emt.pdgo.next.ui.adapter.CommandAdapter;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.util.MarioResourceHelper;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
 
 import java.util.ArrayList;
@@ -48,47 +42,15 @@ public class ParamDebugActivity extends BaseActivity {
         ButterKnife.bind(this);
         initHeadTitleBar("参数设置调试");
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+    @BindView(R.id.btnBack)
+    Button btnBack;
+    @BindView(R.id.btnSave)
+    Button btnSave;
     @Override
     public void registerEvents() {
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        //        btnSave.setVisibility(View.VISIBLE);
+//        btnSave.setText("保存");
+        btnBack.setOnClickListener(view -> onBackPressed());
     }
 
     @Override
@@ -122,7 +84,7 @@ public class ParamDebugActivity extends BaseActivity {
             } else if ("SupplyParameter".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(SupplyParameterActivity.class);
             } else if ("NetSet".equals(mList.get(position).mCommand)) {
-                net();
+                doGoTOActivity(WifiActivity.class);
             } else if ("UrlSet".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(UrlSetActivity.class);
             }else if ("SNSet".equals(mList.get(position).mCommand)) {
@@ -139,6 +101,5 @@ public class ParamDebugActivity extends BaseActivity {
         helper.setBackgroundResourceByAttr(mAppBackground, R.attr.custom_attr_app_bg);
         if (mAdapter != null) mAdapter.notifyDataSetChanged(); //
 
-        helper.setTextColorByAttr(tvTitle, R.attr.custom_attr_common_text_color);
     }
 }

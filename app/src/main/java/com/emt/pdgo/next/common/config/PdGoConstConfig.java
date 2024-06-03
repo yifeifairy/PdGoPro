@@ -36,12 +36,14 @@ public class PdGoConstConfig {
 
     public static String useDeviceTime = "useDeviceTime";
 
+    public static String targetTemper = "targetTemper";
+
     public static String BRIGHTNESS = "brightness";
 
-    public static String OTHER_PARAMETER = "other_parameter";
+    public static String OTHER_PARAMETER = "otherBeanS";
 
 //    /*** 预冲参数 */
-    public static String FIRST_RINSE_PARAMETER = "first_rinse_parameter";
+    public static String FIRST_RINSE_PARAMETER = "first_rinseParameter";
     /*** 引流参数 */
     public static String DRAIN_PARAMETER = "drain_parameter_entity";
     /*** 留腹参数 */
@@ -79,7 +81,7 @@ public class PdGoConstConfig {
     public static String EXPERT_PARAMS = "expert_params";
 
     public static String PID_BEAN = "pid_bean";
-    public static String IPD_BEAN = "ipd_bean";
+    public static String IPD_BEAN = "ipdBean";
     public static String CCPD_BEAN = "ccpd_bean";
 
     /*** 治疗参数 */
@@ -226,7 +228,7 @@ public class PdGoConstConfig {
     public static final String CHECK_TYPE_USER_PARAMETER_UNDER_WEIGHT_VALUE_5 = "under_weight_value_5";
 
     // 自动息屏
-    public static final String AUTO_SLEEP = "auto_sleep";
+    public static final String AUTO_SLEEP = "autoSleepV";
 
     // 电机测试
     public static final String VALUE_TEST = "value_test";

@@ -1,6 +1,5 @@
 package com.emt.pdgo.next.ui.activity.param;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,31 +19,21 @@ import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.FileCutUtils;
-import com.emt.pdgo.next.util.FileUtils;
 import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.pdp.rmmit.pdp.R;
+import com.yujing.yserialport.YSerialPort;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Locale;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 import java.util.zip.CRC32;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import tp.xmaihh.serialport.SerialHelper;
-import tp.xmaihh.serialport.bean.ComBean;
-import tp.xmaihh.serialport.utils.ByteUtil;
 
 public class FirmwareUpgradeActivity extends BaseActivity {
 
-    private SerialHelper serialHelper;
+    private YSerialPort serialHelper;
 
     @BindView(R.id.selectFileBtn)
     Button selectFileBtn;
@@ -70,46 +59,47 @@ public class FirmwareUpgradeActivity extends BaseActivity {
         ButterKnife.bind(this);
         initHeadTitleBar("固件升级","删除");
         compositeDisposable = new CompositeDisposable();
-        serialHelper = new SerialHelper("/dev/ttyS0", 115200) {
-            @SuppressLint("SetTextI18n")
-            @Override
-            protected void onDataReceived(ComBean comBean) {
-                String hex = ByteUtil.ByteArrToHex(comBean.bRec).toUpperCase(Locale.ROOT);
-                Log.e("数据接收","hex--"+hex);
-                runOnUiThread(()->{
-                    hexStr =  hexStr + "\n" + hex;
-                    receiveMsg.setText(hexStr);
-                });
-                if (hex.startsWith("F181")) { // 请求更新固件
-                    if (hardNum != 0) {
-                        String s = "F102" + hardSize +
-                                "00" + Integer.toHexString(hardNum);
-                        Disposable mainDisposable = Observable.timer(3, TimeUnit.SECONDS)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(aLong -> {
-                                    sendHex(s + getCrc32(s)); // 请求擦除FLASH
-                                });
-                        compositeDisposable.add(mainDisposable);
-                    }
-                } else if (hex.startsWith("F182")) { // 请求擦除FLASH
-                    // 上位机发送升级固件包
-                    String s = "F1030000"+ByteUtil.ByteArrToHex(Objects.requireNonNull(FileUtils.getBytesByFile(cutUtils.getLittlefilelist().get(0))));
-                    sendHex(s+getCrc32(s));
-                } else if (hex.startsWith("F183")) { // 发送升级固件包
-                    if (num <= cutUtils.getLittlefilelist().size()) {
-                        delay(num);
-                    } else {
-                        cutUtils.deleteLittlelist();
-                    }
-                }
-            }
-        };
-        try {
-            serialHelper.open();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        serialHelper = new YSerialPort(this,"/dev/ttyS0", "115200");
+//        {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            protected void onDataReceived(ComBean comBean) {
+//                String hex = ByteUtil.ByteArrToHex(comBean.bRec).toUpperCase(Locale.ROOT);
+//                Log.e("数据接收","hex--"+hex);
+//                runOnUiThread(()->{
+//                    hexStr =  hexStr + "\n" + hex;
+//                    receiveMsg.setText(hexStr);
+//                });
+//                if (hex.startsWith("F181")) { // 请求更新固件
+//                    if (hardNum != 0) {
+//                        String s = "F102" + hardSize +
+//                                "00" + Integer.toHexString(hardNum);
+//                        Disposable mainDisposable = Observable.timer(3, TimeUnit.SECONDS)
+//                                .subscribeOn(Schedulers.io())
+//                                .observeOn(AndroidSchedulers.mainThread())
+//                                .subscribe(aLong -> {
+//                                    sendHex(s + getCrc32(s)); // 请求擦除FLASH
+//                                });
+//                        compositeDisposable.add(mainDisposable);
+//                    }
+//                } else if (hex.startsWith("F182")) { // 请求擦除FLASH
+//                    // 上位机发送升级固件包
+//                    String s = "F1030000"+ByteUtil.ByteArrToHex(Objects.requireNonNull(FileUtils.getBytesByFile(cutUtils.getLittlefilelist().get(0))));
+//                    sendHex(s+getCrc32(s));
+//                } else if (hex.startsWith("F183")) { // 发送升级固件包
+//                    if (num <= cutUtils.getLittlefilelist().size()) {
+//                        delay(num);
+//                    } else {
+//                        cutUtils.deleteLittlelist();
+//                    }
+//                }
+//            }
+//        };
+//        try {
+//            serialHelper.open();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private int num = 1;
@@ -126,16 +116,16 @@ public class FirmwareUpgradeActivity extends BaseActivity {
             size = ""+Integer.toHexString(i);
         }
 //        cutUtils.deleteSingleFile(cutUtils.getLittlefilelist().get(i).getPath());
-        String s = "F103"+size+ByteUtil.ByteArrToHex(Objects.requireNonNull(FileUtils.getBytesByFile(cutUtils.getLittlefilelist().get(i))));
-        Disposable mainDisposable = Observable.timer(150, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    serialHelper.sendHex(s+getCrc32(s));
-//                    startYModem(cutUtils.getLittlefilelist().get(i).getPath(),cutUtils.getLittlefilelist().get(i).getName());
-                    num ++;
-                });
-        compositeDisposable.add(mainDisposable);
+//        String s = "F103"+size+ByteUtil.ByteArrToHex(Objects.requireNonNull(FileUtils.getBytesByFile(cutUtils.getLittlefilelist().get(i))));
+//        Disposable mainDisposable = Observable.timer(150, TimeUnit.MILLISECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(aLong -> {
+//                    serialHelper.sendHex(s+getCrc32(s));
+////                    startYModem(cutUtils.getLittlefilelist().get(i).getPath(),cutUtils.getLittlefilelist().get(i).getName());
+//                    num ++;
+//                });
+//        compositeDisposable.add(mainDisposable);
     }
 
     private void requestFirmwareUpdate() {
@@ -173,7 +163,7 @@ public class FirmwareUpgradeActivity extends BaseActivity {
         String s = h+getCrc32(h);
         Log.e("升级",h+"--数据--"+getCrc32(h));
         Log.e("升级","发送数据--"+s);
-        serialHelper.sendHex(s);
+//        serialHelper.sendHex(s);
     }
 
     private void cut(File file, String filename) {
@@ -221,7 +211,7 @@ public class FirmwareUpgradeActivity extends BaseActivity {
                 return "";
             }
             CRC32 crc32 = new CRC32();
-            crc32.update(ByteUtil.HexToByteArr(hex));
+//            crc32.update(ByteUtil.HexToByteArr(hex));
             return String.format(Locale.US,"%08X", crc32.getValue());
         } catch (Exception e) {
             Log.e("getCrc32", e.getLocalizedMessage());
@@ -300,7 +290,7 @@ public class FirmwareUpgradeActivity extends BaseActivity {
                 .callback(new YModemListener() {
                     @Override
                     public void onDataReady(byte[] data) {
-                        Log.e("yModem","onDataReady"+ ByteUtil.ByteArrToHex(data));
+//                        Log.e("yModem","onDataReady"+ ByteUtil.ByteArrToHex(data));
                     }
 
                     @Override
@@ -333,7 +323,7 @@ public class FirmwareUpgradeActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        serialHelper.close();
+//        serialHelper.close();
         super.onDestroy();
     }
 }

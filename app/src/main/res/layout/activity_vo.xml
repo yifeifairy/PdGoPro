@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.emt.pdgo.next.ui.activity.vo.VoActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:background="@drawable/bg_left_part_day"
+        android:orientation="vertical"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1" >
+            <TextClock
+                android:id="@+id/textClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/treatment_evaluation_margin"
+                android:layout_marginStart="@dimen/treatment_countdown_margin"
+                android:format12Hour="yyyy/MM/dd HH:mm:ss"
+                android:format24Hour="yyyy/MM/dd HH:mm:ss"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/wifiIv"
+                    android:src="@drawable/wifi"
+
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/netTv"
+                    android:text="4G"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/navbar_btn_text_size"
+
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/powerIv"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/charging"
+                    />
+                <TextView
+                    android:id="@+id/powerTv"
+
+                    android:textSize="@dimen/navbar_btn_text_size"
+                    android:textColor="@color/white"
+                    android:text="0"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/temp"
+                    />
+                <TextView
+                    android:id="@+id/tempTv"
+                    android:textSize="@dimen/navbar_btn_text_size"
+                    android:textColor="@color/white"
+                    android:text="37.5℃"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="3" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:id="@+id/assessLayout"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/keep_shape"
+                    android:layout_weight="1" >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@mipmap/pause"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginTop="@dimen/treatment_countdown_margin"
+                        android:layout_width="wrap_content"
+                        android:text="治疗\n评估"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/powerOffLayout"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/pause_shape"
+                    android:layout_weight="1" >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@mipmap/skip"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginTop="@dimen/treatment_countdown_margin"
+                        android:layout_width="wrap_content"
+                        android:text="下机\n指引"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:id="@+id/downLayout"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/treatment_countdown_margin"
+                    android:background="@drawable/view_data_shape"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@mipmap/view_data"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="关机"
+                        android:layout_marginTop="@dimen/treatment_countdown_margin"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:visibility="invisible"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/treatment_countdown_margin"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@mipmap/abort"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="结束\n治疗"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/treatment_countdown_margin"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1" >
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/dialog_common_title_margin_top"
+                android:orientation="vertical"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="治疗结束数据"
+                    android:gravity="center"
+                    android:textSize="@dimen/navbar_btn_text_size"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tipTv"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/treatment_countdown_margin"
+                    android:textColor="@color/red"
+                    android:text="当前无网络连接,本次治疗数据未上传"
+                    android:textSize="@dimen/navbar_btn_text_size"
+                    android:layout_height="wrap_content" >
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" >
+                <TextView
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:text="请将下列资料记录于日常APD治疗记录本上"
+                    android:textSize="@dimen/tv_setting_text_size"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_margin="@dimen/dialog_alarm_btn_margin"
+            android:layout_height="0dp" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计引流量"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/orange_root_shape" />
+
+                    <TextView
+                        android:id="@+id/totalDrainTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="ml"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                    android:layout_weight="1" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0周期引流量"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/g2_root_shape" />
+
+                    <TextView
+                        android:id="@+id/zeroDrainTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="ml"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/treatment_countdown_margin"
+                android:layout_height="match_parent" >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计灌注量"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/green_root_shape" />
+
+                    <TextView
+                        android:id="@+id/totalPerTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="ml"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                    android:layout_weight="1" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平均留置时间"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/b2_root_shape" />
+
+                    <TextView
+                        android:id="@+id/adbTimeTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/unit_min"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/treatment_countdown_margin"
+
+                android:layout_height="match_parent" >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计超滤量"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/gray_root_shape" />
+
+                    <TextView
+                        android:id="@+id/totalUltTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="ml"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                    android:layout_weight="1" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="实际治疗周期"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/purple_root_shape" />
+
+                    <TextView
+                        android:id="@+id/rlPdTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="次"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/treatment_countdown_margin"
+                android:layout_height="match_parent" >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="总治疗时间"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/blue_root_shape" />
+
+                    <TextView
+                        android:id="@+id/totalPdTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="ml"
+                        android:visibility="gone"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/white_shape"
+                    android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                    android:layout_weight="1" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="处方治疗周期"
+                        android:layout_marginTop="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/pink_root_shape" />
+
+                    <TextView
+                        android:id="@+id/rxCycleTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:text="0"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginStart="@dimen/dialog_alarm_btn_margin"
+
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="次"
+                        android:layout_marginBottom="@dimen/dialog_alarm_btn_margin"
+                        android:layout_marginEnd="@dimen/dialog_alarm_btn_margin"
+                        android:textColor="?attr/custom_attr_common_text_color_2"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

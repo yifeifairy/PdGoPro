@@ -1,47 +1,64 @@
 package com.emt.pdgo.next.ui.fragment.apd.param;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.interfaces.OnToggledListener;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.base.BaseFragment;
-import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
+import com.emt.pdgo.next.ui.view.ToggleableView;
 import com.emt.pdgo.next.ui.widget.LabeledSwitch;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class ApdDrainParamFragment extends BaseFragment {
 
-    // 引流参数
-    @BindView(R.id.drainTimeIntervalEt)
-    TextView drainTimeIntervalEt;
-    @BindView(R.id.drainThresholdEt)
-    TextView drainThresholdEt;
-    @BindView(R.id.drainZeroCycleRatioEt)
-    TextView drainZeroCycleRatioEt;
-    @BindView(R.id.drainOtherCycleRatioEt)
-    TextView drainOtherCycleRatioEt;
-    @BindView(R.id.drainTimeoutAlarmEt)
-    TextView drainTimeoutAlarmEt;
-    @BindView(R.id.drainAuxiliaryFlushVolumeEt)
-    TextView drainAuxiliaryFlushVolumeEt;
-    @BindView(R.id.drainAuxiliaryFlushNumEt)
-    TextView drainAuxiliaryFlushNumEt;
-    @BindView(R.id.drainEmptyWaitingSwitch)
-    LabeledSwitch drainEmptyWaitingSwitch;
-    @BindView(R.id.drainReminderIntervalEt)
-    TextView drainReminderIntervalEt;
-    @BindView(R.id.drainNegativeSwitch)
-    LabeledSwitch drainNegativeSwitch;
+    @BindView(R.id.label_1)
+    TextView label_1;
+    @BindView(R.id.label_2)
+    TextView label_2;
+    @BindView(R.id.label_3)
+    TextView label_3;
+    @BindView(R.id.label_4)
+    TextView label_4;
+
+    @BindView(R.id.label_5)
+    TextView label_5;
+    @BindView(R.id.label_6)
+    TextView label_6;
+    @BindView(R.id.label_7)
+    TextView label_7;
+    @BindView(R.id.label_8)
+    TextView label_8;
+
+    @BindView(R.id.label_9)
+    TextView label_9;
+    @BindView(R.id.label_10)
+    TextView label_10;
+    @BindView(R.id.label_11)
+    TextView label_11;
+    @BindView(R.id.label_12)
+    TextView label_12;
+
+    @BindView(R.id.emptyTimeLl)
+    LinearLayout emptyTimeLl;
+
+    @BindView(R.id.emptySwitch)
+    LabeledSwitch emptySwitch;
+    @BindView(R.id.emptyTv)
+    TextView emptyTv;
+
+    @BindView(R.id.negSwitch)
+    LabeledSwitch negSwitch;
+    @BindView(R.id.negTv)
+    TextView negTv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,120 +67,135 @@ public class ApdDrainParamFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_apd_drain_param, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        click();
         return view;
     }
     
     private void initView() {
-        drainTimeIntervalEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainTimeInterval));
-        drainThresholdEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainThresholdValue));
-        drainZeroCycleRatioEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage));
-        drainOtherCycleRatioEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage));
-        drainTimeoutAlarmEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainTimeoutAlarm));
-        drainAuxiliaryFlushVolumeEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainRinseVolume));
-        drainAuxiliaryFlushNumEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainRinseNumber));
-        drainReminderIntervalEt.setText(String.valueOf(ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval));
-        drainEmptyWaitingSwitch.setOn(ApdParamSetActivity.drainParameterBean.isDrainManualEmptying);
-        drainEmptyWaitingSwitch.setOnToggledListener((toggleableView, isOn) -> {
-            ApdParamSetActivity.drainParameterBean.isDrainManualEmptying = isOn;
-        });
-        drainNegativeSwitch.setOn(ApdParamSetActivity.drainParameterBean.isNegpreDrain);
-        drainNegativeSwitch.setOnToggledListener((toggleableView, isOn) -> {
-            ApdParamSetActivity.drainParameterBean.isNegpreDrain = isOn;
-        });
-    }
-
-    @OnClick({R.id.drainTimeIntervalEt, R.id.drainTimeIntervalRl, R.id.drainThresholdRl, R.id.drainThresholdEt,
-            R.id.drainZeroCycleRatioEt, R.id.drainZeroCycleRatioRl, R.id.drainOtherCycleRatioRl, R.id.drainOtherCycleRatioEt,
-            R.id.drainTimeoutAlarmEt, R.id.drainTimeoutAlarmRl,R.id.drainAuxiliaryFlushVolumeEt, R.id.drainAuxiliaryFlushVolumeRl,
-            R.id.drainAuxiliaryFlushNumRl, R.id.drainAuxiliaryFlushNumEt, R.id.drainReminderIntervalEt, R.id.drainReminderIntervalRl})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.drainTimeIntervalRl:
-            case R.id.drainTimeIntervalEt:
-                alertNumberBoardDialog(drainTimeIntervalEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_DRAIN_TIME_INTERVAL);
-                break;
-            case R.id.drainThresholdRl:
-            case R.id.drainThresholdEt:
-                alertNumberBoardDialog(drainThresholdEt.getText().toString(),PdGoConstConfig.CHECK_TYPE_DRAIN_THRESHOLD_VALUE);
-                break;
-            case R.id.drainZeroCycleRatioRl:
-            case R.id.drainZeroCycleRatioEt:
-                alertNumberBoardDialog(drainZeroCycleRatioEt.getText().toString(),PdGoConstConfig.CHECK_TYPE_DRAIN_ZERO_CYCLE_PERCENTAGE);
-                break;
-            case R.id.drainOtherCycleRatioRl:
-            case R.id.drainOtherCycleRatioEt:
-                alertNumberBoardDialog(drainOtherCycleRatioEt.getText().toString(),PdGoConstConfig.CHECK_TYPE_DRAIN_OTHER_CYCLE_PERCENTAGE);
-                break;
-            case R.id.drainTimeoutAlarmRl:
-            case R.id.drainTimeoutAlarmEt:
-                alertNumberBoardDialog(drainTimeoutAlarmEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_DRAIN_UNIT_TIMEOUT_ALARM);
-                break;
-            case R.id.drainAuxiliaryFlushVolumeEt:
-            case R.id.drainAuxiliaryFlushVolumeRl:
-                alertNumberBoardDialog(drainAuxiliaryFlushVolumeEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_DRAIN_RINSE_VOLUME);
-                break;
-            case R.id.drainAuxiliaryFlushNumEt:
-            case R.id.drainAuxiliaryFlushNumRl:
-                alertNumberBoardDialog(drainAuxiliaryFlushNumEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_DRAIN_RINSE_NUMBER);
-                break;
-            case R.id.drainReminderIntervalEt:
-            case R.id.drainReminderIntervalRl:
-                alertNumberBoardDialog(drainReminderIntervalEt.getText().toString(), PdGoConstConfig.CHECK_TYPE_DRAIN_UNIT_WARN_TIME_INTERVAL);
-                break;
+        negSwitch.setOn(ApdParamSetActivity.drainParameterBean.isNegpreDrain);
+        negTv.setText(ApdParamSetActivity.drainParameterBean.isNegpreDrain?"开":"关");
+        emptySwitch.setOn(ApdParamSetActivity.drainParameterBean.isDrainManualEmptying);
+        emptyTv.setText(ApdParamSetActivity.drainParameterBean.isDrainManualEmptying?"开":"关");
+        emptyTimeLl.setVisibility(ApdParamSetActivity.drainParameterBean.isDrainManualEmptying?View.VISIBLE:View.GONE);
+        if (ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage == 25) {
+            zeroSelect(true,false,false,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage == 50) {
+            zeroSelect(false,true,false,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage == 75) {
+            zeroSelect(false,false,true,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage == 100) {
+            zeroSelect(false,false,false,true);
         }
-    }
 
-    private void click() {
+        if (ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage == 25) {
+            otherSelect(true,false,false,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage == 50) {
+            otherSelect(false,true,false,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage == 75) {
+            otherSelect(false,false,true,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage == 100) {
+            otherSelect(false,false,false,true);
+        }
 
-    }
+        if (ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval == 10) {
+            emptySelect(true,false,false,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval == 20) {
+            emptySelect(false,true,false,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval == 30) {
+            emptySelect(false,false,true,false);
+        } else if (ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval == 60) {
+            emptySelect(false,false,false,true);
+        }
 
-    private void alertNumberBoardDialog(String value, String type) {
-        NumberBoardDialog dialog = new NumberBoardDialog(getActivity(), value, type, false, true);
-        dialog.show();
-        dialog.setOnDialogResultListener(new NumberBoardDialog.OnDialogResultListener() {
+        negSwitch.setOnToggledListener(new OnToggledListener() {
             @Override
-            public void onResult(String mType, String result) {
-                if (!TextUtils.isEmpty(result)) {
-                    switch (mType) {
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_TIME_INTERVAL: //流量测速 时间间隔  :  60-600
-                            drainTimeIntervalEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainTimeInterval = Integer.parseInt(result);
-                            break;
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_THRESHOLD_VALUE: //流量测速 阈值  :  30-200
-                            drainThresholdEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainThresholdValue = Integer.parseInt(result);
-                            break;
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_ZERO_CYCLE_PERCENTAGE: //0周期引流比例  :  50-100
-                            drainZeroCycleRatioEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage = Integer.parseInt(result);
-                            break;
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_OTHER_CYCLE_PERCENTAGE: //其他周期引流比例  : 50-100
-                            drainOtherCycleRatioEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage = Integer.parseInt(result);
-                            break;
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_UNIT_TIMEOUT_ALARM: //引流/灌注超时报警  : 0-600
-                            drainTimeoutAlarmEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainTimeoutAlarm = Integer.parseInt(result);
-                            break;
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_RINSE_VOLUME: //引流辅助冲洗 量  :  30-200
-                            drainAuxiliaryFlushVolumeEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainRinseVolume = Integer.parseInt(result);
-                            break;
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_RINSE_NUMBER: //引流辅助冲洗 次数  :  1-3改成0-3
-                            drainAuxiliaryFlushNumEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainRinseNumber = Integer.parseInt(result);
-//                    } else if (mType.equals(PdGoConstConfig.CHECK_TYPE_DRAIN_UNIT_LATENCY_TIME)) {//最末引流等待  : 0-60
-//                        etUnitLatencyTime.setText(result);
-                            break;
-                        case PdGoConstConfig.CHECK_TYPE_DRAIN_UNIT_WARN_TIME_INTERVAL: //最末引流提醒间隔  : 0-60
-                            drainReminderIntervalEt.setText(result);
-                            ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval = Integer.parseInt(result);
-                            break;
-                    }
-                }
+            public void onSwitched(ToggleableView toggleableView, boolean isOn) {
+                ApdParamSetActivity.drainParameterBean.isNegpreDrain = isOn;
+                negSwitch.setOn(ApdParamSetActivity.drainParameterBean.isNegpreDrain);
+                negTv.setText(ApdParamSetActivity.drainParameterBean.isNegpreDrain?"开":"关");
             }
         });
+        emptySwitch.setOnToggledListener(new OnToggledListener() {
+            @Override
+            public void onSwitched(ToggleableView toggleableView, boolean isOn) {
+                ApdParamSetActivity.drainParameterBean.isDrainManualEmptying = isOn;
+                emptySwitch.setOn(ApdParamSetActivity.drainParameterBean.isDrainManualEmptying);
+                emptyTv.setText(ApdParamSetActivity.drainParameterBean.isDrainManualEmptying?"开":"关");
+                emptyTimeLl.setVisibility(ApdParamSetActivity.drainParameterBean.isDrainManualEmptying?View.VISIBLE:View.GONE);
+            }
+        });
+
+        label_1.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage = 25;
+            zeroSelect(true,false,false,false);
+        });
+        label_2.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage = 50;
+            zeroSelect(false,true,false,false);
+        });
+        label_3.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage = 75;
+            zeroSelect(false,false,true,false);
+        });
+        label_4.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainZeroCyclePercentage = 100;
+            zeroSelect(false,false,false,true);
+        });
+
+        label_5.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage = 25;
+            otherSelect(true,false,false,false);
+        });
+        label_6.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage = 50;
+            otherSelect(false,true,false,false);
+        });
+        label_7.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage = 75;
+            otherSelect(false,false,true,false);
+        });
+        label_8.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainOtherCyclePercentage = 100;
+            otherSelect(false,false,false,true);
+        });
+
+        label_9.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval = 10;
+            emptySelect(true,false,false,false);
+        });
+        label_10.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval = 20;
+            emptySelect(false,true,false,false);
+        });
+        label_11.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval = 30;
+            emptySelect(false,false,true,false);
+        });
+        label_12.setOnClickListener(view -> {
+            ApdParamSetActivity.drainParameterBean.drainWarnTimeInterval = 60;
+            emptySelect(false,false,false,true);
+        });
+
+    }
+
+    private void zeroSelect(boolean l1, boolean l2,boolean l3, boolean l4) {
+        label_1.setSelected(l1);
+        label_2.setSelected(l2);
+        label_3.setSelected(l3);
+        label_4.setSelected(l4);
+    }
+
+    private void otherSelect(boolean l5, boolean l6,boolean l7, boolean l8) {
+        label_5.setSelected(l5);
+        label_6.setSelected(l6);
+        label_7.setSelected(l7);
+        label_8.setSelected(l8);
+    }
+
+    private void emptySelect(boolean l9, boolean l10,boolean l11, boolean l12) {
+        label_9.setSelected(l9);
+        label_10.setSelected(l10);
+        label_11.setSelected(l11);
+        label_12.setSelected(l12);
     }
 
     private Unbinder unbinder;

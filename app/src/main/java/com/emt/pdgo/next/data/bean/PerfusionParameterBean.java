@@ -24,11 +24,11 @@ public class PerfusionParameterBean extends BaseBean implements Serializable {
 //    /*** 加热袋重量最低值 g 100-1000 **/
 //    public int minWeight = 100;
 
-    public boolean perfAllowAbdominalVolume = false; // 是0否1
+    public int perfAllowAbdominalVolume = 1; // 是0否1
     /*** 灌注最大警戒值 g 1000-5000 **/
     public int perfMaxWarningValue = 3000;
     /*** 流量测定时间间隔 s **/
-    public int perfTimeInterval = 60;
+    public int perfTimeInterval = 30;
     /*** 流量测定 阈值 g **/
     public int perfThresholdValue = 30;
     /*** 加热袋重量最低值 g 100-1000 **/

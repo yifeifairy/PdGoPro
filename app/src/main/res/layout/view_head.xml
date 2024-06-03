@@ -160,7 +160,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:singleLine="true"
-        android:text=""
+        android:text="关于"
         android:textColor="?attr/custom_attr_common_text_color"
         android:textSize="@dimen/navbar_title_text_size" />
 

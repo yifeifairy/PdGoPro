@@ -22,7 +22,7 @@ public class SupplyParameterBean extends BaseBean implements Serializable {
 //    public int minWeight = 500;
 
     /*** 流量测定时间间隔 s 60- 600 **/
-    public int supplyTimeInterval = 60;
+    public int supplyTimeInterval = 30;
     /*** 流量测定 阈值 g 30-200 **/
     public int supplyThresholdValue = 30;
     /*** 补液目标保护值 g 0-500 **/

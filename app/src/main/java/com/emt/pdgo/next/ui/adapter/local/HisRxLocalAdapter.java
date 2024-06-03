@@ -26,7 +26,8 @@ public class HisRxLocalAdapter extends BaseQuickAdapter<RxEntity, BaseViewHolder
         helper.setText(R.id.tv_item7, item.endAbdVol + "");
         helper.setText(R.id.tv_item12, item.lastTimeAbdVol+"");
         helper.setText(R.id.tv_item13, item.ult+"");
-        helper.setText(R.id.tv_item14, item.ulTreatTime+"");
+        helper.setText(R.id.tv_item14, item.ulTreatTime+"").addOnClickListener(R.id.applyBtn);;
+
         int offset = helper.getLayoutPosition();
         if (offset % 2 != 0) {
             helper.getView(R.id.layout_item).setBackgroundColor(0xffffffff);

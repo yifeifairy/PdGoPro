@@ -17,18 +17,15 @@ import com.emt.pdgo.next.data.serial.SerialRequestBean;
 import com.emt.pdgo.next.data.serial.SerialRequestMainBean;
 import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.data.serial.treatment.SerialTreatmentPrescriptBean;
-import com.emt.pdgo.next.database.EmtDataBase;
-import com.emt.pdgo.next.database.entity.RxEntity;
 import com.emt.pdgo.next.net.APIServiceManage;
 import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
-import com.emt.pdgo.next.ui.activity.TreatmentFragmentActivity;
+import com.emt.pdgo.next.ui.activity.PreHeatActivity;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.ui.dialog.SpecialNumberDialog;
 import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.CacheUtils;
-import com.emt.pdgo.next.util.EmtTimeUil;
 import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.emt.pdgo.next.util.helper.MD5Helper;
 import com.google.gson.Gson;
@@ -305,29 +302,29 @@ public class ExpertActivity extends BaseActivity {
 //                            0,0, entity.finalSupply)
 //                    ,500);
 //        }
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    RxEntity hisRx = new RxEntity();
-                    hisRx.time = EmtTimeUil.getTime();
-                    hisRx.perVol = entity.total;
-                    hisRx.perCycleVol = entity.cycleVol;
-                    hisRx.treatCycle = entity.cycle;
-                    hisRx.firstPerVol = entity.firstVol;
-                    hisRx.abdTime = entity.retainTime;
-                    hisRx.endAbdVol = entity.finalRetainVol;
-                    hisRx.lastTimeAbdVol = entity.lastRetainVol;
-                    hisRx.ult = entity.ultVol;
-                    hisRx.ulTreatTime = "1小时";
-//                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
-                    EmtDataBase
-                            .getInstance(ExpertActivity.this)
-                            .getRxDao()
-                            .insertRx(hisRx);
-                }
-            });
-            doGoTOActivity(TreatmentFragmentActivity.class);
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//
+//                    RxEntity hisRx = new RxEntity();
+//                    hisRx.time = EmtTimeUil.getTime();
+//                    hisRx.perVol = entity.total;
+//                    hisRx.perCycleVol = entity.cycleVol;
+//                    hisRx.treatCycle = entity.cycle;
+//                    hisRx.firstPerVol = entity.firstVol;
+//                    hisRx.abdTime = entity.retainTime;
+//                    hisRx.endAbdVol = entity.finalRetainVol;
+//                    hisRx.lastTimeAbdVol = entity.lastRetainVol;
+//                    hisRx.ult = entity.ultVol;
+//                    hisRx.ulTreatTime = "1小时";
+////                            Log.e("处方设置","处方设置--"+hisRx.ulTreatTime);
+//                    EmtDataBase
+//                            .getInstance(ExpertActivity.this)
+//                            .getRxDao()
+//                            .insertRx(hisRx);
+//                }
+//            });
+            doGoTOActivity(PreHeatActivity.class);
         }
 //        CacheUtils.getInstance().getACache().put(PdGoConstConfig.CYCLE_PARAMS, cycleBean);
     }
