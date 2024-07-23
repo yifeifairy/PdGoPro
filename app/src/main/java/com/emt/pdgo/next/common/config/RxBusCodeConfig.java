@@ -194,12 +194,14 @@ public class RxBusCodeConfig {
 //    public static final int EVENT_TREATMENT_FLUSH_REFRESH = 807;
 //    /*** 更新引流目标 */
 //    public static final int EVENT_TREATMENT_DRAIN_REFRESH_TARGET = 809;
+    public static final int BOARD_VERSION = 810;
 
     public static final int EVENT_DPR = 1110;
 
     public static final int CALIBRATION = 1111;
 
     public static final int CHECK_PER = 1112;
+
 
 
     /*** 关闭TreatmentAlarmDialog */
@@ -210,5 +212,7 @@ public class RxBusCodeConfig {
     public static final int RESULT_REPORT = 901;
 
     public static final int NET_STATUS = 902;
+
+    public static final int VALVE_STATUS = 903;
 
 }

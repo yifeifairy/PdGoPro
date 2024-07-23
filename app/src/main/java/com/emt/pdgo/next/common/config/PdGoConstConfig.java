@@ -45,7 +45,7 @@ public class PdGoConstConfig {
 //    /*** 预冲参数 */
     public static String FIRST_RINSE_PARAMETER = "first_rinseParameter";
     /*** 引流参数 */
-    public static String DRAIN_PARAMETER = "drain_parameter_entity";
+    public static String DRAIN_PARAMETER = "drainParameter_entity";
     /*** 留腹参数 */
     public static String RETAIN_PARAM = "retain_param_entity";
     /*** 灌注参数 */
@@ -78,7 +78,7 @@ public class PdGoConstConfig {
     public static String KID_PARAMS = "kid_params";
     public static String TPD_PARAMS = "tpd_params";
     public static String aApd_PARAMS = "aApd_params";
-    public static String EXPERT_PARAMS = "expert_params";
+    public static String EXPERT_PARAMS = "expertParam";
 
     public static String PID_BEAN = "pid_bean";
     public static String IPD_BEAN = "ipdBean";

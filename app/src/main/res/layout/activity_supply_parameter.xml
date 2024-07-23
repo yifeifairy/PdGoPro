@@ -186,7 +186,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="启动补液的加热袋重量最低值"
+            android:text="加热袋激活补液最低值"
             android:textColor="?attr/custom_attr_common_text_color"
             android:textSize="@dimen/input_box_tv_text_size" />
 

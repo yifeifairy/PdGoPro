@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.hardware.display.DisplayManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -35,9 +34,13 @@ import com.emt.pdgo.next.common.config.CommandReceiveConfig;
 import com.emt.pdgo.next.common.config.CommandSendConfig;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
 import com.emt.pdgo.next.common.config.RxBusCodeConfig;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.SelfCheckDeviceStatus;
+import com.emt.pdgo.next.data.serial.ReceivePublicBean;
+import com.emt.pdgo.next.data.serial.ReceivePublicDataBean;
 import com.emt.pdgo.next.data.serial.ReceiveResultDataBean;
 import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
+import com.emt.pdgo.next.data.serial.receive.selfcheck.PubValBean;
 import com.emt.pdgo.next.data.serial.receive.selfcheck.ReceiveThermostattBean;
 import com.emt.pdgo.next.data.serial.receive.selfcheck.ReceiveValveBean;
 import com.emt.pdgo.next.data.serial.receive.selfcheck.ReceiveWeightBean;
@@ -55,6 +58,7 @@ import com.emt.pdgo.next.util.MarioResourceHelper;
 import com.emt.pdgo.next.util.NetworkUtils;
 import com.emt.pdgo.next.util.ScreenUtil;
 import com.emt.pdgo.next.util.helper.JsonHelper;
+import com.google.gson.Gson;
 import com.pdp.rmmit.pdp.R;
 
 import java.util.Calendar;
@@ -260,12 +264,13 @@ public class SelfCheckActivity extends BaseActivity {
             "android.permission.REQUEST_INSTALL_PACKAGES",
             "android.permission.MODIFY_PHONE_STATE",
             "android.permission.WRITE_SETTINGS",
+            "READ_PHONE_STATE",
             "android.permission.MANAGE_EXTERNAL_STORAGE"};
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    @BindView(R.id.snNane)
+    TextView snName;
+    @BindView(R.id.versionName)
+    TextView versionName;
 
     @Override
     public void initAllViews() {
@@ -277,6 +282,9 @@ public class SelfCheckActivity extends BaseActivity {
         mCompositeDisposable = new CompositeDisposable();
 //        doGoCloseTOActivity(TreatmentFragmentActivity.class,"");
         getToken();
+        snName.setText(EmtConstant.sn_name);
+//        snName.setOnClickListener(view -> doGoCloseTOActivity(PrescriptionActivity.class,""));
+        versionName.setText(EmtConstant.push_version);
     }
 
     @BindView(R.id.powerIv)
@@ -739,11 +747,12 @@ public class SelfCheckActivity extends BaseActivity {
             // TODO Auto-generated method stub
 //            Log.e(TAG, " runnable: " + MyApplication.currCmd);
             //要做的事情，这里再次调用此Runnable对象，以实现每两秒实现一次的定时器操作
-            if (MyApplication.currCmd.equals(CommandSendConfig.METHOD_STATUS_ON)) {
-                sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
-                handler.postDelayed(this, 3000);
-                Log.e("自检界面","currCmd---"+CommandSendConfig.METHOD_STATUS_ON);
-            } else if (MyApplication.currCmd.equals(CommandSendConfig.METHOD_SELFCHECK_START)) {
+//            if (MyApplication.currCmd.equals(CommandSendConfig.METHOD_STATUS_ON)) {
+//                sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+//                handler.postDelayed(this, 3000);
+//                Log.e("自检界面","currCmd---"+CommandSendConfig.METHOD_STATUS_ON);
+//            } else
+                if (MyApplication.currCmd.equals(CommandSendConfig.METHOD_SELFCHECK_START)) {
                 sendToMainBoard(CommandDataHelper.getInstance().selfCheckCmdJson(PdproHelper.getInstance().getOtherParamBean().upper, PdproHelper.getInstance().getOtherParamBean().lower));
                 handler.postDelayed(this, 3000);
 //                APIServiceManage.getInstance().postApdCode("Z1000");
@@ -789,6 +798,7 @@ public class SelfCheckActivity extends BaseActivity {
                         wifiIv.setVisibility(View.VISIBLE);
                     } else if (status == 0) {
                         netTv.setTextColor(Color.WHITE);
+                        wifiIv.setVisibility(View.INVISIBLE);
                     }
                 } else {
                     netTv.setTextColor(Color.RED);
@@ -807,8 +817,10 @@ public class SelfCheckActivity extends BaseActivity {
     @Subscribe(code = RxBusCodeConfig.EVENT_MAIN_BOARD_OK)
     public void receivemMainBoardOk(String mData) {
         Log.e(TAG, " 打开串口成功 ");
-        MyApplication.currCmd = CommandSendConfig.METHOD_STATUS_ON;
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        MyApplication.currCmd = CommandSendConfig.METHOD_SELFCHECK_START;
+//        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        sendToMainBoard(CommandDataHelper.getInstance().selfCheckCmdJson(PdproHelper.getInstance().getOtherParamBean().upper, PdproHelper.getInstance().getOtherParamBean().lower));
+
 //        if (getThemeTag() == -1 && PdproHelper.getInstance().getUserParameterBean().isNight) {
 //            sendCommandInterval(CommandDataHelper.getInstance().LedOpen("all",false,1), 500);
 //        }
@@ -1001,6 +1013,168 @@ public class SelfCheckActivity extends BaseActivity {
         MyApplication.hasHello = true;
     }
 
+    private Gson gson;
+    @Subscribe(code = RxBusCodeConfig.VALVE_STATUS)
+    public void receiveValve(String mSerialJson) {
+        ReceivePublicBean mBean = JsonHelper.jsonToClass(mSerialJson, ReceivePublicBean.class);
+        if (gson == null) {
+            gson = new Gson();
+        }
+        PubValBean valBean =  JsonHelper.jsonToClass(gson.toJson(mBean.data), PubValBean.class);;
+        if (CommandReceiveConfig.MSG_OK.equals(valBean.perfuse)) {//灌注阀正常
+            mSelfCheckDeviceStatus.modulePerfusionOK = true;
+        } else {
+            APIServiceManage.getInstance().postApdCode("Z1015");
+            mSelfCheckDeviceStatus.modulePerfusionOK = false;
+            runOnUiThread(()->{
+//                saveFaultCodeLocal("灌注阀异常");
+            });
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+        }
+        if (CommandReceiveConfig.MSG_OK.equals(valBean.supply)) {//补液阀正常
+            mSelfCheckDeviceStatus.moduleSupplyOK = true;
+        }else {
+            mSelfCheckDeviceStatus.moduleSupplyOK = false;
+            APIServiceManage.getInstance().postApdCode("Z1014");
+            runOnUiThread(()->{
+//                saveFaultCodeLocal("补液阀异常");
+            });
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+        }
+        if (CommandReceiveConfig.MSG_OK.equals(valBean.supply2)) {//末袋补液阀正常
+            mSelfCheckDeviceStatus.moduleSupply2OK = true;
+        }else {
+            mSelfCheckDeviceStatus.moduleSupply2OK = false;
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+            runOnUiThread(()->{
+//                saveFaultCodeLocal("末袋补液阀异常");
+            });
+        }
+        if (CommandReceiveConfig.MSG_OK.equals(valBean.safe)) {//安全阀正常
+            mSelfCheckDeviceStatus.moduleSafeOK = true;
+        }else {
+            mSelfCheckDeviceStatus.moduleSafeOK = false;
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+            runOnUiThread(()->{
+//                saveFaultCodeLocal("安全阀异常");
+            });
+        }
+        if (CommandReceiveConfig.MSG_OK.equals(valBean.drain)) {//引流阀正常
+            mSelfCheckDeviceStatus.moduleDrainOK = true;
+        }else {
+            mSelfCheckDeviceStatus.moduleDrainOK = false;
+            APIServiceManage.getInstance().postApdCode("Z1016");
+            runOnUiThread(()->{
+//                saveFaultCodeLocal("引流阀异常");
+            });
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+        }
+        if (CommandReceiveConfig.MSG_OK.equals(valBean.vaccum)) {//负压引流阀正常
+            mSelfCheckDeviceStatus.moduleNegOK = true;
+        }else {
+            mSelfCheckDeviceStatus.moduleNegOK = false;
+            runOnUiThread(()->{
+//                saveFaultCodeLocal("负压引流阀异常");
+            });
+//            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+        }
+
+        //阀自检完成
+        refreshSelfCheckStatus(2);
+    }
+
+    @Subscribe(code = RxBusCodeConfig.EVENT_RECEIVE_OTHER)
+    public void receiveOther(String mSerialJson) {
+        Log.e(TAG, "  EVENT_RECEIVE_OTHER ");
+        ReceivePublicDataBean mBean = JsonHelper.jsonToClass(mSerialJson, ReceivePublicDataBean.class);
+        runOnUiThread(()-> {
+            if (mBean.publish.topic.equals("valve/open")) {
+                switch (mBean.publish.msg) {
+                    case "status comm err":
+                        showTipsCommonDialog("阀门打开通信故障");
+                        break;
+                    case "status data err":
+                        showTipsCommonDialog("阀门打开读取数据包解析错误");
+                        break;
+                    case "lower comm err":
+                        showTipsCommonDialog("下位阀打开通信故障");
+                        break;
+                    case "lower data err":
+                        showTipsCommonDialog("下位阀打开命令传输数据错误");
+                        break;
+                    case "upper comm err":
+                        showTipsCommonDialog("上位阀打开命令传输通信故障");
+                        break;
+                    case "upper data err":
+                        showTipsCommonDialog("上位阀打开命令传输数据错误");
+                        break;
+                    case "finish":
+//                        PubValBean valBean =  JsonHelper.jsonToClass(gson.toJson(mSerialJson.), PubValBean.class);;
+//                        if (CommandReceiveConfig.MSG_OK.equals(valBean.perfuse)) {//灌注阀正常
+//                            mSelfCheckDeviceStatus.modulePerfusionOK = true;
+//                        } else {
+//                            APIServiceManage.getInstance().postApdCode("Z1015");
+//                            mSelfCheckDeviceStatus.modulePerfusionOK = false;
+//                            runOnUiThread(()->{
+////                saveFaultCodeLocal("灌注阀异常");
+//                            });
+////            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                        }
+//                        if (CommandReceiveConfig.MSG_OK.equals(valBean.supply)) {//补液阀正常
+//                            mSelfCheckDeviceStatus.moduleSupplyOK = true;
+//                        }else {
+//                            mSelfCheckDeviceStatus.moduleSupplyOK = false;
+//                            APIServiceManage.getInstance().postApdCode("Z1014");
+//                            runOnUiThread(()->{
+////                saveFaultCodeLocal("补液阀异常");
+//                            });
+////            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                        }
+//                        if (CommandReceiveConfig.MSG_OK.equals(valBean.supply2)) {//末袋补液阀正常
+//                            mSelfCheckDeviceStatus.moduleSupply2OK = true;
+//                        }else {
+//                            mSelfCheckDeviceStatus.moduleSupply2OK = false;
+////            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                            runOnUiThread(()->{
+////                saveFaultCodeLocal("末袋补液阀异常");
+//                            });
+//                        }
+//                        if (CommandReceiveConfig.MSG_OK.equals(valBean.safe)) {//安全阀正常
+//                            mSelfCheckDeviceStatus.moduleSafeOK = true;
+//                        }else {
+//                            mSelfCheckDeviceStatus.moduleSafeOK = false;
+////            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                            runOnUiThread(()->{
+////                saveFaultCodeLocal("安全阀异常");
+//                            });
+//                        }
+//                        if (CommandReceiveConfig.MSG_OK.equals(valBean.drain)) {//引流阀正常
+//                            mSelfCheckDeviceStatus.moduleDrainOK = true;
+//                        }else {
+//                            mSelfCheckDeviceStatus.moduleDrainOK = false;
+//                            APIServiceManage.getInstance().postApdCode("Z1016");
+//                            runOnUiThread(()->{
+////                saveFaultCodeLocal("引流阀异常");
+//                            });
+////            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                        }
+//                        if (CommandReceiveConfig.MSG_OK.equals(valBean.vaccum)) {//负压引流阀正常
+//                            mSelfCheckDeviceStatus.moduleNegOK = true;
+//                        }else {
+//                            mSelfCheckDeviceStatus.moduleNegOK = false;
+//                            runOnUiThread(()->{
+////                saveFaultCodeLocal("负压引流阀异常");
+//                            });
+////            sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
+//                        }
+//
+//                        //阀自检完成
+//                        refreshSelfCheckStatus(2);
+                        break;
+                }
+            }
+        });
+    }
     @Subscribe(code = RxBusCodeConfig.EVENT_RECEIVE_SELF_CHECK_VALVE)
     public void receiveSelfCheckValveData(String receiveData) {//阀自检
 
@@ -1178,6 +1352,7 @@ public class SelfCheckActivity extends BaseActivity {
 //                    sendToMainBoard(CommandDataHelper.getInstance().customCmd("selfcheck/stop"));
                     // 自检未通过时 显示重新自检按钮
                     setWarnContent();
+                    initBeepSoundSus(R.raw.medium_alarm);
                     btnReSelfcheck.setVisibility(View.VISIBLE);
                     layoutReportInclude.setVisibility(View.VISIBLE);
                     btnOk.setVisibility(View.GONE);
@@ -1263,13 +1438,13 @@ public class SelfCheckActivity extends BaseActivity {
             ivModuleUpperWeight.setBackgroundResource(R.drawable.icon_error);
             tvModuleUpperWeight.setTextColor(getResources().getColor(R.color.text_warning));
 //            checkFailContent += "上位秤故障、";
-            checkFailContent += "透析液模块(上位秤)故障、";
+            checkFailContent += "透析液模块(上位秤)重量异常、";
         }
         if (!mSelfCheckDeviceStatus.moduleLowerWeightOK) {//下位秤自检未通过
             ivModuleLowerWeight.setBackgroundResource(R.drawable.icon_error);
             tvModuleLowerWeight.setTextColor(getResources().getColor(R.color.text_warning));
 //            checkFailContent += "下位秤故障、";
-            checkFailContent += "废液(下位秤)故障、";
+            checkFailContent += "废液(下位秤)重量异常、";
         }
 
         if (!mSelfCheckDeviceStatus.t0) {//t0自检未通过
@@ -1356,11 +1531,11 @@ public class SelfCheckActivity extends BaseActivity {
                         SelfCheckActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (currCountdown == 80) {
-                                    setWarnContent();
-                                    btnReSelfcheck.setVisibility(View.VISIBLE);
-                                    layoutReportInclude.setVisibility(View.VISIBLE);
-                                }
+//                                if (currCountdown == 80) {
+////                                    setWarnContent();
+//                                    btnReSelfcheck.setVisibility(View.VISIBLE);
+//                                    layoutReportInclude.setVisibility(View.VISIBLE);
+//                                }
                                 progressBar.setProgress(currCountdown);
                                 tvModeProgress.setText(currCountdown + "%");
                             }
@@ -1396,53 +1571,14 @@ public class SelfCheckActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         RxBus.get().unRegister(this);
         CmdQueueHelper.getInstance().clear();
         Log.e("自检","onDestroy");
         mCompositeDisposable.clear();
         handler.removeCallbacks(runnable);
         countDownTimer.cancel();
-    }
+        super.onDestroy();
 
-    @Override
-    protected void onStop() {
-        super.onStop();
     }
-
-//    private void alertNumberBoardDialog(String value, String type) {
-//        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, false);
-//        dialog.show();
-//        dialog.setOnDialogResultListener((mType, result) -> {
-//            if (!TextUtils.isEmpty(result)) {
-////                    Logger.d(result);
-//                Calendar calendar = Calendar.getInstance();//取得当前时间的年月日 时分秒
-//
-//                int year = calendar.get(Calendar.YEAR);
-//                int month = calendar.get(Calendar.MONTH) + 1;
-//                int day = calendar.get(Calendar.DAY_OF_MONTH);
-//                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-//                int minute = calendar.get(Calendar.MINUTE);
-//                int second = calendar.get(Calendar.SECOND);
-//                String mMonth = "";
-//
-//                if (month >= 10) {
-//                    mMonth = "" + month;
-//                } else {
-//                    mMonth = "0" + month;
-//                }
-//
-//                //123加上月份
-//                String tempPwd = "123" + mMonth;
-//                Log.e("长按", "tempPwd：" + tempPwd);
-//                if (mType.equals(PdGoConstConfig.CHECK_TYPE_ENGINEER_PWD)) {//工程师模式的密码
-//                    if (tempPwd.equals(result)) {
-//                        countDownTimer.cancel();
-//                        doGoTOActivity(EngineerSettingActivity.class);
-//                    }
-//                }
-//            }
-//        });
-//    }
 
 }

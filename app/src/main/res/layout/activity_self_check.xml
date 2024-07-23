@@ -161,6 +161,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|left"
                 android:text="@string/sn_name"
+                android:id="@+id/snNane"
                 android:textColor="@color/white"
                 android:textSize="@dimen/custom_main_title_size_4" />
             <TextView
@@ -187,6 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/push_version"
+                android:id="@+id/versionName"
                 android:textColor="@color/white"
                 android:textSize="@dimen/custom_main_title_size_4"
                 />

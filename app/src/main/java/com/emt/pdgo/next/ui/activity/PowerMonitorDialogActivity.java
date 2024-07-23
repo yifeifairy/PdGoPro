@@ -1,6 +1,7 @@
 package com.emt.pdgo.next.ui.activity;
 
 
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,8 @@ public class PowerMonitorDialogActivity extends BaseActivity {
     private Disposable countDownDisposable;
     private int currCountdown = 31;
 
+    private MediaPlayer player;
+
     @Override
     public void initAllViews() {
         setContentView(R.layout.activity_power_monitor_dialog);
@@ -61,6 +64,9 @@ public class PowerMonitorDialogActivity extends BaseActivity {
 //                speak("请取出卡匣,关闭所有管夹");
             sendCommandInterval(CommandDataHelper.getInstance().isValveOpen(true,"group3"),1000);
         }
+
+        initBeepSoundSus(R.raw.medium_alarm);
+
     }
     @Override
     public void registerEvents() {
@@ -68,7 +74,7 @@ public class PowerMonitorDialogActivity extends BaseActivity {
 
     @Override
     public void initViewData() {
-        if (!MyApplication.treatmentRunning && mCompositeDisposable == null) {
+        if (!MyApplication.treatmentRunning && mCompositeDisposable == null && MyApplication.state != 1) {
             mCompositeDisposable = new CompositeDisposable();
             startLoopCountDown();
         }

@@ -3,12 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="?attr/custom_attr_dialog_background"
-    android:layout_width="match_parent"
-    android:layout_marginTop="@dimen/input_box_et_margin_right"
-    android:layout_marginBottom="@dimen/input_box_et_margin_right"
-    android:layout_marginStart="@dimen/input_box_et_height"
-    android:layout_marginEnd="@dimen/input_box_et_height"
-    android:layout_height="match_parent">
+    android:layout_width="@dimen/number_board_layout_width"
+
+    android:layout_height="@dimen/number_board_layout_height">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -74,6 +71,48 @@
             android:text="专家模式"
             android:layout_margin="@dimen/treatment_countdown_margin"
             android:id="@+id/spTv"
+            android:gravity="center"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@drawable/radio_text_select"
+            android:background="@drawable/radio_bg_select"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="DPR模式"
+            android:id="@+id/dprTv"
+            android:gravity="center"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@drawable/radio_text_select"
+            android:background="@drawable/radio_bg_select"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="aApd模式"
+            android:layout_margin="@dimen/treatment_countdown_margin"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:textSize="@dimen/navbar_btn_text_size"
+            android:textColor="@drawable/radio_text_select"
+            android:background="@drawable/radio_bg_select"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:layout_margin="@dimen/treatment_countdown_margin"
             android:gravity="center"
             android:textSize="@dimen/navbar_btn_text_size"
             android:textColor="@drawable/radio_text_select"

@@ -163,7 +163,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:src="@mipmap/guide"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:layout_marginEnd="@dimen/treatment_countdown_margin"
                 android:layout_height="match_parent" />
 
@@ -171,7 +171,7 @@
                 android:id="@+id/noGuideIv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:layout_marginStart="@dimen/treatment_countdown_margin"
                 android:layout_marginEnd="@dimen/treatment_countdown_margin"
                 android:src="@mipmap/no_guide"

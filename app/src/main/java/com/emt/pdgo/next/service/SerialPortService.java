@@ -41,7 +41,7 @@ public class SerialPortService extends Service {
 
     private YSerialPort serialPortPlus;
 
-    private final String mSerialName = "/dev/ttyS0";//"/dev/ttyAMA2";
+    private final String mSerialName = "/dev/ttyS1";//"/dev/ttyAMA2";
     private final int mSerialBaudrate = 115200;
 
     public volatile boolean isOpen = false;
@@ -181,7 +181,7 @@ public class SerialPortService extends Service {
 //                    }
 //                };
 //            }
-            serialPortPlus = new YSerialPort(this.getApplication(),"/dev/ttyS1","115200");
+            serialPortPlus = new YSerialPort(this.getApplication(),mSerialName,"115200");
             serialPortPlus.addDataListener(new DataListener() {
                 @Override
                 public void value(String hexString, byte[] bytes) {
@@ -233,7 +233,6 @@ public class SerialPortService extends Service {
 //                MyApplication.isOpenMainSerial = false;
 //            }
             RxBus.get().send(RxBusCodeConfig.EVENT_MAIN_BOARD_OK, "");
-
         } catch (Exception e) {
             isOpen = false;
             MyApplication.isOpenMainSerial = false;
@@ -461,7 +460,9 @@ public class SerialPortService extends Service {
                         Log.e(TAG, "接收->DPR数据: " + mSerialJson);
                     } else if (mBean.publish.topic.contains("check/perfuse")) {
                         RxBus.get().send(RxBusCodeConfig.CHECK_PER, mBean);
-                    } else {//{"publish":{"topic":"power_monitor","msg":"ac power off","data":{}},"sign":"9ba3a2204dfb0ebe8873b324a07674b7"}
+                    } else if (mBean.publish.topic.equals("valve/open") && mBean.publish.msg.equals("finish")) {
+                        RxBus.get().send(RxBusCodeConfig.VALVE_STATUS, myGson.toJson(mBean.publish));
+                    }else {//{"publish":{"topic":"power_monitor","msg":"ac power off","data":{}},"sign":"9ba3a2204dfb0ebe8873b324a07674b7"}
                         //{"publish":{"topic":"treatment","msg":"start","data":{}},"sign":"2a7ba846bf87413456bc45a4f1ea85fb"}
                         Log.d(TAG, "接收->其他数据: " + mSerialJson);
                         RxBus.get().send(RxBusCodeConfig.EVENT_RECEIVE_OTHER, mSerialJson);
@@ -501,6 +502,13 @@ public class SerialPortService extends Service {
                         if (mBean.result.topic.contains("motolocal/calibration")) {
                             RxBus.get().send(RxBusCodeConfig.CALIBRATION, myGson.toJson(mBean.result.data));
                         }
+
+                        if (mBean.result.topic.contains("board_version")) {
+                            Log.e("sssssss",myGson.toJson(mBean.result.msg));
+
+                            RxBus.get().send(RxBusCodeConfig.BOARD_VERSION, mBean);
+                        }
+
                         //{"result":{"topic":"status/on","code":0,"msg":"ok","data":{}},"sign":"0e57f2988589e77e14ad6fb2bb605cdf"}
                         //{"result":{"topic":"selfcheck/start","code":0,"msg":"ok","data":{}},"sign":"c37efdf6408439658ba2cad171c6787b"}
 //                        else {

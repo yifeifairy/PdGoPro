@@ -61,232 +61,377 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_weight="0.6"
+        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+        android:layout_marginRight="@dimen/treatment_countdown_margin"
         android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <LinearLayout
-            android:id="@+id/totalVolLl"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/input_box_item_margin_right"
-            android:layout_marginBottom="@dimen/input_box_item_margin_right"
-            android:layout_marginEnd="@dimen/input_box_item_margin_right"
-            android:layout_marginStart="@dimen/treatment_countdown_margin"
-
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/gray_shape"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:layout_centerVertical="true"
-                android:text="@string/input_title_prescription_item_1"
-                android:textColor="@color/white"
-                android:textSize="@dimen/navbar_btn_text_size" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="0.6"
-                android:layout_height="0dp" >
-
-                <TextView
-                    android:id="@+id/totalVolTv"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:maxLength="7"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/text_default_30"
-                    android:textSize="@dimen/input_health_info_tv_value_text_size"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    android:text="@string/unit_ml"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/navbar_btn_text_size" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lastVolLl"
             android:layout_width="0dp"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
+            android:padding="@dimen/treatment_countdown_margin"
             android:layout_margin="@dimen/input_box_item_margin_right"
-
-            android:layout_weight="1"
-            android:background="@drawable/pa1"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
+            android:background="@drawable/pa6"
+            android:layout_weight="1" >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:text="@string/input_title_prescription_item_6"
+                android:text="通道1腹透液浓度"
+                android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/navbar_btn_text_size" />
-            <LinearLayout
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_weight="1" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.6" >
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="1.5%"
+                android:id="@+id/con_1_1.5"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
 
-                <TextView
-                    android:id="@+id/lastVolTv"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:maxLength="7"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/text_default_30"
-                    android:textSize="@dimen/input_health_info_tv_value_text_size"
-                    tools:ignore="SpeakableTextPresentCheck" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="2.5%"
+                android:id="@+id/con_1_2.5"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    android:text="@string/unit_ml"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="4.25%"
+                android:id="@+id/con_1_4.25"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
 
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="其他"
+                android:id="@+id/con_1_other"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ultVolLl"
             android:layout_width="0dp"
+            android:orientation="vertical"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
+            android:padding="@dimen/treatment_countdown_margin"
             android:layout_margin="@dimen/input_box_item_margin_right"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/pa1"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
+            android:background="@drawable/pa6"
+            android:layout_weight="1" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_centerVertical="true"
-                android:layout_weight="0.4"
-                android:text="@string/input_title_prescription_item_8"
-                android:textColor="@color/white"
-                android:textSize="@dimen/navbar_btn_text_size" />
-
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="0.6"
-                android:layout_height="0dp" >
+                android:layout_height="0dp"
+                android:text="通道2腹透液浓度"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:layout_weight="1" />
 
-                <TextView
-                    android:id="@+id/ultVolTv"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:maxLength="7"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/text_default_30"
-                    android:textSize="@dimen/input_health_info_tv_value_text_size"
-                    tools:ignore="SpeakableTextPresentCheck" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="1.5%"
+                android:id="@+id/con_2_1.5"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    android:text="@string/unit_ml"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/navbar_btn_text_size" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="2.5%"
+                android:id="@+id/con_2_2.5"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
 
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="4.25%"
+                android:id="@+id/con_2_4.25"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/radio_bg_select"
+                android:gravity="center"
+                android:text="其他"
+                android:id="@+id/con_2_other"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:textSize="@dimen/navbar_btn_text_size"
+                android:textColor="@drawable/radio_text_select"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/abdTimeLl"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/input_box_item_margin_right"
-            android:layout_marginBottom="@dimen/input_box_item_margin_right"
-            android:layout_marginStart="@dimen/input_box_item_margin_right"
-            android:layout_marginEnd="@dimen/treatment_countdown_margin"
-
-
-            android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@drawable/pa1"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:layout_centerVertical="true"
-                android:text="@string/input_title_prescription_item_4"
-                android:textColor="@color/white"
-                android:textSize="@dimen/navbar_btn_text_size" />
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/input_box_item_margin_right"
+            android:layout_weight="1" >
 
             <LinearLayout
+                android:id="@+id/totalVolLl"
                 android:layout_width="match_parent"
-                android:layout_weight="0.6"
-                android:layout_height="0dp" >
+                android:layout_height="0dp"
+                android:padding="@dimen/treatment_countdown_margin"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/gray_shape">
 
                 <TextView
-                    android:id="@+id/abdTimeTv"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.6"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:maxLength="7"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/text_default_30"
-                    android:textSize="@dimen/input_health_info_tv_value_text_size"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:layout_height="match_parent"
-                    android:text="@string/unit_min"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_1"
                     android:textColor="@color/white"
                     android:textSize="@dimen/navbar_btn_text_size" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.6"
+                    android:layout_height="0dp" >
+
+                    <TextView
+                        android:id="@+id/totalVolTv"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:maxLength="7"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/text_default_30"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:text="@string/unit_ml"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/abdTimeLl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/treatment_countdown_margin"
+                android:padding="@dimen/treatment_countdown_margin"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/pa1"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_centerVertical="true"
+                    android:text="@string/input_title_prescription_item_4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/navbar_btn_text_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.6"
+                    android:layout_height="0dp" >
+
+                    <TextView
+                        android:id="@+id/abdTimeTv"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:maxLength="7"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/text_default_30"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:text="@string/unit_min"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/lastVolLl"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/input_box_item_margin_right"
+                android:padding="@dimen/treatment_countdown_margin"
+                android:layout_weight="1"
+                android:background="@drawable/pa1"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="@string/input_title_prescription_item_6"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/navbar_btn_text_size" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.6" >
+
+                    <TextView
+                        android:id="@+id/lastVolTv"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:maxLength="7"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/text_default_30"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:text="@string/unit_ml"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ultVolLl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/input_box_item_margin_right"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/pa1"
+                android:padding="@dimen/treatment_countdown_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="0.4"
+                    android:text="@string/input_title_prescription_item_8"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/navbar_btn_text_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.6"
+                    android:layout_height="0dp" >
+
+                    <TextView
+                        android:id="@+id/ultVolTv"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:maxLength="7"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/text_default_30"
+                        android:textSize="@dimen/input_health_info_tv_value_text_size"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:text="@string/unit_ml"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/navbar_btn_text_size" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.3"
+        android:visibility="gone"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -299,7 +444,7 @@
             android:layout_marginBottom="@dimen/input_box_item_margin_right"
             android:layout_marginEnd="@dimen/input_box_item_margin_right"
             android:layout_marginStart="@dimen/treatment_countdown_margin"
-
+            android:visibility="gone"
             android:layout_weight="1"
             android:orientation="vertical"
             android:background="@drawable/pa1"
@@ -350,6 +495,7 @@
         <LinearLayout
             android:id="@+id/cycleVolLl"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -404,7 +550,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/input_box_item_margin_right"
-
+            android:visibility="gone"
             android:layout_weight="1"
             android:orientation="vertical"
             android:background="@drawable/gray_shape"
@@ -459,7 +605,7 @@
             android:layout_marginBottom="@dimen/input_box_item_margin_right"
             android:layout_marginStart="@dimen/input_box_item_margin_right"
             android:layout_marginEnd="@dimen/treatment_countdown_margin"
-
+            android:visibility="gone"
             android:layout_weight="1"
             android:id="@+id/firstVolLl"
             android:orientation="vertical"
@@ -513,6 +659,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.3"
+        android:layout_marginLeft="@dimen/treatment_countdown_margin"
+        android:layout_marginRight="@dimen/treatment_countdown_margin"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -521,16 +669,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/input_box_item_margin_right"
-            android:layout_marginBottom="@dimen/input_box_item_margin_right"
-            android:layout_marginEnd="@dimen/input_box_item_margin_right"
-            android:layout_marginStart="@dimen/treatment_countdown_margin"
-
+            android:layout_margin="@dimen/input_box_item_margin_right"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@drawable/gray_shape"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
+            android:background="@drawable/pa1"
+            android:padding="@dimen/treatment_countdown_margin"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -582,9 +726,9 @@
             android:layout_margin="@dimen/input_box_item_margin_right"
 
             android:layout_weight="1"
-            android:background="@drawable/gray_shape"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
+            android:background="@drawable/pa1"
+            android:padding="@dimen/treatment_countdown_margin"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -630,9 +774,8 @@
 
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@drawable/gray_shape"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
+            android:background="@drawable/pa1"
+            android:padding="@dimen/treatment_countdown_margin">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -678,17 +821,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/input_box_item_margin_right"
-            android:layout_marginBottom="@dimen/input_box_item_margin_right"
-            android:layout_marginStart="@dimen/input_box_item_margin_right"
-            android:layout_marginEnd="@dimen/treatment_countdown_margin"
+            android:layout_margin="@dimen/input_box_item_margin_right"
 
             android:layout_weight="1"
             android:id="@+id/stage_02_cycleNumLl"
             android:orientation="vertical"
-            android:background="@drawable/gray_shape"
-            android:paddingLeft="@dimen/treatment_countdown_margin"
-            android:paddingRight="@dimen/input_box_item_padding_right">
+            android:background="@drawable/pa1"
+            android:padding="@dimen/treatment_countdown_margin">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -754,7 +893,7 @@
             android:layout_marginStart="@dimen/treatment_countdown_margin"
             android:layout_marginBottom="@dimen/treatment_countdown_margin"
             android:layout_marginTop="@dimen/treatment_countdown_margin"
-
+            android:visibility="invisible"
             android:textSize="@dimen/navbar_btn_text_size"
             android:textColor="#5f7eb2"
             android:background="@drawable/white_shape"
@@ -768,6 +907,7 @@
             android:layout_marginBottom="@dimen/treatment_countdown_margin"
             android:layout_marginTop="@dimen/treatment_countdown_margin"
             android:layout_weight="0.4"
+            android:visibility="invisible"
             android:background="@drawable/pink_root_shape"
             android:layout_height="match_parent"
             android:text="自定义周期"

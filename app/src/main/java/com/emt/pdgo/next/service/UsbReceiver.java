@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.emt.pdgo.next.MyApplication;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.ui.activity.USBDiskActivity;
 
 import java.io.File;
@@ -29,7 +30,7 @@ public class UsbReceiver extends BroadcastReceiver {
                 assert files != null;
                 Log.e("UsbReceiver", "usb插入=files=="+ Arrays.toString(files));
                 for (String s : files) {
-                    if (s.startsWith("PdGoNext") && s.endsWith(".apk")) {
+                    if (s.startsWith(EmtConstant.sn_name) && s.endsWith(".apk")) {
 //                        MyApplication.getInstance().installApk(usbPath+"/"+s);
                         Intent i = new Intent(MyApplication.mContext, USBDiskActivity.class);
                         i.putExtra("filePath",

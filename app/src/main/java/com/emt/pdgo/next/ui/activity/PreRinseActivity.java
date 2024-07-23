@@ -327,23 +327,24 @@ public class PreRinseActivity extends BaseActivity {
                 case "supply failure":
                     runOnUiThread(()->{
                         runOnUiThread(()-> {
-                            buzzerOn();
+//                            initBeepSoundSus(R.raw.medium_alarm)();
+                            initBeepSoundSus(R.raw.medium_alarm);
                             final CommonDialog dialog = new CommonDialog(this);
                             dialog.setContent("补液失败")
                                     .setBtnFirst("重新补液")
                                     .setBtnTwo("停止补液")
                                     .setFirstClickListener(mCommonDialog -> {
-//                    buzzerOff();
+//                    // buzzerOff();
 //                    sendToMainBoard(CommandDataHelper.getInstance().abortAutoRinseCmd());
 //                    mCommonDialog.dismiss();
                                         sendCommandInterval(CommandDataHelper.getInstance().customCmd("manualrinse/failure_continue"), 500 );
-                                        buzzerOff();
+                                        // buzzerOff();
                                         mCommonDialog.dismiss();
                                     })
                                     .setTwoClickListener(mCommonDialog -> {
 //                    sendCommandInterval(CommandDataHelper.getInstance().abortAutoRinseCmd(), 100);
                                         sendToMainBoard(CommandDataHelper.getInstance().customCmd("manualrinse/abort"));
-                                        buzzerOff();
+                                        // buzzerOff();
                                         tvManualPreTips.setText("停止中，请稍等...");
                                         mCommonDialog.dismiss();
 //                    doGoCloseTOActivity(TreatmentCountdownActivity.class,"");
@@ -376,7 +377,7 @@ public class PreRinseActivity extends BaseActivity {
 //        String mFirst = "重新预冲";
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd("manualrinse/stop"));
         runOnUiThread(()->{
-            buzzerOn();
+            initBeepSoundSus(R.raw.medium_alarm);
             String mFirst = "停止预冲";
 //        String mTwo = "跳过";
 //        btnBack.setVisibility(View.VISIBLE);
@@ -385,16 +386,16 @@ public class PreRinseActivity extends BaseActivity {
                     .setBtnFirst(mFirst)
 //                .setBtnTwo(mTwo)
                     .setFirstClickListener(mCommonDialog -> {
-//                    buzzerOff();
+//                    // buzzerOff();
 //                        sendToMainBoard(CommandDataHelper.getInstance().customCmd("manualrinse/stop"));
 //                    sendCommandInterval(CommandDataHelper.getInstance().continueAutoRinseCmd(), 100);
 //                    mCommonDialog.dismiss();
-                        buzzerOff();
+                        // buzzerOff();
                         mCommonDialog.dismiss();
                     });
 //                .setTwoClickListener(mCommonDialog -> {
 //                    sendToMainBoard(CommandDataHelper.getInstance().customCmd("manualrinse/stop"));
-//                    buzzerOff();
+//                    // buzzerOff();
 ////                    btnAuto.setSelected(false);
 ////                    manualLayout.setEnabled(true);
 ////                    btnManual.setEnabled(true);
@@ -486,23 +487,23 @@ public class PreRinseActivity extends BaseActivity {
 //        }
         else if (mBean.msg.equals("supply failure") && mBean.topic.equals(CommandReceiveConfig.TOPIC_MANUAL_RINSE_PROCESS +"/process")) {
             runOnUiThread(()-> {
-                buzzerOn();
+                initBeepSoundSus(R.raw.medium_alarm);
                 final CommonDialog dialog = new CommonDialog(this);
                 dialog.setContent("补液失败")
                         .setBtnFirst("重新补液")
                         .setBtnTwo("停止补液")
                         .setFirstClickListener(mCommonDialog -> {
-//                    buzzerOff();
+//                    // buzzerOff();
 //                    sendToMainBoard(CommandDataHelper.getInstance().abortAutoRinseCmd());
 //                    mCommonDialog.dismiss();
                             sendCommandInterval(CommandDataHelper.getInstance().customCmd("manualrinse/failure_continue"), 500 );
-                            buzzerOff();
+                            // buzzerOff();
                             mCommonDialog.dismiss();
                         })
                         .setTwoClickListener(mCommonDialog -> {
 //                    sendCommandInterval(CommandDataHelper.getInstance().abortAutoRinseCmd(), 100);
                             sendToMainBoard(CommandDataHelper.getInstance().customCmd("manualrinse/abort"));
-                            buzzerOff();
+                            // buzzerOff();
                             tvManualPreTips.setText("停止中，请稍等...");
                             mCommonDialog.dismiss();
 //                    doGoCloseTOActivity(TreatmentCountdownActivity.class,"");
@@ -619,7 +620,7 @@ public class PreRinseActivity extends BaseActivity {
 //                        failNum += 1;
 ////                        if (failNum < 3) {
 //                            isAutoFailure = true;
-//                            buzzerOn();
+//                            initBeepSoundSus(R.raw.medium_alarm)();
                             String message = "自动预冲故障";
                             switch (mBean.topic) {
                                 case CommandReceiveConfig.TOPIC_AUTO_RINSE_SUPPLY: //返回步骤二故障  //auto rinse supply: time out!
@@ -734,25 +735,25 @@ public class PreRinseActivity extends BaseActivity {
     private void showAlarmDialog(String message) {
         String mFirst = "重新预冲";
         String mTwo = "结束预冲";
-        buzzerOn();
+        initBeepSoundSus(R.raw.medium_alarm);
         final CommonDialog dialog = new CommonDialog(this);
         dialog.setContent(message)
                 .setBtnFirst(mFirst)
                 .setBtnTwo(mTwo)
                 .setFirstClickListener(mCommonDialog -> {
-//                    buzzerOff();
+//                    // buzzerOff();
 //                    sendToMainBoard(CommandDataHelper.getInstance().abortAutoRinseCmd());
 //                    mCommonDialog.dismiss();
                     APIServiceManage.getInstance().postApdCode("Z5016");
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd("autorinse/failure_continue"));
-                    buzzerOff();
+                    // buzzerOff();
 //                    sendCommandInterval(CommandDataHelper.getInstance().abortAutoRinseCmd(), 100 );
                     mCommonDialog.dismiss();
                 })
                 .setTwoClickListener(mCommonDialog -> {
 //                    sendCommandInterval(CommandDataHelper.getInstance().abortAutoRinseCmd(), 100);
                     sendToMainBoard(CommandDataHelper.getInstance().abortAutoRinseCmd());
-                    buzzerOff();
+                    // buzzerOff();
                     isFail = true;
 //                    btnAuto.setSelected(false);
 //                    manualLayout.setEnabled(true);

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.pdp.rmmit.pdp.R;
 
 import butterknife.BindView;
@@ -22,6 +23,8 @@ public class ModeDialog extends Dialog {
     TextView aApdTv;
     @BindView(R.id.spTv)
     TextView spTv;
+    @BindView(R.id.dprTv)
+    TextView dprTv;
     @BindView(R.id.btnConfirm)
     Button btnConfirm;
 
@@ -44,23 +47,34 @@ public class ModeDialog extends Dialog {
         setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
         setCancelable(false);//按返回键不能退出
         btnConfirm.setVisibility(View.INVISIBLE);
+        dprTv.setVisibility(EmtConstant.sn_name.equals("PD-GO-Next") ? View.VISIBLE : View.INVISIBLE);
         ipdTv.setOnClickListener(view -> {
             ipdTv.setSelected(!ipdTv.isSelected());
             aApdTv.setSelected(false);
             spTv.setSelected(false);
+            dprTv.setSelected(false);
             btnConfirm.setVisibility(ipdTv.isSelected() ? View.VISIBLE : View.INVISIBLE);
         });
         aApdTv.setOnClickListener(view -> {
             aApdTv.setSelected(!aApdTv.isSelected());
             ipdTv.setSelected(false);
             spTv.setSelected(false);
+            dprTv.setSelected(false);
             btnConfirm.setVisibility(aApdTv.isSelected() ? View.VISIBLE : View.INVISIBLE);
         });
         spTv.setOnClickListener(view -> {
             spTv.setSelected(!spTv.isSelected());
             ipdTv.setSelected(false);
             aApdTv.setSelected(false);
+            dprTv.setSelected(false);
             btnConfirm.setVisibility(spTv.isSelected() ? View.VISIBLE : View.INVISIBLE);
+        });
+        dprTv.setOnClickListener(view -> {
+            dprTv.setSelected(!dprTv.isSelected());
+            ipdTv.setSelected(false);
+            aApdTv.setSelected(false);
+            spTv.setSelected(false);
+            btnConfirm.setVisibility(dprTv.isSelected() ? View.VISIBLE : View.INVISIBLE);
         });
         btnConfirm.setOnClickListener(view -> {
             int mode = 1;
@@ -70,6 +84,8 @@ public class ModeDialog extends Dialog {
                 mode = 2;
             } else if (spTv.isSelected()) {
                 mode = 3;
+            } else if (dprTv.isSelected()) {
+                mode = 4;
             }
             onDialogResultListener.onResult(mode);
         });

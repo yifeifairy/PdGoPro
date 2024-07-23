@@ -23,16 +23,23 @@
         android:layout_marginTop="@dimen/dp_10"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnOpen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/bind_phone_title_text_size"
-            android:text="打开wifi" />
+        <com.emt.pdgo.next.ui.widget.LabeledSwitch
+            android:id="@+id/wifiSwitch"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dialog_common_btn_height"
+            android:textSize="@dimen/input_box_tv_text_size"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
+            labeled_switch:colorBorder="#ff0089ff"
+            labeled_switch:colorOn="#ff0089ff"
+            labeled_switch:textOff="打开WiFi&#160;&#160;"
+            labeled_switch:textOn="&#160;&#160;关闭WIFI" />
 
         <Button
             android:id="@+id/btnGetWifi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
             android:layout_height="wrap_content"
             android:text="获取wifi列表"
             android:textSize="@dimen/bind_phone_title_text_size"
@@ -43,11 +50,11 @@
 
         <com.emt.pdgo.next.ui.widget.LabeledSwitch
             android:id="@+id/labeledSwitch"
-            android:layout_width="@dimen/pre_heat_layout_curr_temperature_width"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="@dimen/dialog_common_btn_height"
             android:textSize="@dimen/input_box_tv_text_size"
-            android:visibility="gone"
-            android:layout_marginLeft="@dimen/treatment_countdown_margin"
+            android:layout_marginStart="@dimen/treatment_countdown_margin"
             labeled_switch:colorBorder="#ff0089ff"
             labeled_switch:colorOn="#ff0089ff"
             labeled_switch:textOff="开启移动数据&#160;&#160;"

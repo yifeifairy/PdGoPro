@@ -1,5 +1,7 @@
 package com.emt.pdgo.next.ui.adapter;
 
+import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +18,11 @@ import java.util.List;
 
 public class LocalPdAdapter extends BaseQuickAdapter<PdEntity, BaseViewHolder> {
 
-    public LocalPdAdapter(@Nullable List<PdEntity> data) {
+    private boolean isShow;
+
+    public LocalPdAdapter(@Nullable List<PdEntity> data, boolean isShow) {
         super(R.layout.recyclerview_local_pd, data);
+        this.isShow = isShow;
     }
 
     @Override
@@ -29,6 +34,7 @@ public class LocalPdAdapter extends BaseQuickAdapter<PdEntity, BaseViewHolder> {
                 .setText(R.id.tv_curr_ultrafiltration_volume, String.valueOf(item.totalUltVol))
                 .addOnClickListener(R.id.ivPrePage).addOnClickListener(R.id.ivNextPage)
                 .addOnClickListener(R.id.btnUpload);
+        helper.getView(R.id.btnUpload).setVisibility(isShow?View.VISIBLE: View.GONE);
         RecyclerView rv = helper.getView(R.id.recyclerview);
         assert rv != null;
 //        rv.setLayoutManager(new GridLayoutManager(mContext, 2));

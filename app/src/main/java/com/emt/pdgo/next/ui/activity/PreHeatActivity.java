@@ -308,6 +308,7 @@ public class PreHeatActivity extends BaseActivity {
         sendCommandInterval(CommandDataHelper.getInstance().setPreheatCmdJson((int) (PdproHelper.getInstance().targetTemper() * 10 + 20), PdproHelper.getInstance().getOtherParamBean().perHeartWeight),500);
     }
 
+    private int pool;
     private boolean isNormal;
     private void switchTips(int mType) {
 
@@ -321,7 +322,8 @@ public class PreHeatActivity extends BaseActivity {
 //                tvHeartStatus.setText("警告！您放置分腹透液容量不足，请重新放置！");
 //                tvHeartStatus.setTextColor(Color.RED);
                 isNormal = false;
-                buzzerOn();
+//                buzzerOn();
+                initBeepSoundSus(R.raw.low_alarm);
 //                ivTips.setBackgroundResource(R.drawable.icon_pre_heat_tip_1);
 //                tipView.setText("请勿触碰液体袋和托盘!");
 //                ivWarning.setBackgroundResource(R.drawable.exclamation);
@@ -406,7 +408,8 @@ public class PreHeatActivity extends BaseActivity {
                             .setContent("感应到加热盘上的腹透液小于设定的治疗量，\n请检查处方或者腹透液")
                             .setBtnFirst("确定")
                             .setFirstClickListener(mCommonDialog -> {
-                                buzzerOff();
+//                                buzzerOff();
+
                                 mCommonDialog.dismiss();
                             });
                     if (!PreHeatActivity.this.isFinishing()) {
@@ -416,7 +419,7 @@ public class PreHeatActivity extends BaseActivity {
             }
         } else {
             if (!isNormal) {
-                buzzerOff();
+//                buzzerOff();
             }
             isNormal = true;
             switchTips(MyApplication.fistHeat ? 1 : 3);

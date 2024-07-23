@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.constant.ConfigConst;
 import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.PerfusionParameterBean;
 import com.pdp.rmmit.pdp.R;
@@ -422,6 +423,11 @@ public class NumberBoardDialog extends Dialog {
 
         //温控板参数设置
         switch (mType) {
+            case "con_1": //最大温差
+            case "con_2":
+                title = "浓度";
+                mHint = ConfigConst.conMin+ "  -  "+ConfigConst.conMax;
+                break;
             case PdGoConstConfig.CHECK_TYPE_TEMPERATURE_MAX_DIFFERENCE: //最大温差
                 title = "最大温差";
                 mHint = "0.5  -  2";
@@ -1248,6 +1254,13 @@ public class NumberBoardDialog extends Dialog {
 
             if (mType.equals(PdGoConstConfig.zeroClear)) {//工程师模式
                 isShowSure(true);
+            }
+
+            switch (mType) {
+                case "con_1":
+                case "con_2":
+                    isShowSure(mValue >= ConfigConst.conMin & mValue <= ConfigConst.conMax);
+                    break;
             }
 
             // aApd

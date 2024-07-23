@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,7 +20,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -64,8 +64,10 @@ public class WifiActivity extends BaseActivity {
     private WifiBroadcastReceiver wifiReceiver;
     private TextView tv_wifiState;
 
-    @BindView(R.id.labeledSwitch)
+
     LabeledSwitch labeledSwitch;
+
+    LabeledSwitch wifiSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,9 @@ public class WifiActivity extends BaseActivity {
     Button btnBack;
     @Override
     public void registerEvents() {
+        if (mWifiManager == null) {
+            mWifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        }
         labeledSwitch.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
@@ -96,12 +101,22 @@ public class WifiActivity extends BaseActivity {
 //                setMobileDataState(WifiActivity.this,isOn);
             }
         });
+        wifiSwitch.setOnToggledListener(new OnToggledListener() {
+            @Override
+            public void onSwitched(ToggleableView toggleableView, boolean isOn) {
+                MyWifiManager.openOrCloseWifi(mWifiManager,isOn);
+            }
+        });
         btnBack.setOnClickListener(view -> onBackPressed());
     }
 
     @Override
     public void initViewData() {
+        if (mWifiManager == null) {
+            mWifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        }
         labeledSwitch.setOn(isMobileDataEnabledFromLollipop(WifiActivity.this));
+        wifiSwitch.setOn(MyWifiManager.isWifiOpen(mWifiManager));
     }
 
     @Override
@@ -144,6 +159,8 @@ public class WifiActivity extends BaseActivity {
         recyclerView = findViewById(R.id.recyclerView);
         btnGetWifi = findViewById(R.id.btnGetWifi);
         tv_wifiState = findViewById(R.id.tv_wifiState);
+        wifiSwitch = findViewById(R.id.wifiSwitch);
+        labeledSwitch = findViewById(R.id.labeledSwitch);
         wifiListBeanList = new ArrayList<>();
         mScanResultList = new ArrayList<>();
     }
@@ -154,25 +171,31 @@ public class WifiActivity extends BaseActivity {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                APIServiceManage.getInstance().postApdCode("Z1042");
-                wifiListBeanList.clear();
-                //开启wifi
-                MyWifiManager.openWifi(mWifiManager);
-                //获取到wifi列表
-                mScanResultList = MyWifiManager.getWifiList(mWifiManager);
-                for (int i = 0; i < Objects.requireNonNull(mScanResultList).size(); i++) {
-                    WifiListBean wifiListBean = new WifiListBean();
-                    wifiListBean.setName(mScanResultList.get(i).SSID);
-                    wifiListBean.setEncrypt(MyWifiManager.getEncrypt(mWifiManager, mScanResultList.get(i)));
-                    wifiListBeanList.add(wifiListBean);
+                if (mWifiManager == null) {
+                    mWifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
                 }
+                if (MyWifiManager.isWifiOpen(mWifiManager)) {
+                    APIServiceManage.getInstance().postApdCode("Z1042");
+                    wifiListBeanList.clear();
+                    //开启wifi
+                    //获取到wifi列表
+                    mScanResultList = MyWifiManager.getWifiList(mWifiManager);
+                    for (int i = 0; i < Objects.requireNonNull(mScanResultList).size(); i++) {
+                        WifiListBean wifiListBean = new WifiListBean();
+                        wifiListBean.setName(mScanResultList.get(i).SSID);
+                        wifiListBean.setEncrypt(MyWifiManager.getEncrypt(mWifiManager, mScanResultList.get(i)));
+                        wifiListBeanList.add(wifiListBean);
+                    }
 
-                if (wifiListBeanList.size() > 0) {
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(WifiActivity.this, "获取wifi列表成功", Toast.LENGTH_SHORT).show();
-                } else {
-                    adapter.notifyDataSetChanged();
-                    Toast.makeText(WifiActivity.this, "wifi列表为空，请检查wifi页面是否有wifi存在", Toast.LENGTH_SHORT).show();
+                    if (wifiListBeanList.size() > 0) {
+                        adapter.notifyDataSetChanged();
+                        toastMessage("获取wifi列表成功");
+                    } else {
+                        adapter.notifyDataSetChanged();
+                        toastMessage("wifi列表为空，请检查wifi页面是否有wifi存在");
+                    }
+                } else  {
+                    toastMessage("请先开启WiFi");
                 }
             }
         });
@@ -288,5 +311,9 @@ public class WifiActivity extends BaseActivity {
 
     }
 
+    public static boolean isSimCardInserted(Context context) {
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
+    }
 
 }

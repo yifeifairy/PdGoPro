@@ -394,7 +394,8 @@ public class TreatmentFragmentItem3 extends BaseFragment {
 
     private final BigDecimal mTen = new BigDecimal(10);
     private float getTemp(int temp) {
-        BigDecimal mTemp = new BigDecimal(temp);
+        int t = temp - 20;
+        BigDecimal mTemp = new BigDecimal(t);
         BigDecimal newTemp = mTemp.divide(mTen, 1, RoundingMode.HALF_UP);
         return newTemp.floatValue();
     }
@@ -405,6 +406,9 @@ public class TreatmentFragmentItem3 extends BaseFragment {
      * @param mVolume
      */
     public void setCurrDrainVolume(int mVolume) {
+
+
+
         try {
             tvCurrCycleDrainVolume.setText(String.valueOf(Math.max(mVolume, 0)));//当前周期引流量
         }catch (Exception e) {

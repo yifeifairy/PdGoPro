@@ -59,6 +59,7 @@ public class MyApplication extends Application {
 
     public static boolean isRemoteShow = false;
 
+
     private MyPresentation mPresentation;
     private Display[] displays; //定义一个屏幕数组
 

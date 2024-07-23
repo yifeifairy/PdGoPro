@@ -16,6 +16,7 @@ import com.emt.pdgo.next.ui.activity.PreHeatActivity;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity;
 import com.emt.pdgo.next.ui.base.BaseActivity;
+import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.ui.dialog.NumberDialog;
 import com.emt.pdgo.next.ui.dialog.SpecialNumberDialog;
 import com.emt.pdgo.next.util.CacheUtils;
@@ -93,6 +94,23 @@ public class SpeVolActivity extends BaseActivity {
     @BindView(R.id.btnParam)
     Button btnParam;
 
+    @BindView(R.id.con_1_1_5)
+    TextView con_1_1_5;
+    @BindView(R.id.con_1_2_5)
+    TextView con_1_2_5;
+    @BindView(R.id.con_1_4_25)
+    TextView con_1_4_25;
+    @BindView(R.id.con_1_other)
+    TextView con_1_other;
+    @BindView(R.id.con_2_1_5)
+    TextView con_2_1_5;
+    @BindView(R.id.con_2_2_5)
+    TextView con_2_2_5;
+    @BindView(R.id.con_2_4_25)
+    TextView con_2_4_25;
+    @BindView(R.id.con_2_other)
+    TextView con_2_other;
+
     @Override
     public void initAllViews() {
         setContentView(R.layout.activity_spe_vol);
@@ -116,8 +134,15 @@ public class SpeVolActivity extends BaseActivity {
         });
         btnNext.setOnClickListener(view -> {
             MyApplication.apdMode = 8;
-            CacheUtils.getInstance().getACache().put(PdGoConstConfig.EXPERT_PARAMS, entity);
-            doGoTOActivity(PreHeatActivity.class);
+            if (entity.osmSupplyCycle.size() == 0) {
+                toastMessage("请选择通道2周期数");
+            } else if (entity.baseSupplyCycle.size() == 0 ) {
+                toastMessage("请选择通道1周期数");
+            } else {
+                CacheUtils.getInstance().getACache().put(PdGoConstConfig.EXPERT_PARAMS, entity);
+                doGoTOActivity(PreHeatActivity.class);
+            }
+//            toastMessage("暂未开放");
         });
         stage_01_CycleNumLl.setOnClickListener(v -> {
             SpecialNumberDialog dialog = new SpecialNumberDialog(this, entity, 0, stage_01_cycleNumTv);
@@ -142,9 +167,9 @@ public class SpeVolActivity extends BaseActivity {
             alertNumberBoardDialog(PdGoConstConfig.EXPERT_OSM_SUPPLY_VOL,EmtConstant.cycleVolMin, PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
 
-        totalVolLl.setOnClickListener(v -> {
-            alertNumberBoardDialog(PdGoConstConfig.EXPERT_TOTAL,EmtConstant.totalVolMin, EmtConstant.totalVolMax);
-        });
+//        totalVolLl.setOnClickListener(v -> {
+//            alertNumberBoardDialog(PdGoConstConfig.EXPERT_TOTAL,EmtConstant.totalVolMin, EmtConstant.totalVolMax);
+//        });
         cycleVolLl.setOnClickListener(v -> {
             alertNumberBoardDialog(PdGoConstConfig.EXPERT_CYCLE_VOL,EmtConstant.cycleVolMin
                     ,entity.firstVol == 0 ? PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue: entity.firstVol);
@@ -162,7 +187,6 @@ public class SpeVolActivity extends BaseActivity {
             alertNumberBoardDialog(PdGoConstConfig.EXPERT_FINAL_RETAIN_VOL, EmtConstant.finalVolMin, PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue);
         });
 
-
         lastVolLl.setOnClickListener(v -> {
             alertNumberBoardDialog(PdGoConstConfig.EXPERT_LAST_RETAIN_VOL, EmtConstant.lastAbdMin, EmtConstant.lastAbdMax);
 
@@ -172,6 +196,32 @@ public class SpeVolActivity extends BaseActivity {
         });
         ultVolLl.setOnClickListener(v -> {
             alertNumberBoardDialog(PdGoConstConfig.EXPERT_ULT_VOL, EmtConstant.ultVolMin, EmtConstant.ultVolMax);
+        });
+        con_1_1_5.setOnClickListener(view -> {
+            setCon1(!con_1_1_5.isSelected(),false,false,false);
+        });
+        con_1_2_5.setOnClickListener(view -> {
+            setCon1(false,!con_1_2_5.isSelected(),false,false);
+        });
+        con_1_4_25.setOnClickListener(view -> {
+            setCon1(false,false,!con_1_4_25.isSelected(),false);
+        });
+        con_1_other.setOnClickListener(view -> {
+            setCon1(false,false,false,!con_1_other.isSelected());
+            arNumD(con_1_other.getText().toString(),"con_1");
+        });
+        con_2_1_5.setOnClickListener(view -> {
+            setCon2(!con_2_1_5.isSelected(),false,false,false);
+        });
+        con_2_2_5.setOnClickListener(view -> {
+            setCon2(false,!con_2_2_5.isSelected(),false,false);
+        });
+        con_2_4_25.setOnClickListener(view -> {
+            setCon2(false,false,!con_2_4_25.isSelected(),false);
+        });
+        con_2_other.setOnClickListener(view -> {
+            setCon2(false,false,false,!con_2_other.isSelected());
+            arNumD(con_2_other.getText().toString(),"con_2");
         });
     }
     private ExpertBean entity;
@@ -189,13 +239,51 @@ public class SpeVolActivity extends BaseActivity {
         isFinalBtn.setText(entity.isFinalSupply? "最末袋(通道1):已开启": "最末袋(通道1):已关闭");
         stage_01_cycleNumTv.setText(entity.baseSupplyCycle.toString());
         stage_01_VolTv.setText(String.valueOf(entity.baseSupplyVol));
-        setBg(entity.cycleMyself);
+//        setBg(entity.cycleMyself);
         cycleMyself.setChecked(entity.cycleMyself);
         cycleMyself.setOnCheckedChangeListener((compoundButton, b) -> {
             setBg(b);
         });
+
+        if (entity.con_1 == 1.5) {
+            setCon1(true,false,false,false);
+        } else if (entity.con_1 == 2.5) {
+            setCon1(false,true,false,false);
+        } else if (entity.con_1 == 4.25) {
+            setCon1(false,false,true,false);
+        } else {
+            setCon1(false,false,false,true);
+            con_1_other.setText(entity.con_1+"%");
+        }
+        if (entity.con_2 == 1.5) {
+            setCon2(true,false,false,false);
+        } else if (entity.con_2 == 2.5) {
+            setCon2(false,true,false,false);
+        } else if (entity.con_2 == 4.25) {
+            setCon2(false,false,true,false);
+        } else {
+            setCon2(false,false,false,true);
+            con_2_other.setText(entity.con_2+"%");
+        }
+
         stage_02_cycleNumTv.setText(entity.osmSupplyCycle.toString());
         stage_02_cycleVolTv.setText(String.valueOf(entity.osmSupplyVol));
+    }
+
+    private void setCon1(boolean c1, boolean c2, boolean c3, boolean c4) {
+        con_1_1_5.setSelected(c1);
+        con_1_2_5.setSelected(c2);
+        con_1_4_25.setSelected(c3);
+        con_1_other.setSelected(c4);
+//        con_1_other.setText(c4? entity.con_1 + "%" : "其他");
+    }
+
+    private void setCon2(boolean c1, boolean c2, boolean c3, boolean c4) {
+        con_2_1_5.setSelected(c1);
+        con_2_2_5.setSelected(c2);
+        con_2_4_25.setSelected(c3);
+        con_2_other.setSelected(c4);
+//        con_2_other.setText(c4? entity.con_2 + "%" : "其他");
     }
 
     private void setBg(boolean click) {
@@ -222,6 +310,27 @@ public class SpeVolActivity extends BaseActivity {
         } else {
             setTotal();
         }
+    }
+
+    private void arNumD(String value, String type) {
+        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, true);
+        dialog.show();
+        dialog.setOnDialogResultListener((mType, result) -> {
+            double c = Double.parseDouble(result);
+
+            if (!TextUtils.isEmpty(result)) {
+                switch (mType) {
+                    case "con_1":
+                        con_1_other.setText(c +"%");
+                        entity.con_1 = c;
+                        break;
+                    case "con_2":
+                        con_2_other.setText(c +"%");
+                        entity.con_2 = c;
+                        break;
+                }
+            }
+        });
     }
 
     private void alertNumberBoardDialog(String type, int min, int max) {
@@ -301,7 +410,7 @@ public class SpeVolActivity extends BaseActivity {
 
     private void setTotal() {
         int total = entity.cycle * entity.cycleVol + entity.firstVol +
-                entity.finalRetainVol + 500;
+                entity.finalRetainVol + EmtConstant.dep;
         totalVolTv.setText(String.valueOf(total));
         entity.total = total;
     }

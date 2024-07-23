@@ -1,5 +1,6 @@
 package com.emt.pdgo.next.ui.activity.param;
 
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -56,6 +57,11 @@ public class VoiceDebugActivity extends BaseActivity {
         mList.add(new CommandItem("打开蜂鸣器", "buzzerOpen"));
         mList.add(new CommandItem("关闭蜂鸣器", "buzzerClose"));
 
+
+        mList.add(new CommandItem("高优先级", "highAlarm"));
+        mList.add(new CommandItem("中优先级", "midAlarm"));
+        mList.add(new CommandItem("低优先级", "lowerAlarm"));
+
         mAdapter = new CommandAdapter(this, R.layout.item_setting, mList);
         rvSet.setLayoutManager(new GridLayoutManager(this, 3));
         rvSet.setAdapter(mAdapter);
@@ -74,16 +80,56 @@ public class VoiceDebugActivity extends BaseActivity {
                 speak("语音测试");
             } else if ("ts".equals(mList.get(position).mCommand)) {
                 PdproHelper.getInstance().updateTtsSoundOpen(!PdproHelper.getInstance().getTtsSoundOpen());
-
+            } else if ("highAlarm".equals(mList.get(position).mCommand)) {
+                try {
+//                    if (player == null) {
+//                        player = MediaPlayer.create(this,R.raw.high_alarm);
+////                    }
+//                    player.start();
+                    initBeepSoundSus(R.raw.high_alarm);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if ("midAlarm".equals(mList.get(position).mCommand)) {
+                try {
+//                    if (player == null) {
+//                        player = MediaPlayer.create(this,R.raw.medium_alarm);
+////                    }
+//                    player.start();
+                    initBeepSoundSus(R.raw.medium_alarm);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if ("lowerAlarm".equals(mList.get(position).mCommand)) {
+                try {
+//                    if (player == null) {
+//                        player = MediaPlayer.create(this,R.raw.low_alarm);
+////                    }
+//                    player.setLooping(true);
+//                    player.start();
+                    initBeepSoundSus(R.raw.low_alarm);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
-
+    private MediaPlayer player;
     @Override
     public void notifyByThemeChanged() {
         MarioResourceHelper helper = MarioResourceHelper.getInstance(getContext());
         helper.setBackgroundResourceByAttr(mAppBackground, R.attr.custom_attr_app_bg);
         if (mAdapter != null) mAdapter.notifyDataSetChanged(); //
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (player != null) {
+            player.stop();
+            player.release();
+            player = null;
+        }
     }
 }

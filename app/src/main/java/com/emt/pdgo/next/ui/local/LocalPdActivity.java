@@ -43,7 +43,7 @@ public class LocalPdActivity extends BaseActivity {
     @Override
     public void initViewData() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        localPdAdapter = new LocalPdAdapter(getPdInfo(page));
+        localPdAdapter = new LocalPdAdapter(getPdInfo(page),false);
         recyclerView.addItemDecoration(new SpaceItemDecoration(1, 0, 0));
         //添加Android自带的分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -81,6 +81,7 @@ public class LocalPdActivity extends BaseActivity {
         localPdAdapter.setNewData(getPdInfo(page));
         localPdAdapter.notifyDataSetChanged();
     }
+
 
     @Override
     public void notifyByThemeChanged() {

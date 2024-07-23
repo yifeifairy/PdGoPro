@@ -39,7 +39,7 @@ public class DrainParameterBean extends BaseBean implements Serializable {
     public int drainThresholdValue = 30;//30
 
     /*** 0周期引流比例 % **/
-    public int drainZeroCyclePercentage = 100;
+    public int drainZeroCyclePercentage = 75;
     /*** 其他周期引流比例 % **/
     public int drainOtherCyclePercentage = 75;
     /*** 引流/灌注超时报警 s **/

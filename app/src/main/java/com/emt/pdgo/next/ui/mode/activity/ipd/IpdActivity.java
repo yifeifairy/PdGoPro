@@ -117,7 +117,9 @@ public class IpdActivity extends BaseActivity {
         btnNext.setOnClickListener(view -> {
             if (ipdBean.firstPerfusionVolume != 0 && ipdBean.perCyclePerfusionVolume > ipdBean.firstPerfusionVolume) {
                 toastMessage("循环灌注量不能大于首次灌注量");
-            } else {
+            } else if (ipdBean.cycle > 35) {
+                toastMessage("周期数应小于或等于35");
+            }else {
                 CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, ipdBean);
                 doGoTOActivity(PreHeatActivity.class);
             }

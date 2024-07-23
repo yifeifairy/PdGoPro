@@ -23,6 +23,7 @@ public class CommandSendConfig {
 
     /*** 获取设备信息: 开启 */
 //    public static final String METHOD_STATUS_ON = "status/on";
+            // sendToMainBoard(CommandDataHelper.getInstance().customCmd("board_version"));
     public static final String METHOD_STATUS_ON = "report";
     /*** 获取设备信息: 关闭 */
     public static final String METHOD_STATUS_OFF = "status/off";

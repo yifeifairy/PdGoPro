@@ -7,11 +7,11 @@ android {
         applicationId "com.pdp.rmmit.pdp"
         minSdkVersion 19
         targetSdkVersion 33
-//        versionCode 202422001
-//        versionName "2.2.0.0.1"
+//        versionCode 2100
+//        versionName "2.1.0.0"
 
-        versionCode 2001
-        versionName "2.0.0.1"
+        versionCode 202422001
+        versionName "2.2.0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
@@ -64,6 +64,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            applicationIdSuffix '.beta' 192.168.31.38:8765/api  http://apc.ckdcloud.com/api/
             buildConfigField "String", "serverUrl", '"https://toothgame.ckdcloud.com/api/"'
+            buildConfigField "String", "versName", buildVersionName()
         }
         release {
             signingConfig signingConfigs.release
@@ -81,13 +82,17 @@ android {
             // 移除无用的resource文件
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "serverUrl", '"http://ejc.ckdcloud.com/api/"'
+            buildConfigField "String", "versName", buildVersionName()
         }
     }
 
     //自定义 打包名称
     android.applicationVariants.configureEach { variant ->
         variant.outputs.all {
-            outputFileName = "PdGoNext_v${variant.versionName}_${variant.name}.apk"
+            def time = new Date().format("yyMMddHH", TimeZone.getTimeZone("GMT+08:00"))
+//            def fileName = "${project.name}_${buildType.name}_v${defaultConfig.versionName}_${time}.apk"
+//            outputFileName = releaseVersionName()+"_v${variant.versionName}_${variant.name}_${time}.apk"
+            outputFileName = releaseVersionName()+"_${time}.apk"
         }
     }
 
@@ -127,6 +132,12 @@ android {
         viewBinding true
     }
 
+}
+def releaseVersionName() {
+    return "PD-GO-Pro"
+}
+def buildVersionName() {
+    return '"PD-GO-Pro"'
 }
 
 dependencies {

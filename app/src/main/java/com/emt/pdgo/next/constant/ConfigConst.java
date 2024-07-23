@@ -12,6 +12,9 @@ public class ConfigConst {
     public static int ultrafiltrationVolume = 0;
     public static boolean isFinalSupply = false;
 
+    public static float conMin = 0.5f;
+    public static float conMax = 10f;
+
     // 预充参数
     public static int firstVolume = 50;
     public static int secondVolume = 50;
@@ -30,8 +33,8 @@ public class ConfigConst {
     // 引流参数
     public static int drainTimeInterval = 30;
     public static int drainThresholdValue = 30;
-    public static int drainZeroCyclePercentage = 50;
-    public static int drainOtherCyclePercentage = 50;
+    public static int drainZeroCyclePercentage = 75;
+    public static int drainOtherCyclePercentage = 75;
     public static int drainTimeoutAlarm = 45;
     public static int drainRinseVolume = 50;
     public static int drainRinseNumber = 2;

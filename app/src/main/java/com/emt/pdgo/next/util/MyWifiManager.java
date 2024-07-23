@@ -124,12 +124,12 @@ public class MyWifiManager {
     /**
      * 是否开启wifi，没有的话打开wifi
      */
-    public static boolean openWifi(WifiManager mWifiManager) {
-        boolean bRet = true;
-        if (!mWifiManager.isWifiEnabled()) {
-            bRet = mWifiManager.setWifiEnabled(true);
-        }
-        return bRet;
+    public static void openOrCloseWifi(WifiManager mWifiManager,boolean open) {
+        mWifiManager.setWifiEnabled(open);
+    }
+
+    public static boolean isWifiOpen(WifiManager mWifiManager) {
+        return mWifiManager.isWifiEnabled();
     }
 
 

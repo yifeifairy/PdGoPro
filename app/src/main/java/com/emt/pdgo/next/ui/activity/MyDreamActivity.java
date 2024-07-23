@@ -112,7 +112,7 @@ public class MyDreamActivity extends BaseActivity {
         page = maxPage;
         Log.e("myDream","min:"+minPage+",max:"+maxPage);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        localPdAdapter = new LocalPdAdapter(getPdInfo(minPage == 1 ? minPage: maxPage));
+        localPdAdapter = new LocalPdAdapter(getPdInfo(minPage == 1 ? minPage: maxPage),true);
         recyclerView.addItemDecoration(new SpaceItemDecoration(1, 0, 0));
         //添加Android自带的分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -132,7 +132,7 @@ public class MyDreamActivity extends BaseActivity {
                 }
             } else if (view.getId() == R.id.btnUpload) {
                 if (checkConnectNetwork(MyDreamActivity.this)) {
-                    getToken();
+//                    getToken();
                     replyUpload(EmtDataBase.getInstance(MyDreamActivity.this).getPdDao().getPdList().get(page-1));
                 } else {
                     toastMessage("请连接网络");

@@ -49,6 +49,8 @@ import static com.emt.pdgo.next.util.EmtTimeUil.getYMDHMTime;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
@@ -418,6 +420,9 @@ public class TreatmentFragmentActivity extends BaseActivity {
 
     @BindView(R.id.powerIv)
     ImageView powerIv;
+
+    @BindView(R.id.conTv)
+    TextView conTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -905,7 +910,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
     /**
      * 阶段转换30秒内不可见
      */
-    private final CountDownTimer stageTimer = new CountDownTimer(30 * 1000, 1000) {
+    private final CountDownTimer stageTimer = new CountDownTimer(10 * 1000, 1000) {
         @Override
         public void onTick(long l) {
 
@@ -927,7 +932,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
 
         @Override
         public void onTick(long l) {
-            Log.e("TouchCountDownTimer", ""+ l/1000+"s");
+//            Log.e("TouchCountDownTimer", ""+ l/1000+"s");
         }
 
         @Override
@@ -1059,6 +1064,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
 //                        }
                         maxCycle = expertBean.cycle;
                     }
+                    if (expertBean.osmSupplyCycle.contains(1)) {
+                        conTv.setText(conStr+expertBean.con_2+"%");
+                        curCon = expertBean.con_2;
+                    } else {
+                        conTv.setText(conStr+expertBean.con_1+"%");
+                        curCon = expertBean.con_1;
+                    }
+                    conTv.setVisibility(View.VISIBLE);
                     ipdLayout.setVisibility(View.GONE);
                     aapdLayout.setVisibility(View.GONE);
                     svLayout.setVisibility(View.VISIBLE);
@@ -1091,6 +1104,9 @@ public class TreatmentFragmentActivity extends BaseActivity {
             Log.e("治疗记录", e.getMessage());
         }
     }
+
+    private String conStr = "当前浓度为:";
+    private double curCon;
 
     private void getTreatmentDataUpload() {
         try {
@@ -1286,6 +1302,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                         wifiIv.setVisibility(View.VISIBLE);
                     } else if (status == 0) {
                         netTv.setTextColor(Color.WHITE);
+                        wifiIv.setVisibility(View.INVISIBLE);
                     }
                 } else {
                     netTv.setTextColor(Color.RED);
@@ -1325,7 +1342,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                buzzerOff();
+                stopSound();
                 //30分钟内来电，断电提醒弹窗还在，关闭弹窗
                 if (treatmentAlarmDialog != null && treatmentAlarmDialog.isShowing()) {
                     treatmentAlarmDialog.dismiss();
@@ -1360,7 +1377,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
      * 阀门故障
      */
     private void valueFaultDialog(String msg) {
-        buzzer();
+        silencer();
 
 //        if (currCycle < 10) {
 //            APIServiceManage.getInstance().postApdCode("T0"+currCycle+"29");
@@ -1382,7 +1399,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_continue_treatment), R.drawable.dialog_btn_green)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(msg);
@@ -1391,7 +1408,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 })
                 .setFirstLongClickListener(mCommonDialog13 -> {
                     //跳过灌注
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
                     isShowAlarmDialog = false;
                     if (currCycle < 10) {
@@ -1405,7 +1422,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setTwoClickListener(mCommonDialog12 -> {
                     //继续治疗
 //                    sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     isShowAlarmDialog = false;
                     mCommonDialog12.dismiss();
@@ -1418,13 +1435,16 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     mCommonDialog1.dismiss();
                     isShowAlarmDialog = true;
                     finishTreatmentDialog(1);
-                    buzzerOff();
+                    stopSound();
                 })
                 .show();
 
     }
 
     private boolean isInitial ;
+    private boolean isEndPre;
+    private int curUpperWeight;
+    private boolean isEndSupply;
     @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
     public void receiveCmdDeviceInfo(String bean) {
         ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
@@ -1447,6 +1467,11 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 powerTv.setText(String.valueOf(mReceiveDeviceBean.batteryLevel));
 //                tempTv.setText(getTemp(mReceiveDeviceBean.temp) + "℃");
                 tempTv.setText(getTemp(mReceiveDeviceBean.temp) + "℃");
+                if (mReceiveDeviceBean.supply1.equals("01") || mReceiveDeviceBean.supply1.equals("81")) {
+                    isEndSupply = false;
+                } else if (mReceiveDeviceBean.supply2.equals("01") || mReceiveDeviceBean.supply2.equals("81")) {
+                    isEndSupply = true;
+                }
                 if (mFragment3.getActivity() != null) {
 //                    mFragment3 = new TreatmentFragmentItem3();
 //                    Log.e("mFragment3",""+mFragment3.currCycle);
@@ -1476,6 +1501,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                         mFragment3.setFirst(mReceiveDeviceBean.upper - PdproHelper.getInstance().getOtherParamBean().upper,
                                 mReceiveDeviceBean.lower - PdproHelper.getInstance().getOtherParamBean().lower);
                     }
+                    curUpperWeight = mReceiveDeviceBean.upper - PdproHelper.getInstance().getOtherParamBean().upper;
                     dialysateInitialValue = mReceiveDeviceBean.upper - PdproHelper.getInstance().getOtherParamBean().upper;
                     lowFirstValue = mReceiveDeviceBean.lower - PdproHelper.getInstance().getOtherParamBean().lower;
                 }
@@ -1649,7 +1675,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             stopCmdLoopTimer();
             stopLoopCountDown();
             stopLoopTimer();
-            buzzerOff();
+            stopSound();
 //            new Thread(new Runnable() {
 //                @Override
 //                public void run() {
@@ -1695,7 +1721,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
 //            stopCmdLoopTimer();
 //            stopLoopCountDown();
 //            stopLoopTimer();
-//            buzzerOff();
+//            stopSound();
 ////            new Thread(new Runnable() {
 ////                @Override
 ////                public void run() {
@@ -1762,7 +1788,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     treatmentAlarmDialog = new TreatmentAlarmDialog(this);
                 }
                 if (treatmentAlarmDialog.isShowing()) {
-                    buzzerOff();
+                    stopSound();
                     treatmentAlarmDialog.dismiss();
                 }
             });
@@ -1905,7 +1931,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             } else if (receiveBean.publish.msg.equals("low drop fault")) { // 引流阀门故障
                 runOnUiThread(() -> {
                     if (!isShowAlarmDialog) {
-                        drainValveFaultDialog("出现漏液,请检查引流阀");
+                        drainValveFaultDialog("可能出现漏液,请检查引流阀");
                     }
                 });
             } else if (receiveBean.publish.msg.contains("perfuse temp over 41")) { // 引流阀门故障
@@ -2052,6 +2078,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 Log.e("处理灌注数据", "7、灌注进行中: " + myGson.toJson(receiveBean.publish) + " ，实时灌注量：" + mCurrentVolume);
                 currCycle = mBean.cycle;
                 runOnUiThread(() -> {
+                    if (MyApplication.apdMode == 8) {
+                        conTv.setText(conStr+mixCon(curCon, curUpperWeight, isEndSupply?expertBean.con_2 : expertBean.con_1, Math.max(mBean.perfuse, 0))+"%");
+
+                    }
                     currentVolTv.setText(mCurrentVolume);
                     if (pdEntityDataList.size() != mBean.cycle + 1) {
                         pdEntityData = new PdData.PdEntityData();
@@ -2142,6 +2172,8 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 runOnUiThread(() -> {
                     stageIv.setImageResource(R.drawable.treatment_icon_volume_day);
                     assistIv.setVisibility(View.GONE);
+//                    curCon = mixCon(curCon, mBean.upperWeight - mBean.supply, isEndSupply ? expertBean.con_2 : expertBean.con_1, mBean.supply);
+
                 });
 //        } else if (receiveBean.publish.msg.contains(CommandReceiveConfig.TREATMENT_SUPPLY_STOP)) {//补液返回: 停止补液 TreatmentSupplyStop  [当前上位称重量]
 //            Log.e("receiveSupplyData", "停止补液:" + myGson.toJson(receiveBean.publish));
@@ -2350,6 +2382,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 runOnUiThread(() -> {
                     assistIv.setVisibility(View.GONE);
                     ReceiveRetainSupplyFinishBean mBean = JsonHelper.jsonToClass(myGson.toJson(receiveBean.publish.data), ReceiveRetainSupplyFinishBean.class);
+                    curUpperWeight = mBean.upperWeight;
                     if (mFragment3.getActivity() != null) {
                         mFragment3.setSupply(mBean.supply);
                     } else {
@@ -2359,6 +2392,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
                         detailedBean.setmSupplyTargetValue(mBean.supplyTarget);
                         detailedBean.setmSupplyTargetProtectionValue(mBean.supplyProtect);
                         detailedBean.setSupplyVol(mBean.supply);
+                    }
+                    if (MyApplication.apdMode == 8) {
+                        conTv.setText(conStr + mixCon(curCon, mBean.upperWeight - mBean.supply, isEndSupply ? expertBean.con_2 : expertBean.con_1, mBean.supply) + "%");
+                        curCon = mixCon(curCon, mBean.upperWeight - mBean.supply, isEndSupply ? expertBean.con_2 : expertBean.con_1, mBean.supply);
                     }
                 });
             } else if (receiveBean.publish.msg.contains("supply run")) {
@@ -2373,6 +2410,9 @@ public class TreatmentFragmentActivity extends BaseActivity {
                         detailedBean.setmSupplyTargetValue(finishBean.supplyTarget);
                         detailedBean.setmSupplyTargetProtectionValue(finishBean.supplyProtect);
                         detailedBean.setSupplyVol(finishBean.supply);
+                    }
+                    if (MyApplication.apdMode == 8) {
+                        conTv.setText(conStr + mixCon(curCon, finishBean.upperWeight - finishBean.supply, isEndSupply ? expertBean.con_2 : expertBean.con_1, finishBean.supply) + "%");
                     }
                 });
             } else if (receiveBean.publish.msg.equals(MSG_SUPPLY_FAILURE)) {//9、留腹补液失败
@@ -2431,7 +2471,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             } else if (receiveBean.publish.msg.equals("retain drop fault")) { // 引流阀门故障
                 runOnUiThread(() -> {
 //                    if (!isShowAlarmDialog) {
-                        drainValveFaultDialog("出现漏液,请检查引流阀");
+                        drainValveFaultDialog("可能出现漏液,请检查引流阀");
 //                    }
                 });
             } else if (receiveBean.publish.msg.equals("retain drop ok")) {
@@ -2440,7 +2480,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                         treatmentAlarmDialog = new TreatmentAlarmDialog(this);
                     }
                     if (treatmentAlarmDialog.isShowing()) {
-                        buzzerOff();
+                        stopSound();
                         treatmentAlarmDialog.dismiss();
                     }
                 });
@@ -2732,7 +2772,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             case "up drop fault":
                 runOnUiThread(() -> {
                     if (!isShowAlarmDialog) {
-                        drainValveFaultDialog("出现漏液,请检查灌注阀");
+                        drainValveFaultDialog("可能出现漏液,请检查灌注阀");
                     }
                 });
                 break;
@@ -2935,7 +2975,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
 
     private void erasure() {
         if (!MyApplication.isBuzzerOff) {
-            buzzerOff();
+            stopSound();
 //                            if (isBuzzerOff) {
             currCountdown = 0;
             silencersLayout.setVisibility(View.VISIBLE);
@@ -2955,7 +2995,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                             MyApplication.isBuzzerOff = false;
                             currCountdown = 0;
                             if (isShowAlarmDialog) {
-                                buzzer();
+                                silencer();
                             }
                             Log.e("currCountdown","complete");
                             silencersLayout.setVisibility(View.INVISIBLE);
@@ -2980,6 +3020,18 @@ public class TreatmentFragmentActivity extends BaseActivity {
         buzzerOn();
     }
 
+    private void silencer() {
+        currCountdown = 0;
+        MyApplication.isBuzzerOff = false;
+        silencersLayout.setVisibility(View.INVISIBLE);
+        if (soundCompositeDisposable != null) {
+            if (disposable != null) {
+                soundCompositeDisposable.remove(disposable);
+            }
+        }
+        loopSoundPool();
+    }
+
     private boolean isSleep = true; // 是否休眠
     /**
      * 引流自检失败
@@ -2988,7 +3040,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+        silencer();
         isShowAlarmDialog = true;
         if (treatmentAlarmDialog == null) {
             treatmentAlarmDialog = new TreatmentAlarmDialog(this);
@@ -3003,14 +3055,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_continue_treatment_selfcheck), R.drawable.dialog_btn_green)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setFirstLongClickListener(mCommonDialog13 -> {
-                    buzzerOff();
+                    stopSound();
                     //跳过引流
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP));
                     isShowAlarmDialog = false;
                     mCommonDialog13.dismiss();
                 })
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_drain_selfcheck));
@@ -3021,7 +3073,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     erasure();
                 })
                 .setTwoClickListener(mCommonDialog12 -> {
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd("treatment/failure_continue"));
                     //继续治疗
                     isShowAlarmDialog = false;
@@ -3032,7 +3084,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //终止治疗
                     // mCommonDialog.dismiss();
                     isShowAlarmDialog = true;
-                    buzzerOff();
+                    stopSound();
                     finishTreatmentDialog(3);
                 })
                 .show();
@@ -3046,7 +3098,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+        silencer();
         isShowAlarmDialog = true;
         if (treatmentAlarmDialog == null) {
             treatmentAlarmDialog = new TreatmentAlarmDialog(this);
@@ -3063,12 +3115,12 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(mCommonDialog13 -> {
                     //跳过灌注
                     isShowAlarmDialog = false;
-                    buzzerOff();
+                    stopSound();
                     sendCommandInterval(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP), 200);
                     mCommonDialog13.dismiss();
                 })
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_perfusion_selfcheck));
@@ -3079,7 +3131,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     erasure();
                 })
                 .setTwoClickListener(mCommonDialog12 -> {
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     //继续治疗
                     isShowAlarmDialog = false;
@@ -3090,7 +3142,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setThreeClickListener(mCommonDialog1 -> {
                     //终止治疗
                     mCommonDialog1.dismiss();
-                    buzzerOff();
+                    stopSound();
                     isShowAlarmDialog = true;
                     finishTreatmentDialog(1);
                 })
@@ -3106,7 +3158,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             simulateKey(82);
         }
         isShowAlarmDialog = true;
-        buzzer();
+        silencer();
 //        if (currCycle < 10) {
 //            APIServiceManage.getInstance().postApdCode("T0"+currCycle+"29");
 //        } else {
@@ -3128,14 +3180,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setFirstLongClickListener(mCommonDialog13 -> {
                     //跳过灌注
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP));
                     isShowAlarmDialog = false;
 //                    APIServiceManage.getInstance().postApdCode("T"+currCycle+"26");
                     mCommonDialog13.dismiss();
                 })
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(msg);
@@ -3147,7 +3199,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 })
                 .setTwoClickListener(mCommonDialog12 -> {
                     //继续治疗
-                    buzzerOff();
+                    stopSound();
 //                    sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     isShowAlarmDialog = false;
@@ -3157,7 +3209,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //终止治疗
                     mCommonDialog1.dismiss();
                     isShowAlarmDialog = true;
-                    buzzerOff();
+                    stopSound();
                     finishTreatmentDialog(1);
 
                 })
@@ -3169,7 +3221,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+        silencer();
 //        if (currCycle < 10) {
 //            APIServiceManage.getInstance().postApdCode("T0"+currCycle+"29");
 //        } else {
@@ -3190,7 +3242,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_continue_treatment), R.drawable.dialog_btn_green)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(faultMsg);
@@ -3199,7 +3251,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 })
                 .setFirstLongClickListener(mCommonDialog13 -> {
                     //跳过灌注
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
 //                    if (currCycle < 10) {
 //                        APIServiceManage.getInstance().postApdCode("T0"+currCycle+"26");
@@ -3216,16 +3268,16 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setTwoClickListener(mCommonDialog12 -> {
                     //继续治疗
 //                    sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     mCommonDialog12.dismiss();
                 })
                 .setThreeClickListener(mCommonDialog1 -> {
                     //终止治疗
                     mCommonDialog1.dismiss();
-                    buzzerOff();
+                    stopSound();
                     finishTreatmentDialog(1);
-//                    buzzerOff();
+//                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -3238,7 +3290,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+        silencer();
         if (currCycle < 10) {
             APIServiceManage.getInstance().postApdCode("T0"+currCycle+"29");
         } else {
@@ -3264,7 +3316,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_continue_treatment), R.drawable.dialog_btn_green)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_perfusion));
@@ -3273,7 +3325,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 })
                 .setFirstLongClickListener(mCommonDialog13 -> {
                     //跳过灌注
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
                     if (currCycle < 10) {
                         APIServiceManage.getInstance().postApdCode("T0"+currCycle+"26");
@@ -3290,7 +3342,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setTwoClickListener(mCommonDialog12 -> {
                     //继续治疗
 //                    sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     isShowAlarmDialog = false;
                     mCommonDialog12.dismiss();
@@ -3298,10 +3350,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setThreeClickListener(mCommonDialog1 -> {
                     //终止治疗
                     mCommonDialog1.dismiss();
-                    buzzerOff();
+                    stopSound();
                     isShowAlarmDialog = true;
                     finishTreatmentDialog(1);
-//                    buzzerOff();
+//                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -3315,7 +3367,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             simulateKey(82);
         }
         isShowAlarmDialog = true;
-        buzzer();
+        silencer();
         speak(msg);
         if (treatmentAlarmDialog == null) {
             treatmentAlarmDialog = new TreatmentAlarmDialog(this);
@@ -3329,7 +3381,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnThree(getResources().getString(R.string.dialog_btn_continue_treatment), R.drawable.dialog_btn_green)
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_skip_perfusion), R.drawable.dialog_btn_yellow)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(msg);
@@ -3338,7 +3390,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 })
                 .setFirstLongClickListener(mCommonDialog1 -> {
 //                    sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_ABORT));
-                    buzzerOff();
+                    stopSound();
                     refreshPauseOrResume();
                     isShowAlarmDialog = false;
                     mCommonDialog1.dismiss();
@@ -3349,14 +3401,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setThreeClickListener(mCommonDialog12 -> {
                     //继续治疗
 //                    sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_ABORT));
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     isShowAlarmDialog = false;
                     mCommonDialog12.dismiss();
                 })
 
                 .setTwoLongClickListener(mCommonDialog13 -> {
-                    buzzerOff();
+                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
                     isShowAlarmDialog = false;
                     mCommonDialog13.dismiss();
@@ -3374,7 +3426,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+        initBeepSoundSus(R.raw.medium_alarm);
         String msg = "引流小冲不畅,可检查人体和引流管路并尝试改变体位后继续治疗";
         isShowAlarmDialog = true;
         speak("引流小冲不畅");
@@ -3394,12 +3446,12 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(mCommonDialog13 -> {
                     //跳过引流
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
-                    buzzerOff();
+//                    stopSound();
                     isShowAlarmDialog = false;
                     mCommonDialog13.dismiss();
                 })
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(msg);
@@ -3413,7 +3465,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //继续治疗
 //                    sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+//                    stopSound();
                     isShowAlarmDialog = false;
                     mCommonDialog12.dismiss();
                 })
@@ -3422,7 +3474,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     // mCommonDialog.dismiss();
                     isShowAlarmDialog = true;
                     finishTreatmentDialog(3);
-                    buzzerOff();
+//                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -3435,7 +3487,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+        silencer();
         if (currCycle < 10) {
             APIServiceManage.getInstance().postApdCode("T0"+currCycle+"19");
         } else {
@@ -3458,7 +3510,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_continue_treatment), R.drawable.dialog_btn_green)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_drain));
@@ -3468,7 +3520,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(mCommonDialog13 -> {
                     //跳过引流
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
-                    buzzerOff();
+                    stopSound();
                     isShowAlarmDialog = false;
                     if (currCycle < 10) {
                         APIServiceManage.getInstance().postApdCode("T0"+currCycle+"16");
@@ -3485,7 +3537,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //继续治疗
 //                    sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+                    stopSound();
                     isShowAlarmDialog = false;
                     mCommonDialog12.dismiss();
                 })
@@ -3494,7 +3546,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     // mCommonDialog.dismiss();
                     isShowAlarmDialog = true;
                     finishTreatmentDialog(3);
-                    buzzerOff();
+                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -3508,7 +3560,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             simulateKey(82);
         }
         isShowAlarmDialog = true;
-        buzzer();
+        initBeepSoundSus(R.raw.medium_alarm);
         if (currCycle < 10) {
             APIServiceManage.getInstance().postApdCode("T0"+currCycle+"49");
         } else {
@@ -3530,7 +3582,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo("终止治疗", R.drawable.dialog_btn_red)
                 .setBtnThree("继续补液", R.drawable.dialog_btn_green)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_supply));
@@ -3540,14 +3592,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(dialog -> {
                     isShowAlarmDialog = false;
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
-                    buzzerOff();
+//                    stopSound();
                     //强制跳过窗口
                     dialog.dismiss();
                 })
                 .setTwoClickListener(mCommonDialog1 -> {
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .silencersClickListener(mCommonDialog14 -> {
                     erasure();
@@ -3555,7 +3607,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setThreeClickListener(mCommonDialog1 -> {
                     isShowAlarmDialog = false;
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+                    stopSound();
                     mCommonDialog1.dismiss();
                 })
                 .show();
@@ -3570,7 +3622,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             simulateKey(82);
         }
         isShowAlarmDialog = true;
-        buzzer();
+        initBeepSoundSus(R.raw.medium_alarm);
         if (currCycle < 10) {
             APIServiceManage.getInstance().postApdCode("T0"+currCycle+"49");
         } else {
@@ -3592,7 +3644,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo("终止治疗", R.drawable.dialog_btn_red)
                 .setBtnThree("继续补液", R.drawable.dialog_btn_green)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_supply));
@@ -3602,14 +3654,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(dialog -> {
                     isShowAlarmDialog = false;
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
-                    buzzerOff();
+//                    stopSound();
 //                    sendCommandInterval(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP),200);
                     dialog.dismiss();
                 })
                 .setTwoClickListener(mCommonDialog1 -> {
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .silencersClickListener(mCommonDialog14 -> {
                     erasure();
@@ -3617,7 +3669,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setThreeClickListener(mCommonDialog1 -> {
                     isShowAlarmDialog = false;
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+//                    stopSound();
                     mCommonDialog1.dismiss();
                 })
                 .show();
@@ -3628,7 +3680,8 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+//        silencer();
+        initBeepSoundSus(R.raw.medium_alarm);
         speak(msg);
 //        speak(getResources().getString(R.string.dialog_status_fault_supply));
         if (treatmentAlarmDialog == null) {
@@ -3644,7 +3697,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo("终止治疗", R.drawable.dialog_btn_red)
                 .setBtnThree("恢复治疗", R.drawable.dialog_btn_green)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(msg);
@@ -3654,14 +3707,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(dialog -> {
                     isShowAlarmDialog = false;
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP));
-                    buzzerOff();
+//                    stopSound();
 //                    sendCommandInterval(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP),200);
                     dialog.dismiss();
                 })
                 .setTwoClickListener(mCommonDialog1 -> {
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .silencersClickListener(mCommonDialog14 -> {
                     erasure();
@@ -3671,7 +3724,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     refreshPauseOrResume();//刷新按钮状态和发送"暂停治疗"或者"恢复治疗"指令
                     mCommonDialog1.dismiss();
 //                    earlyFinishTreatmentDialog();
-//                    buzzerOff();
+//                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -3682,7 +3735,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             simulateKey(82);
         }
         isShowAlarmDialog = true;
-        buzzer();
+        initBeepSoundSus(R.raw.medium_alarm);
         if (currCycle < 10) {
             APIServiceManage.getInstance().postApdCode("T0"+currCycle+"49");
         } else {
@@ -3704,7 +3757,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo("终止治疗", R.drawable.dialog_btn_red)
                 .setBtnThree("继续治疗", R.drawable.dialog_btn_green)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(msg);
@@ -3714,14 +3767,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(dialog -> {
                     isShowAlarmDialog = false;
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP));
-                    buzzerOff();
+//                    stopSound();
 //                    sendCommandInterval(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_TREATMENT_SKIP),200);
                     dialog.dismiss();
                 })
                 .setTwoClickListener(mCommonDialog1 -> {
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .silencersClickListener(mCommonDialog14 -> {
                     erasure();
@@ -3729,10 +3782,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setThreeClickListener(mCommonDialog1 -> {
 //                    isShowAlarmDialog = false;
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
-                    buzzerOff();
+//                    stopSound();
                     mCommonDialog1.dismiss();
 //                    earlyFinishTreatmentDialog();
-//                    buzzerOff();
+//                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -3752,6 +3805,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (treatmentAlarmDialog.isShowing()) {
             treatmentAlarmDialog.dismiss();
         }
+        initBeepSoundSus(R.raw.medium_alarm);
         treatmentAlarmDialog
                 .setTitle(getResources().getString(R.string.dialog_title))
                 .setMessage(getResources().getString(R.string.dialog_status_fault_drain_last))
@@ -3759,7 +3813,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_suspend_treatment), R.drawable.dialog_btn_yellow)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_view_data), R.drawable.dialog_btn_green)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_drain_last));
@@ -3774,10 +3828,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
 //                    mCommonDialog1.dismiss();
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .setTwoLongClickListener(mCommonDialog12 -> {
-//                    buzzerOff();
+//                    stopSound();
                     //暂停治疗
                     refreshPauseOrResume();//刷新按钮状态和发送"暂停治疗"或者"恢复治疗"指令
                     startLoopLastDrainCountDown();
@@ -3789,7 +3843,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     erasure();
                 })
                 .setThreeClickListener(mCommonDialog13 -> {
-//                    buzzerOff();
+//                    stopSound();
                     //查看数据
                     switchViewData();
                     startLoopLastDrainCountDown();
@@ -3807,7 +3861,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-//        buzzer();
+//        silencer();
         isShowAlarmDialog = true;
         if (treatmentAlarmDialog == null) {
             treatmentAlarmDialog = new TreatmentAlarmDialog(this);
@@ -3816,6 +3870,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             treatmentAlarmDialog.dismiss();
         }
 
+        initBeepSoundSus(R.raw.medium_alarm);
 //        disposeDownTimer.start();
         treatmentAlarmDialog
                 .setTitle(getResources().getString(R.string.dialog_title))
@@ -3825,7 +3880,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnThree(getResources().getString(R.string.dialog_btn_view_data), R.drawable.dialog_btn_green)
 //                .setCountdown(true, 31)//倒计时秒数
                 .setViewDataClickListener(mCommonDialog1 -> {
-//                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_perfusion_max));
@@ -3835,7 +3890,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(mCommonDialog1 -> {
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
 
-//                    buzzerOff();
+//                    stopSound();
                     //强制跳过窗口
 
                     mCommonDialog1.dismiss();
@@ -3853,13 +3908,13 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setTwoLongClickListener(mCommonDialog12 -> {
                     //暂停治疗
                     refreshPauseOrResume();//刷新按钮状态和发送"暂停治疗"或者"恢复治疗"指令
-//                    buzzerOff();
+//                    stopSound();
                     mCommonDialog12.dismiss();
                     isShowAlarmDialog = false;
                 })
                 .setThreeClickListener(mCommonDialog13 -> {
                     isShowAlarmDialog = false;
-//                    buzzerOff();
+//                    stopSound();
                     //查看数据
                     switchViewData();
                     mCommonDialog13.dismiss();
@@ -3899,7 +3954,8 @@ public class TreatmentFragmentActivity extends BaseActivity {
         if (isSleep) {
             simulateKey(82);
         }
-        buzzer();
+//        silencer();
+        initBeepSoundSus(R.raw.medium_alarm);
         isShowAlarmDialog = true;
         speak(getResources().getString(R.string.dialog_status_fault_temperature_low));
         if (treatmentAlarmDialog == null) {
@@ -3916,7 +3972,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_suspend_treatment), R.drawable.dialog_btn_yellow)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_temperature_low));
@@ -3926,7 +3982,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(mCommonDialog12 -> {
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
 
-                    buzzerOff();
+//                    stopSound();
                     //强制跳过窗口
                     isShowAlarmDialog = false;
 //                    CommandDataHelper.getInstance().continueTreatmentCmd();
@@ -3936,7 +3992,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setTwoLongClickListener(mCommonDialog13 -> {
                     //暂停治疗
                     refreshPauseOrResume();//刷新按钮状态和发送"暂停治疗"或者"恢复治疗"指令
-                    buzzerOff();
+//                    stopSound();
                     isShowAlarmDialog = false;
                     mCommonDialog13.dismiss();
                 })
@@ -3945,7 +4001,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //  mCommonDialog.dismiss();
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -3960,7 +4016,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
             simulateKey(82);
         }
         isShowAlarmDialog = true;
-        buzzer();
+        silencer();
         speak(getResources().getString(R.string.dialog_status_fault_temperature_high));
         if (treatmentAlarmDialog == null) {
             treatmentAlarmDialog = new TreatmentAlarmDialog(this);
@@ -3976,7 +4032,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_suspend_treatment), R.drawable.dialog_btn_yellow)
                 .setBtnThree(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_temperature_high));
@@ -3989,13 +4045,13 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(mCommonDialog12 -> {
                     sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
 
-                    buzzerOff();
+                    stopSound();
                     //强制跳过窗口
                     isShowAlarmDialog = false;
                     mCommonDialog12.dismiss();
                 })
                 .setTwoLongClickListener(mCommonDialog13 -> {
-                    buzzerOff();
+                    stopSound();
                     //暂停治疗
                     refreshPauseOrResume();//刷新按钮状态和发送"暂停治疗"或者"恢复治疗"指令
                     isShowAlarmDialog = false;
@@ -4006,7 +4062,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //  mCommonDialog.dismiss();
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+                    stopSound();
                 })
                 .show();
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.SKIP_STATUS));
@@ -4021,7 +4077,8 @@ public class TreatmentFragmentActivity extends BaseActivity {
             simulateKey(82);
         }
         APIServiceManage.getInstance().postApdCode("E0012");
-        buzzer();
+//        silencer();
+        initBeepSoundSus(R.raw.low_alarm);
         speak(getResources().getString(R.string.dialog_status_fault_ac_power_off));
         if (currentStage == 1) {
             refreshPauseOrResume();
@@ -4048,7 +4105,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo(getResources().getString(R.string.dialog_btn_stop_treatment), R.drawable.dialog_btn_red)
                 .setBtnThree("继续治疗",R.drawable.dialog_btn_yellow)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_ac_power_off));
@@ -4058,7 +4115,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setFirstLongClickListener(mCommonDialog12 -> {
                     refreshPauseOrResume();
                     isShowAlarmDialog = false;
-                    buzzerOff();
+//                    stopSound();
                     //强制跳过窗口
                     mCommonDialog12.dismiss();
                 })
@@ -4070,10 +4127,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //  mCommonDialog.dismiss();
 //                    isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .setThreeClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     sendToMainBoard(CommandDataHelper.getInstance().continueTreatmentCmd());
                     APIServiceManage.getInstance().postApdCode("E0011");
                     mCommonDialog1.dismiss();
@@ -4090,7 +4147,8 @@ public class TreatmentFragmentActivity extends BaseActivity {
 //        if (isSleep) {
 //            simulateKey(82);
 //        }
-        buzzer();
+//        silencer();
+        initBeepSoundSus(R.raw.medium_alarm);
         speak("掉电超过30分钟");
         if (treatmentAlarmDialog == null) {
             treatmentAlarmDialog = new TreatmentAlarmDialog(this);
@@ -4105,7 +4163,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 .setBtnTwo("", R.drawable.white_shape)
                 .setBtnThree("继续治疗",R.drawable.dialog_btn_yellow)
                 .setViewDataClickListener(mCommonDialog1 -> {
-                    buzzerOff();
+//                    stopSound();
                     //查看数据
 //                    switchViewData();
                     speak(getResources().getString(R.string.dialog_status_fault_ac_power_fault));
@@ -4117,14 +4175,14 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     //  mCommonDialog.dismiss();
                     isShowAlarmDialog = true;
                     earlyFinishTreatmentDialog();
-                    buzzerOff();
+//                    stopSound();
                 })
                 .silencersClickListener(mCommonDialog14 -> {
                     erasure();
                 })
                 .setThreeClickListener(mCommonDialog -> {
                     isShowAlarmDialog = false;
-                    buzzerOff();
+//                    stopSound();
                     mCommonDialog.dismiss();
                 })
                 .show();
@@ -4167,11 +4225,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
      * 治疗完成
      */
     private void showCompleteDialog() {
-//        buzzerOff();
+//        stopSound();
 //        initDb();
         try {
-
-
+            initBeepSoundSus(R.raw.low_alarm);
             isComplete = true;
 //        MyApplication.mEndTime = EmtTimeUil.getTime();
             if (pdData == null) {
@@ -4228,7 +4285,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
 //                .setBtnFirst(getResources().getString(R.string.dialog_btn_view_data), R.drawable.dialog_btn_blue)
 //                .setBtnThree("确认", R.drawable.dialog_btn_green)
 //                .setViewDataClickListener(mCommonDialog1 -> {
-//                    buzzerOff();
+//                    stopSound();
 //                    //查看数据
 ////                    switchViewData();
 //                    speak(getResources().getString(R.string.dialog_status_complete_tip));
@@ -4809,7 +4866,7 @@ public class TreatmentFragmentActivity extends BaseActivity {
 //    private void sendCommandInterval(String mCommand, long delayMillis) {
 //       sendToMainBoard(mCommand);
 //    }
-//    private void buzzerOff() {
+//    private void stopSound() {
 //        sendToMainBoard(CommandDataHelper.getInstance().customCmd(CommandSendConfig.METHOD_BEEP_OFF));
 //    }
 //    private void buzzerOn() {
@@ -5629,7 +5686,25 @@ public class TreatmentFragmentActivity extends BaseActivity {
     @BindView(R.id.svFirstVolTv)
     TextView svFirstVolTv;
     @BindView(R.id.svFirstVolLl)
+
     LinearLayout svFirstVolLl;
+
+    @BindView(R.id.con_1_1_5)
+    TextView con_1_1_5;
+    @BindView(R.id.con_1_2_5)
+    TextView con_1_2_5;
+    @BindView(R.id.con_1_4_25)
+    TextView con_1_4_25;
+    @BindView(R.id.con_1_other)
+    TextView con_1_other;
+    @BindView(R.id.con_2_1_5)
+    TextView con_2_1_5;
+    @BindView(R.id.con_2_2_5)
+    TextView con_2_2_5;
+    @BindView(R.id.con_2_4_25)
+    TextView con_2_4_25;
+    @BindView(R.id.con_2_other)
+    TextView con_2_other;
 
     @BindView(R.id.stage_01_CycleVolLl)
     LinearLayout stage_01_CycleVolLl;
@@ -5689,7 +5764,26 @@ public class TreatmentFragmentActivity extends BaseActivity {
         svFinalVolTv.setText(String.valueOf(expertBean.finalRetainVol));
         svLastVolTv.setText(String.valueOf(expertBean.lastRetainVol));
         svAbdTimeTv.setText(String.valueOf(expertBean.retainTime));
-
+        if (expertBean.con_1 == 1.5) {
+            setCon1(true,false,false,false);
+        } else if (expertBean.con_1 == 2.5) {
+            setCon1(false,true,false,false);
+        } else if (expertBean.con_1 == 4.25) {
+            setCon1(false,false,true,false);
+        } else {
+            setCon1(false,false,false,true);
+            con_1_other.setText(expertBean.con_1+"%");
+        }
+        if (expertBean.con_2 == 1.5) {
+            setCon2(true,false,false,false);
+        } else if (expertBean.con_2 == 2.5) {
+            setCon2(false,true,false,false);
+        } else if (expertBean.con_2 == 4.25) {
+            setCon2(false,false,true,false);
+        } else {
+            setCon2(false,false,false,true);
+            con_2_other.setText(expertBean.con_2+"%");
+        }
         stage_01_cycleNumTv.setText(expertBean.baseSupplyCycle.toString());
         stage_02_cycleNumTv.setText(expertBean.osmSupplyCycle.toString());
         stage_01_VolTv.setText(String.valueOf(expertBean.baseSupplyVol));
@@ -5725,6 +5819,32 @@ public class TreatmentFragmentActivity extends BaseActivity {
                     ,expertBean.firstVol == 0 ? PdproHelper.getInstance().getPerfusionParameterBean().perfMaxWarningValue: expertBean.firstVol);
 
         });
+        con_1_1_5.setOnClickListener(view -> {
+            setCon1(!con_1_1_5.isSelected(),false,false,false);
+        });
+        con_1_2_5.setOnClickListener(view -> {
+            setCon1(false,!con_1_2_5.isSelected(),false,false);
+        });
+        con_1_4_25.setOnClickListener(view -> {
+            setCon1(false,false,!con_1_4_25.isSelected(),false);
+        });
+        con_1_other.setOnClickListener(view -> {
+            setCon1(false,false,false,!con_1_other.isSelected());
+            arNumD(con_1_other.getText().toString(),"con_1");
+        });
+        con_2_1_5.setOnClickListener(view -> {
+            setCon2(!con_2_1_5.isSelected(),false,false,false);
+        });
+        con_2_2_5.setOnClickListener(view -> {
+            setCon2(false,!con_2_2_5.isSelected(),false,false);
+        });
+        con_2_4_25.setOnClickListener(view -> {
+            setCon2(false,false,!con_2_4_25.isSelected(),false);
+        });
+        con_2_other.setOnClickListener(view -> {
+            setCon2(false,false,false,!con_2_other.isSelected());
+            arNumD(con_2_other.getText().toString(),"con_2");
+        });
         svCycleNumLl.setOnClickListener(v -> {
             alertSvNumberDialog(PdGoConstConfig.EXPERT_CYCLE,EmtConstant.cycleNumMin, EmtConstant.cycleNumMax);
 
@@ -5749,7 +5869,43 @@ public class TreatmentFragmentActivity extends BaseActivity {
             alertSvNumberDialog(PdGoConstConfig.EXPERT_ULT_VOL, EmtConstant.ultVolMin, EmtConstant.ultVolMax);
         });
     }
+    private void setCon1(boolean c1, boolean c2, boolean c3, boolean c4) {
+        con_1_1_5.setSelected(c1);
+        con_1_2_5.setSelected(c2);
+        con_1_4_25.setSelected(c3);
+        con_1_other.setSelected(c4);
+//        con_1_other.setText(c4? entity.con_1 + "%" : "其他");
+    }
+    private void setCon2(boolean c1, boolean c2, boolean c3, boolean c4) {
+        con_2_1_5.setSelected(c1);
+        con_2_2_5.setSelected(c2);
+        con_2_4_25.setSelected(c3);
+        con_2_other.setSelected(c4);
+//        con_2_other.setText(c4? entity.con_2 + "%" : "其他");
+    }
+    private void arNumD(String value, String type) {
+        NumberBoardDialog dialog = new NumberBoardDialog(this, value, type, true);
 
+
+
+        dialog.show();
+        dialog.setOnDialogResultListener((mType, result) -> {
+            double c = Double.parseDouble(result);
+
+            if (!TextUtils.isEmpty(result)) {
+                switch (mType) {
+                    case "con_1":
+                        con_1_other.setText(c +"%");
+                        expertBean.con_1 = c;
+                        break;
+                    case "con_2":
+                        con_2_other.setText(c +"%");
+                        expertBean.con_2 = c;
+                        break;
+                }
+            }
+        });
+    }
     private void alertSvNumberDialog(String type, int min, int max) {
         NumberDialog dialog = new NumberDialog(this, type, min, max);
         dialog.show();
@@ -6498,12 +6654,10 @@ public class TreatmentFragmentActivity extends BaseActivity {
                 msgBeanList = new ArrayList<>();
             }
             msgAdapter = new MsgAdapter(msgBeanList);
-
 //            recyclerview.addItemDecoration(new SpaceItemDecoration(1, 0, 0));
 //            //添加Android自带的分割线
 //            recyclerview.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
             recyclerview.setAdapter(msgAdapter);
-
             msgAdapter.setOnItemChildClickListener((adapter, view, position) -> {
                 if (view.getId() == R.id.btnPause) {
                     msgBeanList.remove(position);
@@ -6642,5 +6796,34 @@ public class TreatmentFragmentActivity extends BaseActivity {
         apTotalVolTv.setText(String.valueOf(aapdBean.total));
     }
 
+
+    private double mixCon(double c1, int v1, double c2, int v2) {
+        double d = (c1 * v1 + c2 * v2) / (v1 + v2);
+        BigDecimal bd = new BigDecimal(d);
+        return bd.setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    private SoundPool soundPool;
+    private int pool;
+    /**
+     * 重复报警
+     */
+    private void loopSoundPool() {
+        soundPool = new SoundPool(10, AudioManager.STREAM_ALARM, 5);
+        soundPool.load(this, R.raw.high_alarm, 1);
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int i, int i1) {
+                pool = i;
+                soundPool.play(i, 100, 100, 1, -1, 1f);
+            }
+        });
+    }
+
+    private void stopSound() {
+        if (soundPool != null) {
+            soundPool.stop(pool);
+        }
+    }
 
 }

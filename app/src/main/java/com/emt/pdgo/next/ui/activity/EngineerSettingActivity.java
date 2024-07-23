@@ -28,6 +28,7 @@ import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.CommandSendConfig;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.constant.ConfigConst;
 import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.data.bean.DrainParameterBean;
@@ -38,7 +39,10 @@ import com.emt.pdgo.next.data.bean.RetainParamBean;
 import com.emt.pdgo.next.data.bean.SupplyParameterBean;
 import com.emt.pdgo.next.data.bean.UserParameterBean;
 import com.emt.pdgo.next.data.entity.CommandItem;
+import com.emt.pdgo.next.data.serial.ReceiveResultDataBean;
 import com.emt.pdgo.next.model.mode.IpdBean;
+import com.emt.pdgo.next.rxlibrary.rxbus.RxBus;
+import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.activity.dl.TrActivity;
 import com.emt.pdgo.next.ui.activity.dpr.DprExamineActivity;
 import com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity;
@@ -70,6 +74,7 @@ import com.emt.pdgo.next.ui.mode.activity.ModeActivity;
 import com.emt.pdgo.next.util.CacheUtils;
 import com.emt.pdgo.next.util.ClickUtil;
 import com.emt.pdgo.next.util.MarioResourceHelper;
+import com.google.gson.Gson;
 import com.pdp.rmmit.pdp.R;
 
 import java.io.IOException;
@@ -109,6 +114,9 @@ public class EngineerSettingActivity extends BaseActivity {
         initHeadTitleBar("工程师设置", "关于");
 //        Log.e("activity","int--"+ ActivityCompat.checkSelfPermission(EngineerSettingActivity.this,
 //                "android.permission.WRITE_EXTERNAL_STORAGE"));
+        RxBus.get().register(this);
+        sendToMainBoard(CommandDataHelper.getInstance().customCmd("board_version"));
+
     }
 
     @BindView(R.id.btnBack)
@@ -140,7 +148,7 @@ public class EngineerSettingActivity extends BaseActivity {
     @Override
     public void initViewData() {
         mList = new ArrayList<>();
-        
+
         mList.add(new CommandItem("参数设置", "paramDebug"));
         mList.add(new CommandItem("灯光测试", "lamplightDebug"));
         mList.add(new CommandItem("声音测试", "voiceDebug"));
@@ -161,7 +169,7 @@ public class EngineerSettingActivity extends BaseActivity {
 //        mList.add(new CommandItem("引流参数设置", "DrainParameter"));
 //        mList.add(new CommandItem("灌注参数设置", "PerfusionParameter"));
 //        mList.add(new CommandItem("补液参数设置", "SupplyParameter"));
-//        mList.add(new CommandItem("治疗记录", "tdRecord"));
+//        mList.add(new CommandItem("权限", "tdRecord"));
 //        mList.add(new CommandItem("用户参数设置", "UserParameter"));
 
         mList.add(new CommandItem("电机调试功能", "ValveTest"));
@@ -243,7 +251,7 @@ public class EngineerSettingActivity extends BaseActivity {
             } else if ("appUpdate".equals(mList.get(position).mCommand)) {
                 appUpdate(true);
             } else if ("tdRecord".equals(mList.get(position).mCommand)) {
-
+                ann();
             }else if ("WeighParameter".equals(mList.get(position).mCommand)) {
                 doGoTOActivity(WeighParameterActivity.class);
             } else if ("TemperatureControlParameter".equals(mList.get(position).mCommand)) {
@@ -511,49 +519,51 @@ public class EngineerSettingActivity extends BaseActivity {
         UserParameterBean userParameterBean = PdproHelper.getInstance().getUserParameterBean();
         RetainParamBean retainParamBean = PdproHelper.getInstance().getRetainParamBean();
         IpdBean treatmentParameterEniity = PdproHelper.getInstance().ipdBean();
+
         // 处方
-        treatmentParameterEniity.peritonealDialysisFluidTotal = 2800;
-        treatmentParameterEniity.perCyclePerfusionVolume = 500;
-        treatmentParameterEniity.cycle = 4;
-        treatmentParameterEniity.firstPerfusionVolume = 0;
-        treatmentParameterEniity.abdomenRetainingTime = 15;
-        treatmentParameterEniity.abdomenRetainingVolumeFinally = 0;
-        treatmentParameterEniity.abdomenRetainingVolumeLastTime = 0;
-        treatmentParameterEniity.ultrafiltrationVolume = 0;
+        treatmentParameterEniity.peritonealDialysisFluidTotal = ConfigConst.peritonealDialysisFluidTotal;
+        treatmentParameterEniity.perCyclePerfusionVolume = ConfigConst.perCyclePerfusionVolume;
+        treatmentParameterEniity.cycle = ConfigConst.cycle;
+        treatmentParameterEniity.firstPerfusionVolume = ConfigConst.firstPerfusionVolume;
+        treatmentParameterEniity.abdomenRetainingTime = ConfigConst.abdomenRetainingTime;
+        treatmentParameterEniity.abdomenRetainingVolumeFinally = ConfigConst.abdomenRetainingVolumeFinally;
+        treatmentParameterEniity.abdomenRetainingVolumeLastTime = ConfigConst.abdomenRetainingVolumeLastTime;
+        treatmentParameterEniity.ultrafiltrationVolume = ConfigConst.ultrafiltrationVolume;
         treatmentParameterEniity.isFinalSupply = ConfigConst.isFinalSupply;
         // 预冲参数重置
-        firstRinseParameterBean.firstvolume = 50;
-        firstRinseParameterBean.secondvolume = 50;
-        firstRinseParameterBean.supplyperiod = 60;
-        firstRinseParameterBean.supplyspeed = 30;
-        firstRinseParameterBean.supplyselect = 1;
+        firstRinseParameterBean.firstvolume = ConfigConst.firstVolume;
+        firstRinseParameterBean.secondvolume = ConfigConst.secondVolume;
+        firstRinseParameterBean.supplyperiod = ConfigConst.supplyPeriod;
+        firstRinseParameterBean.supplyspeed = ConfigConst.supplySpeed;
+        firstRinseParameterBean.supplyselect = ConfigConst.supplySelect;
+        firstRinseParameterBean.supplychvolume = ConfigConst.supplyVol;
         // 灌注参数重置
-        perfusionParameterBean.perfAllowAbdominalVolume = 1;
-        perfusionParameterBean.perfMaxWarningValue = 5000;
-        perfusionParameterBean.perfTimeInterval = 60;
-        perfusionParameterBean.perfThresholdValue = 30;
-        perfusionParameterBean.perfMinWeight = 100;
+        perfusionParameterBean.perfAllowAbdominalVolume = ConfigConst.perfAllowAbdominalVolume;
+        perfusionParameterBean.perfMaxWarningValue = ConfigConst.perfMaxWarningValue;
+        perfusionParameterBean.perfTimeInterval = ConfigConst.perfTimeInterval;
+        perfusionParameterBean.perfThresholdValue = ConfigConst.perfThresholdValue;
+        perfusionParameterBean.perfMinWeight = ConfigConst.perfMinWeight;
         // 引流参数重置
-        drainParameterBean.drainTimeInterval = 60;
-        drainParameterBean.drainThresholdValue = 30;
-        drainParameterBean.drainZeroCyclePercentage = 100;
-        drainParameterBean.drainOtherCyclePercentage = 75;
-        drainParameterBean.drainTimeoutAlarm = 45;
-        drainParameterBean.drainRinseVolume = 50;
-        drainParameterBean.drainRinseNumber = 1;
-        drainParameterBean.isDrainManualEmptying = false;
-        drainParameterBean.drainWarnTimeInterval = 30;
+        drainParameterBean.drainTimeInterval = ConfigConst.drainTimeInterval;
+        drainParameterBean.drainThresholdValue = ConfigConst.drainThresholdValue;
+        drainParameterBean.drainZeroCyclePercentage = ConfigConst.drainZeroCyclePercentage;
+        drainParameterBean.drainOtherCyclePercentage = ConfigConst.drainOtherCyclePercentage;
+        drainParameterBean.drainTimeoutAlarm = ConfigConst.drainTimeoutAlarm;
+        drainParameterBean.drainRinseVolume = ConfigConst.drainRinseVolume;
+        drainParameterBean.drainRinseNumber = ConfigConst.drainRinseNumber;
+        drainParameterBean.isDrainManualEmptying = ConfigConst.isDrainManualEmptying;
+        drainParameterBean.drainWarnTimeInterval = ConfigConst.drainWarnTimeInterval;
         // 留腹参数
-        retainParamBean.isAbdomenRetainingDeduct = false;
-        retainParamBean.isZeroCycleUltrafiltration = false;
+        retainParamBean.isAbdomenRetainingDeduct = ConfigConst.isAbdomenRetainingDeduct;
+        retainParamBean.isZeroCycleUltrafiltration = ConfigConst.isZeroCycleUltrafiltration;
         retainParamBean.isAlarmWakeUp = false;
         // 补液参数重置
-        supplyParameterBean.supplyTimeInterval = 60;
-        supplyParameterBean.supplyThresholdValue = 30;
-        supplyParameterBean.supplyTargetProtectionValue = 500;
-        supplyParameterBean.supplyMinWeight = 500;
+        supplyParameterBean.supplyTimeInterval = ConfigConst.supplyTimeInterval;
+        supplyParameterBean.supplyThresholdValue = ConfigConst.supplyThresholdValue;
+        supplyParameterBean.supplyTargetProtectionValue = ConfigConst.supplyTargetProtectionValue;
+        supplyParameterBean.supplyMinWeight = ConfigConst.supplyMinWeight;
         // 开启语音
-        PdproHelper.getInstance().updateTtsSoundOpen(true);
+//        PdproHelper.getInstance().updateTtsSoundOpen(true);
         // 用户参数设置
         userParameterBean.isHospital = false;
         userParameterBean.isNight = false;
@@ -561,16 +571,18 @@ public class EngineerSettingActivity extends BaseActivity {
         userParameterBean.underweight1 = 1f;
         userParameterBean.underweight2 = 2f;
         userParameterBean.underweight3 = 3.6f;
+
         OtherParamBean otherParamBean = PdproHelper.getInstance().getOtherParamBean();
         otherParamBean.lower = EmtConstant.lower;
         otherParamBean.upper = EmtConstant.upper;
-        otherParamBean.isDebug = false;
-        otherParamBean.isHospital = false;
-        otherParamBean.perHeartWeight = 500;
+//        otherParamBean.isDebug = false;
+//        otherParamBean.isHospital = false;
+//        otherParamBean.perHeartWeight = 500;
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.OTHER_PARAMETER, otherParamBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.RETAIN_PARAM, retainParamBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.ttsSoundOpen, "true");
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, treatmentParameterEniity);
+//        CacheUtils.getInstance().getACache().put(PdGoConstConfig.IPD_BEAN, treatmentParameterEniity);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.USER_PARAMETER, userParameterBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.DRAIN_PARAMETER, drainParameterBean);
         CacheUtils.getInstance().getACache().put(PdGoConstConfig.PERFUSION_PARAMETER, perfusionParameterBean);
@@ -607,8 +619,30 @@ public class EngineerSettingActivity extends BaseActivity {
         startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
     }
 
+    private Gson gson;
+    @Subscribe(code = RxBusCodeConfig.BOARD_VERSION)
+    public void receiveBoardVersion(ReceiveResultDataBean dataBean) {
+//        Log.e("BOARD_VERSION  11", "bean---"+dataBean);
+
+        runOnUiThread(()-> {
+            try {
+
+                if (gson == null) {
+                    gson = new Gson();
+                }
+                Log.e("BOARD_VERSION  11", "1111---"+dataBean.result.msg);
+                lowVer.setText(dataBean.result.msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            
+        });
+    }
+
     @Override
     protected void onDestroy() {
+        RxBus.get().unRegister(this);
         super.onDestroy();
     }
 }

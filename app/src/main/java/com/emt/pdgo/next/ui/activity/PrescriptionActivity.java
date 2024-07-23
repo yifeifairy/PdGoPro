@@ -17,6 +17,7 @@ import com.emt.pdgo.next.net.bean.HisPrescriptionBean;
 import com.emt.pdgo.next.net.bean.MyResponse;
 import com.emt.pdgo.next.ui.activity.apd.param.ApdParamSetActivity;
 import com.emt.pdgo.next.ui.activity.apd.prescrip.AapdActivity;
+import com.emt.pdgo.next.ui.activity.dpr.DprPrescriptionActivity;
 import com.emt.pdgo.next.ui.activity.local.LocalPrescriptionActivity;
 import com.emt.pdgo.next.ui.activity.vo.SpeVolActivity;
 import com.emt.pdgo.next.ui.base.BaseActivity;
@@ -142,6 +143,9 @@ public class PrescriptionActivity extends BaseActivity {
                         modeDialog.dismiss();
                     } else if (model == 3) {
                         doGoTOActivity(SpeVolActivity.class);
+                        modeDialog.dismiss();
+                    } else if (model == 4) {
+                        doGoTOActivity(DprPrescriptionActivity.class);
                         modeDialog.dismiss();
                     }
                 }

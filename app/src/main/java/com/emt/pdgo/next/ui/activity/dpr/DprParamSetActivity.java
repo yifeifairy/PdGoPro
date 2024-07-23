@@ -1,17 +1,15 @@
 package com.emt.pdgo.next.ui.activity.dpr;
 
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
-import com.emt.pdgo.next.common.config.CommandDataHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
-import com.emt.pdgo.next.common.config.RxBusCodeConfig;
 import com.emt.pdgo.next.data.serial.SerialRequestBean;
 import com.emt.pdgo.next.data.serial.SerialRequestMainBean;
 import com.emt.pdgo.next.data.serial.dpr.param.ConfigBean;
@@ -20,13 +18,11 @@ import com.emt.pdgo.next.data.serial.dpr.param.DrainConfigParam;
 import com.emt.pdgo.next.data.serial.dpr.param.PerfuseConfigParam;
 import com.emt.pdgo.next.data.serial.dpr.param.RetainConfigParam;
 import com.emt.pdgo.next.data.serial.dpr.param.SupplyConfigParam;
-import com.emt.pdgo.next.data.serial.receive.ReceiveDeviceBean;
 import com.emt.pdgo.next.model.dpr.machine.param.DprOtherParam;
 import com.emt.pdgo.next.model.dpr.machine.param.DrainParam;
 import com.emt.pdgo.next.model.dpr.machine.param.PerfuseParam;
 import com.emt.pdgo.next.model.dpr.machine.param.RetainParam;
 import com.emt.pdgo.next.model.dpr.machine.param.SupplyParam;
-import com.emt.pdgo.next.rxlibrary.rxbus.Subscribe;
 import com.emt.pdgo.next.ui.adapter.dpr.ViewPagerAdapter;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.fragment.dpr.param.DprDrainParamFragment;
@@ -35,9 +31,7 @@ import com.emt.pdgo.next.ui.fragment.dpr.param.DprPerfusionParamFragment;
 import com.emt.pdgo.next.ui.fragment.dpr.param.DprRetainParamFragment;
 import com.emt.pdgo.next.ui.fragment.dpr.param.DprSupplyParamFragment;
 import com.emt.pdgo.next.ui.view.NoScrollViewPager;
-import com.emt.pdgo.next.ui.view.StateButton;
 import com.emt.pdgo.next.util.CacheUtils;
-import com.emt.pdgo.next.util.helper.JsonHelper;
 import com.emt.pdgo.next.util.helper.MD5Helper;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -57,8 +51,11 @@ public class DprParamSetActivity extends BaseActivity {
     @BindView(R.id.viewpager)
     NoScrollViewPager viewpager;
 
-    @BindView(R.id.btn_submit)
-    StateButton btn_submit;
+    @BindView(R.id.btnSave)
+    Button btnSave;
+
+    @BindView(R.id.btnBack)
+    Button btnBack;
 
     public static DrainParam drainParam;
     public static PerfuseParam perfuseParam;
@@ -75,32 +72,9 @@ public class DprParamSetActivity extends BaseActivity {
     public void initAllViews() {
         setContentView(R.layout.activity_dpr_param_set);
         ButterKnife.bind(this);
-        initHeadTitleBar("参数设置","保存");
+        btnSave.setVisibility(View.VISIBLE);
     }
-    @BindView(R.id.powerIv)
-    ImageView powerIv;
-    @BindView(R.id.currentPower)
-    TextView currentPower;
-    @Subscribe(code = RxBusCodeConfig.RESULT_REPORT)
-    public void receiveCmdDeviceInfo(String bean) {
-        ReceiveDeviceBean mReceiveDeviceBean = JsonHelper.jsonToClass(bean, ReceiveDeviceBean.class);
-        runOnUiThread(() -> {
-            if (mReceiveDeviceBean.isAcPowerIn == 1) {
-                powerIv.setImageResource(R.drawable.charging);
-            } else {
-                if (mReceiveDeviceBean.batteryLevel < 30) {
-                    powerIv.setImageResource(R.drawable.poor_power);
-                } else if (30 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 60 ) {
-                    powerIv.setImageResource(R.drawable.low_power);
-                } else if (60 < mReceiveDeviceBean.batteryLevel &&mReceiveDeviceBean.batteryLevel <= 80 ) {
-                    powerIv.setImageResource(R.drawable.mid_power);
-                } else {
-                    powerIv.setImageResource(R.drawable.high_power);
-                }
-            }
-            currentPower.setText(mReceiveDeviceBean.batteryLevel+"");
-        });
-    }
+
     @Override
     public void registerEvents() {
         drainParam = PdproHelper.getInstance().getDrainParam();
@@ -108,24 +82,10 @@ public class DprParamSetActivity extends BaseActivity {
         retainParam = PdproHelper.getInstance().getRetainParam();
         perfuseParam = PdproHelper.getInstance().getPerfuseParam();
         otherParam = PdproHelper.getInstance().getDprOtherParam();
-        btn_submit.setOnClickListener(v -> {
+        btnSave.setOnClickListener(v -> {
             save();
         });
-        if (MyApplication.chargeFlag == 1) {
-            powerIv.setImageResource(R.drawable.charging);
-        } else {
-            if (MyApplication.batteryLevel < 30) {
-                powerIv.setImageResource(R.drawable.poor_power);
-            } else if (30 < MyApplication.batteryLevel &&MyApplication.batteryLevel < 60 ) {
-                powerIv.setImageResource(R.drawable.low_power);
-            } else if (60 < MyApplication.batteryLevel &&MyApplication.batteryLevel <= 80 ) {
-                powerIv.setImageResource(R.drawable.mid_power);
-            } else {
-                powerIv.setImageResource(R.drawable.high_power);
-            }
-        }
-        currentPower.setText(MyApplication.batteryLevel+"");
-        sendToMainBoard(CommandDataHelper.getInstance().setStatusOn());
+        btnBack.setOnClickListener(view -> onBackPressed());
     }
 
     private void save() {

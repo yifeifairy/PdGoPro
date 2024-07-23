@@ -294,12 +294,15 @@ public class UploadDataTestActivity extends BaseActivity {
                     .url("https://" + url + addApd)
                     .post(params)
                     .build();
+            assert request.body() != null;
+            Log.e("数据上报","请求--"+ request.body());
         } else {
             request = new Request.Builder()
                     .url("https://" + url + addApd)
                     .addHeader("Authorization", CacheUtils.getInstance().getACache().getAsString(PdGoConstConfig.TOKEN))
                     .post(params)
                     .build();
+            Log.e("数据上报","请求11--"+ request.body());
         }
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override

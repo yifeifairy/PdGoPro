@@ -4,10 +4,18 @@ public class EmtConstant {
 
     public static final int dep = 250;
 
+//    public static final int upper = 1942; // 1942
+//    public static final int lower = 2966; // 2966
+
     public static final int upper = 0; // 1942
     public static final int lower = 0; // 2966
 
-    public static final String version = "40603";
+    // ptn717 pro改next versionCode 2100 versionName "2.1.0.0"
+    // 240624 PD-GO-Pro升级 versionCode 2100 versionName "2.1.0.0"
+    public static final String version = "Pn.40722";
+    public static final String sn_name = "PD-GO-Next";
+    public static final String push_version = "V2.0";
+    public static final String full_version = "V2.0.0.1";
 
     public static final String JUMP_WITH_PARAM = "JUMP_WITH_PARAM";
 
@@ -30,10 +38,13 @@ public class EmtConstant {
     // 延时
     public static final int DELAY_TIME = 3000;
 
+
     // REPORT延时
     public static final int REPORT_DELAY_TIME = 3000;
 
     public static final int DPR_TOTAL_AMOUNT_MIN = 50; // 治疗总量最小值（ml)
+
+
     public static final int DPR_TOTAL_AMOUNT_MAX = 200000; // 治疗总量最大值（ml)
     public static final int DPR_TOTAL_TIME_MIN = 1; // 治疗时间最小值（h)
     public static final int DPR_TOTAL_TIME_MAX = 120; // 治疗时间最大值（h)
@@ -77,6 +88,7 @@ public class EmtConstant {
 
     // 正常模式
     public static final int totalVolMin = 1000;
+//    public static final int totalVolMax = 500000;
     public static final int totalVolMax = 500000;
 
     public static final int cycleVolMin = 10;
@@ -84,6 +96,7 @@ public class EmtConstant {
 
     public static final int cycleNumMin = 1;
     public static final int cycleNumMax = 100;
+//    public static final int cycleNumMax = 35;
 
     public static final int firstVolMin = 0;
     public static final int firstVolMax = 5000;
@@ -134,6 +147,7 @@ public class EmtConstant {
     public static int drainThresholdValueMin = 0;
     public static int drainZeroCyclePercentageMin = 50;
     public static int drainOtherCyclePercentageMin = 50;
+
     public static int drainTimeoutAlarmMin = 1;
     public static int drainRinseVolumeMin = 30;
     public static int drainRinseNumberMin = 1;

@@ -126,8 +126,6 @@ public class VoActivity extends BaseActivity {
     @Override
     public void initViewData() {
         try {
-
-
             pdData = MyApplication.pdData;
             totalDrainTv.setText(String.valueOf(pdData.getTotalDarinVol()));
             totalPerTv.setText(String.valueOf(pdData.getTotalPerVol()));
@@ -192,8 +190,6 @@ public class VoActivity extends BaseActivity {
 
     private void postData() {
         try {
-
-
             getTreatmentDataUpload();
             addAPD();
         } catch (Exception e) {

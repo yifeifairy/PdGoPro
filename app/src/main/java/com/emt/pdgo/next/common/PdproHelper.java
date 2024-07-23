@@ -128,7 +128,7 @@ public class PdproHelper {
             e.printStackTrace();
             Log.e("出厂日期","useDeviceTime异常:"+e.getLocalizedMessage());
         }
-        return 0;
+        return 1;
     }
 
     public float targetTemper() {

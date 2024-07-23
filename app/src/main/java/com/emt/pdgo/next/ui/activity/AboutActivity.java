@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.emt.pdgo.next.MyApplication;
 import com.emt.pdgo.next.common.PdproHelper;
 import com.emt.pdgo.next.common.config.PdGoConstConfig;
+import com.emt.pdgo.next.constant.EmtConstant;
 import com.emt.pdgo.next.ui.base.BaseActivity;
 import com.emt.pdgo.next.ui.dialog.NumberBoardDialog;
 import com.emt.pdgo.next.util.CacheUtils;
@@ -29,6 +30,9 @@ public class AboutActivity extends BaseActivity {
 
     @BindView(R.id.tvVersion)
     TextView tvVersion;
+
+    @BindView(R.id.tv_unit_min_weight)
+    TextView versionName;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.tv_unit_max_warning_value)
@@ -50,6 +54,9 @@ public class AboutActivity extends BaseActivity {
     public void registerEvents() {
         title.setText("关于");
         btnBack.setOnClickListener(view -> onBackPressed());
+        tvVersion.setText(EmtConstant.push_version);
+        tvV.setText(EmtConstant.full_version);
+        versionName.setText(EmtConstant.sn_name);
         ClickUtil clickUtil = new ClickUtil(useDeviceRl,5000);
         clickUtil.setResultListener(new ClickUtil.ResultListener() {
             @Override

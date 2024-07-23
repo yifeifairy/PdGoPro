@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -674,6 +676,19 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 //        return super.dispatchTouchEvent(ev);
 //    }
 
+    public void ann() {
+        try {
+            OutputStream os = Runtime.getRuntime().exec("norcofz").getOutputStream();
+//            OutputStream os = Runtime.getRuntime().exec("su").getOutputStream();
+//            OutputStream os = Runtime.getRuntime().exec("/system/bin/sh").getOutputStream();
+            os.write("mount -o remount".getBytes());
+            os.flush();
+//            os.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 //    private OutputStream os;
     private void execute(String cmd) {
         try {
@@ -1161,8 +1176,6 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
      * 打开蜂鸣器
      */
     public void buzzerOn() {
-//        ringingLayout.setVisibility(View.VISIBLE);
-//        breatheView.show();
         MyApplication.isBuzzerOff = false;
 //        Log.e("baseActivity","报警中"+MyApplication.isBuzzerOff);
 //        if (!MyApplication.isBuzzerOff) {
@@ -1224,14 +1237,17 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
     public void showTipsCommonDialog(String tips) {
 
         runOnUiThread(() -> {
-            if (mCommonDialog == null) {
-                mCommonDialog = new CommonDialog(BaseActivity.this);
+            if (!BaseActivity.this.isFinishing()) {
+                if (mCommonDialog == null) {
+                    mCommonDialog = new CommonDialog(BaseActivity.this);
+                }
+                mCommonDialog.setContent(tips)
+                        .setBtnFirst("确定")
+                        .setFirstClickListener(Dialog::dismiss)
+                        .setTwoClickListener(Dialog::dismiss)
+                        .show();
             }
-            mCommonDialog.setContent(tips)
-                    .setBtnFirst("确定")
-                    .setFirstClickListener(Dialog::dismiss)
-                    .setTwoClickListener(Dialog::dismiss)
-                    .show();
+
         });
 
     }
@@ -1432,5 +1448,18 @@ public abstract class BaseActivity extends RxBaseActivity implements ThemeChange
 //    }
 
     private CompositeDisposable dtCompositeDisposable;
+
+    public void initBeepSoundSus(int uri) {
+        SoundPool sp = new SoundPool(10, AudioManager.STREAM_ALARM, 5);
+        sp.load(this, uri, 1);
+        sp.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int i, int i1) {
+                Log.e("SoundPool","pool--"+i);
+                soundPool.play(i, 100, 100, 1, 0, 1f);
+            }
+        });
+//        sp.play(soundId, 1, 1, 0, 0, 1);
+    }
 
 }

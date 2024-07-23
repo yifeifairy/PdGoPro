@@ -119,7 +119,7 @@ public class SettingActivity extends BaseActivity {
 //        mList.add(new CommandItem("数据上报测试", "uploadDataTest"));
 
 //        mList.add(new CommandItem("SN参数设置", "SNSet"));
-//        mList.add(new CommandItem("传感器数值校准", "WeighParameter"));
+        mList.add(new CommandItem("传感器数值校准", "WeighParameter"));
 //        mList.add(new CommandItem("温控参数设置", "TemperatureControlParameter"));
         mList.add(new CommandItem("预冲参数设置", "FirstRinseParameter"));
 //        mList.add(new CommandItem("APD治疗参数设置", "apdParamSet"));
